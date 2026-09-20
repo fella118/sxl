@@ -1,0 +1,17 @@
+{
+  "enabledPlugins": {
+    "core-3d-animation@claude-design-skillstack": true,
+    "extended-3d-scroll@claude-design-skillstack": true,
+    "animation-components@claude-design-skillstack": true,
+    "authoring-motion@claude-design-skillstack": true,
+    "meta-skills@claude-design-skillstack": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-design-skillstack": {
+      "source": {
+        "source": "github",
+        "repo": "freshtechbro/claudedesignskills"
+      }
+    }
+  }
+}
