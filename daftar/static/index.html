@@ -75,6 +75,7 @@
        box-shadow: 0 1px 1px rgba(0,0,0,.08); }
   .b.in { align-self: flex-start; background: var(--bubble-in); }
   .b.out { align-self: flex-end; background: var(--bubble-out); }
+  .b .text { display: block; }
   .b .meta { display: block; font-size: 11px; color: var(--muted); margin-top: 3px; text-align: right; }
   .b img { max-width: 220px; max-height: 220px; border-radius: 6px; display: block; }
   .b a { color: var(--accent); }
@@ -216,7 +217,7 @@ async function loadChat() {
       inner = /\.pdf$/i.test(m.body) ? `📄 <a href="/api/file/${m.file_id}" target="_blank" rel="noopener">${esc(m.body)}</a>` : `<img src="/api/file/${m.file_id}" alt="${esc(m.body)}">`;
     }
     const tag = m.kind === "template" ? '<span class="tag">Rappel automatique</span>' : (m.direction === "out" ? '<span class="tag">Assistant IA</span>' : "");
-    return `<div class="b ${m.direction}">${tag}${inner}<span class="meta">${fmtDate(m.day)}</span></div>`;
+    return `<div class="b ${m.direction}">${tag}<span class="text" dir="auto">${inner}</span><span class="meta">${fmtDate(m.day)}</span></div>`;
   }).join("") : '<div class="empty">Aucun message. Cliquez « Lancer la relance du mois ».</div>';
   if (busy) chat.insertAdjacentHTML("beforeend", '<div class="typing">l\'assistant lit…</div>');
   chat.scrollTop = chat.scrollHeight;
