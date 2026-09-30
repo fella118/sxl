@@ -5,3 +5,4 @@ __pycache__/
 inbox/
 outbox/
 .env
+demo-data/

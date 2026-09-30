@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "daftar"
 version = "0.1.0"
-description = "AI back-office team for Moroccan fiduciaires (cabinets comptables), orchestrated on Claude Opus 5.5"
+description = "WhatsApp assistant that gets a Moroccan fiduciaire's clients to send their monthly documents on time"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["anthropic>=1.9.0"]
@@ -18,6 +18,9 @@ daftar = "daftar.cli:main"
 
 [tool.setuptools]
 packages = ["daftar"]
+
+[tool.setuptools.package-data]
+daftar = ["static/*.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
