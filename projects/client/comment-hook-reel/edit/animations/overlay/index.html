@@ -5,320 +5,428 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
-    --neon: #a996ff;
-    --neon-soft: rgba(169, 150, 255, .55);
-    --hi: #c9bdff;
+    --cyan: #3be3ff;
+    --yellow: #ffc93c;
+    --red: #ff4d5e;
     --ok: #35d07f;
-    --bad: #ff4d5e;
-    --warn: #ffb547;
+    --ink: rgba(8, 10, 22, .58);
+    --glass: rgba(12, 14, 26, .78);
     --ig-text: #262626;
     --ig-grey: #8e8e8e;
   }
   html, body { margin: 0; width: 1080px; height: 1920px; background: transparent; overflow: hidden; }
   body { font-family: "Cairo", sans-serif; -webkit-font-smoothing: antialiased; }
+  .root { position: absolute; inset: 0; }
   .layer { position: absolute; visibility: hidden; opacity: 0; }
+  svg.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+
+  /* ---------- phrase typography ---------- */
+  .phrase { left: 540px; display: flex; flex-direction: column; align-items: center; width: 1000px; }
+  .line { display: flex; align-items: baseline; justify-content: center; gap: 22px; line-height: 1.02; }
+  .run { display: flex; align-items: baseline; gap: 18px; }
+  .w { position: relative; display: inline-block; white-space: nowrap; paint-order: stroke fill;
+       text-shadow: 0 10px 28px rgba(0,0,0,.45); }
+  .w .ghost { position: absolute; inset: 0; -webkit-text-stroke: 0; text-shadow: none; opacity: 0; pointer-events: none; }
+  .small  { font: 700 56px/1.05 "Cairo"; color: rgba(255,255,255,.94); -webkit-text-stroke: 8px var(--ink); }
+  .key    { font: 900 150px/1.0 "Cairo"; color: #fff; -webkit-text-stroke: 14px var(--ink); }
+  .key.lat { font: 400 168px/0.98 "Anton"; text-transform: uppercase; letter-spacing: 1px; }
+  .script { font: 400 126px/1.0 "Great Vibes"; color: var(--yellow); -webkit-text-stroke: 7px var(--ink);
+            margin-bottom: -26px; transform: rotate(-4deg); padding: 0 18px; }
+  .num    { font: 400 250px/0.95 "Anton"; color: #fff; -webkit-text-stroke: 16px var(--ink); }
+  .cyan { color: var(--cyan); } .yellow { color: var(--yellow); } .red { color: var(--red); }
 
   /* ---------- Instagram comment card ---------- */
   #card { left: 80px; top: 300px; width: 920px; }
-  .ig {
-    background: #fff; border-radius: 40px; padding: 34px 40px 30px;
-    box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 4px 14px rgba(0,0,0,.18);
-    font-family: "Roboto", sans-serif; color: var(--ig-text);
-  }
+  .ig { background: #fff; border-radius: 40px; padding: 34px 40px 30px; font-family: "Roboto", sans-serif; color: var(--ig-text);
+        box-shadow: 0 24px 60px rgba(0,0,0,.35), 0 4px 14px rgba(0,0,0,.18); }
   .ig-head { display: flex; align-items: center; gap: 22px; }
   .avatar { width: 92px; height: 92px; border-radius: 50%; flex: none; overflow: hidden; }
   .avatar.user { background: #dbdbdb; display: grid; place-items: center; }
   .avatar img { width: 100%; height: 100%; object-fit: cover; }
   .ig-name { font-weight: 700; font-size: 38px; }
-  .ig-time { color: var(--ig-grey); font-size: 34px; font-weight: 400; margin-left: 12px; }
+  .ig-time { color: var(--ig-grey); font-size: 34px; margin-left: 12px; }
   .ig-heart { margin-left: auto; display: flex; flex-direction: column; align-items: center; color: var(--ig-grey); font-size: 28px; }
-  #ctext {
-    font-family: "Cairo", sans-serif; font-weight: 700; font-size: 60px; line-height: 1.35;
-    min-height: 82px; margin: 18px 4px 6px; unicode-bidi: plaintext; text-align: start;
-  }
+  #ctext { font: 700 60px/1.35 "Cairo"; min-height: 82px; margin: 18px 4px 6px; unicode-bidi: plaintext; text-align: start; }
   .ig-foot { color: var(--ig-grey); font-size: 32px; font-weight: 500; display: flex; gap: 44px; }
-  #reply {
-    margin: 18px 0 0 60px; display: inline-flex; align-items: center; gap: 18px;
-    background: rgba(18, 14, 36, .92); color: #fff; border: 3px solid var(--neon);
-    box-shadow: 0 0 26px var(--neon-soft); border-radius: 60px; padding: 12px 30px 12px 14px;
-    font-family: "Roboto", sans-serif; font-size: 34px; font-weight: 500;
-    opacity: 0; visibility: hidden;
-  }
+  #reply { margin: 18px 0 0 60px; display: inline-flex; align-items: center; gap: 18px; background: var(--glass); color: #fff;
+           border: 3px solid var(--cyan); box-shadow: 0 0 24px rgba(59,227,255,.45); border-radius: 60px; padding: 12px 30px 12px 14px;
+           font: 500 34px "Roboto"; opacity: 0; visibility: hidden; }
   #reply .avatar { width: 64px; height: 64px; }
-  #reply b { font-weight: 700; }
 
-  /* ---------- captions ---------- */
-  .cap {
-    left: 40px; width: 1000px; top: 1250px; text-align: center;
-    font-family: "Cairo", sans-serif; font-weight: 900; font-size: 104px; line-height: 1.2;
-    color: #fff; unicode-bidi: plaintext;
-    text-shadow:
-      0 0 2px #000, 5px 0 0 #000, -5px 0 0 #000, 0 5px 0 #000, 0 -5px 0 #000,
-      4px 4px 0 #000, -4px 4px 0 #000, 4px -4px 0 #000, -4px -4px 0 #000,
-      0 10px 24px rgba(0,0,0,.55);
-  }
-  .cap b { color: var(--hi); font-weight: 900; }
+  /* ---------- curved cards: vision de loin / de près ---------- */
+  #lp { left: 0; top: 230px; width: 1080px; height: 1100px; perspective: 1100px; }
+  .card3d { position: absolute; top: 0; width: 400px; height: 440px; border-radius: 44px; padding: 36px 24px;
+            box-sizing: border-box; text-align: center; color: #fff; opacity: 0; visibility: hidden;
+            background: linear-gradient(115deg, rgba(255,255,255,.26) 0%, rgba(255,255,255,.08) 38%, rgba(10,12,24,.82) 70%);
+            border: 3px solid rgba(255,255,255,.55); box-shadow: 0 30px 70px rgba(0,0,0,.45), inset 0 0 40px rgba(59,227,255,.18); }
+  #loin { left: 90px; transform-origin: 100% 50%; }
+  #pres { right: 90px; transform-origin: 0% 50%; }
+  .card3d svg { width: 170px; height: 170px; }
+  .card3d .lbl { font: 800 48px "Cairo"; margin-top: 18px; white-space: nowrap; }
+  .card3d .lbl b { font: 400 66px "Anton"; color: var(--cyan); text-transform: uppercase; display: block; letter-spacing: 1px; }
+  #xstamp { position: absolute; left: 470px; top: 150px; width: 140px; height: 140px; opacity: 0; visibility: hidden; }
+  #sepw { position: absolute; left: 0; right: 0; top: 960px; text-align: center; opacity: 0; visibility: hidden; }
 
-  /* ---------- neon panels ---------- */
-  .panel {
-    background: rgba(14, 10, 32, .84); border: 4px solid var(--neon); border-radius: 38px;
-    box-shadow: 0 0 34px var(--neon-soft), inset 0 0 26px rgba(169,150,255,.22);
-    color: #fff; padding: 34px 44px;
-  }
-  .label { font-weight: 800; font-size: 46px; color: var(--hi); letter-spacing: .5px; unicode-bidi: plaintext; }
+  /* ---------- chart reveal ---------- */
+  #chart { left: 150px; top: 300px; width: 780px; height: 380px; }
+  .axis { position: absolute; left: 40px; right: 120px; bottom: 70px; height: 4px; background: rgba(255,255,255,.75); border-radius: 2px; }
+  .bar { position: absolute; bottom: 74px; width: 150px; height: 0; border-radius: 22px 22px 6px 6px; }
+  #b1 { left: 95px; background: var(--ok); } #b2 { left: 315px; background: var(--yellow); } #b3 { left: 535px; background: var(--red); box-shadow: 0 0 40px rgba(255,77,94,.55); }
+  .blab { position: absolute; bottom: 0; width: 150px; text-align: center; font: 400 62px "Anton"; color: #fff; -webkit-text-stroke: 8px var(--ink); paint-order: stroke fill; }
+  #n3 { position: absolute; left: 640px; width: 150px; text-align: center; font: 400 120px "Anton"; color: var(--red); -webkit-text-stroke: 10px var(--ink); paint-order: stroke fill; opacity: 0; visibility: hidden; }
 
-  #add { left: 190px; top: 380px; width: 700px; }
-  #add .panel { text-align: center; }
-  .chips { display: flex; gap: 40px; justify-content: center; margin-top: 22px; }
-  .chip {
-    display: flex; align-items: center; gap: 16px; font-weight: 900; font-size: 92px; line-height: 1;
-    background: rgba(53, 208, 127, .14); border: 4px solid var(--ok); border-radius: 30px;
-    padding: 18px 34px 22px; opacity: 0; visibility: hidden;
-  }
-  .tick { width: 58px; height: 58px; flex: none; }
+  /* ---------- wall of keywords (back layer) ---------- */
+  #wall { left: -200px; top: 120px; width: 1480px; }
+  .wrow { display: flex; gap: 60px; white-space: nowrap; font: 900 230px/1.0 "Cairo"; margin: -18px 0; }
+  .wrow span.f { color: var(--yellow); }
+  .wrow span.o { color: #fff; filter: url(#outlineW); }
 
-  #lp { left: 40px; top: 300px; width: 1000px; }
-  .lp-row { display: flex; gap: 110px; justify-content: center; position: relative; }
-  .lp-card {
-    width: 430px; padding: 34px 20px 30px; text-align: center; opacity: 0; visibility: hidden;
-  }
-  .lp-card svg { width: 130px; height: 130px; }
-  .lp-card .label { font-size: 44px; white-space: nowrap; color: #fff; margin-top: 10px; }
-  .xmark {
-    position: absolute; left: 50%; top: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px;
-    opacity: 0; visibility: hidden;
-  }
-  #sepword {
-    position: absolute; left: 0; right: 0; bottom: -96px; text-align: center; font-weight: 900; font-size: 64px;
-    color: var(--bad); text-shadow: 0 0 18px rgba(255,77,94,.6), 3px 3px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000;
-    opacity: 0; visibility: hidden;
-  }
+  /* ---------- floating icons ---------- */
+  .floater { width: 130px; height: 130px; }
 
-  #gauge { left: 110px; top: 400px; width: 860px; }
-  .g-track { position: relative; height: 56px; border-radius: 28px; background: rgba(255,255,255,.12); margin: 70px 10px 20px; }
-  .g-fill {
-    position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 28px;
-    background: linear-gradient(90deg, #35d07f 0%, #35d07f 40%, #ffb547 70%, #ff4d5e 100%);
-    background-size: 700px 100%;
-  }
-  .g-tick { position: absolute; top: -66px; transform: translateX(-50%); font-weight: 900; font-size: 50px; color: rgba(255,255,255,.55); }
-  .g-tick::after { content: ""; position: absolute; left: 50%; top: 66px; width: 4px; height: 56px; background: rgba(0,0,0,.35); }
-  #g-hard { margin-top: 26px; text-align: center; font-weight: 900; font-size: 74px; color: var(--bad); opacity: 0; visibility: hidden; }
-
+  /* ---------- checklist / days / back flow / CTA (restyled v2) ---------- */
+  .panel { background: var(--glass); border: 3px solid rgba(255,255,255,.5); border-radius: 38px; color: #fff; padding: 30px 40px;
+           box-shadow: 0 26px 60px rgba(0,0,0,.4), inset 0 0 30px rgba(59,227,255,.14); }
+  .label { font-weight: 800; font-size: 46px; color: var(--cyan); unicode-bidi: plaintext; }
   #crit { left: 150px; top: 170px; width: 780px; }
-  .crow { display: flex; align-items: center; gap: 24px; font-weight: 800; font-size: 54px; height: 0; margin-top: 0; overflow: hidden; opacity: 0; visibility: hidden; unicode-bidi: plaintext; }
+  .crow { display: flex; align-items: center; gap: 24px; font-weight: 800; font-size: 54px; height: 0; margin-top: 0; overflow: hidden;
+          opacity: 0; visibility: hidden; unicode-bidi: plaintext; }
   .box { width: 60px; height: 60px; border-radius: 18px; border: 4px solid rgba(255,255,255,.6); flex: none; position: relative; }
   .box .fill { position: absolute; inset: -4px; border-radius: 18px; background: var(--ok); transform: scale(0); }
   .box svg { position: absolute; inset: 6px; width: 46px; height: 46px; opacity: 0; }
-
-  #days { left: 300px; top: 360px; width: 480px; }
-  #days .panel { text-align: center; padding: 0 0 26px; overflow: hidden; }
-  .cal-top { background: var(--bad); height: 70px; display: flex; justify-content: center; gap: 120px; align-items: center; }
-  .cal-top i { width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,.35); display: block; }
-  .cal-num { position: relative; height: 230px; overflow: hidden; }
-  .cal-num span { position: absolute; left: 0; right: 0; top: 0; font-weight: 900; font-size: 210px; line-height: 230px; }
-  #days .label { font-size: 70px; color: #fff; }
-
-  #back { left: 60px; top: 380px; width: 960px; }
+  #days { left: 290px; top: 330px; width: 500px; height: 500px; }
+  #days .ringwrap { position: absolute; inset: 0; }
+  #days .dnum { position: absolute; left: 0; right: 0; top: 70px; text-align: center; font: 400 300px/1 "Anton"; color: #fff;
+                -webkit-text-stroke: 16px var(--ink); paint-order: stroke fill; }
+  #days .dlab { position: absolute; left: 0; right: 0; top: 375px; text-align: center; font: 900 84px "Cairo"; color: var(--yellow);
+                -webkit-text-stroke: 10px var(--ink); paint-order: stroke fill; }
   .flow { display: flex; align-items: center; justify-content: center; gap: 22px; }
   .node { width: 380px; text-align: center; padding: 30px 18px 28px; opacity: 0; visibility: hidden; }
-  .node .avatar { width: 150px; height: 150px; margin: 0 auto 12px; border: 4px solid var(--neon); }
-  .node .icon { width: 150px; height: 150px; margin: 0 auto 12px; display: grid; place-items: center; border-radius: 50%; background: rgba(169,150,255,.18); border: 4px solid var(--neon); }
+  .node .avatar { width: 150px; height: 150px; margin: 0 auto 12px; border: 4px solid var(--cyan); }
+  .node .icon { width: 150px; height: 150px; margin: 0 auto 12px; display: grid; place-items: center; border-radius: 50%;
+                background: rgba(59,227,255,.16); border: 4px solid var(--cyan); }
   .node .label { font-size: 48px; color: #fff; display: flex; align-items: center; justify-content: center; gap: 12px; }
   .node .label svg { width: 50px; height: 50px; opacity: 0; }
   .arrow { width: 110px; height: 60px; opacity: 0; visibility: hidden; }
-
   #cta { left: 60px; top: 320px; width: 960px; }
-  .ig-bar {
-    display: flex; align-items: center; gap: 22px; background: #fff; border-radius: 70px; padding: 18px 26px 18px 18px;
-    box-shadow: 0 24px 60px rgba(0,0,0,.35); font-family: "Roboto", sans-serif;
-  }
+  .ig-bar { display: flex; align-items: center; gap: 22px; background: #fff; border-radius: 70px; padding: 18px 26px 18px 18px;
+            box-shadow: 0 24px 60px rgba(0,0,0,.35); font-family: "Roboto", sans-serif; }
   .ig-bar .avatar { width: 84px; height: 84px; }
-  #cta-text { flex: 1; font-size: 40px; color: var(--ig-grey); font-family: "Cairo", "Roboto", sans-serif; font-weight: 600; unicode-bidi: plaintext; text-align: start; white-space: nowrap; overflow: hidden; }
+  #cta-text { flex: 1; font: 600 40px "Cairo"; color: var(--ig-grey); unicode-bidi: plaintext; text-align: start; white-space: nowrap; overflow: hidden; }
   #cta-text.typed { color: var(--ig-text); }
   #cta-send { font-weight: 700; font-size: 38px; color: #0095f6; opacity: .45; }
-  #notif {
-    margin: 26px auto 0; width: 860px; display: flex; align-items: center; gap: 22px;
-    background: rgba(18, 14, 36, .92); color: #fff; border: 3px solid var(--neon); box-shadow: 0 0 26px var(--neon-soft);
-    border-radius: 34px; padding: 20px 26px; font-family: "Roboto", sans-serif; font-size: 36px;
-    opacity: 0; visibility: hidden;
-  }
+  #notif { margin: 26px auto 0; width: 860px; display: flex; align-items: center; gap: 22px; background: var(--glass); color: #fff;
+           border: 3px solid var(--cyan); box-shadow: 0 0 24px rgba(59,227,255,.4); border-radius: 34px; padding: 20px 26px;
+           font: 400 36px "Roboto"; opacity: 0; visibility: hidden; }
   #notif .avatar { width: 80px; height: 80px; }
-  #notif b { font-weight: 700; }
   #bubble { position: absolute; right: -26px; top: -70px; width: 120px; height: 120px; opacity: 0; visibility: hidden; }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute"><defs id="fxdefs">
+  <filter id="outlineW" x="-5%" y="-10%" width="110%" height="120%">
+    <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="d"/>
+    <feComposite in="d" in2="SourceAlpha" operator="out" result="o"/>
+    <feFlood flood-color="#ffffff" flood-opacity="0.9"/>
+    <feComposite in2="o" operator="in"/>
+  </filter>
+</defs></svg>
 
-<!-- Instagram comment card -->
-<div id="card" class="layer">
-  <div class="ig" id="igcard">
-    <div class="ig-head">
-      <div class="avatar user"><svg width="62" height="62" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="8" r="4.6"/><path d="M2.5 23c.8-5.2 4.6-8.2 9.5-8.2s8.7 3 9.5 8.2z"/></svg></div>
-      <div><span class="ig-name">user</span><span class="ig-time">2 h</span></div>
-      <div class="ig-heart"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.2 1.7-2 3.1-3.2 5.3-3.2 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>24</div>
-    </div>
-    <div id="ctext" dir="auto"></div>
-    <div class="ig-foot"><span>Répondre</span><span>Voir la traduction</span></div>
-  </div>
-  <div id="reply"><div class="avatar"><img src="avatar_go.png"></div><span><b>gzenaya optique</b> a répondu</span></div>
+<!-- ================= BACK LAYER (composited behind the speaker) ================= -->
+<div id="back" class="root">
+  <svg id="ringsB" class="full layer"><g id="ringsBg"></g></svg>
+  <div id="wall" class="layer"></div>
 </div>
 
-<!-- captions are generated -->
-<div id="caps"></div>
+<!-- ================= FRONT LAYER ================= -->
+<div id="front" class="root">
+  <svg id="ringsF" class="full layer"><g id="ringsFg"></g></svg>
 
-<!-- +1 / +2 -->
-<div id="add" class="layer"><div class="panel">
-  <div class="label">l'addition</div>
-  <div class="chips">
-    <div class="chip" id="chip1">+1 <svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#35d07f"/><path d="M6.5 12.5l3.5 3.5 7.5-8" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="chip" id="chip2">+2 <svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#35d07f"/><path d="M6.5 12.5l3.5 3.5 7.5-8" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  </div>
-</div></div>
-
-<!-- vision de loin / de pres -->
-<div id="lp" class="layer">
-  <div class="lp-row">
-    <div class="lp-card panel" id="loin">
-      <svg viewBox="0 0 64 64" fill="none" stroke="#c9bdff" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"><path d="M4 52l18-26 10 14 8-10 20 22z"/><circle cx="46" cy="14" r="6"/></svg>
-      <div class="label">la vision de loin</div>
+  <div id="card" class="layer">
+    <div class="ig">
+      <div class="ig-head">
+        <div class="avatar user"><svg width="62" height="62" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="8" r="4.6"/><path d="M2.5 23c.8-5.2 4.6-8.2 9.5-8.2s8.7 3 9.5 8.2z"/></svg></div>
+        <div><span class="ig-name">user</span><span class="ig-time">2 h</span></div>
+        <div class="ig-heart"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="2"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.2 1.7-2 3.1-3.2 5.3-3.2 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>24</div>
+      </div>
+      <div id="ctext" dir="auto"></div>
+      <div class="ig-foot"><span>Répondre</span><span>Voir la traduction</span></div>
     </div>
-    <div class="lp-card panel" id="pres">
-      <svg viewBox="0 0 64 64" fill="none" stroke="#c9bdff" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"><path d="M32 16c-6-5-15-6-26-4v38c11-2 20-1 26 4 6-5 15-6 26-4V12c-11-2-20-1-26 4z"/><path d="M32 16v38"/></svg>
-      <div class="label">la vision de près</div>
-    </div>
-    <svg class="xmark" id="xmark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="rgba(255,77,94,.92)" stroke="#fff" stroke-width="5"/><path d="M32 32l36 36M68 32L32 68" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg>
-    <div id="sepword">بوحديتهم</div>
+    <div id="reply"><div class="avatar"><img src="avatar_go.png"></div><span><b>gzenaya optique</b> a répondu</span></div>
   </div>
-</div>
 
-<!-- addition gauge -->
-<div id="gauge" class="layer"><div class="panel">
-  <div class="label">l'addition</div>
-  <div class="g-track">
-    <div class="g-fill" id="gfill"></div>
-    <div class="g-tick" style="left:20%">+1</div>
-    <div class="g-tick" style="left:52%">+2</div>
-    <div class="g-tick" style="left:84%" id="t3">+3</div>
-  </div>
-  <div id="g-hard">صعاب ⚠</div>
-</div></div>
+  <div id="phrases"></div>
 
-<!-- criteria checklist -->
-<div id="crit" class="layer"><div class="panel">
-  <div class="label" dir="auto">des critères آخرين</div>
-  <div class="crow" id="c0"><div class="box"><div class="fill"></div><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>le centrage</div>
-  <div class="crow" id="c1"><div class="box"><div class="fill"></div><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>la hauteur</div>
-  <div class="crow" id="c2"><div class="box"><div class="fill"></div><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>les mesures</div>
-  <div class="crow" id="c3"><div class="box"><div class="fill"></div><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>la correction</div>
-</div></div>
-
-<!-- 3 days -->
-<div id="days" class="layer"><div class="panel">
-  <div class="cal-top"><i></i><i></i></div>
-  <div class="cal-num"><span id="d1">1</span><span id="d2">2</span><span id="d3">3</span></div>
-  <div class="label">تلتيام</div>
-</div></div>
-
-<!-- come back -> centrage -> professional -->
-<div id="back" class="layer">
-  <div class="flow">
-    <div class="node panel" id="n1">
-      <div class="avatar"><img src="avatar_go.png"></div>
-      <div class="label">le centrage <svg id="n1chk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#35d07f"/><path d="M6.5 12.5l3.5 3.5 7.5-8" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div id="lp" class="layer">
+    <div class="card3d" id="loin">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#3be3ff" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"><path d="M4 52l18-26 10 14 8-10 20 22z"/><circle cx="46" cy="14" r="6"/></svg>
+      <div class="lbl">la vision <b>de loin</b></div>
     </div>
-    <svg class="arrow" id="arrow" viewBox="0 0 110 60"><path d="M6 30h86M70 10l24 20-24 20" fill="none" stroke="#c9bdff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <div class="node panel" id="n2">
-      <div class="icon"><svg width="96" height="96" viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 32s10-16 28-16 28 16 28 16-10 16-28 16S4 32 4 32z"/><circle cx="32" cy="32" r="9"/><circle cx="32" cy="32" r="3" fill="#fff"/></svg></div>
-      <div class="label">le professionnel</div>
+    <div class="card3d" id="pres">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#3be3ff" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"><path d="M32 16c-6-5-15-6-26-4v38c11-2 20-1 26 4 6-5 15-6 26-4V12c-11-2-20-1-26 4z"/><path d="M32 16v38"/></svg>
+      <div class="lbl">la vision <b>de près</b></div>
+    </div>
+    <svg id="xstamp" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#ff4d5e" stroke="#fff" stroke-width="5"/><path d="M32 32l36 36M68 32L32 68" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg>
+    <div id="sepw"><span class="w key red">بوحديتهم</span></div>
+  </div>
+
+  <div id="chart" class="layer">
+    <div class="bar" id="b1"></div><div class="bar" id="b2"></div><div class="bar" id="b3"></div>
+    <div class="axis"></div>
+    <div class="blab" style="left:95px">+1</div><div class="blab" style="left:315px">+2</div><div class="blab" style="left:535px">+3</div>
+    <div id="n3">+3</div>
+  </div>
+
+  <div id="floaters" class="layer" style="left:0;top:0;width:1080px;height:1920px"></div>
+
+  <div id="crit" class="layer"><div class="panel">
+    <div class="label" dir="auto">des critères آخرين</div>
+    <div class="crow" id="c0"><div class="box"><div class="fill"></div><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>le centrage</div>
+    <div class="crow" id="c1"><div class="box"><div class="fill"></div><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>la hauteur</div>
+    <div class="crow" id="c2"><div class="box"><div class="fill"></div><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>les mesures</div>
+    <div class="crow" id="c3"><div class="box"><div class="fill"></div><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>la correction</div>
+  </div></div>
+
+  <div id="days" class="layer">
+    <svg class="ringwrap" viewBox="0 0 500 500"><g id="dring" transform-origin="250 250">
+      <circle cx="250" cy="250" r="225" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="5"/>
+      <circle cx="250" cy="250" r="225" fill="none" stroke="#3be3ff" stroke-width="12" stroke-linecap="round" stroke-dasharray="380 1034" id="darc"/>
+      <circle cx="250" cy="25" r="14" fill="#ffc93c"/></g></svg>
+    <div class="dnum" id="dnum">1</div>
+    <div class="dlab">تلتيام</div>
+  </div>
+
+  <div id="flow" class="layer" style="left:60px;top:380px;width:960px">
+    <div class="flow">
+      <div class="node panel" id="n1"><div class="avatar"><img src="avatar_go.png"></div>
+        <div class="label">le centrage <svg id="n1chk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#35d07f"/><path d="M6.5 12.5l3.5 3.5 7.5-8" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      <svg class="arrow" id="arrow" viewBox="0 0 110 60"><path d="M6 30h86M70 10l24 20-24 20" fill="none" stroke="#3be3ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="node panel" id="n2"><div class="icon"><svg width="96" height="96" viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 32s10-16 28-16 28 16 28 16-10 16-28 16S4 32 4 32z"/><circle cx="32" cy="32" r="9"/><circle cx="32" cy="32" r="3" fill="#fff"/></svg></div>
+        <div class="label">le professionnel</div></div>
     </div>
   </div>
-</div>
 
-<!-- CTA: comment bar + reply notification -->
-<div id="cta" class="layer">
-  <div style="position:relative">
-    <div class="ig-bar">
-      <div class="avatar user"><svg width="56" height="56" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="8" r="4.6"/><path d="M2.5 23c.8-5.2 4.6-8.2 9.5-8.2s8.7 3 9.5 8.2z"/></svg></div>
-      <div id="cta-text" dir="auto">Ajouter un commentaire…</div>
-      <div id="cta-send">Publier</div>
+  <div id="cta" class="layer">
+    <div style="position:relative">
+      <div class="ig-bar">
+        <div class="avatar user"><svg width="56" height="56" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="8" r="4.6"/><path d="M2.5 23c.8-5.2 4.6-8.2 9.5-8.2s8.7 3 9.5 8.2z"/></svg></div>
+        <div id="cta-text" dir="auto">Ajouter un commentaire…</div>
+        <div id="cta-send">Publier</div>
+      </div>
+      <svg id="bubble" viewBox="0 0 64 64"><path d="M32 6C17 6 6 16 6 29c0 7 3 12.6 8 16.4V58l11.5-7.2c2.1.5 4.2.7 6.5.7 15 0 26-10 26-22.5S47 6 32 6z" fill="#3be3ff" stroke="#fff" stroke-width="3"/><circle cx="21" cy="29" r="3.6" fill="#fff"/><circle cx="32" cy="29" r="3.6" fill="#fff"/><circle cx="43" cy="29" r="3.6" fill="#fff"/></svg>
     </div>
-    <svg id="bubble" viewBox="0 0 64 64"><path d="M32 6C17 6 6 16 6 29c0 7 3 12.6 8 16.4V58l11.5-7.2c2.1.5 4.2.7 6.5.7 15 0 26-10 26-22.5S47 6 32 6z" fill="#a996ff" stroke="#fff" stroke-width="3"/><circle cx="21" cy="29" r="3.6" fill="#fff"/><circle cx="32" cy="29" r="3.6" fill="#fff"/><circle cx="43" cy="29" r="3.6" fill="#fff"/></svg>
+    <div id="notif"><div class="avatar"><img src="avatar_go.png"></div><span><b>gzenaya optique</b> a répondu à ton commentaire</span></div>
   </div>
-  <div id="notif"><div class="avatar"><img src="avatar_go.png"></div><span><b>gzenaya optique</b> a répondu à ton commentaire</span></div>
 </div>
 
 <script src="node_modules/gsap/dist/gsap.min.js"></script>
 <script src="events.js"></script>
+<script src="facepos.js"></script>
 <script>
-const E = window.EV;
-const tl = gsap.timeline({ paused: true });
-const back = "back.out(1.7)", out3 = "power3.out", in3 = "power3.in", io3 = "power3.inOut";
+const E = window.EV, FACE = window.FACE || { fps: 50, frames: [] };
+const LAYER = new URLSearchParams(location.search).get("layer") || "all";
+if (LAYER === "back") document.getElementById("front").style.display = "none";
+if (LAYER === "front") document.getElementById("back").style.display = "none";
 
-// Show a layer with a pop, hide it with a quick lift.
-function popIn(sel, t, opts = {}) {
-  tl.fromTo(sel, { autoAlpha: 0, scale: opts.from ?? 0.82, y: opts.y ?? 30 },
-                 { autoAlpha: 1, scale: 1, y: 0, duration: opts.d ?? 0.38, ease: back }, t);
+const tl = gsap.timeline({ paused: true });
+const back = "back.out(1.7)", out3 = "power3.out", in3 = "power3.in", io3 = "power3.inOut", expo = "expo.out";
+const AR = /[؀-ۿ]/;
+const SVGNS = "http://www.w3.org/2000/svg";
+const defs = document.getElementById("fxdefs");
+let fxId = 0;
+
+// Horizontal (or vertical) motion blur filter for one element; returns the blur node to animate.
+function motionBlur(el) {
+  const f = document.createElementNS(SVGNS, "filter");
+  f.setAttribute("id", "mb" + (++fxId));
+  f.setAttribute("x", "-60%"); f.setAttribute("y", "-60%"); f.setAttribute("width", "220%"); f.setAttribute("height", "220%");
+  const b = document.createElementNS(SVGNS, "feGaussianBlur");
+  b.setAttribute("stdDeviation", "0 0");
+  f.appendChild(b); defs.appendChild(f);
+  el.style.filter = `url(#mb${fxId})`;
+  return b;
 }
-function popOut(sel, t, d = 0.22) {
-  tl.to(sel, { autoAlpha: 0, scale: 0.92, y: -24, duration: d, ease: in3 }, t);
+function addGhosts(el, color) {
+  return [0, 1].map(i => {
+    const g = document.createElement("span");
+    g.className = "ghost"; g.textContent = el.dataset.text; g.style.color = color;
+    el.appendChild(g); return g;
+  });
 }
+
+// ---------- phrase typography ----------
+const ACCENT = { cyan: "#3be3ff", yellow: "#ffc93c", red: "#ff4d5e" };
+const phrasesEl = document.getElementById("phrases");
+E.phrases.forEach(p => {
+  const ph = document.createElement("div");
+  ph.className = "layer phrase"; ph.style.top = p.y + "px";
+  phrasesEl.appendChild(ph);
+  const words = [];
+  p.lines.forEach(line => {
+    const lineDir = AR.test(line[0].t) ? "rtl" : "ltr";
+    const ln = document.createElement("div");
+    ln.className = "line"; ln.style.direction = lineDir;
+    ph.appendChild(ln);
+    // group same-script neighbours into runs so mixed lines keep their reading order
+    let run = null, runDir = null;
+    line.forEach(wd => {
+      const dir = AR.test(wd.t) ? "rtl" : (/[A-Za-zÀ-ÿ]/.test(wd.t) ? "ltr" : lineDir);
+      if (!run || dir !== runDir) {
+        run = document.createElement("div"); run.className = "run"; run.style.direction = dir; runDir = dir;
+        ln.appendChild(run);
+      }
+      const el = document.createElement("span");
+      const lat = dir === "ltr";
+      el.className = `w ${wd.role}${lat && wd.role === "key" ? " lat" : ""}${wd.color ? " " + wd.color : ""}`;
+      el.textContent = wd.t; el.dataset.text = wd.t;
+      run.appendChild(el);
+      words.push({ el, wd, dir });
+    });
+  });
+  tl.set(ph, { autoAlpha: 1, xPercent: -50 }, p.start - 0.06);
+  words.forEach(({ el, wd, dir }) => {
+    const at = wd.at - 0.04, sign = dir === "rtl" ? 1 : -1;
+    if (wd.role === "small") {
+      tl.fromTo(el, { autoAlpha: 0, y: 34 }, { autoAlpha: 1, y: 0, duration: 0.2, ease: out3 }, at);
+    } else if (wd.role === "script") {
+      tl.fromTo(el, { autoAlpha: 1, clipPath: "inset(-30% 100% -30% -10%)", y: 14 },
+                    { clipPath: "inset(-30% -10% -30% -10%)", y: 0, duration: 0.42, ease: "power2.inOut" }, at);
+    } else {
+      const blur = motionBlur(el);
+      const ghosts = addGhosts(el, ACCENT[wd.color] || ACCENT.cyan);
+      const num = wd.role === "num";
+      tl.fromTo(el, num ? { autoAlpha: 0, scale: 0.35, rotation: -10 } : { autoAlpha: 0, scale: 1.35, x: sign * 60 },
+                    num ? { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.34, ease: "back.out(2.2)" }
+                        : { autoAlpha: 1, scale: 1, x: 0, duration: 0.26, ease: expo }, at);
+      // dark outline/shadow fade in after the blur, so the smear stays word-shaped
+      tl.fromTo(el, { webkitTextStrokeColor: "rgba(8,10,22,0)", textShadow: "0 10px 28px rgba(0,0,0,0)" },
+                    { webkitTextStrokeColor: "rgba(8,10,22,0.58)", textShadow: "0 10px 28px rgba(0,0,0,0.45)", duration: 0.2, ease: "power1.in" }, at + 0.06);
+      tl.fromTo(blur, { attr: { stdDeviation: num ? "0 12" : "12 0" } }, { attr: { stdDeviation: "0 0" }, duration: 0.24, ease: "power2.out" }, at);
+      ghosts.forEach((g, i) => tl.fromTo(g, num ? { opacity: 0.45 - 0.17 * i, y: 50 * (i + 1) } : { opacity: 0.5 - 0.18 * i, x: sign * 46 * (i + 1) },
+                                            { opacity: 0, x: 0, y: 0, duration: 0.32 + 0.1 * i, ease: out3 }, at + 0.02));
+    }
+  });
+  tl.to(words.map(w => w.el), { autoAlpha: 0, y: -26, duration: 0.16, ease: "power2.in", stagger: 0.015 }, p.end - 0.16);
+  tl.set(ph, { autoAlpha: 0 }, p.end + 0.08);
+});
 
 // ---------- hook: IG comment card ----------
 tl.fromTo("#card", { autoAlpha: 0, scale: 0.6, y: 60, transformOrigin: "50% 30%" },
                    { autoAlpha: 1, scale: 1, y: 0, duration: 0.42, ease: back }, E.card_in);
-tl.fromTo("#reply", { autoAlpha: 0, y: -20, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.32, ease: back }, E.reply);
-tl.to("#card", { autoAlpha: 0, y: -260, scale: 0.86, duration: 0.3, ease: in3 }, E.card_out);
-
+tl.fromTo("#reply", { autoAlpha: 0, y: -20, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.25, ease: back }, E.reply - 0.15);
+tl.to("#card", { autoAlpha: 0, y: -260, scale: 0.86, duration: 0.24, ease: in3 }, E.card_out);
 const ctext = document.getElementById("ctext");
-function typed(t) {
-  let out = [];
-  for (const w of E.hook_words) {
+// Arabic words appear whole (keeps letters joined); French types letter by letter.
+function typed(t, words) {
+  const out = [];
+  for (const w of words) {
     if (t <= w.start) break;
-    const p = Math.min(1, (t - w.start) / Math.max(0.12, w.end - w.start));
+    if (AR.test(w.text)) { out.push(w.text); continue; }
     const chars = Array.from(w.text);
+    const p = Math.min(1, (t - w.start) / Math.max(0.12, w.end - w.start));
     out.push(chars.slice(0, Math.max(1, Math.round(p * chars.length))).join(""));
   }
   return out.join(" ");
 }
 
-// ---------- captions ----------
-const caps = document.getElementById("caps");
-E.captions.forEach(([s, e, html], i) => {
-  const el = document.createElement("div");
-  el.className = "layer cap"; el.id = "cap" + i; el.dir = "auto"; el.innerHTML = html;
-  caps.appendChild(el);
-  tl.fromTo(el, { autoAlpha: 0, scale: 0.7, y: 26 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.2, ease: back }, s);
-  tl.to(el, { autoAlpha: 0, scale: 0.96, duration: 0.1, ease: in3 }, Math.max(s + 0.25, e - 0.1));
+// ---------- dizzy rings around the head (back half behind him, front half over him) ----------
+const RINGS = [{ rx: 190, ry: 40, tilt: -10, dash: "34 20", speed: 260, w: 7, c: "#3be3ff" },
+               { rx: 160, ry: 30, tilt: 8, dash: "18 16", speed: -340, w: 5, c: "#ffffff" },
+               { rx: 220, ry: 52, tilt: 2, dash: "60 30", speed: 180, w: 4, c: "#ffc93c" }];
+const ringEls = { B: [], F: [] };
+["B", "F"].forEach(side => {
+  const g = document.getElementById("rings" + side + "g");
+  RINGS.forEach((r, i) => {
+    const grp = document.createElementNS(SVGNS, "g");
+    grp.setAttribute("transform", `rotate(${r.tilt})`);
+    const path = document.createElementNS(SVGNS, "path");
+    // back = upper half (far side), front = lower half (near side)
+    path.setAttribute("d", side === "B" ? `M ${-r.rx} 0 A ${r.rx} ${r.ry} 0 0 1 ${r.rx} 0` : `M ${r.rx} 0 A ${r.rx} ${r.ry} 0 0 1 ${-r.rx} 0`);
+    path.setAttribute("fill", "none"); path.setAttribute("stroke", r.c); path.setAttribute("stroke-width", r.w);
+    path.setAttribute("stroke-linecap", "round"); path.setAttribute("stroke-dasharray", r.dash);
+    const dot = document.createElementNS(SVGNS, "circle");
+    dot.setAttribute("r", 11); dot.setAttribute("fill", r.c);
+    grp.appendChild(path); grp.appendChild(dot); g.appendChild(grp);
+    ringEls[side].push({ path, dot, r });
+  });
 });
+const RING = { k: 0 };
+tl.fromTo(RING, { k: 0 }, { k: 1, duration: 0.35, ease: back }, E.rings_in);
+tl.to(RING, { k: 0, duration: 0.18, ease: in3 }, E.rings_out - 0.18);
+function updateRings(t) {
+  const f = FACE.frames[Math.round(t * FACE.fps)];
+  const on = RING.k > 0.001 && f;
+  ["B", "F"].forEach(side => {
+    const svg = document.getElementById("rings" + side);
+    svg.style.visibility = on ? "visible" : "hidden"; svg.style.opacity = on ? Math.min(1, RING.k) : 0;
+    if (!on) return;
+    const s = f[2] / 100 * 0.48 * RING.k, wob = Math.sin(t * 7) * 6;
+    document.getElementById("rings" + side + "g").setAttribute("transform",
+      `translate(${f[0]} ${f[1] - f[2] * 0.80}) rotate(${wob}) scale(${s})`);
+    ringEls[side].forEach(({ path, dot, r }, i) => {
+      path.setAttribute("stroke-dashoffset", (-t * r.speed).toFixed(1));
+      const th = t * (r.speed / 60) + i * 2.1;
+      const x = r.rx * Math.cos(th), y = r.ry * Math.sin(th);
+      dot.setAttribute("cx", x.toFixed(1)); dot.setAttribute("cy", y.toFixed(1));
+      dot.style.visibility = (side === "F") === (y >= 0) ? "visible" : "hidden";
+    });
+  });
+}
 
-// ---------- +1 / +2 ----------
-popIn("#add", E.add_in);
-tl.fromTo("#chip1", { autoAlpha: 0, scale: 0.4 }, { autoAlpha: 1, scale: 1, duration: 0.34, ease: back }, E.plus1);
-tl.fromTo("#chip2", { autoAlpha: 0, scale: 0.4 }, { autoAlpha: 1, scale: 1, duration: 0.34, ease: back }, E.plus2);
-popOut("#add", E.add_out);
-
-// ---------- loin / pres ----------
+// ---------- vision de loin / de près: curved cards, then X ----------
 tl.set("#lp", { autoAlpha: 1 }, E.loin - 0.3);
-tl.fromTo("#loin", { autoAlpha: 0, x: -140 }, { autoAlpha: 1, x: 0, duration: 0.36, ease: out3 }, E.loin - 0.28);
-tl.fromTo("#pres", { autoAlpha: 0, x: 140 }, { autoAlpha: 1, x: 0, duration: 0.36, ease: out3 }, E.pres - 0.28);
-tl.to(["#loin", "#pres"], { filter: "grayscale(1) brightness(.6)", duration: 0.2 }, E.sep);
-tl.fromTo("#xmark", { autoAlpha: 0, scale: 2.2, rotation: -25 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2.2)" }, E.sep);
-tl.fromTo("#sepword", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.22, ease: out3 }, E.sep + 0.05);
-tl.to("#lp", { autoAlpha: 0, y: -30, duration: 0.22, ease: in3 }, E.lp_out);
+tl.fromTo("#loin", { autoAlpha: 0, rotationY: 70, x: -160, z: -200 }, { autoAlpha: 1, rotationY: 22, x: 0, z: 0, duration: 0.42, ease: expo }, E.loin - 0.28);
+tl.fromTo("#pres", { autoAlpha: 0, rotationY: -70, x: 160, z: -200 }, { autoAlpha: 1, rotationY: -22, x: 0, z: 0, duration: 0.42, ease: expo }, E.pres - 0.28);
+tl.to(["#loin", "#pres"], { filter: "grayscale(1) brightness(.55)", duration: 0.18 }, E.sep);
+tl.fromTo("#xstamp", { autoAlpha: 0, scale: 2.4, rotation: -30 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2.4)" }, E.sep);
+const sepw = document.querySelector("#sepw .w"); sepw.dataset.text = sepw.textContent;
+const sepBlur = motionBlur(sepw), sepGhosts = addGhosts(sepw, ACCENT.red);
+tl.set("#sepw", { autoAlpha: 1 }, E.sep);
+tl.fromTo(sepw, { autoAlpha: 0, scale: 1.6, x: 80 }, { autoAlpha: 1, scale: 1, x: 0, duration: 0.3, ease: expo }, E.sep + 0.02);
+tl.fromTo(sepBlur, { attr: { stdDeviation: "24 0" } }, { attr: { stdDeviation: "0 0" }, duration: 0.24 }, E.sep + 0.02);
+sepGhosts.forEach((g, i) => tl.fromTo(g, { opacity: 0.42 - 0.16 * i, x: 62 * (i + 1) }, { opacity: 0, x: 0, duration: 0.32 + 0.1 * i, ease: out3 }, E.sep + 0.04));
+tl.to("#lp", { autoAlpha: 0, y: -40, duration: 0.2, ease: in3 }, E.lp_out - 0.2);
 
-// ---------- gauge ----------
-popIn("#gauge", E.gauge_in);
-tl.fromTo("#gfill", { width: "0%" }, { width: "20%", duration: 0.4, ease: out3 }, E.gauge_in + 0.15);
-tl.to("#gfill", { width: "52%", duration: 0.7, ease: io3 }, E.gauge_rise);
-tl.to("#gfill", { width: "84%", duration: 0.35, ease: out3 }, E.plus3);
-tl.to("#t3", { color: "#ff4d5e", scale: 1.35, duration: 0.25, ease: back }, E.plus3 + 0.2);
-tl.fromTo("#g-hard", { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.28, ease: back }, E.hard);
-tl.to("#gauge", { keyframes: [{ x: -14, duration: 0.05 }, { x: 12, duration: 0.05 }, { x: -8, duration: 0.05 }, { x: 0, duration: 0.05 }] }, E.hard + 0.05);
-popOut("#gauge", E.gauge_out);
+// ---------- chart reveal ----------
+tl.fromTo("#chart", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: out3 }, E.chart_in);
+tl.to("#b1", { height: 60, duration: 0.45, ease: out3 }, E.chart_in + 0.15);
+tl.to("#b2", { height: 120, duration: 0.6, ease: io3 }, E.bar2);
+tl.to("#b3", { height: 195, duration: 0.4, ease: "back.out(1.4)" }, E.plus3);
+tl.fromTo("#n3", { autoAlpha: 0, bottom: 90, scale: 0.4 }, { autoAlpha: 1, bottom: 170, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, E.plus3 + 0.05);
+tl.to("#chart", { keyframes: [{ x: -12, duration: 0.05 }, { x: 10, duration: 0.05 }, { x: -6, duration: 0.05 }, { x: 0, duration: 0.05 }] }, E.plus3 + 0.35);
+tl.to("#chart", { autoAlpha: 0, y: -40, duration: 0.18, ease: in3 }, E.chart_out - 0.18);
 
-// ---------- criteria ----------
-popIn("#crit", E.crit_in, { y: 40 });
+// ---------- "صعاب" wall behind him ----------
+const wall = document.getElementById("wall");
+const ROWS = 6;
+for (let i = 0; i < ROWS; i++) {
+  const row = document.createElement("div"); row.className = "wrow";
+  for (let k = 0; k < 7; k++) { const s = document.createElement("span"); s.className = (i + k) % 2 ? "o" : "f"; s.textContent = "صعاب"; row.appendChild(s); }
+  wall.appendChild(row);
+}
+const wrows = Array.from(wall.children);
+tl.set("#wall", { autoAlpha: 1 }, E.wall_in);
+wrows.forEach((row, i) => {
+  const d = i % 2 ? 1 : -1;
+  tl.fromTo(row, { x: d * 700, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.28, ease: expo }, E.wall_in + i * 0.025);
+  tl.to(row, { x: -d * 220, duration: E.wall_out - E.wall_in, ease: "none" }, E.wall_in + 0.3);
+});
+tl.to("#wall", { autoAlpha: 0, duration: 0.14 }, E.wall_out - 0.14);
+
+// ---------- floating glasses icons ----------
+const floaters = document.getElementById("floaters");
+const GLASSES = '<svg class="floater" viewBox="0 0 64 64" fill="none" stroke="#3be3ff" stroke-width="3.4" stroke-linecap="round"><circle cx="18" cy="36" r="11"/><circle cx="46" cy="36" r="11"/><path d="M29 36c2-2 4-2 6 0M7 33L4 24M57 33l3-9"/></svg>';
+[[140, 980, -14], [880, 900, 12], [210, 1560, 8], [860, 1520, -10]].forEach(([x, y, r], i) => {
+  const d = document.createElement("div"); d.style.cssText = `position:absolute;left:${x - 65}px;top:${y - 65}px`; d.innerHTML = GLASSES;
+  floaters.appendChild(d);
+  tl.fromTo(d, { autoAlpha: 0, scale: 0.3, rotation: r * 2 }, { autoAlpha: 0.95, scale: 1, rotation: r, duration: 0.3, ease: back }, E.float_in + i * 0.07);
+  tl.to(d, { y: -70, rotation: -r, duration: E.float_out - E.float_in, ease: "sine.inOut" }, E.float_in);
+});
+tl.set("#floaters", { autoAlpha: 1 }, E.float_in);
+tl.to("#floaters", { autoAlpha: 0, duration: 0.16 }, E.float_out - 0.16);
+
+// ---------- criteria checklist ----------
+tl.fromTo("#crit", { autoAlpha: 0, scale: 0.85, y: 40 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.36, ease: back }, E.crit_in);
 E.crit.forEach((t, i) => {
   const row = "#c" + i;
   tl.fromTo(row, { autoAlpha: 0, height: 0, marginTop: 0, x: 40 }, { autoAlpha: 1, height: 76, marginTop: 12, x: 0, duration: 0.3, ease: out3 }, t - 0.35);
@@ -326,63 +434,77 @@ E.crit.forEach((t, i) => {
   tl.to(row + " svg", { opacity: 1, duration: 0.12 }, t + 0.08);
   tl.to(row + " .box", { borderColor: "#35d07f", duration: 0.1 }, t);
 });
-tl.to("#c3", { keyframes: [{ scale: 1.06, duration: 0.15 }, { scale: 1, duration: 0.2 }] }, E.crit_q);
-popOut("#crit", E.crit_out);
+tl.to("#crit", { autoAlpha: 0, scale: 0.92, y: -24, duration: 0.22, ease: in3 }, E.crit_out);
 
-// ---------- 3 days ----------
-popIn("#days", E.days_in);
-tl.set(["#d2", "#d3"], { yPercent: 100 }, 0);
-const step = (E.days_hit - E.days_in - 0.2) / 2;
-tl.to("#d1", { yPercent: -100, duration: 0.18, ease: io3 }, E.days_in + 0.2 + step - 0.18);
-tl.to("#d2", { yPercent: 0, duration: 0.18, ease: io3 }, E.days_in + 0.2 + step - 0.18);
-tl.to("#d2", { yPercent: -100, duration: 0.18, ease: io3 }, E.days_hit - 0.18);
-tl.to("#d3", { yPercent: 0, duration: 0.18, ease: io3 }, E.days_hit - 0.18);
+// ---------- 3 days: rotating ring + counting number ----------
+tl.fromTo("#days", { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.36, ease: back }, E.days_in);
+tl.fromTo("#dring", { rotation: -120, svgOrigin: "250 250" }, { rotation: 240, svgOrigin: "250 250", duration: E.days_out - E.days_in, ease: "power1.inOut" }, E.days_in);
+const DAYS = { n: 1 };
+tl.fromTo(DAYS, { n: 1 }, { n: 3, duration: E.days_hit - E.days_in - 0.1, ease: "power1.in" }, E.days_in + 0.1);
 tl.to("#days", { keyframes: [{ scale: 1.08, duration: 0.12 }, { scale: 1, duration: 0.2 }] }, E.days_hit);
-popOut("#days", E.days_out);
+tl.to("#days", { autoAlpha: 0, scale: 0.92, y: -24, duration: 0.22, ease: in3 }, E.days_out);
 
 // ---------- back -> centrage -> professional ----------
-tl.set("#back", { autoAlpha: 1 }, E.back_in);
+tl.set("#flow", { autoAlpha: 1 }, E.back_in);
 tl.fromTo("#n1", { autoAlpha: 0, scale: 0.7, y: 30 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.36, ease: back }, E.back_in);
 tl.fromTo("#n1chk", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: back }, E.back_check);
 tl.fromTo("#arrow", { autoAlpha: 0, x: -30 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: out3 }, E.pro - 0.35);
 tl.fromTo("#n2", { autoAlpha: 0, scale: 0.7, y: 30 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.36, ease: back }, E.pro - 0.1);
-tl.to("#back", { autoAlpha: 0, y: -30, duration: 0.22, ease: in3 }, E.back_out);
+tl.to("#flow", { autoAlpha: 0, y: -30, duration: 0.22, ease: in3 }, E.back_out);
 
 // ---------- CTA ----------
-popIn("#cta", E.cta_in, { y: 60 });
+tl.fromTo("#cta", { autoAlpha: 0, scale: 0.82, y: 60 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.38, ease: back }, E.cta_in);
 const ctaText = document.getElementById("cta-text");
-const CTA_MSG = "سؤال على les progressifs؟";
+const CTA_WORDS = ["سؤال", "على", "les", "progressifs؟"].map((text, i) => ({ text, start: E.cta_type + i * 0.19, end: E.cta_type + i * 0.19 + 0.18 }));
 tl.to("#cta-send", { opacity: 1, duration: 0.1 }, E.cta_type + 0.75);
 tl.to("#cta-send", { keyframes: [{ scale: 0.86, duration: 0.08 }, { scale: 1, duration: 0.14 }] }, E.cta_send);
 tl.fromTo("#bubble", { autoAlpha: 0, scale: 0, rotation: -20 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.36, ease: "back.out(2.4)" }, E.cta_send + 0.05);
 tl.fromTo("#notif", { autoAlpha: 0, y: -30, scale: 0.92 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.34, ease: back }, E.cta_next);
 
-function ctaTyped(t) {
-  if (t < E.cta_type) return null;
-  const chars = Array.from(CTA_MSG);
-  const p = Math.min(1, (t - E.cta_type) / 0.75);
-  return chars.slice(0, Math.max(1, Math.round(p * chars.length))).join("");
-}
-
 // ---------- deterministic seek ----------
+const dnum = document.getElementById("dnum");
 window.seek = (t) => {
   tl.seek(t, false);
-  ctext.textContent = typed(t);
-  const c = ctaTyped(t);
-  if (c === null) { ctaText.textContent = "Ajouter un commentaire…"; ctaText.classList.remove("typed"); }
-  else { ctaText.textContent = c; ctaText.classList.add("typed"); }
+  ctext.textContent = typed(t, E.hook_words);
+  if (t < E.cta_type) { ctaText.textContent = "Ajouter un commentaire…"; ctaText.classList.remove("typed"); }
+  else { ctaText.textContent = typed(t, CTA_WORDS); ctaText.classList.add("typed"); }
+  dnum.textContent = Math.round(DAYS.n);
+  updateRings(t);
 };
-window.anyVisible = () => Array.from(document.querySelectorAll(".layer"))
-  .some(el => parseFloat(getComputedStyle(el).opacity) > 0.004 && getComputedStyle(el).visibility !== "hidden");
+window.anyVisible = () => {
+  const scope = LAYER === "all" ? document : document.getElementById(LAYER);
+  return Array.from(scope.querySelectorAll(".layer")).some(el => {
+    const cs = getComputedStyle(el);
+    return cs.visibility !== "hidden" && parseFloat(cs.opacity) > 0.004;
+  });
+};
+
+// Shrink a phrase line that would overflow the safe width (measured once fonts are in).
+function fitLines(maxW = 960) {
+  document.querySelectorAll(".phrase .line").forEach(ln => {
+    const ph = ln.closest(".phrase");
+    const prev = [ph.style.visibility, ph.style.opacity];
+    ph.style.visibility = "visible";
+    const w = ln.scrollWidth;
+    if (w > maxW) {
+      const k = maxW / w;
+      ln.querySelectorAll(".w").forEach(el => {
+        el.style.fontSize = (parseFloat(getComputedStyle(el).fontSize) * k).toFixed(1) + "px";
+      });
+    }
+    ph.style.visibility = prev[0];
+  });
+}
 
 window.ready = (async () => {
-  const faces = ['900 104px "Cairo"', '800 60px "Cairo"', '700 60px "Cairo"', '600 40px "Cairo"',
+  const faces = ['900 150px "Cairo"', '700 56px "Cairo"', '600 40px "Cairo"', '400 168px "Anton"', '400 126px "Great Vibes"',
                  '700 38px "Roboto"', '500 34px "Roboto"', '400 34px "Roboto"'];
-  await Promise.all(faces.flatMap(f => [document.fonts.load(f, "abc"), document.fonts.load(f, "واش")]));
+  await Promise.all(faces.flatMap(f => [document.fonts.load(f, "abc éû"), document.fonts.load(f, "واش")]));
   await document.fonts.ready;
-  const missing = faces.filter(f => !document.fonts.check(f, "abc واش"));
+  const missing = faces.filter(f => !document.fonts.check(f, f.includes("Cairo") ? "abc واش" : "abc éû"));
   if (missing.length) throw new Error("fonts not loaded: " + missing.join(", "));
   await Promise.all(Array.from(document.images).map(img => img.decode()));
+  fitLines();
   return true;
 })();
 </script>

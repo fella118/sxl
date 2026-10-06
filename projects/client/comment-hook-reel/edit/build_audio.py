@@ -87,49 +87,64 @@ def place(track: np.ndarray, clip: np.ndarray, t: float, gain_db: float, end_ali
 
 
 def build_sfx(n: int) -> np.ndarray:
+    """v3: one effect per visible event, quieter than v2."""
     tr = np.zeros((n, 2), np.float32)
     rng = np.random.default_rng(3)
-    # hook card: pop in, one tap per typed character, reply badge, whoosh out
-    place(tr, sfx.pop(0.9), EV["card_in"] + 0.02, -9)
+    ar = lambda txt: any("\u0600" <= ch <= "\u06ff" for ch in txt)  # noqa: E731
+    # hook card: pop, taps (one per Arabic word, one per French letter), reply, whoosh out
+    place(tr, sfx.pop(0.9), EV["card_in"] + 0.02, -10)
     for w in EV["hook_words"]:
-        chars = len(w["text"])
         d = max(0.12, w["end"] - w["start"])
-        for k in range(chars):
-            place(tr, sfx.key(rng.uniform(0.85, 1.2)), w["start"] + d * k / chars, -19 + rng.uniform(-2, 1))
-    place(tr, sfx.pop(1.25), EV["reply"], -15)
-    place(tr, sfx.whoosh(0.5, -0.4, 0.7), EV["card_out"] - 0.12, -13)
-    # +1 / +2
-    place(tr, sfx.pop(1.0), EV["add_in"], -15)
-    place(tr, sfx.tick(1.0), EV["plus1"], -13)
-    place(tr, sfx.tick(1.12), EV["plus2"], -13)
-    # loin / pres -> X
+        taps = 1 if ar(w["text"]) else len(w["text"])
+        for k in range(taps):
+            place(tr, sfx.key(rng.uniform(0.85, 1.2)), w["start"] + d * k / taps, -19 + rng.uniform(-2, 1))
+    place(tr, sfx.pop(1.25), EV["reply"] - 0.15, -16)
+    place(tr, sfx.whoosh(0.45, -0.4, 0.7), EV["card_out"] - 0.1, -14)
+    # dizzy rings
+    place(tr, sfx.whoosh(0.7, -0.8, 0.8), EV["rings_in"] - 0.05, -16)
+    # phrase typography: swish on keywords, tick on numbers (small/script words stay silent)
+    for p in EV["phrases"]:
+        for line in p["lines"]:
+            for wd in line:
+                if wd["role"] == "key":
+                    place(tr, sfx.whoosh(0.22, -0.3, 0.3), wd["at"] - 0.12, -21)
+                elif wd["role"] == "num":
+                    place(tr, sfx.tick(1.05), wd["at"], -14)
+    # cutaway to the glasses
+    cut_t = TL["ranges"][8]["out_start"]
+    place(tr, sfx.whoosh(0.3, 0.5, -0.5), cut_t - 0.15, -17)
+    # loin / pres cards -> X
     place(tr, sfx.whoosh(0.32, -0.8, -0.1), EV["loin"] - 0.3, -19)
     place(tr, sfx.whoosh(0.32, 0.8, 0.1), EV["pres"] - 0.3, -19)
-    place(tr, sfx.buzz(), EV["sep"], -14)
-    # gauge: riser into +3 (zoom-in), buzz on "hard", whoosh on zoom-out
-    place(tr, sfx.pop(0.85), EV["gauge_in"], -16)
-    place(tr, sfx.riser(EV["plus3"] - EV["gauge_rise"]), EV["plus3"], -19, end_aligned=True)
-    place(tr, sfx.impact(), EV["plus3"], -11)
-    place(tr, sfx.buzz(), EV["hard"], -16)
-    zoom_out = next(w["start"] for w in TL["words"] if abs(w["src"] - 29.25) < 0.03) - 0.5   # "وكيجيو"
-    place(tr, sfx.whoosh(0.5, 0.6, -0.6), zoom_out, -15)
+    place(tr, sfx.buzz(), EV["sep"], -15)
+    # chart: pop, riser into +3, hit
+    place(tr, sfx.pop(0.85), EV["chart_in"], -17)
+    place(tr, sfx.riser(max(0.4, EV["plus3"] - EV["bar2"])), EV["plus3"], -20, end_aligned=True)
+    place(tr, sfx.impact(), EV["plus3"], -12)
+    # "صعاب" wall + grayscale
+    place(tr, sfx.impact(), EV["wall_in"], -13)
+    # zoom out to the checklist
+    zoom_out = next(w["start"] for w in TL["words"] if abs(w["src"] - 29.25) < 0.03) - 0.5
+    place(tr, sfx.whoosh(0.5, 0.6, -0.6), zoom_out, -16)
     # criteria ticks
-    place(tr, sfx.pop(1.0), EV["crit_in"], -16)
+    place(tr, sfx.pop(1.0), EV["crit_in"], -17)
     for i, t in enumerate(EV["crit"]):
-        place(tr, sfx.tick(1.0 + 0.06 * i), t, -12)
+        place(tr, sfx.tick(1.0 + 0.06 * i), t, -13)
     # 3 days
-    place(tr, sfx.pop(0.9), EV["days_in"], -15)
-    place(tr, sfx.pop(1.3), EV["days_hit"], -12)
+    place(tr, sfx.pop(0.9), EV["days_in"], -16)
+    place(tr, sfx.pop(1.3), EV["days_hit"], -13)
     # back -> centrage -> professional
-    place(tr, sfx.pop(1.0), EV["back_in"], -15)
-    place(tr, sfx.tick(1.1), EV["back_check"], -12)
-    place(tr, sfx.whoosh(0.4, -0.5, 0.5), EV["pro"] - 0.3, -16)
-    # CTA: bar in, typing, send, reply notification
-    place(tr, sfx.pop(0.95), EV["cta_in"], -14)
-    for k in range(12):
-        place(tr, sfx.key(rng.uniform(0.85, 1.2)), EV["cta_type"] + 0.75 * k / 12, -21)
-    place(tr, sfx.pop(1.4), EV["cta_send"], -13)
-    place(tr, sfx.ding(), EV["cta_next"], -12)
+    place(tr, sfx.pop(1.0), EV["back_in"], -16)
+    place(tr, sfx.tick(1.1), EV["back_check"], -13)
+    place(tr, sfx.whoosh(0.4, -0.5, 0.5), EV["pro"] - 0.3, -17)
+    # CTA
+    place(tr, sfx.pop(0.95), EV["cta_in"], -15)
+    for k, word in enumerate(["سؤال", "على", "les", "progressifs؟"]):
+        taps = 1 if ar(word) else len(word)
+        for j in range(taps):
+            place(tr, sfx.key(rng.uniform(0.85, 1.2)), EV["cta_type"] + k * 0.19 + 0.18 * j / taps, -21)
+    place(tr, sfx.pop(1.4), EV["cta_send"], -14)
+    place(tr, sfx.ding(), EV["cta_next"], -13)
     return tr
 
 

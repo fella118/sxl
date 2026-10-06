@@ -54,3 +54,34 @@ misleading word before ماولفتيهمش, smooth direct clear", music attache
 
 **QC v2:** 43.68s, -14.0 LUFS, -1.5 dBTP, 19 cuts click-free, no clipping.
 Review copy (<30 MB) sent; master edit/preview_v2.mp4 (~66 MB).
+
+## Session 2 — 2026-10-06 (v3 style upgrade, sample 0–21s)
+
+Brief: Motion Pet-style phrase typography, depth treatments, follow-cam.
+(Pinterest reference blocked by the network policy: built from the written brief.)
+
+**Changes (same pipeline: cut -> overlay HTML/GSAP -> capture -> base -> composite):**
+- studio/bin/track_subject.py: YuNet face + MODNet matte per source frame
+  (all 2550 frames, faces found on every frame).
+- render_base.py: follow-cam (zero-phase smoothed face track, eyes at 50%/40%,
+  follow 0.85, zoom plan +0.10 for pan room), 4K cutaway (glasses close-up on
+  "les mesures"; sign close-up on "ترجع عندنا" defined for the full render),
+  writes mask.mkv + facepos.js.
+- Overlay v3: two layers (?layer=back|front). Phrase engine (small Cairo 700 /
+  key Cairo 900 or Anton / Great Vibes script / Anton numbers, cyan+yellow,
+  per-word entrances on timestamps, directional SVG blur + colour trails,
+  staggered exits, mixed-script runs, Arabic whole words, auto-fit).
+  Treatments: dizzy rings over the head (far half behind via matte), curved 3D
+  cards loin/près + X, chart reveal +1/+2/+3, "صعاب" filled/outlined wall behind
+  him, floating glasses, animated numbers. IG card types Arabic words whole.
+- composite.py: base -> selective grayscale (background only) -> back layer x
+  (1 - matte) -> front layer.
+- SFX re-mapped to v3 events (keyword swishes, number ticks, ring swirl, wall hit).
+
+**QC fixes before sending:** rings shrunk/raised off the eyes; "بوحديتهم" moved
+to the chest zone; chart compacted above the head; stray v2 CSS (#back) was
+offsetting the whole back layer; wall trimmed above the desk; keyword entrance
+softened (scale 1.35, blur 12, outline fades in after the blur).
+
+**Outstanding:** full-length v3 render (21–43.7s uses restyled v2 components +
+v3 phrases: checklist, 3-day ring counter, back flow, CTA) after client OK.

@@ -36,6 +36,11 @@ if command -v uv >/dev/null; then
   uv pip install -q --python "$DVENV/bin/python" -r "$STUDIO/requirements-darija.txt"
 fi
 
+# Subject tracking models (face + matte)
+MODELS="$STUDIO/.models"; mkdir -p "$MODELS"
+[ -s "$MODELS/yunet.onnx" ] || curl -sSLo "$MODELS/yunet.onnx" https://huggingface.co/opencv/face_detection_yunet/resolve/main/face_detection_yunet_2023mar.onnx || echo "yunet download failed"
+[ -s "$MODELS/modnet.onnx" ] || curl -sSLo "$MODELS/modnet.onnx" https://huggingface.co/Xenova/modnet/resolve/main/onnx/model.onnx || echo "modnet download failed"
+
 echo "studio ready"
 echo "  python:    $VENV/bin/python"
 echo "  darija:    $DVENV/bin/python studio/bin/darija_transcribe.py"

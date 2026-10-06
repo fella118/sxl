@@ -24,6 +24,16 @@ $PY studio/bin/export.py projects/acme/launch/edit/final.mp4 reels youtube
 Cutting, grading, overlays and subtitles come from video-use's helpers
 (`render.py`, `grade.py`, `timeline_view.py`, `pack_transcripts.py`).
 
+## Models (subject tracking)
+
+`studio/.models/` is gitignored; fetch once per container:
+
+```bash
+mkdir -p studio/.models && cd studio/.models
+curl -sSLo yunet.onnx https://huggingface.co/opencv/face_detection_yunet/resolve/main/face_detection_yunet_2023mar.onnx   # MIT
+curl -sSLo modnet.onnx https://huggingface.co/Xenova/modnet/resolve/main/onnx/model.onnx                                # Apache-2.0
+```
+
 ## Network requirements
 
 - Local transcription downloads Whisper models from `huggingface.co` (files are

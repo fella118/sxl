@@ -36,6 +36,8 @@ EDL, SRT, project.md) are committed so the next session can pick up the work.
 | Understand the footage | `$PY studio/bin/analyze.py projects/<c>/<p>` then Read `edit/analysis.md` and each `edit/analysis/<clip>/contact.jpg` |
 | Transcribe (word level) | `$PY studio/bin/transcribe.py projects/<c>/<p> [--language fr] [--model small] [--prompt "Brand, Names"]` |
 | Transcribe Darija / Darija-French | `studio/.venv-darija/bin/python studio/bin/darija_transcribe.py projects/<c>/<p>`: Silero VAD → MoulSot v0.3 → MMS forced alignment. Darija in Arabic script, French in Latin. Also writes `edit/darija/<clip>.{srt,txt,words.json,words.txt}`. ~6 min per minute of speech on CPU |
+| Track the speaker (face + matte) | `$PY studio/bin/track_subject.py projects/<c>/<p>/edit`: YuNet face per frame + MODNet person matte, for follow-cam, text-behind-subject and selective grayscale. Models in `studio/.models/` (download: see `studio/README.md`) |
+| Graphics layers | `$PY studio/bin/capture_html.py <page.html> <out> --duration D --query layer=back` (and `layer=front`): back layer is composited behind the speaker through the matte |
 | Visual drill-down at a cut | `$PY studio/.vendor/video-use/helpers/timeline_view.py <video> <start> <end>` |
 | Render from EDL | `$PY studio/.vendor/video-use/helpers/render.py <edit>/edl.json -o <edit>/preview.mp4 --preview --build-subtitles` (`--draft` for cut checks; final: no flag) |
 | Color grade presets | `$PY studio/.vendor/video-use/helpers/grade.py --list` |
@@ -100,6 +102,20 @@ repo's setup replaces it).
   center; `blur` when the whole frame matters.
 - Filenames: `<project>_<preset>_v<N>.mp4` once versions start going to the
   client (`--name`).
+
+## Motion typography (house style, from the comment-hook reel v3)
+
+- Phrases, not captions: small connecting words (Cairo 700), big keywords
+  (Cairo 900 for Arabic, Anton for French), an occasional French script accent
+  (Great Vibes), selective cyan `#3be3ff` / warm yellow `#ffc93c` emphasis.
+- Each word enters on its transcript timestamp; keywords slam in with scale,
+  directional SVG blur and two colour trails; clean staggered exits.
+- Arabic animates as whole words (never letter by letter: it breaks joining);
+  French may type letter by letter. Mixed lines are grouped into same-script
+  runs so RTL/LTR order stays right.
+- One focal point per beat; depth via the matte (keyword walls, rings behind
+  the head with the near half drawn in front); selective grayscale on the
+  background for emphasis; follow-cam keeps the face readable.
 
 ## Motion graphics and animation
 

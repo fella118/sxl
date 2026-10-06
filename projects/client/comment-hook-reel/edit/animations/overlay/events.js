@@ -23,73 +23,388 @@ window.EV = {
   }
  ],
  "card_in": 0.0,
- "reply": 2.287,
- "card_out": 3.6399999999999997,
- "captions": [
-  [
-   2.287,
-   2.808,
-   "bien sûr"
-  ],
-  [
-   2.929,
-   3.84,
-   "<b>يقدرو يدوخوك</b>"
-  ],
-  [
-   3.92,
-   5.401,
-   "surtout <b>المرة اللولة</b>"
-  ],
-  [
-   5.441,
-   6.302,
-   "كانصح <b>الناس</b>"
-  ],
-  [
-   11.385,
-   12.3,
-   "<b>مايسباريوش</b>"
-  ],
-  [
-   20.061,
-   21.632,
-   "تادابطا على <b>les progressifs</b>"
-  ],
-  [
-   31.38,
-   32.300000000000004,
-   "<b>ماولفتيهمش</b>؟"
-  ],
-  [
-   34.483,
-   35.342999999999996,
-   "<b>ترجع عندنا</b>"
-  ],
-  [
-   41.052,
-   41.992999999999995,
-   "<b>فالكومونتير</b>"
-  ],
-  [
-   42.513999999999996,
-   43.68,
-   "<b>la vidéo الجاية</b>"
-  ]
+ "reply": 2.075,
+ "card_out": 2.16,
+ "phrases": [
+  {
+   "id": "bien",
+   "start": 2.287,
+   "end": 3.82,
+   "x": 540,
+   "y": 1240,
+   "lines": [
+    [
+     {
+      "t": "bien sûr",
+      "at": 2.287,
+      "role": "script",
+      "color": "yellow"
+     }
+    ],
+    [
+     {
+      "t": "يقدرو",
+      "at": 2.929,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "يدوخوك",
+      "at": 3.269,
+      "role": "key",
+      "color": "cyan"
+     }
+    ]
+   ]
+  },
+  {
+   "id": "first",
+   "start": 3.92,
+   "end": 5.211,
+   "x": 540,
+   "y": 1250,
+   "lines": [
+    [
+     {
+      "t": "surtout",
+      "at": 3.92,
+      "role": "script",
+      "color": "yellow"
+     }
+    ],
+    [
+     {
+      "t": "المرة",
+      "at": 4.44,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "اللولة",
+      "at": 4.781,
+      "role": "key",
+      "color": null
+     }
+    ]
+   ]
+  },
+  {
+   "id": "advise",
+   "start": 5.261,
+   "end": 6.382,
+   "x": 540,
+   "y": 1250,
+   "lines": [
+    [
+     {
+      "t": "أنا",
+      "at": 5.261,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "كانصح",
+      "at": 5.441,
+      "role": "key",
+      "color": "cyan"
+     },
+     {
+      "t": "الناس",
+      "at": 5.881,
+      "role": "small",
+      "color": null
+     }
+    ]
+   ]
+  },
+  {
+   "id": "addition",
+   "start": 6.862,
+   "end": 8.32,
+   "x": 540,
+   "y": 1250,
+   "lines": [
+    [
+     {
+      "t": "une fois",
+      "at": 6.862,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "تخرج",
+      "at": 7.142,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "ليهم",
+      "at": 7.462,
+      "role": "small",
+      "color": null
+     }
+    ],
+    [
+     {
+      "t": "addition",
+      "at": 7.862,
+      "role": "key",
+      "color": "yellow"
+     }
+    ]
+   ]
+  },
+  {
+   "id": "still",
+   "start": 8.423,
+   "end": 10.524,
+   "x": 540,
+   "y": 520,
+   "lines": [
+    [
+     {
+      "t": "باقي",
+      "at": 8.423,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "عندهم",
+      "at": 8.723,
+      "role": "small",
+      "color": null
+     }
+    ],
+    [
+     {
+      "t": "+1",
+      "at": 9.204,
+      "role": "num",
+      "color": "cyan"
+     },
+     {
+      "t": "ولا",
+      "at": 9.624,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "+2",
+      "at": 9.804,
+      "role": "num",
+      "color": "cyan"
+     }
+    ]
+   ]
+  },
+  {
+   "id": "pref",
+   "start": 10.584,
+   "end": 12.28,
+   "x": 540,
+   "y": 1250,
+   "lines": [
+    [
+     {
+      "t": "de préférence",
+      "at": 10.584,
+      "role": "script",
+      "color": "yellow"
+     }
+    ],
+    [
+     {
+      "t": "مايسباريوش",
+      "at": 11.385,
+      "role": "key",
+      "color": null
+     }
+    ]
+   ]
+  },
+  {
+   "id": "chart_title",
+   "start": 15.628,
+   "end": 19.43,
+   "x": 540,
+   "y": 150,
+   "lines": [
+    [
+     {
+      "t": "كلما",
+      "at": 15.628,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "طلعات",
+      "at": 16.068,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "l'addition",
+      "at": 16.709,
+      "role": "key",
+      "color": "cyan"
+     }
+    ]
+   ]
+  },
+  {
+   "id": "adapt",
+   "start": 20.311,
+   "end": 21.472,
+   "x": 540,
+   "y": 1250,
+   "lines": [
+    [
+     {
+      "t": "تادابطا",
+      "at": 20.311,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "على",
+      "at": 20.711,
+      "role": "small",
+      "color": null
+     }
+    ],
+    [
+     {
+      "t": "les",
+      "at": 20.871,
+      "role": "small",
+      "color": null
+     },
+     {
+      "t": "progressifs",
+      "at": 20.991,
+      "role": "key",
+      "color": "cyan"
+     }
+    ]
+   ]
+  },
+  {
+   "id": "notused",
+   "start": 31.24,
+   "end": 32.3,
+   "x": 540,
+   "y": 1250,
+   "lines": [
+    [
+     {
+      "t": "يلا",
+      "at": 31.24,
+      "role": "small",
+      "color": null
+     }
+    ],
+    [
+     {
+      "t": "ماولفتيهمش؟",
+      "at": 31.38,
+      "role": "key",
+      "color": "yellow"
+     }
+    ]
+   ]
+  },
+  {
+   "id": "back",
+   "start": 33.802,
+   "end": 35.393,
+   "x": 540,
+   "y": 1250,
+   "lines": [
+    [
+     {
+      "t": "de préférence",
+      "at": 33.802,
+      "role": "script",
+      "color": "yellow"
+     }
+    ],
+    [
+     {
+      "t": "ترجع عندنا",
+      "at": 34.483,
+      "role": "key",
+      "color": "cyan"
+     }
+    ]
+   ]
+  },
+  {
+   "id": "comment",
+   "start": 41.052,
+   "end": 41.993,
+   "x": 540,
+   "y": 1250,
+   "lines": [
+    [
+     {
+      "t": "فالكومونتير",
+      "at": 41.052,
+      "role": "key",
+      "color": "cyan"
+     }
+    ]
+   ]
+  },
+  {
+   "id": "next",
+   "start": 42.614,
+   "end": 43.68,
+   "x": 540,
+   "y": 1250,
+   "lines": [
+    [
+     {
+      "t": "la vidéo",
+      "at": 42.614,
+      "role": "script",
+      "color": "yellow"
+     }
+    ],
+    [
+     {
+      "t": "الجاية",
+      "at": 42.975,
+      "role": "key",
+      "color": null
+     }
+    ]
+   ]
+  }
  ],
- "add_in": 8.873999999999999,
- "plus1": 9.424,
- "plus2": 10.024,
- "add_out": 11.285,
+ "rings_in": 2.8289999999999997,
+ "rings_out": 3.81,
  "loin": 13.347,
  "pres": 14.247,
  "sep": 14.848,
- "lp_out": 15.618,
- "gauge_in": 15.868000000000002,
- "gauge_rise": 16.709,
+ "lp_out": 15.568,
+ "chart_in": 15.608,
+ "bar2": 16.709,
  "plus3": 18.240000000000002,
- "hard": 19.51,
- "gauge_out": 20.011,
+ "chart_out": 19.430000000000003,
+ "wall_in": 19.470000000000002,
+ "wall_out": 20.191,
+ "gray": [
+  [
+   14.848,
+   15.518
+  ],
+  [
+   19.470000000000002,
+   20.211
+  ]
+ ],
+ "float_in": 20.770999999999997,
+ "float_out": 21.471999999999998,
  "crit_in": 22.012,
  "crit": [
   24.293,
@@ -102,7 +417,7 @@ window.EV = {
  "days_in": 32.4,
  "days_hit": 33.06,
  "days_out": 34.162000000000006,
- "back_in": 35.083,
+ "back_in": 35.443,
  "back_check": 35.985,
  "pro": 37.417,
  "back_out": 38.27,

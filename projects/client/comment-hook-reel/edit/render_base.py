@@ -1,10 +1,16 @@
-"""Base picture: 4K source -> 9:16 crop -> grade -> smooth zoom -> 1080x1920 @ 50 fps.
+"""Base picture: 4K source -> 9:16 -> grade -> follow-cam + zoom -> 1080x1920 @ 50 fps.
 
-Zooms are done per frame in float (cv2.warpAffine) from a 1440x2560
-intermediate, so slow push-ins have no integer stepping. Each zoom is anchored
-on the face, which stays put while the frame tightens around it.
+v3:
+  - Follow-cam: the crop follows the speaker's face (YuNet track from
+    studio/bin/track_subject.py), smoothed zero-phase per range so the camera
+    moves with him like an operator, without lag or jitter.
+  - Zoom plan per range (framing change on cuts, word-anchored moves).
+  - Cutaways: detail shots of the same moment (glasses, sign) cropped from the
+    full 4K frame so they stay sharp.
+  - Writes mask.mkv (person matte aligned to every output frame, lossless gray)
+    and facepos.json (face centre/size in output pixels) for the overlay layers.
 
-    studio/.venv/bin/python edit/render_base.py [-o edit/base.mp4] [--only BEAT]
+    studio/.venv/bin/python edit/render_base.py [--until 21.0] [-o edit/base.mp4]
 """
 
 from __future__ import annotations
@@ -22,16 +28,19 @@ import numpy as np
 EDIT = Path(__file__).resolve().parent
 TL = json.loads((EDIT / "timeline.json").read_text())
 SRC = EDIT.parent / "source"
+TRACK = EDIT / "track"
 FPS = TL["fps"]
 OW, OH = 1080, 1920
-IW, IH = 1440, 2560                       # intermediate, 1.33x headroom over the output
-ANCHOR = {"C2412": (0.42, 0.53), "C2416": (0.40, 0.53)}   # face, as a fraction of the 9:16 frame
+FW, FH = 2160, 3840                      # full-res 9:16 crop of the source
+IW, IH = 1440, 2560                      # working size for normal framing (1.33x headroom)
 GRADE = "eq=contrast=1.045:saturation=1.06:gamma=0.985"
+Z_OFFSET = 0.10                          # room for the follow-cam to pan
+FACE_TARGET = (0.50, 0.40)               # where the eyes sit in the output frame
+FOLLOW = 0.85                            # 1 = locked on the face, 0 = fixed framing
+SMOOTH_S = 0.35                          # follow-cam smoothing (Gaussian sigma, seconds)
 
 # Zoom plan per range (index in timeline.json). Keys: (t, z) with t = local
 # seconds, "end", or ("w", src_time[, offset]) = a word's start in that range.
-# A framing change on (almost) every cut keeps a pattern interrupt every ~3 s;
-# glued cuts (false start, breath inside a phrase) keep the framing.
 PLAN = {
     0: [(0, 1.00), ("end", 1.04)],
     1: [(0, 1.04), ("end", 1.09)],
@@ -55,12 +64,19 @@ PLAN = {
     19: [(0, 1.02), ("end", 1.20)],                                    # CTA push-in
 }
 
+# Cutaways: detail of the same moment. from/to are word anchors (src time) or
+# (src, offset); "on" = "face" follows the eyes, else a fixed point (x, y) of the 9:16 frame.
+CUTAWAYS = [
+    {"range": 8, "from": 0.0, "to": ("w", 20.61, -0.12), "on": "face", "zoom": 2.4, "drift": 0.10},   # les mesures -> glasses ECU
+    {"range": 18, "from": ("w", 46.50, -0.05), "to": ("w", 47.12, -0.05), "on": (0.47, 0.13), "zoom": 1.7, "drift": 0.06},  # ترجع عندنا -> sign
+]
+
 
 def ease_io(x: float) -> float:
     return 4 * x ** 3 if x < 0.5 else 1 - (-2 * x + 2) ** 3 / 2
 
 
-def zoom_at(keys: list[list[float]], t: float) -> float:
+def zoom_at(keys: list[tuple[float, float]], t: float) -> float:
     if t <= keys[0][0]:
         return keys[0][1]
     for (t0, z0), (t1, z1) in zip(keys, keys[1:]):
@@ -69,74 +85,142 @@ def zoom_at(keys: list[list[float]], t: float) -> float:
     return keys[-1][1]
 
 
-def decoder(clip: str, start: float, n: int) -> subprocess.Popen:
-    vf = (f"crop=2160:3840:0:128,scale={IW}:{IH}:flags=lanczos,{GRADE},format=bgr24")
+def word_time(r: dict, src: float) -> float:
+    hit = next(x for x in TL["words"] if abs(x["src"] - src) < 0.03 and x["id"].startswith(r["source"]))
+    return hit["start"] - r["out_start"]
+
+
+def resolve(r: dict, k) -> float:
+    if k == "end":
+        return r["duration"]
+    if isinstance(k, tuple):
+        return word_time(r, k[1]) + (k[2] if len(k) > 2 else 0)
+    return float(k)
+
+
+def face_track(clip: str, f0: int, n: int) -> np.ndarray:
+    """Smoothed (cx, cy, w) per frame of a range, normalized to the 9:16 frame."""
+    faces = json.loads((TRACK / f"{clip}.faces.json").read_text())
+    pad = int(SMOOTH_S * FPS * 3)
+    idx = np.arange(f0 - pad, f0 + n + pad)
+    raw = np.array([faces.get(str(i), [np.nan] * 5)[:3] for i in idx], dtype=float)
+    for c in range(3):                     # fill gaps (no face found) by interpolation
+        col = raw[:, c]
+        ok = ~np.isnan(col)
+        col[~ok] = np.interp(np.flatnonzero(~ok), np.flatnonzero(ok), col[ok]) if ok.any() else 0.5
+    sigma = SMOOTH_S * FPS
+    k = np.exp(-0.5 * (np.arange(-3 * sigma, 3 * sigma + 1) / sigma) ** 2)
+    k /= k.sum()
+    sm = np.stack([np.convolve(np.pad(raw[:, c], (len(k) // 2,), mode="edge"), k, mode="valid") for c in range(3)], 1)
+    sm = sm[pad:pad + n]
+    mean = sm.mean(axis=0)
+    sm[:, :2] = mean[:2] + FOLLOW * (sm[:, :2] - mean[:2])
+    return sm
+
+
+def window(fx: float, fy: float, z: float, target=FACE_TARGET) -> tuple[float, float, float]:
+    w = 1 / z
+    x0 = min(max(fx - target[0] * w, 0.0), 1 - w)
+    y0 = min(max(fy - target[1] * w, 0.0), 1 - w)
+    return x0, y0, w
+
+
+def affine(x0: float, y0: float, w: float, iw: int, ih: int) -> np.ndarray:
+    """Map the normalized window (x0, y0, w) of an iw x ih image onto the output frame."""
+    sx, sy = OW / (w * iw), OH / (w * ih)
+    return np.float32([[sx, 0, -x0 * iw * sx], [0, sy, -y0 * ih * sy]])
+
+
+def decoder(clip: str, start: float, n: int, w: int, h: int) -> subprocess.Popen:
+    vf = f"crop={FW}:{FH}:0:128,scale={w}:{h}:flags=lanczos,{GRADE},format=bgr24"
     return subprocess.Popen(
-        ["ffmpeg", "-v", "error", "-ss", f"{start:.3f}", "-i", str(SRC / f"{clip}.MP4"),
+        ["ffmpeg", "-nostdin", "-v", "error", "-ss", f"{start:.3f}", "-i", str(SRC / f"{clip}.MP4"),
          "-frames:v", str(n), "-vf", vf, "-f", "rawvideo", "-pix_fmt", "bgr24", "-"],
-        stdout=subprocess.PIPE, bufsize=IW * IH * 3 * 2)
+        stdout=subprocess.PIPE, stdin=subprocess.DEVNULL, bufsize=w * h * 3 * 2)
 
 
-def sharpen(img: np.ndarray) -> np.ndarray:
+def sharpen(img: np.ndarray, amount: float = 0.35) -> np.ndarray:
     blur = cv2.GaussianBlur(img, (0, 0), 1.1)
-    return cv2.addWeighted(img, 1.35, blur, -0.35, 0)
+    return cv2.addWeighted(img, 1 + amount, blur, -amount, 0)
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("-o", "--output", type=Path, default=EDIT / "base.mp4")
-    ap.add_argument("--only", default=None, help="Render a single beat (for checks)")
+    ap.add_argument("--until", type=float, default=None, help="Stop at this output time (samples)")
     ap.add_argument("--crf", type=int, default=12)
     args = ap.parse_args()
 
-    words = TL["words"]
-
-    def local_keys(idx: int, r: dict) -> list[tuple[float, float]]:
-        out = []
-        for k, z in PLAN[idx]:
-            if k == "end":
-                t = r["duration"]
-            elif isinstance(k, tuple):
-                hit = next(x for x in words if abs(x["src"] - k[1]) < 0.03 and x["id"].startswith(r["source"]))
-                t = hit["start"] - r["out_start"] + (k[2] if len(k) > 2 else 0)
-            else:
-                t = k
-            out.append((t, z))
-        return out
-
-    for i, r in enumerate(TL["ranges"]):
-        r["zoom"] = local_keys(i, r)
-    ranges = [r for r in TL["ranges"] if not args.only or r["beat"] == args.only]
+    total_frames = round(TL["duration"] * FPS)
+    if args.until:
+        total_frames = min(total_frames, round(args.until * FPS))
     enc = subprocess.Popen(
         ["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{OW}x{OH}",
          "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "fast", "-crf", str(args.crf),
          "-pix_fmt", "yuv420p", "-color_primaries", "bt709", "-color_trc", "bt709", "-colorspace", "bt709",
          str(args.output)], stdin=subprocess.PIPE)
-    t0 = time.time()
-    total = 0
-    for r in ranges:
-        ax, ay = ANCHOR[r["source"]]
-        ax, ay = ax * IW, ay * IH
-        dec = decoder(r["source"], r["src_start"], r["frames"])
-        for i in range(r["frames"]):
-            buf = dec.stdout.read(IW * IH * 3)
-            if len(buf) < IW * IH * 3:
-                sys.exit(f"{r['beat']}: decoder ended at frame {i}/{r['frames']}")
-            frame = np.frombuffer(buf, np.uint8).reshape(IH, IW, 3)
-            z = zoom_at(r["zoom"], i / FPS)
-            w = IW / z
-            s = OW / w
-            x0, y0 = ax * (1 - 1 / z), ay * (1 - 1 / z)
-            m = np.float32([[s, 0, -x0 * s], [0, s, -y0 * s]])
-            out = cv2.warpAffine(frame, m, (OW, OH), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REFLECT)
-            enc.stdin.write(sharpen(out).tobytes())
-            total += 1
+    menc = subprocess.Popen(
+        ["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "gray", "-s", f"{OW}x{OH}",
+         "-r", str(FPS), "-i", "-", "-c:v", "ffv1", str(args.output.with_name("mask.mkv"))], stdin=subprocess.PIPE)
+
+    facepos: list = []
+    t0, out_i = time.time(), 0
+    for idx, r in enumerate(TL["ranges"]):
+        if out_i >= total_frames:
+            break
+        n = min(r["frames"], total_frames - out_i)
+        f0 = round(r["src_start"] * FPS)
+        keys = [(resolve(r, k), z + Z_OFFSET) for k, z in PLAN[idx]]
+        cuts = [(resolve(r, c["from"]), resolve(r, c["to"]), c) for c in CUTAWAYS if c["range"] == idx]
+        full = bool(cuts)
+        dw, dh = (FW, FH) if full else (IW, IH)
+        track = face_track(r["source"], f0, n)
+        dec = decoder(r["source"], r["src_start"], n, dw, dh)
+        for i in range(n):
+            buf = dec.stdout.read(dw * dh * 3)
+            if len(buf) < dw * dh * 3:
+                sys.exit(f"range {idx}: decoder ended at frame {i}/{n}")
+            frame = np.frombuffer(buf, np.uint8).reshape(dh, dw, 3)
+            t = i / FPS
+            fx, fy, fw = track[i]
+            cut = next((c for a, b, c in cuts if a <= t < b), None)
+            if cut:
+                a, b, _ = next(x for x in cuts if x[2] is cut)
+                z = cut["zoom"] * (1 + cut["drift"] * ease_io((t - a) / max(b - a, 1e-6)))
+                cx, cy = (fx, fy) if cut["on"] == "face" else cut["on"]
+                x0, y0, w = window(cx, cy, z, (0.5, 0.5))
+                src = frame
+            else:
+                z = zoom_at(keys, t)
+                x0, y0, w = window(fx, fy, z)
+                if full:
+                    src = cv2.resize(frame, (IW, IH), interpolation=cv2.INTER_AREA)
+                else:
+                    src = frame
+            out = cv2.warpAffine(src, affine(x0, y0, w, src.shape[1], src.shape[0]), (OW, OH), flags=cv2.INTER_CUBIC,
+                                 borderMode=cv2.BORDER_REFLECT)
+            enc.stdin.write(sharpen(out, 0.45 if cut else 0.35).tobytes())
+
+            matte_path = TRACK / r["source"] / f"{f0 + i:06d}.png"
+            matte = cv2.imread(str(matte_path), cv2.IMREAD_GRAYSCALE)
+            if matte is None:
+                sys.exit(f"missing matte {matte_path} (run studio/bin/track_subject.py)")
+            m = cv2.warpAffine(matte, affine(x0, y0, w, matte.shape[1], matte.shape[0]), (OW, OH), flags=cv2.INTER_LINEAR,
+                               borderMode=cv2.BORDER_REPLICATE)
+            menc.stdin.write(m.tobytes())
+            facepos.append(None if cut else [round((fx - x0) / w * OW, 1), round((fy - y0) / w * OH, 1),
+                                             round(fw / w * OW, 1)])
+            out_i += 1
+        dec.stdout.close()
         dec.wait()
-        el = time.time() - t0
-        print(f"  {r['beat']:8} {r['frames']:4d} frames  ({total / el:.1f} fps)", flush=True)
-    enc.stdin.close()
-    enc.wait()
-    print(f"wrote {args.output} ({total} frames, {total / FPS:.2f}s) in {time.time() - t0:.0f}s")
+        print(f"  range {idx:2d} {r['beat']:8} {n:4d} frames{' +cutaway' if cuts else ''}  "
+              f"({out_i / (time.time() - t0):.1f} fps)", flush=True)
+    enc.stdin.close(); menc.stdin.close()
+    enc.wait(); menc.wait()
+    (EDIT / "facepos.json").write_text(json.dumps({"fps": FPS, "frames": facepos}))
+    (EDIT / "animations" / "overlay" / "facepos.js").write_text(
+        "window.FACE = " + json.dumps({"fps": FPS, "frames": facepos}) + ";\n")
+    print(f"wrote {args.output}, mask.mkv, facepos ({out_i} frames, {out_i / FPS:.2f}s) in {time.time() - t0:.0f}s")
 
 
 if __name__ == "__main__":

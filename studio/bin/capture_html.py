@@ -35,12 +35,12 @@ def chromium() -> str | None:
     return None
 
 
-def open_page(pw, html: Path, width: int, height: int):
+def open_page(pw, html: Path, width: int, height: int, query: str = ""):
     browser = pw.chromium.launch(executable_path=chromium(), args=["--disable-gpu", "--font-render-hinting=none"])
     page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=1)
     errors: list[str] = []
     page.on("pageerror", lambda e: errors.append(str(e)))
-    page.goto(html.resolve().as_uri())
+    page.goto(html.resolve().as_uri() + (f"?{query}" if query else ""))
     page.wait_for_function("window.ready !== undefined")
     page.evaluate("window.ready")
     if errors:
@@ -49,12 +49,12 @@ def open_page(pw, html: Path, width: int, height: int):
 
 
 def worker(args) -> int:
-    html, out, frames, fps, width, height, background = args
+    html, out, frames, fps, width, height, background, query = args
     from playwright.sync_api import sync_playwright
 
     n = 0
     with sync_playwright() as pw:
-        browser, page = open_page(pw, Path(html), width, height)
+        browser, page = open_page(pw, Path(html), width, height, query)
         if background:
             page.evaluate(f"document.body.style.background = {background!r}")
         has_vis = page.evaluate("typeof window.anyVisible === 'function'")
@@ -79,16 +79,18 @@ def main() -> None:
     ap.add_argument("--height", type=int, default=1920)
     ap.add_argument("--workers", type=int, default=3)
     ap.add_argument("--background", default=None, help="Opaque background for previews, e.g. #333")
+    ap.add_argument("--query", default="", help="URL query for the page, e.g. layer=back")
+    ap.add_argument("--start", type=float, default=0.0, help="First second to capture (with --duration)")
     args = ap.parse_args()
 
     args.out.mkdir(parents=True, exist_ok=True)
     if args.times:
         frames = [round(float(t) * args.fps) for t in args.times.split(",")]
     else:
-        frames = list(range(round(args.duration * args.fps)))
+        frames = list(range(round(args.start * args.fps), round(args.duration * args.fps)))
     chunks = [frames[i::args.workers] for i in range(args.workers)]
     t0 = time.time()
-    jobs = [(str(args.html), str(args.out), c, args.fps, args.width, args.height, args.background)
+    jobs = [(str(args.html), str(args.out), c, args.fps, args.width, args.height, args.background, args.query)
             for c in chunks if c]
     with mp.get_context("spawn").Pool(len(jobs)) as pool:
         written = sum(pool.map(worker, jobs))
