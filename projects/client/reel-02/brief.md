@@ -14,7 +14,7 @@ C2425 (9.6s), C2426 (48.5s), C2428 (7.7s). Sony 4K vertical, 50 fps, lav on L.
 ## Content map
 | | Clip | Range | Content |
 |---|---|---|---|
-| Q1 | C2419 | 2.2-8.2 | paid 2500 DH, glasses came out thick and heavy: scammed? |
+| Q1 | C2419 | 2.2-8.2 | "خويا خلصت 2500 درهم فالنظارات، والزاج غليض وتقيل، ماعرفتش واش تقولبت" (keep خويا; it is زاج = the lens) |
 | A1 | C2419 | 49.5-80.6 | not necessarily scammed 100%; the warranty card protects you: the index the optician claims must be on it; often the problem is the optician's expertise, he didn't give you the choice |
 | Q2 | C2422 | 1.2-6.9 | "عندي موانديس" (moins dix? TBC), lenses always thick at the edges: solution? |
 | A2 | C2423 | 2.0-25.8 | at Gzenaya Optique there is always a solution; shows two frames; read the numbers on the arm: diameter max 48, preferably 46; with a big frame even the thinnest 1.74 comes out thick |

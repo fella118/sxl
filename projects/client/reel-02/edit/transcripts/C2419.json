@@ -1,7 +1,7 @@
 {
  "language_code": "ary",
  "engine": "moulsot.v0.3+mms_fa",
- "text": "خويا خلصت 2500 درهم فالنظارات وزادت جغليض وتقيل ماعرفتش واش تقولبت صافي c'est bon هادي هي اللي كتحميك من كل opticien يعني مثلا قالك l'opticien أنني درت لك واحد l'indis de 10614 خصك تلقاها فهاد la carte de garantie هادي أول حاجة وثاني حاجة تقدر تكون ماتقولبتيش فالثمن قد ماتقولبتي ف l'expertise ديال l'opticien اللي ماعطاكش le choix اللي غيجيك مع les verres ديالك هادشي اللي كاين دراري گالصونت",
+ "text": "خويا خلصت 2500 درهم فالنظارات والزاج غليض وتقيل ماعرفتش واش تقولبت صافي c'est bon هادي هي اللي كتحميك من كل opticien يعني مثلا قالك l'opticien أنني درت لك واحد l'indis de 10614 خصك تلقاها فهاد la carte de garantie هادي أول حاجة وثاني حاجة تقدر تكون ماتقولبتيش فالثمن قد ماتقولبتي ف l'expertise ديال l'opticien اللي ماعطاكش le choix اللي غيجيك مع les verres ديالك هادشي اللي كاين دراري گالصونت",
  "words": [
   {
    "type": "word",
@@ -68,7 +68,7 @@
   },
   {
    "type": "word",
-   "text": "وزادت",
+   "text": "والزاج",
    "start": 5.049,
    "end": 5.391,
    "speaker_id": "speaker_0"
@@ -82,7 +82,7 @@
   },
   {
    "type": "word",
-   "text": "جغليض",
+   "text": "غليض",
    "start": 5.431,
    "end": 6.013,
    "speaker_id": "speaker_0"
