@@ -32,8 +32,12 @@ questions in the comments, answered in the next video.
 Cut: "داك اللي كنقرا هنايا / عاود عاود", "حسن", the repeated "يقدرو يدوخوك"
 opening of C2416, "شكرا c'est bon", dead air and fillers.
 
-## Open questions
-- Commenter name/avatar in the IG card
-- Caption script: as spoken (Darija Arabic script + French Latin) or Latin only
-- Music bed or voice + SFX only
-- End card (logo, handle, address) or end on his CTA
+## Client answers (2026-10-06)
+- Comment card: commenter "user"; the replying account is "gzenaya optique".
+- Captions as spoken (Darija in Arabic script, French in Latin).
+- Music: "Am I Dreaming (Or I'm Living in My Dream)" by Dj Zeka
+  (youtu.be/slIuyipzsD4), starting at 0:07 (instrumental). YouTube blocks this
+  server (region + bot check): the file has to come from the client. Drop it
+  at source/music/track.<ext> and rerun build_audio.py + composite.py.
+- End on his CTA, no end card.
+- Anything he mentions that can be shown, show it in motion.

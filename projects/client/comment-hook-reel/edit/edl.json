@@ -1,0 +1,64 @@
+{
+ "version": 1,
+ "sources": {
+  "C2412": "/home/user/sxl/projects/client/comment-hook-reel/source/C2412.MP4",
+  "C2416": "/home/user/sxl/projects/client/comment-hook-reel/source/C2416.MP4"
+ },
+ "ranges": [
+  {
+   "source": "C2412",
+   "start": 2.74,
+   "end": 5.36,
+   "beat": "HOOK"
+  },
+  {
+   "source": "C2412",
+   "start": 6.18,
+   "end": 7.88,
+   "beat": "ANSWER"
+  },
+  {
+   "source": "C2416",
+   "start": 8.62,
+   "end": 13.42,
+   "beat": "FIRST"
+  },
+  {
+   "source": "C2416",
+   "start": 14.06,
+   "end": 18.12,
+   "beat": "ADD12"
+  },
+  {
+   "source": "C2416",
+   "start": 19.56,
+   "end": 35.8,
+   "beat": "WHY"
+  },
+  {
+   "source": "C2416",
+   "start": 36.66,
+   "end": 40.12,
+   "beat": "CORRECT"
+  },
+  {
+   "source": "C2416",
+   "start": 40.76,
+   "end": 44.12,
+   "beat": "ADAPT"
+  },
+  {
+   "source": "C2416",
+   "start": 44.6,
+   "end": 50.38,
+   "beat": "RETURN"
+  },
+  {
+   "source": "C2416",
+   "start": 50.6,
+   "end": 56.3,
+   "beat": "CTA"
+  }
+ ],
+ "total_duration_s": 47.72
+}

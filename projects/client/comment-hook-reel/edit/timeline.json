@@ -1,0 +1,1073 @@
+{
+ "fps": 50,
+ "duration": 47.72,
+ "width": 1080,
+ "height": 1920,
+ "ranges": [
+  {
+   "beat": "HOOK",
+   "source": "C2412",
+   "src_start": 2.74,
+   "src_end": 5.36,
+   "frames": 131,
+   "out_start": 0.0,
+   "duration": 2.62,
+   "zoom": [
+    [
+     0,
+     1.0
+    ],
+    [
+     2.62,
+     1.1
+    ]
+   ]
+  },
+  {
+   "beat": "ANSWER",
+   "source": "C2412",
+   "src_start": 6.18,
+   "src_end": 7.88,
+   "frames": 85,
+   "out_start": 2.62,
+   "duration": 1.7,
+   "zoom": [
+    [
+     0,
+     1.24
+    ],
+    [
+     1.7,
+     1.27
+    ]
+   ]
+  },
+  {
+   "beat": "FIRST",
+   "source": "C2416",
+   "src_start": 8.62,
+   "src_end": 13.42,
+   "frames": 240,
+   "out_start": 4.32,
+   "duration": 4.8,
+   "zoom": [
+    [
+     0,
+     1.04
+    ],
+    [
+     4.8,
+     1.1
+    ]
+   ]
+  },
+  {
+   "beat": "ADD12",
+   "source": "C2416",
+   "src_start": 14.06,
+   "src_end": 18.12,
+   "frames": 203,
+   "out_start": 9.12,
+   "duration": 4.06,
+   "zoom": [
+    [
+     0,
+     1.18
+    ],
+    [
+     4.06,
+     1.22
+    ]
+   ]
+  },
+  {
+   "beat": "WHY",
+   "source": "C2416",
+   "src_start": 19.56,
+   "src_end": 35.8,
+   "frames": 812,
+   "out_start": 13.18,
+   "duration": 16.24,
+   "zoom": [
+    [
+     0,
+     1.04
+    ],
+    [
+     5.6,
+     1.06
+    ],
+    [
+     6.0,
+     1.22
+    ],
+    [
+     9.4,
+     1.24
+    ],
+    [
+     9.9,
+     1.04
+    ],
+    [
+     16.24,
+     1.07
+    ]
+   ]
+  },
+  {
+   "beat": "CORRECT",
+   "source": "C2416",
+   "src_start": 36.66,
+   "src_end": 40.12,
+   "frames": 173,
+   "out_start": 29.42,
+   "duration": 3.46,
+   "zoom": [
+    [
+     0,
+     1.16
+    ],
+    [
+     3.46,
+     1.19
+    ]
+   ]
+  },
+  {
+   "beat": "ADAPT",
+   "source": "C2416",
+   "src_start": 40.76,
+   "src_end": 44.12,
+   "frames": 168,
+   "out_start": 32.88,
+   "duration": 3.36,
+   "zoom": [
+    [
+     0,
+     1.05
+    ],
+    [
+     3.36,
+     1.08
+    ]
+   ]
+  },
+  {
+   "beat": "RETURN",
+   "source": "C2416",
+   "src_start": 44.6,
+   "src_end": 50.38,
+   "frames": 289,
+   "out_start": 36.24,
+   "duration": 5.78,
+   "zoom": [
+    [
+     0,
+     1.12
+    ],
+    [
+     4.3,
+     1.14
+    ],
+    [
+     4.7,
+     1.24
+    ],
+    [
+     5.78,
+     1.25
+    ]
+   ]
+  },
+  {
+   "beat": "CTA",
+   "source": "C2416",
+   "src_start": 50.6,
+   "src_end": 56.3,
+   "frames": 285,
+   "out_start": 42.02,
+   "duration": 5.7,
+   "zoom": [
+    [
+     0,
+     1.02
+    ],
+    [
+     5.7,
+     1.2
+    ]
+   ]
+  }
+ ],
+ "words": [
+  {
+   "id": "C2412:0",
+   "word": "واش",
+   "beat": "HOOK",
+   "start": 0.12,
+   "end": 0.461
+  },
+  {
+   "id": "C2412:1",
+   "word": "les",
+   "beat": "HOOK",
+   "start": 0.962,
+   "end": 1.062
+  },
+  {
+   "id": "C2412:2",
+   "word": "progressives",
+   "beat": "HOOK",
+   "start": 1.142,
+   "end": 1.804
+  },
+  {
+   "id": "C2412:3",
+   "word": "كايدوخو",
+   "beat": "HOOK",
+   "start": 1.964,
+   "end": 2.465
+  },
+  {
+   "id": "C2412:4",
+   "word": "bien",
+   "beat": "ANSWER",
+   "start": 2.707,
+   "end": 2.928
+  },
+  {
+   "id": "C2412:5",
+   "word": "sûr",
+   "beat": "ANSWER",
+   "start": 2.988,
+   "end": 3.188
+  },
+  {
+   "id": "C2412:6",
+   "word": "يقدرو",
+   "beat": "ANSWER",
+   "start": 3.349,
+   "end": 3.649
+  },
+  {
+   "id": "C2412:7",
+   "word": "يدوخوك",
+   "beat": "ANSWER",
+   "start": 3.689,
+   "end": 4.19
+  },
+  {
+   "id": "C2416:8",
+   "word": "surtout",
+   "beat": "FIRST",
+   "start": 4.4,
+   "end": 4.8
+  },
+  {
+   "id": "C2416:9",
+   "word": "المرة",
+   "beat": "FIRST",
+   "start": 4.92,
+   "end": 5.241
+  },
+  {
+   "id": "C2416:10",
+   "word": "اللولة",
+   "beat": "FIRST",
+   "start": 5.261,
+   "end": 5.581
+  },
+  {
+   "id": "C2416:11",
+   "word": "أنا",
+   "beat": "FIRST",
+   "start": 6.021,
+   "end": 6.141
+  },
+  {
+   "id": "C2416:12",
+   "word": "كانصح",
+   "beat": "FIRST",
+   "start": 6.201,
+   "end": 6.581
+  },
+  {
+   "id": "C2416:13",
+   "word": "الناس",
+   "beat": "FIRST",
+   "start": 6.641,
+   "end": 6.962
+  },
+  {
+   "id": "C2416:14",
+   "word": "أنهم",
+   "beat": "FIRST",
+   "start": 7.122,
+   "end": 7.502
+  },
+  {
+   "id": "C2416:15",
+   "word": "une",
+   "beat": "FIRST",
+   "start": 7.622,
+   "end": 7.722
+  },
+  {
+   "id": "C2416:16",
+   "word": "fois",
+   "beat": "FIRST",
+   "start": 7.722,
+   "end": 7.902
+  },
+  {
+   "id": "C2416:17",
+   "word": "تخرج",
+   "beat": "FIRST",
+   "start": 7.902,
+   "end": 8.142
+  },
+  {
+   "id": "C2416:18",
+   "word": "ليهم",
+   "beat": "FIRST",
+   "start": 8.222,
+   "end": 8.342
+  },
+  {
+   "id": "C2416:19",
+   "word": "une",
+   "beat": "FIRST",
+   "start": 8.442,
+   "end": 8.562
+  },
+  {
+   "id": "C2416:20",
+   "word": "adition",
+   "beat": "FIRST",
+   "start": 8.622,
+   "end": 9.023
+  },
+  {
+   "id": "C2416:22",
+   "word": "باقي",
+   "beat": "ADD12",
+   "start": 9.163,
+   "end": 9.403
+  },
+  {
+   "id": "C2416:23",
+   "word": "عندهم",
+   "beat": "ADD12",
+   "start": 9.463,
+   "end": 9.783
+  },
+  {
+   "id": "C2416:24",
+   "word": "plus",
+   "beat": "ADD12",
+   "start": 10.124,
+   "end": 10.344
+  },
+  {
+   "id": "C2416:25",
+   "word": "1",
+   "beat": "ADD12",
+   "start": 10.344,
+   "end": 10.544
+  },
+  {
+   "id": "C2416:26",
+   "word": "ولا",
+   "beat": "ADD12",
+   "start": 10.544,
+   "end": 10.664
+  },
+  {
+   "id": "C2416:27",
+   "word": "plus",
+   "beat": "ADD12",
+   "start": 10.724,
+   "end": 10.944
+  },
+  {
+   "id": "C2416:28",
+   "word": "2",
+   "beat": "ADD12",
+   "start": 10.944,
+   "end": 11.344
+  },
+  {
+   "id": "C2416:29",
+   "word": "de",
+   "beat": "ADD12",
+   "start": 11.604,
+   "end": 11.685
+  },
+  {
+   "id": "C2416:30",
+   "word": "préférence",
+   "beat": "ADD12",
+   "start": 11.725,
+   "end": 12.285
+  },
+  {
+   "id": "C2416:31",
+   "word": "مايسباريوش",
+   "beat": "ADD12",
+   "start": 12.405,
+   "end": 13.085
+  },
+  {
+   "id": "C2416:32",
+   "word": "les",
+   "beat": "WHY",
+   "start": 13.266,
+   "end": 13.366
+  },
+  {
+   "id": "C2416:33",
+   "word": "mesures",
+   "beat": "WHY",
+   "start": 13.386,
+   "end": 13.746
+  },
+  {
+   "id": "C2416:34",
+   "word": "مايديروش",
+   "beat": "WHY",
+   "start": 13.746,
+   "end": 14.107
+  },
+  {
+   "id": "C2416:35",
+   "word": "la",
+   "beat": "WHY",
+   "start": 14.127,
+   "end": 14.187
+  },
+  {
+   "id": "C2416:36",
+   "word": "vision",
+   "beat": "WHY",
+   "start": 14.227,
+   "end": 14.487
+  },
+  {
+   "id": "C2416:37",
+   "word": "de",
+   "beat": "WHY",
+   "start": 14.547,
+   "end": 14.627
+  },
+  {
+   "id": "C2416:38",
+   "word": "loin",
+   "beat": "WHY",
+   "start": 14.667,
+   "end": 14.847
+  },
+  {
+   "id": "C2416:39",
+   "word": "و",
+   "beat": "WHY",
+   "start": 14.967,
+   "end": 14.987
+  },
+  {
+   "id": "C2416:40",
+   "word": "la",
+   "beat": "WHY",
+   "start": 15.027,
+   "end": 15.087
+  },
+  {
+   "id": "C2416:41",
+   "word": "vision",
+   "beat": "WHY",
+   "start": 15.127,
+   "end": 15.367
+  },
+  {
+   "id": "C2416:42",
+   "word": "de",
+   "beat": "WHY",
+   "start": 15.407,
+   "end": 15.487
+  },
+  {
+   "id": "C2416:43",
+   "word": "près",
+   "beat": "WHY",
+   "start": 15.527,
+   "end": 15.688
+  },
+  {
+   "id": "C2416:44",
+   "word": "بوحديتهم",
+   "beat": "WHY",
+   "start": 15.728,
+   "end": 16.148
+  },
+  {
+   "id": "C2416:45",
+   "word": "حيت",
+   "beat": "WHY",
+   "start": 16.248,
+   "end": 16.408
+  },
+  {
+   "id": "C2416:46",
+   "word": "كلما",
+   "beat": "WHY",
+   "start": 16.508,
+   "end": 16.868
+  },
+  {
+   "id": "C2416:47",
+   "word": "طلعات",
+   "beat": "WHY",
+   "start": 16.948,
+   "end": 17.389
+  },
+  {
+   "id": "C2416:48",
+   "word": "l'addition",
+   "beat": "WHY",
+   "start": 17.589,
+   "end": 18.049
+  },
+  {
+   "id": "C2416:49",
+   "word": "مثلا",
+   "beat": "WHY",
+   "start": 18.389,
+   "end": 18.669
+  },
+  {
+   "id": "C2416:50",
+   "word": "وصلات",
+   "beat": "WHY",
+   "start": 18.769,
+   "end": 19.089
+  },
+  {
+   "id": "C2416:51",
+   "word": "ل",
+   "beat": "WHY",
+   "start": 19.17,
+   "end": 19.19
+  },
+  {
+   "id": "C2416:52",
+   "word": "plus",
+   "beat": "WHY",
+   "start": 19.25,
+   "end": 19.45
+  },
+  {
+   "id": "C2416:53",
+   "word": "3",
+   "beat": "WHY",
+   "start": 19.45,
+   "end": 19.85
+  },
+  {
+   "id": "C2416:54",
+   "word": "كلما",
+   "beat": "WHY",
+   "start": 20.23,
+   "end": 20.67
+  },
+  {
+   "id": "C2416:55",
+   "word": "صعاب",
+   "beat": "WHY",
+   "start": 20.81,
+   "end": 21.171
+  },
+  {
+   "id": "C2416:56",
+   "word": "أنك",
+   "beat": "WHY",
+   "start": 21.271,
+   "end": 21.551
+  },
+  {
+   "id": "C2416:57",
+   "word": "تادابطا",
+   "beat": "WHY",
+   "start": 21.611,
+   "end": 21.971
+  },
+  {
+   "id": "C2416:58",
+   "word": "على",
+   "beat": "WHY",
+   "start": 22.011,
+   "end": 22.111
+  },
+  {
+   "id": "C2416:59",
+   "word": "les",
+   "beat": "WHY",
+   "start": 22.171,
+   "end": 22.291
+  },
+  {
+   "id": "C2416:60",
+   "word": "progressifs",
+   "beat": "WHY",
+   "start": 22.291,
+   "end": 22.832
+  },
+  {
+   "id": "C2416:61",
+   "word": "وكيجيو",
+   "beat": "WHY",
+   "start": 22.872,
+   "end": 23.252
+  },
+  {
+   "id": "C2416:62",
+   "word": "des",
+   "beat": "WHY",
+   "start": 23.292,
+   "end": 23.452
+  },
+  {
+   "id": "C2416:63",
+   "word": "critères",
+   "beat": "WHY",
+   "start": 23.512,
+   "end": 24.032
+  },
+  {
+   "id": "C2416:64",
+   "word": "آخرين",
+   "beat": "WHY",
+   "start": 24.032,
+   "end": 24.412
+  },
+  {
+   "id": "C2416:65",
+   "word": "اللي",
+   "beat": "WHY",
+   "start": 24.613,
+   "end": 24.933
+  },
+  {
+   "id": "C2416:66",
+   "word": "هما",
+   "beat": "WHY",
+   "start": 25.013,
+   "end": 25.273
+  },
+  {
+   "id": "C2416:67",
+   "word": "le",
+   "beat": "WHY",
+   "start": 25.733,
+   "end": 25.813
+  },
+  {
+   "id": "C2416:68",
+   "word": "centrage",
+   "beat": "WHY",
+   "start": 25.893,
+   "end": 26.534
+  },
+  {
+   "id": "C2416:69",
+   "word": "la",
+   "beat": "WHY",
+   "start": 26.674,
+   "end": 26.774
+  },
+  {
+   "id": "C2416:70",
+   "word": "hauteur",
+   "beat": "WHY",
+   "start": 26.834,
+   "end": 27.314
+  },
+  {
+   "id": "C2416:71",
+   "word": "كيفاش",
+   "beat": "WHY",
+   "start": 27.754,
+   "end": 28.195
+  },
+  {
+   "id": "C2416:72",
+   "word": "l'opticien",
+   "beat": "WHY",
+   "start": 28.235,
+   "end": 28.695
+  },
+  {
+   "id": "C2416:73",
+   "word": "خدا",
+   "beat": "WHY",
+   "start": 28.775,
+   "end": 28.955
+  },
+  {
+   "id": "C2416:74",
+   "word": "ليك",
+   "beat": "WHY",
+   "start": 29.035,
+   "end": 29.135
+  },
+  {
+   "id": "C2416:75",
+   "word": "هاد",
+   "beat": "WHY",
+   "start": 29.195,
+   "end": 29.335
+  },
+  {
+   "id": "C2416:76",
+   "word": "les",
+   "beat": "CORRECT",
+   "start": 29.496,
+   "end": 29.596
+  },
+  {
+   "id": "C2416:77",
+   "word": "mesures",
+   "beat": "CORRECT",
+   "start": 29.616,
+   "end": 30.396
+  },
+  {
+   "id": "C2416:78",
+   "word": "واش",
+   "beat": "CORRECT",
+   "start": 30.416,
+   "end": 30.616
+  },
+  {
+   "id": "C2416:79",
+   "word": "la",
+   "beat": "CORRECT",
+   "start": 30.676,
+   "end": 30.736
+  },
+  {
+   "id": "C2416:80",
+   "word": "correction",
+   "beat": "CORRECT",
+   "start": 30.817,
+   "end": 31.357
+  },
+  {
+   "id": "C2416:81",
+   "word": "أصلا",
+   "beat": "CORRECT",
+   "start": 31.517,
+   "end": 31.797
+  },
+  {
+   "id": "C2416:82",
+   "word": "صحيحة",
+   "beat": "CORRECT",
+   "start": 31.937,
+   "end": 32.297
+  },
+  {
+   "id": "C2416:83",
+   "word": "أولا",
+   "beat": "CORRECT",
+   "start": 32.457,
+   "end": 32.638
+  },
+  {
+   "id": "C2416:84",
+   "word": "لا",
+   "beat": "CORRECT",
+   "start": 32.738,
+   "end": 32.798
+  },
+  {
+   "id": "C2416:86",
+   "word": "يلا",
+   "beat": "ADAPT",
+   "start": 32.918,
+   "end": 33.038
+  },
+  {
+   "id": "C2416:87",
+   "word": "ماولفتيهمش",
+   "beat": "ADAPT",
+   "start": 33.799,
+   "end": 34.799
+  },
+  {
+   "id": "C2416:88",
+   "word": "داكشي",
+   "beat": "ADAPT",
+   "start": 34.859,
+   "end": 35.139
+  },
+  {
+   "id": "C2416:89",
+   "word": "مثلا",
+   "beat": "ADAPT",
+   "start": 35.399,
+   "end": 35.72
+  },
+  {
+   "id": "C2416:90",
+   "word": "واحد",
+   "beat": "ADAPT",
+   "start": 35.86,
+   "end": 36.16
+  },
+  {
+   "id": "C2416:91",
+   "word": "تلتيام",
+   "beat": "RETURN",
+   "start": 36.32,
+   "end": 36.901
+  },
+  {
+   "id": "C2416:92",
+   "word": "de",
+   "beat": "RETURN",
+   "start": 37.462,
+   "end": 37.542
+  },
+  {
+   "id": "C2416:93",
+   "word": "préférence",
+   "beat": "RETURN",
+   "start": 37.622,
+   "end": 38.123
+  },
+  {
+   "id": "C2416:94",
+   "word": "ترجع",
+   "beat": "RETURN",
+   "start": 38.143,
+   "end": 38.403
+  },
+  {
+   "id": "C2416:95",
+   "word": "عندنا",
+   "beat": "RETURN",
+   "start": 38.443,
+   "end": 38.703
+  },
+  {
+   "id": "C2416:96",
+   "word": "نتاكدو",
+   "beat": "RETURN",
+   "start": 38.764,
+   "end": 39.164
+  },
+  {
+   "id": "C2416:97",
+   "word": "ليك",
+   "beat": "RETURN",
+   "start": 39.224,
+   "end": 39.344
+  },
+  {
+   "id": "C2416:98",
+   "word": "من",
+   "beat": "RETURN",
+   "start": 39.404,
+   "end": 39.485
+  },
+  {
+   "id": "C2416:99",
+   "word": "le",
+   "beat": "RETURN",
+   "start": 39.505,
+   "end": 39.585
+  },
+  {
+   "id": "C2416:100",
+   "word": "centrage",
+   "beat": "RETURN",
+   "start": 39.645,
+   "end": 40.346
+  },
+  {
+   "id": "C2416:101",
+   "word": "من",
+   "beat": "RETURN",
+   "start": 40.346,
+   "end": 40.446
+  },
+  {
+   "id": "C2416:102",
+   "word": "بعد",
+   "beat": "RETURN",
+   "start": 40.506,
+   "end": 40.706
+  },
+  {
+   "id": "C2416:103",
+   "word": "تمشي",
+   "beat": "RETURN",
+   "start": 40.746,
+   "end": 40.967
+  },
+  {
+   "id": "C2416:104",
+   "word": "عند",
+   "beat": "RETURN",
+   "start": 41.027,
+   "end": 41.127
+  },
+  {
+   "id": "C2416:105",
+   "word": "le",
+   "beat": "RETURN",
+   "start": 41.187,
+   "end": 41.227
+  },
+  {
+   "id": "C2416:106",
+   "word": "professionnel",
+   "beat": "RETURN",
+   "start": 41.227,
+   "end": 41.888
+  },
+  {
+   "id": "C2416:107",
+   "word": "يلا",
+   "beat": "CTA",
+   "start": 42.108,
+   "end": 42.229
+  },
+  {
+   "id": "C2416:108",
+   "word": "عندك",
+   "beat": "CTA",
+   "start": 42.289,
+   "end": 42.509
+  },
+  {
+   "id": "C2416:109",
+   "word": "شي",
+   "beat": "CTA",
+   "start": 42.529,
+   "end": 42.609
+  },
+  {
+   "id": "C2416:110",
+   "word": "تساؤل",
+   "beat": "CTA",
+   "start": 42.669,
+   "end": 43.07
+  },
+  {
+   "id": "C2416:111",
+   "word": "على",
+   "beat": "CTA",
+   "start": 43.09,
+   "end": 43.21
+  },
+  {
+   "id": "C2416:112",
+   "word": "les",
+   "beat": "CTA",
+   "start": 43.25,
+   "end": 43.35
+  },
+  {
+   "id": "C2416:113",
+   "word": "progressifs",
+   "beat": "CTA",
+   "start": 43.39,
+   "end": 43.971
+  },
+  {
+   "id": "C2416:114",
+   "word": "تقدر",
+   "beat": "CTA",
+   "start": 43.971,
+   "end": 44.231
+  },
+  {
+   "id": "C2416:115",
+   "word": "تخليه",
+   "beat": "CTA",
+   "start": 44.271,
+   "end": 44.592
+  },
+  {
+   "id": "C2416:116",
+   "word": "لنا",
+   "beat": "CTA",
+   "start": 44.632,
+   "end": 44.732
+  },
+  {
+   "id": "C2416:117",
+   "word": "فالكومونتير",
+   "beat": "CTA",
+   "start": 44.772,
+   "end": 45.413
+  },
+  {
+   "id": "C2416:118",
+   "word": "ونجاوبوك",
+   "beat": "CTA",
+   "start": 45.533,
+   "end": 46.094
+  },
+  {
+   "id": "C2416:119",
+   "word": "ف",
+   "beat": "CTA",
+   "start": 46.254,
+   "end": 46.274
+  },
+  {
+   "id": "C2416:120",
+   "word": "la",
+   "beat": "CTA",
+   "start": 46.334,
+   "end": 46.394
+  },
+  {
+   "id": "C2416:121",
+   "word": "vidéo",
+   "beat": "CTA",
+   "start": 46.454,
+   "end": 46.675
+  },
+  {
+   "id": "C2416:122",
+   "word": "الجاية",
+   "beat": "CTA",
+   "start": 46.695,
+   "end": 46.895
+  },
+  {
+   "id": "C2416:123",
+   "word": "إن",
+   "beat": "CTA",
+   "start": 46.895,
+   "end": 46.935
+  },
+  {
+   "id": "C2416:124",
+   "word": "شاء",
+   "beat": "CTA",
+   "start": 46.975,
+   "end": 47.095
+  },
+  {
+   "id": "C2416:125",
+   "word": "الله",
+   "beat": "CTA",
+   "start": 47.095,
+   "end": 47.296
+  }
+ ]
+}
