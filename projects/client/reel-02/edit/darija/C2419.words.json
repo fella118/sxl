@@ -66,28 +66,106 @@
   "chunk": 0
  },
  {
-  "word": "صافي",
-  "start": 40.002,
-  "end": 40.383,
-  "chunk": 1
+  "word": "وهو",
+  "start": 50.222,
+  "end": 50.483,
+  "chunk": 99
  },
  {
-  "word": "c'est",
-  "start": 41.064,
-  "end": 51.634,
-  "chunk": 1
+  "word": "ماشي",
+  "start": 50.884,
+  "end": 51.145,
+  "chunk": 99
  },
  {
-  "word": "bon",
-  "start": 52.175,
-  "end": 56.68,
-  "chunk": 1
+  "word": "ضروري",
+  "start": 51.225,
+  "end": 51.546,
+  "chunk": 99
  },
  {
-  "word": "هادي",
-  "start": 57.661,
-  "end": 57.882,
-  "chunk": 2
+  "word": "تكون",
+  "start": 51.586,
+  "end": 51.806,
+  "chunk": 99
+ },
+ {
+  "word": "تقولبتي",
+  "start": 51.846,
+  "end": 52.448,
+  "chunk": 99
+ },
+ {
+  "word": "ب",
+  "start": 52.588,
+  "end": 52.608,
+  "chunk": 99
+ },
+ {
+  "word": "100%",
+  "start": 52.608,
+  "end": 53.008,
+  "chunk": 99
+ },
+ {
+  "word": "ولكن",
+  "start": 53.771,
+  "end": 54.352,
+  "chunk": 99
+ },
+ {
+  "word": "أهم",
+  "start": 54.553,
+  "end": 54.813,
+  "chunk": 99
+ },
+ {
+  "word": "حاجة",
+  "start": 54.913,
+  "end": 55.154,
+  "chunk": 99
+ },
+ {
+  "word": "المهم",
+  "start": 55.194,
+  "end": 55.314,
+  "chunk": 99
+ },
+ {
+  "word": "هي",
+  "start": 55.495,
+  "end": 55.615,
+  "chunk": 99
+ },
+ {
+  "word": "هاد",
+  "start": 55.755,
+  "end": 55.896,
+  "chunk": 99
+ },
+ {
+  "word": "la",
+  "start": 55.936,
+  "end": 56.016,
+  "chunk": 99
+ },
+ {
+  "word": "carte",
+  "start": 56.096,
+  "end": 56.317,
+  "chunk": 99
+ },
+ {
+  "word": "de",
+  "start": 56.317,
+  "end": 56.397,
+  "chunk": 99
+ },
+ {
+  "word": "garantie",
+  "start": 56.397,
+  "end": 56.838,
+  "chunk": 99
  },
  {
   "word": "هي",
