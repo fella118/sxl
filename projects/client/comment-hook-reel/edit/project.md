@@ -85,3 +85,23 @@ softened (scale 1.35, blur 12, outline fades in after the blur).
 
 **Outstanding:** full-length v3 render (21–43.7s uses restyled v2 components +
 v3 phrases: checklist, 3-day ring counter, back flow, CTA) after client OK.
+
+## Session 2, full v3 render — 2026-10-06
+
+Client: "full render, do not cover his head, keep captions and motion in a safe place".
+
+**Safe placement:**
+- studio/bin/safe_zones.py: head top (matte, above the face) and chin per output
+  frame -> facepos.js [eye_x, eye_y, face_w, head_top, chin]; `check` mode scans
+  an overlay layer against the head region.
+- Page solver (placeAll): upper graphics end 36px above the highest head top in
+  their window and below y=140 (Instagram top bar), scaling down (>=0.5) when
+  needed; phrases start 36px below the lowest chin and end above y=1420
+  (caption zone), centred at x=520 and fitted to 860px (right-edge buttons).
+  Rings sit fully above the head; "بوحديتهم" became a chest-zone phrase; the
+  chart title lives inside the chart panel.
+- Cutaway frames now carry face data too. Sign cutaway removed (could not frame
+  the sign without cutting his head); glasses close-up ends before the cards.
+
+**QC:** head check 0 frames at 0.01% over all 2184 frames. 43.68s, -14.0 LUFS,
+-1.5 dBTP. Master edit/final_v3.mp4 (75 MB), review copy final_v3_review.mp4.

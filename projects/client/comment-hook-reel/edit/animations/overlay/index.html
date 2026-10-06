@@ -21,7 +21,9 @@
   svg.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
 
   /* ---------- phrase typography ---------- */
-  .phrase { left: 540px; display: flex; flex-direction: column; align-items: center; width: 1000px; }
+  .place { position: absolute; left: 0; top: 0; width: 1080px; height: 0; }
+  .phrase { left: 520px; display: flex; flex-direction: column; align-items: center; width: 1000px; }
+  .phrase.inline { position: relative; left: 0; width: auto; }
   .line { display: flex; align-items: baseline; justify-content: center; gap: 22px; line-height: 1.02; }
   .run { display: flex; align-items: baseline; gap: 18px; }
   .w { position: relative; display: inline-block; white-space: nowrap; paint-order: stroke fill;
@@ -54,7 +56,7 @@
   #reply .avatar { width: 64px; height: 64px; }
 
   /* ---------- curved cards: vision de loin / de près ---------- */
-  #lp { left: 0; top: 230px; width: 1080px; height: 1100px; perspective: 1100px; }
+  #lp { left: 0; top: 230px; width: 1080px; height: 460px; perspective: 1100px; }
   .card3d { position: absolute; top: 0; width: 400px; height: 440px; border-radius: 44px; padding: 36px 24px;
             box-sizing: border-box; text-align: center; color: #fff; opacity: 0; visibility: hidden;
             background: linear-gradient(115deg, rgba(255,255,255,.26) 0%, rgba(255,255,255,.08) 38%, rgba(10,12,24,.82) 70%);
@@ -65,10 +67,11 @@
   .card3d .lbl { font: 800 48px "Cairo"; margin-top: 18px; white-space: nowrap; }
   .card3d .lbl b { font: 400 66px "Anton"; color: var(--cyan); text-transform: uppercase; display: block; letter-spacing: 1px; }
   #xstamp { position: absolute; left: 470px; top: 150px; width: 140px; height: 140px; opacity: 0; visibility: hidden; }
-  #sepw { position: absolute; left: 0; right: 0; top: 960px; text-align: center; opacity: 0; visibility: hidden; }
 
   /* ---------- chart reveal ---------- */
-  #chart { left: 150px; top: 300px; width: 780px; height: 380px; }
+  #chart { left: 150px; top: 300px; width: 780px; }
+  #chart-title { display: flex; justify-content: center; min-height: 175px; }
+  .plot { position: relative; height: 300px; }
   .axis { position: absolute; left: 40px; right: 120px; bottom: 70px; height: 4px; background: rgba(255,255,255,.75); border-radius: 2px; }
   .bar { position: absolute; bottom: 74px; width: 150px; height: 0; border-radius: 22px 22px 6px 6px; }
   #b1 { left: 95px; background: var(--ok); } #b2 { left: 315px; background: var(--yellow); } #b3 { left: 535px; background: var(--red); box-shadow: 0 0 40px rgba(255,77,94,.55); }
@@ -167,14 +170,16 @@
       <div class="lbl">la vision <b>de près</b></div>
     </div>
     <svg id="xstamp" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#ff4d5e" stroke="#fff" stroke-width="5"/><path d="M32 32l36 36M68 32L32 68" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg>
-    <div id="sepw"><span class="w key red">بوحديتهم</span></div>
   </div>
 
   <div id="chart" class="layer">
-    <div class="bar" id="b1"></div><div class="bar" id="b2"></div><div class="bar" id="b3"></div>
-    <div class="axis"></div>
-    <div class="blab" style="left:95px">+1</div><div class="blab" style="left:315px">+2</div><div class="blab" style="left:535px">+3</div>
-    <div id="n3">+3</div>
+    <div id="chart-title"></div>
+    <div class="plot">
+      <div class="bar" id="b1"></div><div class="bar" id="b2"></div><div class="bar" id="b3"></div>
+      <div class="axis"></div>
+      <div class="blab" style="left:95px">+1</div><div class="blab" style="left:315px">+2</div><div class="blab" style="left:535px">+3</div>
+      <div id="n3">+3</div>
+    </div>
   </div>
 
   <div id="floaters" class="layer" style="left:0;top:0;width:1080px;height:1920px"></div>
@@ -259,8 +264,10 @@ const ACCENT = { cyan: "#3be3ff", yellow: "#ffc93c", red: "#ff4d5e" };
 const phrasesEl = document.getElementById("phrases");
 E.phrases.forEach(p => {
   const ph = document.createElement("div");
-  ph.className = "layer phrase"; ph.style.top = p.y + "px";
-  phrasesEl.appendChild(ph);
+  ph.className = "layer phrase" + (p.parent ? " inline" : "");
+  if (!p.parent) { ph.style.top = p.y + "px"; ph.style.left = p.x + "px"; }
+  (p.parent ? document.getElementById(p.parent) : phrasesEl).appendChild(ph);
+  ph.dataset.place = p.place; ph.dataset.t0 = p.start; ph.dataset.t1 = p.end;
   const words = [];
   p.lines.forEach(line => {
     const lineDir = AR.test(line[0].t) ? "rtl" : "ltr";
@@ -283,7 +290,7 @@ E.phrases.forEach(p => {
       words.push({ el, wd, dir });
     });
   });
-  tl.set(ph, { autoAlpha: 1, xPercent: -50 }, p.start - 0.06);
+  tl.set(ph, p.parent ? { autoAlpha: 1 } : { autoAlpha: 1, xPercent: -50 }, p.start - 0.06);
   words.forEach(({ el, wd, dir }) => {
     const at = wd.at - 0.04, sign = dir === "rtl" ? 1 : -1;
     if (wd.role === "small") {
@@ -361,8 +368,10 @@ function updateRings(t) {
     svg.style.visibility = on ? "visible" : "hidden"; svg.style.opacity = on ? Math.min(1, RING.k) : 0;
     if (!on) return;
     const s = f[2] / 100 * 0.48 * RING.k, wob = Math.sin(t * 7) * 6;
+    const headTop = f[3] !== undefined ? f[3] : f[1] - f[2];
+    const cy = headTop - 60 * s - 14;   // largest ring ry (52) + wobble margin, in px
     document.getElementById("rings" + side + "g").setAttribute("transform",
-      `translate(${f[0]} ${f[1] - f[2] * 0.80}) rotate(${wob}) scale(${s})`);
+      `translate(${f[0]} ${cy}) rotate(${wob}) scale(${s})`);
     ringEls[side].forEach(({ path, dot, r }, i) => {
       path.setAttribute("stroke-dashoffset", (-t * r.speed).toFixed(1));
       const th = t * (r.speed / 60) + i * 2.1;
@@ -379,12 +388,6 @@ tl.fromTo("#loin", { autoAlpha: 0, rotationY: 70, x: -160, z: -200 }, { autoAlph
 tl.fromTo("#pres", { autoAlpha: 0, rotationY: -70, x: 160, z: -200 }, { autoAlpha: 1, rotationY: -22, x: 0, z: 0, duration: 0.42, ease: expo }, E.pres - 0.28);
 tl.to(["#loin", "#pres"], { filter: "grayscale(1) brightness(.55)", duration: 0.18 }, E.sep);
 tl.fromTo("#xstamp", { autoAlpha: 0, scale: 2.4, rotation: -30 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2.4)" }, E.sep);
-const sepw = document.querySelector("#sepw .w"); sepw.dataset.text = sepw.textContent;
-const sepBlur = motionBlur(sepw), sepGhosts = addGhosts(sepw, ACCENT.red);
-tl.set("#sepw", { autoAlpha: 1 }, E.sep);
-tl.fromTo(sepw, { autoAlpha: 0, scale: 1.6, x: 80 }, { autoAlpha: 1, scale: 1, x: 0, duration: 0.3, ease: expo }, E.sep + 0.02);
-tl.fromTo(sepBlur, { attr: { stdDeviation: "24 0" } }, { attr: { stdDeviation: "0 0" }, duration: 0.24 }, E.sep + 0.02);
-sepGhosts.forEach((g, i) => tl.fromTo(g, { opacity: 0.42 - 0.16 * i, x: 62 * (i + 1) }, { opacity: 0, x: 0, duration: 0.32 + 0.1 * i, ease: out3 }, E.sep + 0.04));
 tl.to("#lp", { autoAlpha: 0, y: -40, duration: 0.2, ease: in3 }, E.lp_out - 0.2);
 
 // ---------- chart reveal ----------
@@ -416,7 +419,7 @@ tl.to("#wall", { autoAlpha: 0, duration: 0.14 }, E.wall_out - 0.14);
 // ---------- floating glasses icons ----------
 const floaters = document.getElementById("floaters");
 const GLASSES = '<svg class="floater" viewBox="0 0 64 64" fill="none" stroke="#3be3ff" stroke-width="3.4" stroke-linecap="round"><circle cx="18" cy="36" r="11"/><circle cx="46" cy="36" r="11"/><path d="M29 36c2-2 4-2 6 0M7 33L4 24M57 33l3-9"/></svg>';
-[[140, 980, -14], [880, 900, 12], [210, 1560, 8], [860, 1520, -10]].forEach(([x, y, r], i) => {
+[[130, 820, -14], [900, 760, 12], [150, 1180, 8], [880, 1160, -10]].forEach(([x, y, r], i) => {
   const d = document.createElement("div"); d.style.cssText = `position:absolute;left:${x - 65}px;top:${y - 65}px`; d.innerHTML = GLASSES;
   floaters.appendChild(d);
   tl.fromTo(d, { autoAlpha: 0, scale: 0.3, rotation: r * 2 }, { autoAlpha: 0.95, scale: 1, rotation: r, duration: 0.3, ease: back }, E.float_in + i * 0.07);
@@ -480,7 +483,7 @@ window.anyVisible = () => {
 };
 
 // Shrink a phrase line that would overflow the safe width (measured once fonts are in).
-function fitLines(maxW = 960) {
+function fitLines(maxW = 860) {
   document.querySelectorAll(".phrase .line").forEach(ln => {
     const ph = ln.closest(".phrase");
     const prev = [ph.style.visibility, ph.style.opacity];
@@ -496,6 +499,58 @@ function fitLines(maxW = 960) {
   });
 }
 
+// ---------- safe placement: never over the head, inside the Instagram safe area ----------
+const TOP_SAFE = 140, BOTTOM_SAFE = 1420, HEAD_MARGIN = 36;
+function headStats(t0, t1) {
+  let top = Infinity, chin = -Infinity;
+  for (let i = Math.floor(t0 * FACE.fps); i <= Math.ceil(t1 * FACE.fps); i++) {
+    const f = FACE.frames[i];
+    if (!f || f[3] === undefined) continue;
+    top = Math.min(top, f[3]); chin = Math.max(chin, f[4]);
+  }
+  return { top, chin };
+}
+function wrap(el) {
+  const w = document.createElement("div"); w.className = "place";
+  el.parentNode.insertBefore(w, el); w.appendChild(el); return w;
+}
+function placeItem(el, mode, t0, t1, opts = {}) {
+  const top = el.offsetTop, h = el.offsetHeight + (opts.extra || 0);
+  const cx = opts.cx ?? el.offsetLeft + el.offsetWidth / 2;
+  const hs = headStats(t0, t1);
+  let newTop = top, k = 1;
+  if (mode === "above" && isFinite(hs.top)) {
+    const maxB = hs.top - HEAD_MARGIN;
+    if (!(top >= TOP_SAFE && top + h <= maxB)) {
+      newTop = Math.max(TOP_SAFE, Math.min(top, maxB - h));
+      if (newTop + h > maxB) k = Math.max(0.5, (maxB - newTop) / h);
+    }
+  } else if (mode === "below" && isFinite(hs.chin)) {
+    const minT = hs.chin + HEAD_MARGIN;
+    if (!(top >= minT && top + h <= BOTTOM_SAFE)) {
+      newTop = Math.max(minT, Math.min(top, BOTTOM_SAFE - h));
+      if (newTop + h > BOTTOM_SAFE) k = Math.max(0.5, (BOTTOM_SAFE - newTop) / h);
+    }
+  }
+  if (newTop === top && k === 1) return;
+  const w = wrap(el);
+  w.style.transformOrigin = `${cx}px ${top}px`;
+  w.style.transform = `translate(0px, ${(newTop - top).toFixed(1)}px) scale(${k.toFixed(3)})`;
+  window.PLACED.push({ id: el.id || el.className, mode, top, newTop: Math.round(newTop), h, k: +k.toFixed(3) });
+}
+window.PLACED = [];
+function placeAll() {
+  document.querySelectorAll("#phrases > .phrase").forEach(ph =>
+    placeItem(ph, ph.dataset.place, +ph.dataset.t0, +ph.dataset.t1, { cx: parseFloat(ph.style.left) }));
+  placeItem(document.getElementById("card"), "above", E.card_in, E.card_out + 0.25);
+  placeItem(document.getElementById("lp"), "above", E.loin - 0.3, E.lp_out);
+  placeItem(document.getElementById("chart"), "above", E.chart_in, E.chart_out);
+  placeItem(document.getElementById("crit"), "above", E.crit_in, E.crit_out, { extra: 4 * 88 });
+  placeItem(document.getElementById("days"), "above", E.days_in, E.days_out + 0.22);
+  placeItem(document.getElementById("flow"), "above", E.back_in, E.back_out + 0.22);
+  placeItem(document.getElementById("cta"), "above", E.cta_in, E.duration);
+}
+
 window.ready = (async () => {
   const faces = ['900 150px "Cairo"', '700 56px "Cairo"', '600 40px "Cairo"', '400 168px "Anton"', '400 126px "Great Vibes"',
                  '700 38px "Roboto"', '500 34px "Roboto"', '400 34px "Roboto"'];
@@ -505,6 +560,7 @@ window.ready = (async () => {
   if (missing.length) throw new Error("fonts not loaded: " + missing.join(", "));
   await Promise.all(Array.from(document.images).map(img => img.decode()));
   fitLines();
+  placeAll();
   return true;
 })();
 </script>

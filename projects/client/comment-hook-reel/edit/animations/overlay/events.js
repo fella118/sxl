@@ -30,7 +30,7 @@ window.EV = {
    "id": "bien",
    "start": 2.287,
    "end": 3.82,
-   "x": 540,
+   "x": 520,
    "y": 1240,
    "lines": [
     [
@@ -55,13 +55,15 @@ window.EV = {
       "color": "cyan"
      }
     ]
-   ]
+   ],
+   "place": "below",
+   "parent": null
   },
   {
    "id": "first",
    "start": 3.92,
    "end": 5.211,
-   "x": 540,
+   "x": 520,
    "y": 1250,
    "lines": [
     [
@@ -86,13 +88,15 @@ window.EV = {
       "color": null
      }
     ]
-   ]
+   ],
+   "place": "below",
+   "parent": null
   },
   {
    "id": "advise",
    "start": 5.261,
    "end": 6.382,
-   "x": 540,
+   "x": 520,
    "y": 1250,
    "lines": [
     [
@@ -115,13 +119,15 @@ window.EV = {
       "color": null
      }
     ]
-   ]
+   ],
+   "place": "below",
+   "parent": null
   },
   {
    "id": "addition",
    "start": 6.862,
    "end": 8.32,
-   "x": 540,
+   "x": 520,
    "y": 1250,
    "lines": [
     [
@@ -152,13 +158,15 @@ window.EV = {
       "color": "yellow"
      }
     ]
-   ]
+   ],
+   "place": "below",
+   "parent": null
   },
   {
    "id": "still",
    "start": 8.423,
    "end": 10.524,
-   "x": 540,
+   "x": 520,
    "y": 520,
    "lines": [
     [
@@ -195,13 +203,15 @@ window.EV = {
       "color": "cyan"
      }
     ]
-   ]
+   ],
+   "place": "above",
+   "parent": null
   },
   {
    "id": "pref",
    "start": 10.584,
    "end": 12.28,
-   "x": 540,
+   "x": 520,
    "y": 1250,
    "lines": [
     [
@@ -220,14 +230,35 @@ window.EV = {
       "color": null
      }
     ]
-   ]
+   ],
+   "place": "below",
+   "parent": null
+  },
+  {
+   "id": "sep",
+   "start": 14.848,
+   "end": 15.568,
+   "x": 520,
+   "y": 1250,
+   "lines": [
+    [
+     {
+      "t": "بوحديتهم",
+      "at": 14.848,
+      "role": "key",
+      "color": "red"
+     }
+    ]
+   ],
+   "place": "below",
+   "parent": null
   },
   {
    "id": "chart_title",
    "start": 15.628,
    "end": 19.43,
-   "x": 540,
-   "y": 150,
+   "x": 520,
+   "y": 1250,
    "lines": [
     [
      {
@@ -249,13 +280,15 @@ window.EV = {
       "color": "cyan"
      }
     ]
-   ]
+   ],
+   "place": "inline",
+   "parent": "chart-title"
   },
   {
    "id": "adapt",
    "start": 20.311,
    "end": 21.472,
-   "x": 540,
+   "x": 520,
    "y": 1250,
    "lines": [
     [
@@ -286,13 +319,15 @@ window.EV = {
       "color": "cyan"
      }
     ]
-   ]
+   ],
+   "place": "below",
+   "parent": null
   },
   {
    "id": "notused",
    "start": 31.24,
    "end": 32.3,
-   "x": 540,
+   "x": 520,
    "y": 1250,
    "lines": [
     [
@@ -311,13 +346,15 @@ window.EV = {
       "color": "yellow"
      }
     ]
-   ]
+   ],
+   "place": "below",
+   "parent": null
   },
   {
    "id": "back",
    "start": 33.802,
    "end": 35.393,
-   "x": 540,
+   "x": 520,
    "y": 1250,
    "lines": [
     [
@@ -336,13 +373,15 @@ window.EV = {
       "color": "cyan"
      }
     ]
-   ]
+   ],
+   "place": "below",
+   "parent": null
   },
   {
    "id": "comment",
    "start": 41.052,
    "end": 41.993,
-   "x": 540,
+   "x": 520,
    "y": 1250,
    "lines": [
     [
@@ -353,13 +392,15 @@ window.EV = {
       "color": "cyan"
      }
     ]
-   ]
+   ],
+   "place": "below",
+   "parent": null
   },
   {
    "id": "next",
    "start": 42.614,
    "end": 43.68,
-   "x": 540,
+   "x": 520,
    "y": 1250,
    "lines": [
     [
@@ -378,7 +419,9 @@ window.EV = {
       "color": null
      }
     ]
-   ]
+   ],
+   "place": "below",
+   "parent": null
   }
  ],
  "rings_in": 2.8289999999999997,

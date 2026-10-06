@@ -67,8 +67,9 @@ PLAN = {
 # Cutaways: detail of the same moment. from/to are word anchors (src time) or
 # (src, offset); "on" = "face" follows the eyes, else a fixed point (x, y) of the 9:16 frame.
 CUTAWAYS = [
-    {"range": 8, "from": 0.0, "to": ("w", 20.61, -0.12), "on": "face", "zoom": 2.4, "drift": 0.10},   # les mesures -> glasses ECU
-    {"range": 18, "from": ("w", 46.50, -0.05), "to": ("w", 47.12, -0.05), "on": (0.47, 0.13), "zoom": 1.7, "drift": 0.06},  # ترجع عندنا -> sign
+    # les mesures -> close-up on his glasses; ends before the loin/près cards come in
+    {"range": 8, "from": 0.0, "to": ("w", 20.61, -0.36), "on": "face", "zoom": 2.4, "drift": 0.10},
+    # (sign close-up on "ترجع عندنا" removed in v3: the sign cannot be framed without cutting his head)
 ]
 
 
@@ -208,8 +209,8 @@ def main() -> None:
             m = cv2.warpAffine(matte, affine(x0, y0, w, matte.shape[1], matte.shape[0]), (OW, OH), flags=cv2.INTER_LINEAR,
                                borderMode=cv2.BORDER_REPLICATE)
             menc.stdin.write(m.tobytes())
-            facepos.append(None if cut else [round((fx - x0) / w * OW, 1), round((fy - y0) / w * OH, 1),
-                                             round(fw / w * OW, 1)])
+            # face in output pixels for every frame (cutaways included, so safety checks see them)
+            facepos.append([round((fx - x0) / w * OW, 1), round((fy - y0) / w * OH, 1), round(fw / w * OW, 1)])
             out_i += 1
         dec.stdout.close()
         dec.wait()

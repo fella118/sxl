@@ -37,7 +37,8 @@ def beat_start(name: str) -> float:
     return next(r["out_start"] for r in TL["ranges"] if r["beat"] == name)
 
 
-def phrase(pid: str, lines: list, end: float, y: int = 1250, clip: str = "C2416", x: int = 540) -> dict:
+def phrase(pid: str, lines: list, end: float, y: int = 1250, clip: str = "C2416", x: int = 520,
+           place: str = "below", parent: str | None = None) -> dict:
     out_lines = []
     for line in lines:
         out = []
@@ -48,7 +49,8 @@ def phrase(pid: str, lines: list, end: float, y: int = 1250, clip: str = "C2416"
                         "color": color})
         out_lines.append(out)
     start = min(x["at"] for line in out_lines for x in line)
-    return {"id": pid, "start": round(start, 3), "end": round(end, 3), "x": x, "y": y, "lines": out_lines}
+    return {"id": pid, "start": round(start, 3), "end": round(end, 3), "x": x, "y": y, "lines": out_lines,
+            "place": place, "parent": parent}
 
 
 hook_words = [{"text": x["word"], "start": x["start"], "end": x["end"]} for x in WORDS if x["beat"] == "HOOK"]
@@ -68,12 +70,13 @@ PHRASES = [
            end=beat_start("ADD12") - 0.04),
     phrase("still", [[(14.10, "small", None), (14.40, "small", None)],
                      [(15.06, "num", "cyan", "+1"), (15.48, "small", None), (15.66, "num", "cyan", "+2")]],
-           end=s(16.54) - 0.06, y=520),
+           end=s(16.54) - 0.06, y=520, place="above"),
     phrase("pref", [[(16.54, "script", "yellow", "de préférence")],
                     [(17.34, "key", None)]],
            end=beat_start("WHY") - 0.04),
+    phrase("sep", [[(22.11, "key", "red")]], end=s(22.63) + 0.2),
     phrase("chart_title", [[(22.89, "small", None), (23.33, "small", None), (23.97, "key", "cyan", "l'addition")]],
-           end=s(27.19) - 0.08, y=150),
+           end=s(27.19) - 0.08, place="inline", parent="chart-title"),
     phrase("adapt", [[(27.99, "small", None), (28.39, "small", None)],
                      [(28.55, "small", None), (28.67, "key", "cyan", "progressifs")]],
            end=s(29.25) - 0.1),
