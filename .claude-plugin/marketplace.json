@@ -1,0 +1,71 @@
+{
+  "name": "sxl-video-skills",
+  "owner": {
+    "name": "fella118"
+  },
+  "metadata": {
+    "description": "Video skills for Claude Code, loaded straight from their upstream GitHub repos. See docs/opus-5-5-video-repos.md."
+  },
+  "plugins": [
+    {
+      "name": "remotion-skills",
+      "description": "Official Remotion agent skills: create, render, captions, maps, multimedia and best practices for React video.",
+      "source": { "source": "github", "repo": "remotion-dev/skills" },
+      "homepage": "https://github.com/remotion-dev/skills",
+      "strict": false
+    },
+    {
+      "name": "video-use",
+      "description": "Edit real footage by conversation: transcribe, cut, color grade, overlays and subtitles (browser-use/video-use).",
+      "source": { "source": "github", "repo": "browser-use/video-use" },
+      "homepage": "https://github.com/browser-use/video-use",
+      "license": "MIT",
+      "strict": false,
+      "skills": ["./", "./skills/manim-video"]
+    },
+    {
+      "name": "manim-skills",
+      "description": "3Blue1Brown-style explainer animations with Manim (ManimCE and ManimGL).",
+      "source": { "source": "github", "repo": "adithya-s-k/manim_skill" },
+      "homepage": "https://github.com/adithya-s-k/manim_skill",
+      "license": "MIT",
+      "strict": false
+    },
+    {
+      "name": "text-to-lottie",
+      "description": "Author, edit and debug Lottie/Bodymovin animations (diffusionstudio/lottie).",
+      "source": { "source": "github", "repo": "diffusionstudio/lottie" },
+      "homepage": "https://github.com/diffusionstudio/lottie",
+      "license": "MIT",
+      "strict": false
+    },
+    {
+      "name": "hypit",
+      "description": "Direct and produce videos with Hypit: remix viral videos, swap faces, words and B-roll.",
+      "source": { "source": "github", "repo": "hypit-ai/hypit" },
+      "homepage": "https://github.com/hypit-ai/hypit",
+      "strict": false
+    },
+    {
+      "name": "chengfeng-videocut",
+      "description": "Video cutting, subtitles, visuals and export skills (Agentchengfeng/chengfeng-videocut-skills).",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Agentchengfeng/chengfeng-videocut-skills.git",
+        "path": "plugins/chengfeng-videocut"
+      },
+      "homepage": "https://github.com/Agentchengfeng/chengfeng-videocut-skills",
+      "license": "Apache-2.0",
+      "strict": false
+    },
+    {
+      "name": "openmontage",
+      "description": "OpenMontage's agent skill library for end-to-end video production. Most skills expect the OpenMontage project checkout.",
+      "source": { "source": "github", "repo": "calesthio/OpenMontage" },
+      "homepage": "https://github.com/calesthio/OpenMontage",
+      "license": "AGPL-3.0",
+      "strict": false,
+      "skills": ["./.claude/skills/"]
+    }
+  ]
+}

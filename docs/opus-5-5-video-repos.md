@@ -45,6 +45,67 @@ render it to MP4. HyperFrames (below) handles that render step.
 | [0xsline/OpenChatCut](https://github.com/0xsline/OpenChatCut) | ~2.1k | Local, chat-driven timeline editor | see repo |
 | [adithya-s-k/manim_skill](https://github.com/adithya-s-k/manim_skill) | ~1.1k | 3Blue1Brown-style explainers made with Manim | see repo |
 
+## Installing the skills
+
+`.claude-plugin/marketplace.json` in this repo is a marketplace
+(`sxl-video-skills`) that loads skills straight from their upstream repos, so
+nothing is copied in here. HyperFrames and lemo-opuscar have their own
+marketplaces.
+
+| Plugin | Skills |
+|---|---|
+| `hyperframes@hyperframes` | 21 |
+| `remotion-skills@sxl-video-skills` | 12 |
+| `video-use@sxl-video-skills` | 2 |
+| `manim-skills@sxl-video-skills` | 3 |
+| `text-to-lottie@sxl-video-skills` | 1 |
+| `hypit@sxl-video-skills` | 1 |
+| `chengfeng-videocut@sxl-video-skills` | 7 |
+| `openmontage@sxl-video-skills` | 49, most of which expect an OpenMontage checkout |
+| `lemo-opuscar@lemolab` | 1 |
+
+Add the marketplaces and plugins to `.claude/settings.json`:
+
+```json
+"extraKnownMarketplaces": {
+  "sxl-video-skills": { "source": { "source": "github", "repo": "fella118/sxl" } },
+  "hyperframes": { "source": { "source": "github", "repo": "heygen-com/hyperframes" } },
+  "lemolab": { "source": { "source": "github", "repo": "lemomo-ai/lemo-opuscar" } }
+},
+"enabledPlugins": {
+  "hyperframes@hyperframes": true,
+  "remotion-skills@sxl-video-skills": true,
+  "video-use@sxl-video-skills": true,
+  "manim-skills@sxl-video-skills": true,
+  "text-to-lottie@sxl-video-skills": true,
+  "hypit@sxl-video-skills": true,
+  "chengfeng-videocut@sxl-video-skills": true,
+  "openmontage@sxl-video-skills": true,
+  "lemo-opuscar@lemolab": true
+}
+```
+
+Or install them from the CLI:
+
+```bash
+claude plugin marketplace add fella118/sxl --scope project
+claude plugin marketplace add heygen-com/hyperframes --scope project
+claude plugin marketplace add lemomo-ai/lemo-opuscar --scope project
+for p in remotion-skills video-use manim-skills text-to-lottie hypit chengfeng-videocut openmontage; do
+  claude plugin install "$p@sxl-video-skills" --scope project
+done
+claude plugin install hyperframes@hyperframes --scope project
+claude plugin install lemo-opuscar@lemolab --scope project
+```
+
+The `fella118/sxl` marketplace source reads the default branch, so merge this
+branch first.
+
+Together these add about 11k tokens of skill descriptions to every session.
+OpenMontage costs about 5.4k and HyperFrames about 4k. Disable OpenMontage if
+you don't use its project. Several skills need extra tools at run time:
+ffmpeg, Python, Node, an ElevenLabs key for video-use, and Hypit's runtime.
+
 ## Suggested stack
 
 1. Pick a prompt from `awesome-opus5-5-videos`.
