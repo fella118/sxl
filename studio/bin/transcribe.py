@@ -14,7 +14,7 @@ Cached: an existing transcript is never redone unless --force.
 Usage:
     python studio/bin/transcribe.py <project_dir | video> [...]
     python studio/bin/transcribe.py projects/acme/launch --language fr
-    python studio/bin/transcribe.py clip.mp4 --model large-v3-turbo
+    python studio/bin/transcribe.py clip.mp4 --model small   # quick draft
     python studio/bin/transcribe.py projects/acme/launch --engine scribe --num-speakers 2
 """
 
@@ -38,6 +38,18 @@ def extract_audio(video: Path, dest: Path, audio_track: int) -> None:
          "-vn", "-ac", "1", "-ar", "16000", "-c:a", "pcm_s16le", str(dest)],
         check=True,
     )
+
+
+def load_wav(path: Path):
+    """16 kHz mono s16 wav -> float32 array. Passing samples skips faster-whisper's
+    PyAV decoder, which breaks on some PyAV releases."""
+    import wave
+
+    import numpy as np
+
+    with wave.open(str(path), "rb") as w:
+        pcm = w.readframes(w.getnframes())
+    return np.frombuffer(pcm, dtype=np.int16).astype(np.float32) / 32768.0
 
 
 def to_scribe(segments, info) -> dict:
@@ -84,7 +96,7 @@ def transcribe_local(video: Path, out: Path, args, model_cache: dict) -> None:
         wav = Path(tmp) / "a.wav"
         extract_audio(video, wav, args.audio_track)
         segments, info = model.transcribe(
-            str(wav),
+            load_wav(wav),
             language=args.language,
             word_timestamps=True,
             vad_filter=True,
@@ -113,9 +125,10 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("targets", nargs="+", type=Path, help="Project dirs or video files")
     ap.add_argument("--engine", choices=["local", "scribe"], default="local")
-    ap.add_argument("--model", default="small",
-                    help="faster-whisper model: tiny, base, small (default), medium, "
-                         "large-v3-turbo, large-v3. Bigger is slower and more accurate.")
+    ap.add_argument("--model", default="large-v3-turbo",
+                    help="faster-whisper model. large-v3-turbo (default) runs about 3x faster "
+                         "than real time on this 4-core CPU; small is about 2x faster again "
+                         "for quick drafts; large-v3 is the slowest and most accurate.")
     ap.add_argument("--language", default=None, help="ISO code (en, fr, ar, es...). Default: auto")
     ap.add_argument("--num-speakers", type=int, default=None, help="Scribe only")
     ap.add_argument("--audio-track", type=int, default=0)

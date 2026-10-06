@@ -129,6 +129,8 @@ def main() -> None:
     args = ap.parse_args()
 
     src = args.input.resolve()
+    if args.subs and not args.subs.exists():
+        sys.exit(f"subtitle file not found: {args.subs} (build it with studio/bin/captions.py <edl.json>)")
     probe = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
                             "stream=width,height", "-of", "csv=p=0", str(src)],
                            capture_output=True, text=True, check=True).stdout.strip().split(",")

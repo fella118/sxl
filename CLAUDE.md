@@ -33,16 +33,20 @@ EDL, SRT, project.md) are committed so the next session can pick up the work.
 |---|---|
 | Open project, ingest footage | `$PY studio/bin/new_project.py <client> <project> <files/dirs/urls>` |
 | Understand the footage | `$PY studio/bin/analyze.py projects/<c>/<p>` then Read `edit/analysis.md` and each `edit/analysis/<clip>/contact.jpg` |
-| Transcribe (word level) | `$PY studio/bin/transcribe.py projects/<c>/<p> [--language fr] [--model large-v3-turbo] [--prompt "Brand, Names"]` |
+| Transcribe (word level) | `$PY studio/bin/transcribe.py projects/<c>/<p> [--language fr] [--model small] [--prompt "Brand, Names"]` |
 | Visual drill-down at a cut | `$PY studio/.vendor/video-use/helpers/timeline_view.py <video> <start> <end>` |
 | Render from EDL | `$PY studio/.vendor/video-use/helpers/render.py <edit>/edl.json -o <edit>/preview.mp4 --preview --build-subtitles` (`--draft` for cut checks; final: no flag) |
 | Color grade presets | `$PY studio/.vendor/video-use/helpers/grade.py --list` |
+| Captions only (SRT) | `$PY studio/bin/captions.py <edit>/edl.json [-o deliver/<name>.srt]` |
 | Deliver | `$PY studio/bin/export.py edit/final.mp4 reels youtube [--reframe crop/blur/pad] [--subs edit/master.srt]` |
 
 `transcribe.py` writes the same JSON shape as ElevenLabs Scribe and runs
 video-use's packer, so `takes_packed.md` and `render.py --build-subtitles`
-work with either engine. Local engine = faster-whisper on CPU (`small` by
-default; `large-v3-turbo` for accuracy on important jobs, about 3-4x slower).
+work with either engine. Local engine = faster-whisper on CPU, default model
+`large-v3-turbo` (about 3x faster than real time here: 10 min of footage is
+about 3.5 min). `--model small` is about 2x faster again, for quick drafts.
+Pass `--language` when you know it (fr, ar, en...), and `--prompt` with
+names, brands and jargon so they are spelled right.
 Use `--engine scribe` when a key is set and speaker labels matter.
 
 For the editing craft (hard rules on cuts, fades, subtitles last, EDL format,
@@ -82,7 +86,8 @@ repo's setup replaces it).
 - Vertical (reels/TikTok/Shorts) 1080x1920, keep captions and key action out
   of the bottom ~25% and right edge (platform UI).
 - Vertical from horizontal footage: render the master with `--no-subtitles`,
-  then `export.py ... reels --subs edit/master.srt` so captions are sized for
+  build captions with `captions.py <edit>/edl.json`, then
+  `export.py ... reels --subs <edit>/master.srt` so captions are sized for
   the vertical frame. Use `--reframe crop --focus-x` when the subject is off
   center; `blur` when the whole frame matters.
 - Filenames: `<project>_<preset>_v<N>.mp4` once versions start going to the
