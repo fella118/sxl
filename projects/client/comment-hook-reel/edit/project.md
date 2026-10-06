@@ -105,3 +105,16 @@ Client: "full render, do not cover his head, keep captions and motion in a safe 
 
 **QC:** head check 0 frames at 0.01% over all 2184 frames. 43.68s, -14.0 LUFS,
 -1.5 dBTP. Master edit/final_v3.mp4 (75 MB), review copy final_v3_review.mp4.
+
+## Delivery — 2026-10-06 (client: "export all")
+
+deliver/ (media gitignored, on the server):
+- comment-hook-reel_reels_v3.mp4            master with music, 72 MB, ~13.7 Mbps
+- comment-hook-reel_reels_v3_nomusic.mp4    master voice + SFX only, 72 MB
+- comment-hook-reel_reels_v3_upload.mp4     upload copy with music, 28 MB (2-pass 5.1 Mbps, sent)
+- comment-hook-reel_reels_v3_nomusic_upload.mp4  upload copy, no music, 28 MB (sent)
+- comment-hook-reel_cover.jpg               cover, 1080x1920, frame 2.12s (sent)
+All videos: H.264 High 1080x1920 50 fps, AAC 48 kHz, 43.68s, -14.0 LUFS / -1.5 dBTP.
+Masters were muxed from final_v3.mp4 without re-encoding the picture; chat
+uploads are capped at 30 MB and the Drive connector only takes inline uploads,
+so the full masters stay on the server.
