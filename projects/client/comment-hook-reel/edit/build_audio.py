@@ -33,7 +33,8 @@ SRC = EDIT.parent / "source"
 SR = 48000
 FADE = int(0.03 * SR)
 MUSIC_START = 7.0          # seconds into the track: the instrumental entry
-MUSIC_GAIN_DB = -17.0      # bed level before ducking
+MUSIC_REL_LU = -11.0       # ducked music stem loudness relative to the voice stem (v2: more present)
+MUSIC_DUCK_DB = -9.0       # reduction while he speaks
 
 VOICE_CHAIN = ",".join([
     "highpass=f=80:poles=2",
@@ -110,7 +111,7 @@ def build_sfx(n: int) -> np.ndarray:
     place(tr, sfx.riser(EV["plus3"] - EV["gauge_rise"]), EV["plus3"], -19, end_aligned=True)
     place(tr, sfx.impact(), EV["plus3"], -11)
     place(tr, sfx.buzz(), EV["hard"], -16)
-    zoom_out = TL["ranges"][4]["out_start"] + 9.4
+    zoom_out = next(w["start"] for w in TL["words"] if abs(w["src"] - 29.25) < 0.03) - 0.5   # "وكيجيو"
     place(tr, sfx.whoosh(0.5, 0.6, -0.6), zoom_out, -15)
     # criteria ticks
     place(tr, sfx.pop(1.0), EV["crit_in"], -16)
@@ -148,7 +149,6 @@ def build_music(n: int, voice: np.ndarray) -> np.ndarray | None:
         return None
     m = ffmpeg_pcm(["-ss", str(MUSIC_START), "-i", str(tracks[0]), "-t", f"{n / SR:.3f}"], 2)
     m = np.pad(m, ((0, max(0, n - len(m))), (0, 0)))[:n]
-    m *= 10 ** (MUSIC_GAIN_DB / 20)
     # duck under speech: follow the voice envelope (~12 dB of reduction while he talks)
     env = np.abs(voice)
     win = int(0.25 * SR)
@@ -156,11 +156,23 @@ def build_music(n: int, voice: np.ndarray) -> np.ndarray | None:
     speech = np.clip((20 * np.log10(env + 1e-6) + 45) / 15, 0, 1)
     k = int(0.15 * SR)
     speech = np.convolve(speech, np.ones(k) / k, mode="same")
-    m *= (10 ** (-12 * speech / 20))[:, None]
+    m *= (10 ** (MUSIC_DUCK_DB * speech / 20))[:, None]
     fade_in, fade_out = int(0.3 * SR), int(1.2 * SR)
     m[:fade_in] *= np.linspace(0, 1, fade_in)[:, None]
     m[-fade_out:] *= np.linspace(1, 0, fade_out)[:, None]
-    return m
+    # level by measurement: ducked music sits MUSIC_REL_LU under the voice
+    gain = (lufs(np.repeat(voice[:, None], 2, axis=1)) + MUSIC_REL_LU) - lufs(m)
+    print(f"  music gain {gain:+.1f} dB -> {MUSIC_REL_LU:+.0f} LU under the voice")
+    return m * 10 ** (gain / 20)
+
+
+def lufs(x: np.ndarray) -> float:
+    tmp = EDIT / "verify" / "_lufs.wav"
+    write_wav(tmp, x)
+    err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(tmp), "-af", "ebur128", "-f", "null", "-"],
+                         capture_output=True, text=True).stderr
+    tmp.unlink()
+    return float(re.findall(r"I:\s+(-?[\d.]+) LUFS", err)[-1])
 
 
 def loudnorm(x: np.ndarray) -> np.ndarray:
@@ -191,6 +203,12 @@ def main() -> None:
     music = None if args.no_music else build_music(n, voice)
     if music is not None:
         mix += music
+    if music is not None:
+        for name, stem in (("voice", np.repeat(voice[:, None], 2, axis=1)), ("music", music)):
+            write_wav(EDIT / "verify" / f"stem_{name}.wav", stem)
+            err = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(EDIT / "verify" / f"stem_{name}.wav"),
+                                  "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
+            print(f"  {name} stem: {re.findall(r'I:\s+(-?[\d.]+) LUFS', err)[-1]} LUFS")
     out = loudnorm(mix)[:n]
     write_wav(EDIT / "mix.wav", out)
     print(f"mix.wav: {n / SR:.3f}s, music: {'yes' if music is not None else 'no (source/music/track.* missing)'}")

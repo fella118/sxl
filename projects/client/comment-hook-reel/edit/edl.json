@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "sources": {
   "C2412": "/home/user/sxl/projects/client/comment-hook-reel/source/C2412.MP4",
   "C2416": "/home/user/sxl/projects/client/comment-hook-reel/source/C2416.MP4"
@@ -7,58 +7,124 @@
  "ranges": [
   {
    "source": "C2412",
-   "start": 2.74,
-   "end": 5.36,
+   "start": 2.8,
+   "end": 3.36,
    "beat": "HOOK"
   },
   {
    "source": "C2412",
-   "start": 6.18,
-   "end": 7.88,
+   "start": 3.64,
+   "end": 5.3,
+   "beat": "HOOK"
+  },
+  {
+   "source": "C2412",
+   "start": 6.2,
+   "end": 7.84,
    "beat": "ANSWER"
   },
   {
    "source": "C2416",
-   "start": 8.62,
+   "start": 8.64,
+   "end": 9.98,
+   "beat": "FIRST"
+  },
+  {
+   "source": "C2416",
+   "start": 10.26,
    "end": 13.42,
    "beat": "FIRST"
   },
   {
    "source": "C2416",
-   "start": 14.06,
-   "end": 18.12,
+   "start": 14.04,
+   "end": 14.82,
    "beat": "ADD12"
   },
   {
    "source": "C2416",
-   "start": 19.56,
-   "end": 35.8,
+   "start": 15.0,
+   "end": 16.38,
+   "beat": "ADD12"
+  },
+  {
+   "source": "C2416",
+   "start": 16.48,
+   "end": 18.28,
+   "beat": "ADD12"
+  },
+  {
+   "source": "C2416",
+   "start": 19.58,
+   "end": 24.52,
    "beat": "WHY"
   },
   {
    "source": "C2416",
-   "start": 36.66,
-   "end": 40.12,
+   "start": 24.7,
+   "end": 26.32,
+   "beat": "WHY"
+  },
+  {
+   "source": "C2416",
+   "start": 26.56,
+   "end": 31.76,
+   "beat": "WHY"
+  },
+  {
+   "source": "C2416",
+   "start": 32.06,
+   "end": 33.8,
+   "beat": "WHY"
+  },
+  {
+   "source": "C2416",
+   "start": 34.08,
+   "end": 35.98,
+   "beat": "WHY"
+  },
+  {
+   "source": "C2416",
+   "start": 36.68,
+   "end": 40.14,
    "beat": "CORRECT"
   },
   {
    "source": "C2416",
-   "start": 40.76,
-   "end": 44.12,
+   "start": 40.72,
+   "end": 40.92,
    "beat": "ADAPT"
   },
   {
    "source": "C2416",
-   "start": 44.6,
-   "end": 50.38,
+   "start": 41.52,
+   "end": 42.68,
+   "beat": "ADAPT"
+  },
+  {
+   "source": "C2416",
+   "start": 43.68,
+   "end": 44.14,
    "beat": "RETURN"
   },
   {
    "source": "C2416",
-   "start": 50.6,
-   "end": 56.3,
+   "start": 44.62,
+   "end": 45.36,
+   "beat": "RETURN"
+  },
+  {
+   "source": "C2416",
+   "start": 45.76,
+   "end": 50.34,
+   "beat": "RETURN"
+  },
+  {
+   "source": "C2416",
+   "start": 50.62,
+   "end": 55.98,
    "beat": "CTA"
   }
  ],
- "total_duration_s": 47.72
+ "total_duration_s": 43.68
 }

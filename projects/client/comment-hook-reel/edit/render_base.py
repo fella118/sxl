@@ -28,6 +28,33 @@ IW, IH = 1440, 2560                       # intermediate, 1.33x headroom over th
 ANCHOR = {"C2412": (0.42, 0.53), "C2416": (0.40, 0.53)}   # face, as a fraction of the 9:16 frame
 GRADE = "eq=contrast=1.045:saturation=1.06:gamma=0.985"
 
+# Zoom plan per range (index in timeline.json). Keys: (t, z) with t = local
+# seconds, "end", or ("w", src_time[, offset]) = a word's start in that range.
+# A framing change on (almost) every cut keeps a pattern interrupt every ~3 s;
+# glued cuts (false start, breath inside a phrase) keep the framing.
+PLAN = {
+    0: [(0, 1.00), ("end", 1.04)],
+    1: [(0, 1.04), ("end", 1.09)],
+    2: [(0, 1.24), ("end", 1.27)],                                     # bien sûr
+    3: [(0, 1.04), ("end", 1.07)],
+    4: [(0, 1.16), ("end", 1.20)],
+    5: [(0, 1.04), ("end", 1.05)],
+    6: [(0, 1.14), ("end", 1.16)],                                     # plus 1 / plus 2
+    7: [(0, 1.23), ("end", 1.26)],                                     # مايسباريوش
+    8: [(0, 1.03), (("w", 22.63, -0.2), 1.05), (("w", 23.97), 1.13), ("end", 1.14)],
+    9: [(0, 1.14), (("w", 25.83, -0.45), 1.16), (("w", 25.83), 1.27), ("end", 1.28)],   # plus 3
+    10: [(0, 1.25), (("w", 29.25, -0.5), 1.27), (("w", 29.25), 1.02), ("end", 1.04)],    # critères
+    11: [(0, 1.11), ("end", 1.13)],
+    12: [(0, 1.03), ("end", 1.05)],
+    13: [(0, 1.14), ("end", 1.18)],
+    14: [(0, 1.24), ("end", 1.25)],                                    # يلا
+    15: [(0, 1.25), ("end", 1.27)],                                    # ماولفتيهمش (glued)
+    16: [(0, 1.06), ("end", 1.07)],
+    17: [(0, 1.07), ("end", 1.08)],                                    # تلتيام (glued)
+    18: [(0, 1.14), (("w", 49.59, -0.45), 1.16), (("w", 49.59), 1.27), ("end", 1.28)],  # le professionnel
+    19: [(0, 1.02), ("end", 1.20)],                                    # CTA push-in
+}
+
 
 def ease_io(x: float) -> float:
     return 4 * x ** 3 if x < 0.5 else 1 - (-2 * x + 2) ** 3 / 2
@@ -62,6 +89,23 @@ def main() -> None:
     ap.add_argument("--crf", type=int, default=12)
     args = ap.parse_args()
 
+    words = TL["words"]
+
+    def local_keys(idx: int, r: dict) -> list[tuple[float, float]]:
+        out = []
+        for k, z in PLAN[idx]:
+            if k == "end":
+                t = r["duration"]
+            elif isinstance(k, tuple):
+                hit = next(x for x in words if abs(x["src"] - k[1]) < 0.03 and x["id"].startswith(r["source"]))
+                t = hit["start"] - r["out_start"] + (k[2] if len(k) > 2 else 0)
+            else:
+                t = k
+            out.append((t, z))
+        return out
+
+    for i, r in enumerate(TL["ranges"]):
+        r["zoom"] = local_keys(i, r)
     ranges = [r for r in TL["ranges"] if not args.only or r["beat"] == args.only]
     enc = subprocess.Popen(
         ["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{OW}x{OH}",

@@ -1,1073 +1,1166 @@
 {
  "fps": 50,
- "duration": 47.72,
+ "duration": 43.68,
  "width": 1080,
  "height": 1920,
  "ranges": [
   {
    "beat": "HOOK",
    "source": "C2412",
-   "src_start": 2.74,
-   "src_end": 5.36,
-   "frames": 131,
+   "src_start": 2.8,
+   "src_end": 3.36,
+   "frames": 28,
    "out_start": 0.0,
-   "duration": 2.62,
-   "zoom": [
-    [
-     0,
-     1.0
-    ],
-    [
-     2.62,
-     1.1
-    ]
-   ]
+   "duration": 0.56
+  },
+  {
+   "beat": "HOOK",
+   "source": "C2412",
+   "src_start": 3.64,
+   "src_end": 5.3,
+   "frames": 83,
+   "out_start": 0.56,
+   "duration": 1.66
   },
   {
    "beat": "ANSWER",
    "source": "C2412",
-   "src_start": 6.18,
-   "src_end": 7.88,
-   "frames": 85,
-   "out_start": 2.62,
-   "duration": 1.7,
-   "zoom": [
-    [
-     0,
-     1.24
-    ],
-    [
-     1.7,
-     1.27
-    ]
-   ]
+   "src_start": 6.2,
+   "src_end": 7.84,
+   "frames": 82,
+   "out_start": 2.22,
+   "duration": 1.64
   },
   {
    "beat": "FIRST",
    "source": "C2416",
-   "src_start": 8.62,
+   "src_start": 8.64,
+   "src_end": 9.98,
+   "frames": 67,
+   "out_start": 3.86,
+   "duration": 1.34
+  },
+  {
+   "beat": "FIRST",
+   "source": "C2416",
+   "src_start": 10.26,
    "src_end": 13.42,
-   "frames": 240,
-   "out_start": 4.32,
-   "duration": 4.8,
-   "zoom": [
-    [
-     0,
-     1.04
-    ],
-    [
-     4.8,
-     1.1
-    ]
-   ]
+   "frames": 158,
+   "out_start": 5.2,
+   "duration": 3.16
   },
   {
    "beat": "ADD12",
    "source": "C2416",
-   "src_start": 14.06,
-   "src_end": 18.12,
-   "frames": 203,
-   "out_start": 9.12,
-   "duration": 4.06,
-   "zoom": [
-    [
-     0,
-     1.18
-    ],
-    [
-     4.06,
-     1.22
-    ]
-   ]
+   "src_start": 14.04,
+   "src_end": 14.82,
+   "frames": 39,
+   "out_start": 8.36,
+   "duration": 0.78
+  },
+  {
+   "beat": "ADD12",
+   "source": "C2416",
+   "src_start": 15.0,
+   "src_end": 16.38,
+   "frames": 69,
+   "out_start": 9.14,
+   "duration": 1.38
+  },
+  {
+   "beat": "ADD12",
+   "source": "C2416",
+   "src_start": 16.48,
+   "src_end": 18.28,
+   "frames": 90,
+   "out_start": 10.52,
+   "duration": 1.8
   },
   {
    "beat": "WHY",
    "source": "C2416",
-   "src_start": 19.56,
-   "src_end": 35.8,
-   "frames": 812,
-   "out_start": 13.18,
-   "duration": 16.24,
-   "zoom": [
-    [
-     0,
-     1.04
-    ],
-    [
-     5.6,
-     1.06
-    ],
-    [
-     6.0,
-     1.22
-    ],
-    [
-     9.4,
-     1.24
-    ],
-    [
-     9.9,
-     1.04
-    ],
-    [
-     16.24,
-     1.07
-    ]
-   ]
+   "src_start": 19.58,
+   "src_end": 24.52,
+   "frames": 247,
+   "out_start": 12.32,
+   "duration": 4.94
+  },
+  {
+   "beat": "WHY",
+   "source": "C2416",
+   "src_start": 24.7,
+   "src_end": 26.32,
+   "frames": 81,
+   "out_start": 17.26,
+   "duration": 1.62
+  },
+  {
+   "beat": "WHY",
+   "source": "C2416",
+   "src_start": 26.56,
+   "src_end": 31.76,
+   "frames": 260,
+   "out_start": 18.88,
+   "duration": 5.2
+  },
+  {
+   "beat": "WHY",
+   "source": "C2416",
+   "src_start": 32.06,
+   "src_end": 33.8,
+   "frames": 87,
+   "out_start": 24.08,
+   "duration": 1.74
+  },
+  {
+   "beat": "WHY",
+   "source": "C2416",
+   "src_start": 34.08,
+   "src_end": 35.98,
+   "frames": 95,
+   "out_start": 25.82,
+   "duration": 1.9
   },
   {
    "beat": "CORRECT",
    "source": "C2416",
-   "src_start": 36.66,
-   "src_end": 40.12,
+   "src_start": 36.68,
+   "src_end": 40.14,
    "frames": 173,
-   "out_start": 29.42,
-   "duration": 3.46,
-   "zoom": [
-    [
-     0,
-     1.16
-    ],
-    [
-     3.46,
-     1.19
-    ]
-   ]
+   "out_start": 27.72,
+   "duration": 3.46
   },
   {
    "beat": "ADAPT",
    "source": "C2416",
-   "src_start": 40.76,
-   "src_end": 44.12,
-   "frames": 168,
-   "out_start": 32.88,
-   "duration": 3.36,
-   "zoom": [
-    [
-     0,
-     1.05
-    ],
-    [
-     3.36,
-     1.08
-    ]
-   ]
+   "src_start": 40.72,
+   "src_end": 40.92,
+   "frames": 10,
+   "out_start": 31.18,
+   "duration": 0.2
+  },
+  {
+   "beat": "ADAPT",
+   "source": "C2416",
+   "src_start": 41.52,
+   "src_end": 42.68,
+   "frames": 58,
+   "out_start": 31.38,
+   "duration": 1.16
   },
   {
    "beat": "RETURN",
    "source": "C2416",
-   "src_start": 44.6,
-   "src_end": 50.38,
-   "frames": 289,
-   "out_start": 36.24,
-   "duration": 5.78,
-   "zoom": [
-    [
-     0,
-     1.12
-    ],
-    [
-     4.3,
-     1.14
-    ],
-    [
-     4.7,
-     1.24
-    ],
-    [
-     5.78,
-     1.25
-    ]
-   ]
+   "src_start": 43.68,
+   "src_end": 44.14,
+   "frames": 23,
+   "out_start": 32.54,
+   "duration": 0.46
+  },
+  {
+   "beat": "RETURN",
+   "source": "C2416",
+   "src_start": 44.62,
+   "src_end": 45.36,
+   "frames": 37,
+   "out_start": 33.0,
+   "duration": 0.74
+  },
+  {
+   "beat": "RETURN",
+   "source": "C2416",
+   "src_start": 45.76,
+   "src_end": 50.34,
+   "frames": 229,
+   "out_start": 33.74,
+   "duration": 4.58
   },
   {
    "beat": "CTA",
    "source": "C2416",
-   "src_start": 50.6,
-   "src_end": 56.3,
-   "frames": 285,
-   "out_start": 42.02,
-   "duration": 5.7,
-   "zoom": [
-    [
-     0,
-     1.02
-    ],
-    [
-     5.7,
-     1.2
-    ]
-   ]
+   "src_start": 50.62,
+   "src_end": 55.98,
+   "frames": 268,
+   "out_start": 38.32,
+   "duration": 5.36
   }
  ],
  "words": [
   {
-   "id": "C2412:0",
+   "id": "C2412@2.86",
    "word": "واش",
    "beat": "HOOK",
-   "start": 0.12,
-   "end": 0.461
+   "src": 2.86,
+   "start": 0.06,
+   "end": 0.401
   },
   {
-   "id": "C2412:1",
+   "id": "C2412@3.70",
    "word": "les",
    "beat": "HOOK",
-   "start": 0.962,
-   "end": 1.062
+   "src": 3.702,
+   "start": 0.622,
+   "end": 0.722
   },
   {
-   "id": "C2412:2",
+   "id": "C2412@3.88",
    "word": "progressives",
    "beat": "HOOK",
-   "start": 1.142,
-   "end": 1.804
+   "src": 3.882,
+   "start": 0.802,
+   "end": 1.464
   },
   {
-   "id": "C2412:3",
+   "id": "C2412@4.70",
    "word": "كايدوخو",
    "beat": "HOOK",
-   "start": 1.964,
-   "end": 2.465
+   "src": 4.704,
+   "start": 1.624,
+   "end": 2.125
   },
   {
-   "id": "C2412:4",
+   "id": "C2412@6.27",
    "word": "bien",
    "beat": "ANSWER",
-   "start": 2.707,
-   "end": 2.928
+   "src": 6.267,
+   "start": 2.287,
+   "end": 2.508
   },
   {
-   "id": "C2412:5",
+   "id": "C2412@6.55",
    "word": "sûr",
    "beat": "ANSWER",
-   "start": 2.988,
-   "end": 3.188
+   "src": 6.548,
+   "start": 2.568,
+   "end": 2.768
   },
   {
-   "id": "C2412:6",
+   "id": "C2412@6.91",
    "word": "يقدرو",
    "beat": "ANSWER",
-   "start": 3.349,
-   "end": 3.649
+   "src": 6.909,
+   "start": 2.929,
+   "end": 3.229
   },
   {
-   "id": "C2412:7",
+   "id": "C2412@7.25",
    "word": "يدوخوك",
    "beat": "ANSWER",
-   "start": 3.689,
-   "end": 4.19
+   "src": 7.249,
+   "start": 3.269,
+   "end": 3.77
   },
   {
-   "id": "C2416:8",
+   "id": "C2416@8.70",
    "word": "surtout",
    "beat": "FIRST",
-   "start": 4.4,
-   "end": 4.8
+   "src": 8.7,
+   "start": 3.92,
+   "end": 4.32
   },
   {
-   "id": "C2416:9",
+   "id": "C2416@9.22",
    "word": "المرة",
    "beat": "FIRST",
-   "start": 4.92,
-   "end": 5.241
+   "src": 9.22,
+   "start": 4.44,
+   "end": 4.761
   },
   {
-   "id": "C2416:10",
+   "id": "C2416@9.56",
    "word": "اللولة",
    "beat": "FIRST",
-   "start": 5.261,
-   "end": 5.581
+   "src": 9.561,
+   "start": 4.781,
+   "end": 5.101
   },
   {
-   "id": "C2416:11",
+   "id": "C2416@10.32",
    "word": "أنا",
    "beat": "FIRST",
-   "start": 6.021,
-   "end": 6.141
+   "src": 10.321,
+   "start": 5.261,
+   "end": 5.381
   },
   {
-   "id": "C2416:12",
+   "id": "C2416@10.50",
    "word": "كانصح",
    "beat": "FIRST",
-   "start": 6.201,
-   "end": 6.581
+   "src": 10.501,
+   "start": 5.441,
+   "end": 5.821
   },
   {
-   "id": "C2416:13",
+   "id": "C2416@10.94",
    "word": "الناس",
    "beat": "FIRST",
-   "start": 6.641,
+   "src": 10.941,
+   "start": 5.881,
+   "end": 6.202
+  },
+  {
+   "id": "C2416@11.42",
+   "word": "أنهم",
+   "beat": "FIRST",
+   "src": 11.422,
+   "start": 6.362,
+   "end": 6.742
+  },
+  {
+   "id": "C2416@11.92",
+   "word": "une",
+   "beat": "FIRST",
+   "src": 11.922,
+   "start": 6.862,
    "end": 6.962
   },
   {
-   "id": "C2416:14",
-   "word": "أنهم",
-   "beat": "FIRST",
-   "start": 7.122,
-   "end": 7.502
-  },
-  {
-   "id": "C2416:15",
-   "word": "une",
-   "beat": "FIRST",
-   "start": 7.622,
-   "end": 7.722
-  },
-  {
-   "id": "C2416:16",
+   "id": "C2416@12.02",
    "word": "fois",
    "beat": "FIRST",
-   "start": 7.722,
-   "end": 7.902
+   "src": 12.022,
+   "start": 6.962,
+   "end": 7.142
   },
   {
-   "id": "C2416:17",
+   "id": "C2416@12.20",
    "word": "تخرج",
    "beat": "FIRST",
-   "start": 7.902,
-   "end": 8.142
+   "src": 12.202,
+   "start": 7.142,
+   "end": 7.382
   },
   {
-   "id": "C2416:18",
+   "id": "C2416@12.52",
    "word": "ليهم",
    "beat": "FIRST",
-   "start": 8.222,
-   "end": 8.342
+   "src": 12.522,
+   "start": 7.462,
+   "end": 7.582
   },
   {
-   "id": "C2416:19",
+   "id": "C2416@12.74",
    "word": "une",
    "beat": "FIRST",
-   "start": 8.442,
-   "end": 8.562
+   "src": 12.742,
+   "start": 7.682,
+   "end": 7.802
   },
   {
-   "id": "C2416:20",
+   "id": "C2416@12.92",
    "word": "adition",
    "beat": "FIRST",
-   "start": 8.622,
-   "end": 9.023
+   "src": 12.922,
+   "start": 7.862,
+   "end": 8.263
   },
   {
-   "id": "C2416:22",
+   "id": "C2416@14.10",
    "word": "باقي",
    "beat": "ADD12",
-   "start": 9.163,
-   "end": 9.403
+   "src": 14.103,
+   "start": 8.423,
+   "end": 8.663
   },
   {
-   "id": "C2416:23",
+   "id": "C2416@14.40",
    "word": "عندهم",
    "beat": "ADD12",
-   "start": 9.463,
-   "end": 9.783
+   "src": 14.403,
+   "start": 8.723,
+   "end": 9.043
   },
   {
-   "id": "C2416:24",
+   "id": "C2416@15.06",
    "word": "plus",
    "beat": "ADD12",
-   "start": 10.124,
-   "end": 10.344
+   "src": 15.064,
+   "start": 9.204,
+   "end": 9.424
   },
   {
-   "id": "C2416:25",
+   "id": "C2416@15.28",
    "word": "1",
    "beat": "ADD12",
-   "start": 10.344,
-   "end": 10.544
+   "src": 15.284,
+   "start": 9.424,
+   "end": 9.624
   },
   {
-   "id": "C2416:26",
+   "id": "C2416@15.48",
    "word": "ولا",
    "beat": "ADD12",
-   "start": 10.544,
-   "end": 10.664
+   "src": 15.484,
+   "start": 9.624,
+   "end": 9.744
   },
   {
-   "id": "C2416:27",
+   "id": "C2416@15.66",
    "word": "plus",
    "beat": "ADD12",
-   "start": 10.724,
-   "end": 10.944
+   "src": 15.664,
+   "start": 9.804,
+   "end": 10.024
   },
   {
-   "id": "C2416:28",
+   "id": "C2416@15.88",
    "word": "2",
    "beat": "ADD12",
-   "start": 10.944,
-   "end": 11.344
+   "src": 15.884,
+   "start": 10.024,
+   "end": 10.424
   },
   {
-   "id": "C2416:29",
+   "id": "C2416@16.54",
    "word": "de",
    "beat": "ADD12",
-   "start": 11.604,
-   "end": 11.685
+   "src": 16.544,
+   "start": 10.584,
+   "end": 10.665
   },
   {
-   "id": "C2416:30",
+   "id": "C2416@16.66",
    "word": "préférence",
    "beat": "ADD12",
-   "start": 11.725,
-   "end": 12.285
+   "src": 16.665,
+   "start": 10.705,
+   "end": 11.265
   },
   {
-   "id": "C2416:31",
+   "id": "C2416@17.34",
    "word": "مايسباريوش",
    "beat": "ADD12",
-   "start": 12.405,
-   "end": 13.085
+   "src": 17.345,
+   "start": 11.385,
+   "end": 12.065
   },
   {
-   "id": "C2416:32",
+   "id": "C2416@19.65",
    "word": "les",
    "beat": "WHY",
-   "start": 13.266,
-   "end": 13.366
+   "src": 19.646,
+   "start": 12.386,
+   "end": 12.486
   },
   {
-   "id": "C2416:33",
+   "id": "C2416@19.77",
    "word": "mesures",
    "beat": "WHY",
-   "start": 13.386,
-   "end": 13.746
+   "src": 19.766,
+   "start": 12.506,
+   "end": 12.866
   },
   {
-   "id": "C2416:34",
+   "id": "C2416@20.13",
    "word": "مايديروش",
    "beat": "WHY",
-   "start": 13.746,
+   "src": 20.126,
+   "start": 12.866,
+   "end": 13.227
+  },
+  {
+   "id": "C2416@20.51",
+   "word": "la",
+   "beat": "WHY",
+   "src": 20.507,
+   "start": 13.247,
+   "end": 13.307
+  },
+  {
+   "id": "C2416@20.61",
+   "word": "vision",
+   "beat": "WHY",
+   "src": 20.607,
+   "start": 13.347,
+   "end": 13.607
+  },
+  {
+   "id": "C2416@20.93",
+   "word": "de",
+   "beat": "WHY",
+   "src": 20.927,
+   "start": 13.667,
+   "end": 13.747
+  },
+  {
+   "id": "C2416@21.05",
+   "word": "loin",
+   "beat": "WHY",
+   "src": 21.047,
+   "start": 13.787,
+   "end": 13.967
+  },
+  {
+   "id": "C2416@21.35",
+   "word": "و",
+   "beat": "WHY",
+   "src": 21.347,
+   "start": 14.087,
    "end": 14.107
   },
   {
-   "id": "C2416:35",
+   "id": "C2416@21.41",
    "word": "la",
    "beat": "WHY",
-   "start": 14.127,
-   "end": 14.187
+   "src": 21.407,
+   "start": 14.147,
+   "end": 14.207
   },
   {
-   "id": "C2416:36",
+   "id": "C2416@21.51",
    "word": "vision",
    "beat": "WHY",
-   "start": 14.227,
+   "src": 21.507,
+   "start": 14.247,
    "end": 14.487
   },
   {
-   "id": "C2416:37",
+   "id": "C2416@21.79",
    "word": "de",
    "beat": "WHY",
-   "start": 14.547,
-   "end": 14.627
+   "src": 21.787,
+   "start": 14.527,
+   "end": 14.607
   },
   {
-   "id": "C2416:38",
-   "word": "loin",
-   "beat": "WHY",
-   "start": 14.667,
-   "end": 14.847
-  },
-  {
-   "id": "C2416:39",
-   "word": "و",
-   "beat": "WHY",
-   "start": 14.967,
-   "end": 14.987
-  },
-  {
-   "id": "C2416:40",
-   "word": "la",
-   "beat": "WHY",
-   "start": 15.027,
-   "end": 15.087
-  },
-  {
-   "id": "C2416:41",
-   "word": "vision",
-   "beat": "WHY",
-   "start": 15.127,
-   "end": 15.367
-  },
-  {
-   "id": "C2416:42",
-   "word": "de",
-   "beat": "WHY",
-   "start": 15.407,
-   "end": 15.487
-  },
-  {
-   "id": "C2416:43",
+   "id": "C2416@21.91",
    "word": "près",
    "beat": "WHY",
-   "start": 15.527,
-   "end": 15.688
+   "src": 21.907,
+   "start": 14.647,
+   "end": 14.808
   },
   {
-   "id": "C2416:44",
+   "id": "C2416@22.11",
    "word": "بوحديتهم",
    "beat": "WHY",
-   "start": 15.728,
-   "end": 16.148
+   "src": 22.108,
+   "start": 14.848,
+   "end": 15.268
   },
   {
-   "id": "C2416:45",
+   "id": "C2416@22.63",
    "word": "حيت",
    "beat": "WHY",
-   "start": 16.248,
-   "end": 16.408
+   "src": 22.628,
+   "start": 15.368,
+   "end": 15.528
   },
   {
-   "id": "C2416:46",
+   "id": "C2416@22.89",
    "word": "كلما",
    "beat": "WHY",
-   "start": 16.508,
-   "end": 16.868
+   "src": 22.888,
+   "start": 15.628,
+   "end": 15.988
   },
   {
-   "id": "C2416:47",
+   "id": "C2416@23.33",
    "word": "طلعات",
    "beat": "WHY",
-   "start": 16.948,
-   "end": 17.389
+   "src": 23.328,
+   "start": 16.068,
+   "end": 16.509
   },
   {
-   "id": "C2416:48",
+   "id": "C2416@23.97",
    "word": "l'addition",
    "beat": "WHY",
-   "start": 17.589,
-   "end": 18.049
+   "src": 23.969,
+   "start": 16.709,
+   "end": 17.169
   },
   {
-   "id": "C2416:49",
+   "id": "C2416@24.77",
    "word": "مثلا",
    "beat": "WHY",
-   "start": 18.389,
-   "end": 18.669
+   "src": 24.769,
+   "start": 17.329,
+   "end": 17.609
   },
   {
-   "id": "C2416:50",
+   "id": "C2416@25.15",
    "word": "وصلات",
    "beat": "WHY",
-   "start": 18.769,
-   "end": 19.089
+   "src": 25.149,
+   "start": 17.709,
+   "end": 18.029
   },
   {
-   "id": "C2416:51",
+   "id": "C2416@25.55",
    "word": "ل",
    "beat": "WHY",
-   "start": 19.17,
-   "end": 19.19
+   "src": 25.55,
+   "start": 18.11,
+   "end": 18.13
   },
   {
-   "id": "C2416:52",
+   "id": "C2416@25.63",
    "word": "plus",
    "beat": "WHY",
-   "start": 19.25,
-   "end": 19.45
+   "src": 25.63,
+   "start": 18.19,
+   "end": 18.39
   },
   {
-   "id": "C2416:53",
+   "id": "C2416@25.83",
    "word": "3",
    "beat": "WHY",
-   "start": 19.45,
-   "end": 19.85
+   "src": 25.83,
+   "start": 18.39,
+   "end": 18.79
   },
   {
-   "id": "C2416:54",
+   "id": "C2416@26.61",
    "word": "كلما",
    "beat": "WHY",
-   "start": 20.23,
-   "end": 20.67
+   "src": 26.61,
+   "start": 18.93,
+   "end": 19.37
   },
   {
-   "id": "C2416:55",
+   "id": "C2416@27.19",
    "word": "صعاب",
    "beat": "WHY",
-   "start": 20.81,
-   "end": 21.171
+   "src": 27.19,
+   "start": 19.51,
+   "end": 19.871
   },
   {
-   "id": "C2416:56",
+   "id": "C2416@27.65",
    "word": "أنك",
    "beat": "WHY",
-   "start": 21.271,
-   "end": 21.551
+   "src": 27.651,
+   "start": 19.971,
+   "end": 20.251
   },
   {
-   "id": "C2416:57",
+   "id": "C2416@27.99",
    "word": "تادابطا",
    "beat": "WHY",
-   "start": 21.611,
-   "end": 21.971
+   "src": 27.991,
+   "start": 20.311,
+   "end": 20.671
   },
   {
-   "id": "C2416:58",
+   "id": "C2416@28.39",
    "word": "على",
    "beat": "WHY",
-   "start": 22.011,
-   "end": 22.111
+   "src": 28.391,
+   "start": 20.711,
+   "end": 20.811
   },
   {
-   "id": "C2416:59",
+   "id": "C2416@28.55",
    "word": "les",
    "beat": "WHY",
-   "start": 22.171,
-   "end": 22.291
+   "src": 28.551,
+   "start": 20.871,
+   "end": 20.991
   },
   {
-   "id": "C2416:60",
+   "id": "C2416@28.67",
    "word": "progressifs",
    "beat": "WHY",
-   "start": 22.291,
-   "end": 22.832
+   "src": 28.671,
+   "start": 20.991,
+   "end": 21.532
   },
   {
-   "id": "C2416:61",
+   "id": "C2416@29.25",
    "word": "وكيجيو",
    "beat": "WHY",
-   "start": 22.872,
-   "end": 23.252
+   "src": 29.252,
+   "start": 21.572,
+   "end": 21.952
   },
   {
-   "id": "C2416:62",
+   "id": "C2416@29.67",
    "word": "des",
    "beat": "WHY",
-   "start": 23.292,
-   "end": 23.452
+   "src": 29.672,
+   "start": 21.992,
+   "end": 22.152
   },
   {
-   "id": "C2416:63",
+   "id": "C2416@29.89",
    "word": "critères",
    "beat": "WHY",
-   "start": 23.512,
-   "end": 24.032
+   "src": 29.892,
+   "start": 22.212,
+   "end": 22.732
   },
   {
-   "id": "C2416:64",
+   "id": "C2416@30.41",
    "word": "آخرين",
    "beat": "WHY",
-   "start": 24.032,
-   "end": 24.412
+   "src": 30.412,
+   "start": 22.732,
+   "end": 23.112
   },
   {
-   "id": "C2416:65",
+   "id": "C2416@30.99",
    "word": "اللي",
    "beat": "WHY",
-   "start": 24.613,
-   "end": 24.933
+   "src": 30.993,
+   "start": 23.313,
+   "end": 23.633
   },
   {
-   "id": "C2416:66",
+   "id": "C2416@31.39",
    "word": "هما",
    "beat": "WHY",
-   "start": 25.013,
-   "end": 25.273
+   "src": 31.393,
+   "start": 23.713,
+   "end": 23.973
   },
   {
-   "id": "C2416:67",
+   "id": "C2416@32.11",
    "word": "le",
    "beat": "WHY",
-   "start": 25.733,
-   "end": 25.813
+   "src": 32.113,
+   "start": 24.133,
+   "end": 24.213
   },
   {
-   "id": "C2416:68",
+   "id": "C2416@32.27",
    "word": "centrage",
    "beat": "WHY",
-   "start": 25.893,
-   "end": 26.534
+   "src": 32.273,
+   "start": 24.293,
+   "end": 24.934
   },
   {
-   "id": "C2416:69",
+   "id": "C2416@33.05",
    "word": "la",
    "beat": "WHY",
-   "start": 26.674,
-   "end": 26.774
+   "src": 33.054,
+   "start": 25.074,
+   "end": 25.174
   },
   {
-   "id": "C2416:70",
+   "id": "C2416@33.21",
    "word": "hauteur",
    "beat": "WHY",
-   "start": 26.834,
-   "end": 27.314
+   "src": 33.214,
+   "start": 25.234,
+   "end": 25.714
   },
   {
-   "id": "C2416:71",
+   "id": "C2416@34.13",
    "word": "كيفاش",
    "beat": "WHY",
-   "start": 27.754,
-   "end": 28.195
+   "src": 34.134,
+   "start": 25.874,
+   "end": 26.315
   },
   {
-   "id": "C2416:72",
+   "id": "C2416@34.62",
    "word": "l'opticien",
    "beat": "WHY",
-   "start": 28.235,
-   "end": 28.695
+   "src": 34.615,
+   "start": 26.355,
+   "end": 26.815
   },
   {
-   "id": "C2416:73",
+   "id": "C2416@35.16",
    "word": "خدا",
    "beat": "WHY",
-   "start": 28.775,
-   "end": 28.955
+   "src": 35.155,
+   "start": 26.895,
+   "end": 27.075
   },
   {
-   "id": "C2416:74",
+   "id": "C2416@35.41",
    "word": "ليك",
    "beat": "WHY",
-   "start": 29.035,
-   "end": 29.135
+   "src": 35.415,
+   "start": 27.155,
+   "end": 27.255
   },
   {
-   "id": "C2416:75",
+   "id": "C2416@35.58",
    "word": "هاد",
    "beat": "WHY",
-   "start": 29.195,
-   "end": 29.335
+   "src": 35.575,
+   "start": 27.315,
+   "end": 27.455
   },
   {
-   "id": "C2416:76",
+   "id": "C2416@36.74",
    "word": "les",
    "beat": "CORRECT",
-   "start": 29.496,
-   "end": 29.596
+   "src": 36.736,
+   "start": 27.776,
+   "end": 27.876
   },
   {
-   "id": "C2416:77",
+   "id": "C2416@36.86",
    "word": "mesures",
    "beat": "CORRECT",
-   "start": 29.616,
-   "end": 30.396
+   "src": 36.856,
+   "start": 27.896,
+   "end": 28.676
   },
   {
-   "id": "C2416:78",
+   "id": "C2416@37.66",
    "word": "واش",
    "beat": "CORRECT",
-   "start": 30.416,
-   "end": 30.616
+   "src": 37.656,
+   "start": 28.696,
+   "end": 28.896
   },
   {
-   "id": "C2416:79",
+   "id": "C2416@37.92",
    "word": "la",
    "beat": "CORRECT",
-   "start": 30.676,
-   "end": 30.736
+   "src": 37.916,
+   "start": 28.956,
+   "end": 29.016
   },
   {
-   "id": "C2416:80",
+   "id": "C2416@38.06",
    "word": "correction",
    "beat": "CORRECT",
-   "start": 30.817,
-   "end": 31.357
+   "src": 38.057,
+   "start": 29.097,
+   "end": 29.637
   },
   {
-   "id": "C2416:81",
+   "id": "C2416@38.76",
    "word": "أصلا",
    "beat": "CORRECT",
-   "start": 31.517,
-   "end": 31.797
+   "src": 38.757,
+   "start": 29.797,
+   "end": 30.077
   },
   {
-   "id": "C2416:82",
+   "id": "C2416@39.18",
    "word": "صحيحة",
    "beat": "CORRECT",
-   "start": 31.937,
-   "end": 32.297
+   "src": 39.177,
+   "start": 30.217,
+   "end": 30.577
   },
   {
-   "id": "C2416:83",
+   "id": "C2416@39.70",
    "word": "أولا",
    "beat": "CORRECT",
-   "start": 32.457,
-   "end": 32.638
+   "src": 39.697,
+   "start": 30.737,
+   "end": 30.918
   },
   {
-   "id": "C2416:84",
+   "id": "C2416@39.98",
    "word": "لا",
    "beat": "CORRECT",
-   "start": 32.738,
-   "end": 32.798
+   "src": 39.978,
+   "start": 31.018,
+   "end": 31.078
   },
   {
-   "id": "C2416:86",
+   "id": "C2416@40.78",
    "word": "يلا",
    "beat": "ADAPT",
-   "start": 32.918,
-   "end": 33.038
+   "src": 40.78,
+   "start": 31.24,
+   "end": 31.36
   },
   {
-   "id": "C2416:87",
+   "id": "C2416@41.52",
    "word": "ماولفتيهمش",
    "beat": "ADAPT",
-   "start": 33.799,
-   "end": 34.799
+   "src": 41.52,
+   "start": 31.38,
+   "end": 32.48
   },
   {
-   "id": "C2416:88",
-   "word": "داكشي",
-   "beat": "ADAPT",
-   "start": 34.859,
-   "end": 35.139
-  },
-  {
-   "id": "C2416:89",
-   "word": "مثلا",
-   "beat": "ADAPT",
-   "start": 35.399,
-   "end": 35.72
-  },
-  {
-   "id": "C2416:90",
+   "id": "C2416@43.74",
    "word": "واحد",
-   "beat": "ADAPT",
-   "start": 35.86,
-   "end": 36.16
+   "beat": "RETURN",
+   "src": 43.74,
+   "start": 32.6,
+   "end": 32.9
   },
   {
-   "id": "C2416:91",
+   "id": "C2416@44.68",
    "word": "تلتيام",
    "beat": "RETURN",
-   "start": 36.32,
-   "end": 36.901
+   "src": 44.68,
+   "start": 33.06,
+   "end": 33.641
   },
   {
-   "id": "C2416:92",
+   "id": "C2416@45.82",
    "word": "de",
    "beat": "RETURN",
-   "start": 37.462,
-   "end": 37.542
+   "src": 45.822,
+   "start": 33.802,
+   "end": 33.882
   },
   {
-   "id": "C2416:93",
+   "id": "C2416@45.98",
    "word": "préférence",
    "beat": "RETURN",
-   "start": 37.622,
-   "end": 38.123
+   "src": 45.982,
+   "start": 33.962,
+   "end": 34.463
   },
   {
-   "id": "C2416:94",
+   "id": "C2416@46.50",
    "word": "ترجع",
    "beat": "RETURN",
-   "start": 38.143,
-   "end": 38.403
+   "src": 46.503,
+   "start": 34.483,
+   "end": 34.743
   },
   {
-   "id": "C2416:95",
+   "id": "C2416@46.80",
    "word": "عندنا",
    "beat": "RETURN",
-   "start": 38.443,
-   "end": 38.703
+   "src": 46.803,
+   "start": 34.783,
+   "end": 35.043
   },
   {
-   "id": "C2416:96",
+   "id": "C2416@47.12",
    "word": "نتاكدو",
    "beat": "RETURN",
-   "start": 38.764,
-   "end": 39.164
+   "src": 47.124,
+   "start": 35.104,
+   "end": 35.504
   },
   {
-   "id": "C2416:97",
+   "id": "C2416@47.58",
    "word": "ليك",
    "beat": "RETURN",
-   "start": 39.224,
-   "end": 39.344
+   "src": 47.584,
+   "start": 35.564,
+   "end": 35.684
   },
   {
-   "id": "C2416:98",
+   "id": "C2416@47.76",
    "word": "من",
    "beat": "RETURN",
-   "start": 39.404,
-   "end": 39.485
+   "src": 47.764,
+   "start": 35.744,
+   "end": 35.825
   },
   {
-   "id": "C2416:99",
+   "id": "C2416@47.87",
    "word": "le",
    "beat": "RETURN",
-   "start": 39.505,
-   "end": 39.585
+   "src": 47.865,
+   "start": 35.845,
+   "end": 35.925
   },
   {
-   "id": "C2416:100",
+   "id": "C2416@48.01",
    "word": "centrage",
    "beat": "RETURN",
-   "start": 39.645,
-   "end": 40.346
+   "src": 48.005,
+   "start": 35.985,
+   "end": 36.686
   },
   {
-   "id": "C2416:101",
+   "id": "C2416@48.71",
    "word": "من",
    "beat": "RETURN",
-   "start": 40.346,
-   "end": 40.446
+   "src": 48.706,
+   "start": 36.686,
+   "end": 36.786
   },
   {
-   "id": "C2416:102",
+   "id": "C2416@48.87",
    "word": "بعد",
    "beat": "RETURN",
-   "start": 40.506,
-   "end": 40.706
+   "src": 48.866,
+   "start": 36.846,
+   "end": 37.046
   },
   {
-   "id": "C2416:103",
+   "id": "C2416@49.11",
    "word": "تمشي",
    "beat": "RETURN",
-   "start": 40.746,
-   "end": 40.967
+   "src": 49.106,
+   "start": 37.086,
+   "end": 37.307
   },
   {
-   "id": "C2416:104",
+   "id": "C2416@49.39",
    "word": "عند",
    "beat": "RETURN",
-   "start": 41.027,
-   "end": 41.127
+   "src": 49.387,
+   "start": 37.367,
+   "end": 37.467
   },
   {
-   "id": "C2416:105",
+   "id": "C2416@49.55",
    "word": "le",
    "beat": "RETURN",
-   "start": 41.187,
-   "end": 41.227
+   "src": 49.547,
+   "start": 37.527,
+   "end": 37.567
   },
   {
-   "id": "C2416:106",
+   "id": "C2416@49.59",
    "word": "professionnel",
    "beat": "RETURN",
-   "start": 41.227,
-   "end": 41.888
+   "src": 49.587,
+   "start": 37.567,
+   "end": 38.228
   },
   {
-   "id": "C2416:107",
+   "id": "C2416@50.69",
    "word": "يلا",
    "beat": "CTA",
-   "start": 42.108,
-   "end": 42.229
+   "src": 50.688,
+   "start": 38.388,
+   "end": 38.509
   },
   {
-   "id": "C2416:108",
+   "id": "C2416@50.87",
    "word": "عندك",
    "beat": "CTA",
-   "start": 42.289,
-   "end": 42.509
+   "src": 50.869,
+   "start": 38.569,
+   "end": 38.789
   },
   {
-   "id": "C2416:109",
+   "id": "C2416@51.11",
    "word": "شي",
    "beat": "CTA",
-   "start": 42.529,
-   "end": 42.609
+   "src": 51.109,
+   "start": 38.809,
+   "end": 38.889
   },
   {
-   "id": "C2416:110",
+   "id": "C2416@51.25",
    "word": "تساؤل",
    "beat": "CTA",
-   "start": 42.669,
-   "end": 43.07
+   "src": 51.249,
+   "start": 38.949,
+   "end": 39.35
   },
   {
-   "id": "C2416:111",
+   "id": "C2416@51.67",
    "word": "على",
    "beat": "CTA",
-   "start": 43.09,
-   "end": 43.21
+   "src": 51.67,
+   "start": 39.37,
+   "end": 39.49
   },
   {
-   "id": "C2416:112",
+   "id": "C2416@51.83",
    "word": "les",
    "beat": "CTA",
-   "start": 43.25,
-   "end": 43.35
+   "src": 51.83,
+   "start": 39.53,
+   "end": 39.63
   },
   {
-   "id": "C2416:113",
+   "id": "C2416@51.97",
    "word": "progressifs",
    "beat": "CTA",
-   "start": 43.39,
-   "end": 43.971
+   "src": 51.97,
+   "start": 39.67,
+   "end": 40.251
   },
   {
-   "id": "C2416:114",
+   "id": "C2416@52.55",
    "word": "تقدر",
    "beat": "CTA",
-   "start": 43.971,
-   "end": 44.231
+   "src": 52.551,
+   "start": 40.251,
+   "end": 40.511
   },
   {
-   "id": "C2416:115",
+   "id": "C2416@52.85",
    "word": "تخليه",
    "beat": "CTA",
-   "start": 44.271,
-   "end": 44.592
+   "src": 52.851,
+   "start": 40.551,
+   "end": 40.872
   },
   {
-   "id": "C2416:116",
+   "id": "C2416@53.21",
    "word": "لنا",
    "beat": "CTA",
-   "start": 44.632,
-   "end": 44.732
+   "src": 53.212,
+   "start": 40.912,
+   "end": 41.012
   },
   {
-   "id": "C2416:117",
+   "id": "C2416@53.35",
    "word": "فالكومونتير",
    "beat": "CTA",
-   "start": 44.772,
-   "end": 45.413
+   "src": 53.352,
+   "start": 41.052,
+   "end": 41.693
   },
   {
-   "id": "C2416:118",
+   "id": "C2416@54.11",
    "word": "ونجاوبوك",
    "beat": "CTA",
-   "start": 45.533,
-   "end": 46.094
+   "src": 54.113,
+   "start": 41.813,
+   "end": 42.374
   },
   {
-   "id": "C2416:119",
+   "id": "C2416@54.83",
    "word": "ف",
    "beat": "CTA",
-   "start": 46.254,
-   "end": 46.274
+   "src": 54.834,
+   "start": 42.534,
+   "end": 42.554
   },
   {
-   "id": "C2416:120",
+   "id": "C2416@54.91",
    "word": "la",
    "beat": "CTA",
-   "start": 46.334,
-   "end": 46.394
+   "src": 54.914,
+   "start": 42.614,
+   "end": 42.674
   },
   {
-   "id": "C2416:121",
+   "id": "C2416@55.03",
    "word": "vidéo",
    "beat": "CTA",
-   "start": 46.454,
-   "end": 46.675
+   "src": 55.034,
+   "start": 42.734,
+   "end": 42.955
   },
   {
-   "id": "C2416:122",
+   "id": "C2416@55.27",
    "word": "الجاية",
    "beat": "CTA",
-   "start": 46.695,
-   "end": 46.895
+   "src": 55.275,
+   "start": 42.975,
+   "end": 43.175
   },
   {
-   "id": "C2416:123",
+   "id": "C2416@55.48",
    "word": "إن",
    "beat": "CTA",
-   "start": 46.895,
-   "end": 46.935
+   "src": 55.475,
+   "start": 43.175,
+   "end": 43.215
   },
   {
-   "id": "C2416:124",
+   "id": "C2416@55.55",
    "word": "شاء",
    "beat": "CTA",
-   "start": 46.975,
-   "end": 47.095
+   "src": 55.555,
+   "start": 43.255,
+   "end": 43.375
   },
   {
-   "id": "C2416:125",
+   "id": "C2416@55.67",
    "word": "الله",
    "beat": "CTA",
-   "start": 47.095,
-   "end": 47.296
+   "src": 55.675,
+   "start": 43.375,
+   "end": 43.576
   }
  ]
 }
