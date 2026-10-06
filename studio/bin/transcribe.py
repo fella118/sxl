@@ -84,12 +84,18 @@ def transcribe_local(video: Path, out: Path, args, model_cache: dict) -> None:
         print(f"  loading model {args.model} (int8, cpu)", flush=True)
         try:
             model_cache["model"] = WhisperModel(args.model, device="cpu", compute_type="int8")
-        except Exception as exc:  # download blocked or interrupted
-            raise SystemExit(
-                f"could not load whisper model '{args.model}': {type(exc).__name__}: {exc}\n"
-                "The model downloads from huggingface.co (*.hf.co) on first use. Allow those "
-                "hosts in the environment's network settings, or use --engine scribe."
-            ) from None
+        except Exception:
+            # Hub unreachable: a model downloaded earlier in this container still works.
+            try:
+                model_cache["model"] = WhisperModel(args.model, device="cpu", compute_type="int8",
+                                                    local_files_only=True)
+                print("  huggingface.co unreachable, using cached model", flush=True)
+            except Exception as exc:
+                raise SystemExit(
+                    f"could not load whisper model '{args.model}': {type(exc).__name__}: {exc}\n"
+                    "The model downloads from huggingface.co (*.hf.co) on first use. Allow those "
+                    "hosts in the environment's network settings, or use --engine scribe."
+                ) from None
     model = model_cache["model"]
 
     with tempfile.TemporaryDirectory() as tmp:

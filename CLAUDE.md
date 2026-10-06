@@ -8,7 +8,8 @@ QC your own work, deliver platform-ready files. The tools are in `studio/`.
 
 1. `bash studio/setup.sh`. It is idempotent and ends with `doctor.py`. The
    container is fresh each session, so the venv and `studio/.vendor/` are gone
-   until this runs.
+   until this runs. Whisper models are cached per container; if huggingface.co
+   is unreachable, transcribe.py falls back to a cached model.
 2. Use `studio/.venv/bin/python` for every studio script (`$PY` below).
 3. If the user is continuing a project, read its `brief.md` and `edit/project.md`
    and summarize the last session in one line before doing anything.
@@ -31,7 +32,7 @@ EDL, SRT, project.md) are committed so the next session can pick up the work.
 
 | Step | Command |
 |---|---|
-| Open project, ingest footage | `$PY studio/bin/new_project.py <client> <project> <files/dirs/urls>` |
+| Open project, ingest footage | `$PY studio/bin/new_project.py <client> <project> <files/dirs/urls>`: Drive share links via gdown, other URLs via yt-dlp. YouTube/Vimeo refuse cloud IPs without a login: ask for a `cookies.txt` and pass `--cookies`, or ask for the file itself |
 | Understand the footage | `$PY studio/bin/analyze.py projects/<c>/<p>` then Read `edit/analysis.md` and each `edit/analysis/<clip>/contact.jpg` |
 | Transcribe (word level) | `$PY studio/bin/transcribe.py projects/<c>/<p> [--language fr] [--model small] [--prompt "Brand, Names"]` |
 | Visual drill-down at a cut | `$PY studio/.vendor/video-use/helpers/timeline_view.py <video> <start> <end>` |

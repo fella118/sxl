@@ -1,7 +1,8 @@
 """Create a client project and bring footage into it.
 
-Sources can be local files/folders (copied, or moved with --move) or URLs
-(downloaded with yt-dlp). The originals are never modified.
+Sources can be local files/folders (copied, or moved with --move), Google
+Drive share links (gdown), or other URLs (yt-dlp). The originals are never
+modified.
 
 Usage:
     python studio/bin/new_project.py <client> <project> [sources...]
@@ -46,10 +47,25 @@ def slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-") or "untitled"
 
 
-def ingest(src: str, dest: Path, move: bool) -> list[Path]:
+def bin_path(name: str) -> str:
+    """Prefer the tool installed in the studio venv."""
+    venv_bin = Path(sys.executable).parent / name
+    return str(venv_bin) if venv_bin.exists() else name
+
+
+def ingest(src: str, dest: Path, move: bool, cookies: Path | None = None) -> list[Path]:
+    if re.match(r"https?://(drive|docs)\.google\.com/", src):
+        # Shared Drive file or folder ("anyone with the link" access).
+        kind = "--folder" if "/folders/" in src else "--fuzzy"
+        subprocess.run([bin_path("gdown"), "-q", kind, src, "-O", f"{dest}/"], check=True)
+        return sorted(dest.iterdir())
     if re.match(r"https?://", src):
-        subprocess.run(["yt-dlp", "-q", "-o", str(dest / "%(title).80s.%(ext)s"),
-                        "-f", "bv*+ba/b", "--merge-output-format", "mp4", src], check=True)
+        cmd = [bin_path("yt-dlp"), "-q", "--js-runtimes", "node",
+               "-o", str(dest / "%(title).80s.%(ext)s"),
+               "-f", "bv*+ba/b", "--merge-output-format", "mp4"]
+        if cookies:
+            cmd += ["--cookies", str(cookies)]
+        subprocess.run(cmd + [src], check=True)
         return sorted(dest.iterdir())
     path = Path(src).expanduser()
     files = [path] if path.is_file() else sorted(p for p in path.rglob("*") if p.suffix.lower() in MEDIA_EXTS)
@@ -71,6 +87,8 @@ def main() -> None:
     ap.add_argument("project")
     ap.add_argument("sources", nargs="*")
     ap.add_argument("--move", action="store_true", help="Move local files instead of copying")
+    ap.add_argument("--cookies", type=Path, default=None,
+                    help="Netscape cookies.txt for yt-dlp (YouTube/Vimeo refuse cloud IPs without a login)")
     args = ap.parse_args()
 
     root = PROJECTS / slug(args.client) / slug(args.project)
@@ -78,7 +96,7 @@ def main() -> None:
         (root / sub).mkdir(parents=True, exist_ok=True)
 
     for src in args.sources:
-        ingest(src, root / "source", args.move)
+        ingest(src, root / "source", args.move, args.cookies)
 
     brief = root / "brief.md"
     listing = "\n".join(f"- {p.name}" for p in sorted((root / "source").iterdir())) or "- (none yet)"

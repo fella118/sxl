@@ -8,5 +8,6 @@ numpy
 faster-whisper
 # scene detection for analysis
 scenedetect[opencv-headless]
-# pulling sources from URLs
-yt-dlp
+# pulling sources from URLs (yt-dlp[default] adds the YouTube challenge solver)
+yt-dlp[default]
+gdown
