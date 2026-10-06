@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root {
+    --cyan: #3be3ff;
+    --yellow: #ffc93c;
+    --red: #ff4d5e;
+    --ok: #35d07f;
+    --ink: rgba(8, 10, 22, .58);
+    --glass: rgba(12, 14, 26, .80);
+    --dark: #0b0d1a;
+  }
+  html, body { margin: 0; width: 1080px; height: 1920px; background: transparent; overflow: hidden; }
+  body { font-family: "Cairo", sans-serif; -webkit-font-smoothing: antialiased; }
+  .root { position: absolute; inset: 0; }
+  .layer { position: absolute; visibility: hidden; opacity: 0; }
+  svg.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+
+  /* ---------- phrase typography (house style v3) ---------- */
+  .place { position: absolute; left: 0; top: 0; width: 1080px; height: 0; }
+  .phrase { left: 520px; display: flex; flex-direction: column; align-items: center; width: 1000px; }
+  .phrase.inline { position: relative; left: 0; width: auto; }
+  .line { display: flex; align-items: baseline; justify-content: center; gap: 22px; line-height: 1.02; }
+  .run { display: flex; align-items: baseline; gap: 18px; }
+  .w { position: relative; display: inline-block; white-space: nowrap; paint-order: stroke fill;
+       text-shadow: 0 10px 28px rgba(0,0,0,.45); }
+  .w .ghost { position: absolute; inset: 0; -webkit-text-stroke: 0; text-shadow: none; opacity: 0; pointer-events: none; }
+  .small  { font: 700 56px/1.05 "Cairo"; color: rgba(255,255,255,.94); -webkit-text-stroke: 8px var(--ink); }
+  .key    { font: 900 150px/1.0 "Cairo"; color: #fff; -webkit-text-stroke: 14px var(--ink); }
+  .key.lat { font: 400 168px/0.98 "Anton"; text-transform: uppercase; letter-spacing: 1px; }
+  .script { font: 400 126px/1.0 "Great Vibes"; color: var(--yellow); -webkit-text-stroke: 7px var(--ink);
+            margin-bottom: -26px; transform: rotate(-4deg); padding: 0 18px; }
+  .num    { font: 400 250px/0.95 "Anton"; color: #fff; -webkit-text-stroke: 16px var(--ink); }
+  .cyan { color: var(--cyan); } .yellow { color: var(--yellow); } .red { color: var(--red); }
+
+  .panel { background: var(--glass); border: 3px solid rgba(255,255,255,.5); border-radius: 38px; color: #fff;
+           box-shadow: 0 26px 60px rgba(0,0,0,.4), inset 0 0 30px rgba(59,227,255,.14); }
+  .anton { font-family: "Anton"; font-weight: 400; letter-spacing: 1px; }
+
+  /* ---------- quiz-show question card ---------- */
+  .quiz { left: 240px; top: 210px; width: 600px; height: 330px; }
+  .quiz .qc { position: absolute; inset: 0; border-radius: 48px; background: var(--yellow); color: var(--dark);
+              border: 8px solid #fff; box-shadow: 0 30px 70px rgba(0,0,0,.45), inset 0 -14px 0 rgba(0,0,0,.12);
+              display: flex; align-items: center; justify-content: center; gap: 34px; direction: rtl; }
+  .quiz .ql { font: 900 128px/1 "Cairo"; }
+  .quiz .qn { font: 400 190px/1 "Anton"; color: #fff; -webkit-text-stroke: 12px var(--dark); paint-order: stroke fill; }
+  .quiz .qmark { position: absolute; right: -40px; top: -52px; width: 132px; height: 132px; border-radius: 50%;
+                 background: var(--cyan); border: 7px solid #fff; display: grid; place-items: center;
+                 font: 400 96px/1 "Anton"; color: var(--dark); box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+  .quiz .spark { position: absolute; width: 26px; height: 26px; border-radius: 50%; background: #fff; }
+
+  /* ---------- corner chip: سؤال n/3 | جواب n/3 ---------- */
+  .chip { left: 56px; top: 150px; height: 84px; display: flex; align-items: center; gap: 14px; direction: rtl;
+          padding: 0 26px 0 14px; border-radius: 42px; border: 4px solid #fff; box-shadow: 0 12px 30px rgba(0,0,0,.35);
+          font: 900 46px/1 "Cairo"; color: var(--dark); transform-origin: 0% 50%; }
+  .chip.q { background: var(--yellow); }
+  .chip.a { background: var(--cyan); }
+  .chip .ico { width: 58px; height: 58px; border-radius: 50%; background: var(--dark); color: #fff; display: grid;
+               place-items: center; font: 400 40px/1 "Anton"; }
+  .chip .of { font: 400 40px/1 "Anton"; opacity: .8; direction: ltr; }
+
+  /* ---------- "جواب" wall (back layer) ---------- */
+  .wall { left: -200px; top: 60px; width: 1480px; }
+  .wrow { display: flex; gap: 60px; white-space: nowrap; font: 900 250px/1.0 "Cairo"; margin: -22px 0; }
+  .wrow span.f { color: var(--cyan); }
+  .wrow span.o { color: #fff; filter: url(#outlineW); }
+
+  /* ---------- Q1 price tag ---------- */
+  #tag { left: 340px; top: 0; width: 400px; height: 560px; }
+  #tagswing { position: absolute; left: 0; top: 0; width: 400px; height: 560px; transform-origin: 200px 0px; }
+  #tagstring { position: absolute; left: 198px; top: 0; width: 4px; height: 300px; background: rgba(255,255,255,.85); }
+  #tagbody { position: absolute; left: 30px; top: 290px; width: 340px; height: 190px; }
+  #tagbody svg { position: absolute; inset: 0; width: 340px; height: 190px; overflow: visible; }
+  #tagtext { position: absolute; left: 70px; right: 10px; top: 22px; display: flex; align-items: baseline; justify-content: center; gap: 14px;
+             font: 400 104px/1 "Anton"; color: var(--dark); }
+  #tagdh { font: 400 60px/1 "Anton"; color: var(--red); }
+
+  /* ---------- A1 speech bubble (the optician) ---------- */
+  #said { left: 90px; top: 250px; width: 900px; display: flex; align-items: flex-end; gap: 22px; direction: ltr; }
+  #said .who { width: 150px; flex: none; text-align: center; }
+  #said .av { width: 140px; height: 140px; border-radius: 50%; background: #fff; border: 6px solid var(--cyan);
+              display: grid; place-items: center; margin: 0 auto; }
+  #said .nm { font: 700 34px/1.2 "Cairo"; color: #fff; -webkit-text-stroke: 6px var(--ink); paint-order: stroke fill; margin-top: 6px; }
+  #said .bub { position: relative; flex: 1; background: #fff; color: var(--dark); border-radius: 44px; padding: 26px 36px;
+               box-shadow: 0 24px 60px rgba(0,0,0,.4); min-height: 96px; }
+  #said .bub:after { content: ""; position: absolute; left: -26px; bottom: 30px; border: 22px solid transparent;
+                     border-right: 34px solid #fff; border-left: 0; }
+  #saidtext { font: 800 62px/1.25 "Cairo"; unicode-bidi: plaintext; text-align: start; }
+  #saidtext b { color: #0a8fb0; font-weight: 900; }
+  #saidtext .dots { color: var(--red); }
+
+  /* ---------- A1 white card pointer ---------- */
+  #callout { left: 0; top: 0; width: 1080px; height: 1920px; }
+  #co-label { position: absolute; left: 300px; top: 560px; width: 480px; display: flex; align-items: center; justify-content: center; gap: 18px;
+              background: var(--glass); border: 4px solid var(--cyan); border-radius: 40px; padding: 18px 26px; color: #fff;
+              font: 400 76px/1 "Anton"; letter-spacing: 1px; box-shadow: 0 0 34px rgba(59,227,255,.45); }
+  #co-label svg { width: 70px; height: 70px; }
+  #co-arrow { position: absolute; left: 500px; top: 690px; width: 80px; height: 150px; }
+
+  /* ---------- A3 index table ---------- */
+  #table { left: 90px; top: 170px; width: 900px; }
+  #table .panel { padding: 22px 30px 26px; }
+  .trow { display: grid; grid-template-columns: 1fr 1fr; align-items: center; height: 104px; border-radius: 24px; padding: 0 18px; }
+  .thead { height: 86px; margin-bottom: 6px; }
+  .thead div { font: 800 46px/1 "Cairo"; color: rgba(255,255,255,.7); text-align: center; padding: 14px 0; border-radius: 22px; }
+  .tr { opacity: 0; visibility: hidden; margin-top: 8px; background: rgba(255,255,255,.07); }
+  .tr .c { font: 400 72px/1 "Anton"; color: #fff; text-align: center; letter-spacing: 1px; }
+  .tr .i { font: 400 82px/1 "Anton"; color: var(--cyan); text-align: center; letter-spacing: 1px; white-space: nowrap; }
+  .tr .i span { display: inline-block; opacity: 0; }
+  .tr .i .m { color: var(--yellow); font-size: 64px; }
+  .tr .arr { color: var(--yellow); margin: 0 10px; }
+
+  /* ---------- A3 lens card ---------- */
+  #lens { left: 110px; top: 170px; width: 860px; }
+  #lens .panel { padding: 30px 36px 30px; display: flex; flex-direction: column; align-items: center; }
+  #lens .top { display: flex; align-items: center; gap: 30px; }
+  #lens .disc { width: 170px; height: 170px; flex: none; }
+  #lens .nm { display: flex; flex-direction: column; align-items: flex-start; }
+  #lens .nm .a { font: 400 112px/0.95 "Anton"; letter-spacing: 2px; color: #fff; }
+  #lens .nm .b { font: 400 104px/0.8 "Great Vibes"; color: var(--yellow); margin: -6px 0 0 120px; }
+  #lens .pills { display: flex; gap: 18px; margin-top: 22px; direction: ltr; }
+  .pill { padding: 10px 26px; border-radius: 40px; font: 800 48px/1.1 "Cairo"; opacity: 0; visibility: hidden; }
+  .pill.c { background: var(--cyan); color: var(--dark); }
+  .pill.y { background: var(--yellow); color: var(--dark); }
+  .pill.g { background: rgba(255,255,255,.14); border: 3px solid rgba(255,255,255,.55); color: #fff; }
+  #lens .cmp { display: flex; gap: 70px; margin-top: 22px; height: 0; overflow: hidden; opacity: 0; }
+  #lens .prof { text-align: center; }
+  #lens .prof svg { width: 200px; height: 190px; overflow: visible; }
+  #lens .prof .lb { font: 400 46px/1.1 "Anton"; letter-spacing: 1px; }
+
+  /* ---------- A2 frame-arm diagram ---------- */
+  #arm { left: 70px; top: 220px; width: 940px; }
+  #arm .panel { padding: 30px 30px 34px; }
+  #arm .ttl { font: 800 46px/1 "Cairo"; color: var(--cyan); text-align: center; margin-bottom: 18px; direction: rtl; }
+  #armsvg { width: 880px; height: 220px; overflow: visible; }
+  #arm .tags { display: flex; justify-content: center; gap: 30px; margin-top: 10px; height: 110px; direction: ltr; }
+  .tagp { display: flex; align-items: center; gap: 12px; padding: 8px 28px; border-radius: 30px; font: 400 76px/1.1 "Anton";
+          letter-spacing: 1px; opacity: 0; visibility: hidden; }
+  .tagp.max { background: var(--red); color: #fff; }
+  .tagp.ok { background: var(--ok); color: #fff; }
+  .tagp svg { width: 60px; height: 60px; }
+
+  /* ---------- teaser: next video ---------- */
+  #next { left: 110px; top: 190px; width: 860px; }
+  #next .panel { padding: 26px 34px 30px; text-align: center; }
+  #next .hd { display: flex; align-items: center; justify-content: center; gap: 20px; font: 400 64px/1 "Great Vibes"; color: var(--yellow); }
+  #next .hd b { font: 900 70px/1 "Cairo"; color: #fff; }
+  #next .play { width: 84px; height: 84px; border-radius: 50%; background: var(--red); display: grid; place-items: center; }
+  #next .case { font: 400 150px/1 "Anton"; letter-spacing: 3px; color: var(--cyan); margin: 14px 0 6px; opacity: 0; visibility: hidden; }
+  #next .rx { display: flex; justify-content: center; align-items: center; gap: 26px; direction: rtl; }
+  .rxc { width: 290px; padding: 18px 0 16px; border-radius: 28px; background: #fff; color: var(--dark); opacity: 0; visibility: hidden; }
+  .rxc .t { font: 900 54px/1.1 "Cairo"; }
+  .rxc .s { font: 400 40px/1.2 "Anton"; color: #666; letter-spacing: 1px; direction: ltr; }
+  .rxc.old { filter: grayscale(1); opacity: .8; }
+  .rxc.new { border: 6px solid var(--ok); }
+  #next .rxa { width: 90px; height: 60px; opacity: 0; visibility: hidden; }
+
+  /* ---------- CTA: save button ---------- */
+  #save { left: 290px; top: 190px; width: 500px; height: 470px; }
+  #save .btn { position: absolute; left: 90px; top: 0; width: 320px; height: 320px; border-radius: 80px; background: #fff;
+               box-shadow: 0 30px 70px rgba(0,0,0,.45); display: grid; place-items: center; }
+  #save .btn svg { width: 190px; height: 190px; overflow: visible; }
+  #save .lbl { position: absolute; left: 0; right: 0; top: 340px; text-align: center; font: 400 120px/1 "Anton"; letter-spacing: 4px;
+               color: var(--yellow); -webkit-text-stroke: 12px var(--ink); paint-order: stroke fill; }
+  #save .burst { position: absolute; left: 250px; top: 160px; width: 0; height: 0; }
+  #save .burst i { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; }
+  #tap { position: absolute; left: 330px; top: 200px; width: 120px; height: 120px; opacity: 0; visibility: hidden; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs id="fxdefs">
+  <filter id="outlineW" x="-5%" y="-10%" width="110%" height="120%">
+    <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="d"/>
+    <feComposite in="d" in2="SourceAlpha" operator="out" result="o"/>
+    <feFlood flood-color="#ffffff" flood-opacity="0.9"/>
+    <feComposite in2="o" operator="in"/>
+  </filter>
+  <linearGradient id="lensG" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#bff6ff"/><stop offset=".55" stop-color="#3be3ff"/><stop offset="1" stop-color="#1b6cff"/>
+  </linearGradient>
+</defs></svg>
+
+<!-- ================= BACK LAYER (composited behind the speaker) ================= -->
+<div id="back" class="root"></div>
+
+<!-- ================= FRONT LAYER ================= -->
+<div id="front" class="root">
+  <div id="phrases"></div>
+
+  <div id="tag" class="layer"><div id="tagswing">
+    <div id="tagstring"></div>
+    <div id="tagbody">
+      <svg viewBox="0 0 340 190"><path d="M60 8 H322 a14 14 0 0 1 14 14 V168 a14 14 0 0 1 -14 14 H60 L6 95 Z" fill="#ffc93c" stroke="#fff" stroke-width="7" stroke-linejoin="round"/><circle cx="52" cy="95" r="15" fill="none" stroke="#0b0d1a" stroke-width="6"/></svg>
+      <div id="tagtext"><span>2500</span><span id="tagdh">DH</span></div>
+    </div>
+  </div></div>
+
+  <div id="said" class="layer">
+    <div class="who"><div class="av"><svg width="104" height="104" viewBox="0 0 64 64" fill="none" stroke="#0b0d1a" stroke-width="3.4" stroke-linecap="round"><circle cx="32" cy="22" r="12" fill="#dbe6f0" stroke="none"/><path d="M8 60c2-12 11-19 24-19s22 7 24 19" fill="#dbe6f0" stroke="none"/><circle cx="26.5" cy="23" r="5"/><circle cx="37.5" cy="23" r="5"/><path d="M31.5 23h1"/></svg></div>
+      <div class="nm">l'opticien</div></div>
+    <div class="bub"><div id="saidtext" dir="auto"></div></div>
+  </div>
+
+  <div id="callout" class="layer">
+    <div id="co-label">L'INDICE <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#35d07f"/><path d="M6.5 12.5l3.5 3.5 7.5-8" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <svg id="co-arrow" viewBox="0 0 80 150"><path d="M40 6 V128 M14 102 L40 140 L66 102" fill="none" stroke="#3be3ff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+
+  <div id="table" class="layer"><div class="panel">
+    <div class="trow thead"><div id="h0">la correction</div><div id="h1">l'indice</div></div>
+    <div class="trow tr" id="r0"><div class="c">-0.25<span class="arr">→</span>-2</div><div class="i"><span>1.50 / 1.56</span></div></div>
+    <div class="trow tr" id="r1"><div class="c">-2<span class="arr">→</span>-4</div><div class="i"><span>1.60</span></div></div>
+    <div class="trow tr" id="r2"><div class="c">-4<span class="arr">→</span>-6</div><div class="i"><span>1.67</span></div></div>
+    <div class="trow tr" id="r3"><div class="c">-6 <span class="arr">↓</span></div><div class="i"><span>1.74</span> <span class="m">/ MINÉRAL</span></div></div>
+  </div></div>
+
+  <div id="lens" class="layer"><div class="panel">
+    <div class="top">
+      <svg class="disc" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="url(#lensG)" stroke="#fff" stroke-width="4"/><path d="M22 36 Q34 18 56 16" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".85"/><circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="10" id="discRing"/></svg>
+      <div class="nm"><div class="a" id="lensA">MASTERY</div><div class="b" id="lensB">Luxe</div></div>
+    </div>
+    <div class="pills"><div class="pill c" id="p174">1.74</div><div class="pill y" id="porg">organique</div><div class="pill g" id="pplas">= البلاستيك</div></div>
+    <div class="cmp" id="cmp">
+      <div class="prof" id="prof1"><svg viewBox="0 0 200 190"><path d="M30 10 Q92 95 30 180 H82 Q110 95 82 10 Z" fill="url(#lensG)" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>
+        <div class="lb" style="color:var(--cyan)">MASTERY LUXE</div></div>
+      <div class="prof" id="prof2"><svg viewBox="0 0 200 190"><path d="M18 10 Q92 95 18 180 H126 Q150 95 126 10 Z" fill="rgba(255,255,255,.28)" stroke="#fff" stroke-width="4" stroke-linejoin="round"/></svg>
+        <div class="lb">1.74 NORMAL</div></div>
+    </div>
+  </div></div>
+
+  <div id="arm" class="layer"><div class="panel">
+    <div class="ttl" id="armttl">les chiffres على الجنب ديال la monture</div>
+    <svg id="armsvg" viewBox="0 0 880 220">
+      <path d="M20 70 H700 Q760 70 800 110 L850 170" fill="none" stroke="#3b4256" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M40 52 H690" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="8" stroke-linecap="round"/>
+      <rect x="6" y="40" width="40" height="60" rx="10" fill="#3a3f52" stroke="#fff" stroke-width="3"/>
+      <g id="digits" font-family="Anton" font-size="58" fill="#c9cfdc" letter-spacing="2">
+        <text id="d48" x="100" y="91">48</text><rect x="182" y="52" width="36" height="36" fill="none" stroke="#c9cfdc" stroke-width="5"/>
+        <text x="238" y="91">20</text><text x="340" y="91">145</text>
+      </g>
+      <circle id="d48ring" cx="128" cy="70" r="58" fill="none" stroke="#ffc93c" stroke-width="8" stroke-dasharray="365" stroke-dashoffset="365"/>
+      <text id="dlab" x="128" y="190" font-family="Cairo" font-weight="900" font-size="52" fill="#ffc93c" text-anchor="middle" opacity="0">Ø diamètre</text>
+    </svg>
+    <div class="tags"><div class="tagp max" id="t48">MAX 48</div>
+      <div class="tagp ok" id="t46">46 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#fff"/><path d="M6.5 12.5l3.5 3.5 7.5-8" fill="none" stroke="#35d07f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+  </div></div>
+
+  <div id="next" class="layer"><div class="panel">
+    <div class="hd"><div class="play"><svg width="40" height="40" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#fff"/></svg></div>la vidéo <b>الجاية</b></div>
+    <div class="case" id="ncase">CAS RÉEL</div>
+    <div class="rx">
+      <div class="rxc old" id="rxold"><div class="t">القديمة</div><div class="s">LA MENTION</div></div>
+      <svg class="rxa" id="rxa" viewBox="0 0 90 60"><path d="M84 30H10M30 10L8 30l22 20" fill="none" stroke="#3be3ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="rxc new" id="rxnew"><div class="t">الجديدة</div><div class="s">LA MENTION</div></div>
+    </div>
+  </div></div>
+
+  <div id="save" class="layer">
+    <div class="btn"><svg viewBox="0 0 64 64"><path id="bm" d="M16 6h32a4 4 0 0 1 4 4v48L32 44 12 58V10a4 4 0 0 1 4-4z" fill="#fff" stroke="#0b0d1a" stroke-width="5" stroke-linejoin="round"/></svg></div>
+    <div class="burst" id="burst"></div>
+    <svg id="tap" viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="rgba(255,255,255,.55)" stroke="#fff" stroke-width="4"/></svg>
+    <div class="lbl">SAVE</div>
+  </div>
+</div>
+
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script src="events.js"></script>
+<script src="facepos.js"></script>
+<script>
+const E = window.EV, FACE = window.FACE || { fps: 50, frames: [] };
+const LAYER = new URLSearchParams(location.search).get("layer") || "all";
+if (LAYER === "back") document.getElementById("front").style.display = "none";
+if (LAYER === "front") document.getElementById("back").style.display = "none";
+
+/*ENGINE*/
+
+const $ = (id) => document.getElementById(id);
+const front = $("front"), backL = $("back");
+
+// ---------- quiz cards + corner chips ----------
+E.quiz.forEach((q, k) => {
+  const el = document.createElement("div");
+  el.className = "layer quiz"; el.id = "quiz" + k;
+  el.innerHTML = `<div class="qc"><span class="ql">سؤال</span><span class="qn">#${q.n}</span></div><div class="qmark">?</div>`;
+  front.appendChild(el);
+  const qc = el.querySelector(".qc"), qm = el.querySelector(".qmark");
+  for (let i = 0; i < 8; i++) {
+    const sp = document.createElement("div"); sp.className = "spark";
+    sp.style.background = i % 2 ? "#3be3ff" : "#fff"; sp.style.left = "287px"; sp.style.top = "152px";
+    el.appendChild(sp);
+    const a = (i / 8) * Math.PI * 2 + 0.3, r = 380 + (i % 3) * 40;
+    tl.fromTo(sp, { autoAlpha: 1, x: 0, y: 0, scale: 1 }, { autoAlpha: 0, x: Math.cos(a) * r, y: Math.sin(a) * r * 0.6, scale: 0.3, duration: 0.55, ease: out3 }, q.t + 0.12);
+  }
+  tl.set(el, { autoAlpha: 1 }, q.t);
+  tl.fromTo(qc, { scale: 0.2, rotation: -14 }, { scale: 1, rotation: -3, duration: 0.42, ease: "back.out(2.6)" }, q.t);
+  tl.fromTo(qm, { scale: 0, rotation: -90 }, { scale: 1, rotation: 12, duration: 0.36, ease: "back.out(3)" }, q.t + 0.16);
+  tl.to(qm, { keyframes: [{ rotation: -14, duration: 0.14 }, { rotation: 10, duration: 0.14 }, { rotation: 0, duration: 0.14 }] }, q.t + 0.52);
+  // dock towards the corner chip
+  tl.to(el, { x: -330, y: -110, scale: 0.28, autoAlpha: 0, duration: 0.26, ease: in3 }, q.t + 0.92);
+});
+E.chips.forEach((c, k) => {
+  const el = document.createElement("div");
+  el.className = "layer chip " + c.kind; el.id = "chip" + k;
+  el.innerHTML = `<span class="ico">${c.kind === "q" ? "?" : "✓"}</span><span>${c.kind === "q" ? "سؤال" : "جواب"}</span><span class="of">${c.n}/3</span>`;
+  front.appendChild(el);
+  tl.fromTo(el, { autoAlpha: 0, scale: 0.4 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, c.start);
+  tl.to(el, { autoAlpha: 0, scale: 0.6, duration: 0.14, ease: in3 }, c.end - 0.14);
+});
+
+// ---------- "جواب" wall behind him at each answer ----------
+E.walls.forEach((t0, k) => {
+  const wall = document.createElement("div");
+  wall.className = "layer wall"; backL.appendChild(wall);
+  for (let i = 0; i < 7; i++) {
+    const row = document.createElement("div"); row.className = "wrow";
+    for (let j = 0; j < 6; j++) { const s = document.createElement("span"); s.className = (i + j) % 2 ? "o" : "f"; s.textContent = "جواب"; row.appendChild(s); }
+    wall.appendChild(row);
+    const d = i % 2 ? 1 : -1;
+    tl.fromTo(row, { x: d * 800, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.26, ease: expo }, t0 + i * 0.022);
+    tl.to(row, { x: -d * 160, duration: 0.6, ease: "none" }, t0 + 0.28);
+    tl.to(row, { x: -d * 900, duration: 0.22, ease: in3 }, t0 + 0.82 + i * 0.015);
+  }
+  tl.set(wall, { autoAlpha: 1 }, t0);
+  tl.set(wall, { autoAlpha: 0 }, t0 + 1.2);
+});
+
+// ---------- Q1: price tag swings down on "2500" ----------
+tl.set("#tag", { autoAlpha: 1 }, E.tag_in - 0.1);
+tl.fromTo("#tagswing", { y: -620 }, { y: 0, duration: 0.42, ease: "back.out(1.5)" }, E.tag_in - 0.1);
+tl.fromTo("#tagswing", { rotation: 16 }, { keyframes: [{ rotation: -11, duration: 0.42 }, { rotation: 7, duration: 0.42 }, { rotation: -4, duration: 0.4 }, { rotation: 0, duration: 0.4 }], ease: "sine.inOut" }, E.tag_in);
+tl.fromTo("#tagdh", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.3, ease: "back.out(3)" }, E.tag_dh);
+tl.to("#tagswing", { y: -640, duration: 0.3, ease: in3 }, E.tag_out - 0.3);
+tl.set("#tag", { autoAlpha: 0 }, E.tag_out);
+
+// ---------- A1: the optician's line ----------
+tl.fromTo("#said", { autoAlpha: 0, y: 40, scale: 0.85 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.34, ease: back }, E.said_in - 0.1);
+tl.to("#said", { autoAlpha: 0, y: -30, duration: 0.18, ease: in3 }, E.said_out - 0.18);
+const SAID = [{ text: "درت", t: E.said_in + 0.35 }, { text: "لك", t: E.said_in + 0.55 }, { text: "l'indice", t: E.said_type, b: true }, { text: "…", t: E.said_type + 0.55, dots: true }];
+function saidHTML(t) {
+  const parts = [];
+  for (const p of SAID) {
+    if (t < p.t) break;
+    let txt = p.text;
+    if (!AR.test(txt) && !p.dots) txt = Array.from(txt).slice(0, Math.max(1, Math.round(Math.min(1, (t - p.t) / 0.4) * txt.length))).join("");
+    parts.push(p.b ? `<b>${txt}</b>` : p.dots ? `<span class="dots">${txt}</span>` : txt);
+  }
+  return parts.join(" ");
+}
+
+// ---------- A1: white card pointer ----------
+tl.set("#callout", { autoAlpha: 1 }, E.callout_in);
+tl.fromTo("#co-label", { autoAlpha: 0, scale: 0.5, y: -30 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(2.4)" }, E.callout_in);
+tl.fromTo("#co-arrow", { autoAlpha: 0, y: -40 }, { autoAlpha: 1, y: 0, duration: 0.26, ease: out3 }, E.callout_in + 0.12);
+tl.to("#co-arrow", { keyframes: [{ y: 18, duration: 0.2 }, { y: 0, duration: 0.2 }, { y: 18, duration: 0.2 }, { y: 0, duration: 0.2 }] }, E.callout_in + 0.38);
+tl.set("#callout", { autoAlpha: 0 }, E.callout_out);
+
+// ---------- A3: index table ----------
+tl.fromTo("#table", { autoAlpha: 0, scale: 0.6, y: -60, transformOrigin: "20% 0%" }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.42, ease: back }, E.table_in);
+E.hdr.forEach((t, i) => {
+  tl.to("#h" + i, { backgroundColor: i ? "rgba(59,227,255,.9)" : "rgba(255,201,60,.95)", color: "#0b0d1a", duration: 0.2, ease: out3 }, t - 0.05);
+  tl.to("#h" + i, { keyframes: [{ scale: 1.1, duration: 0.12 }, { scale: 1, duration: 0.18 }] }, t - 0.05);
+});
+E.rows.forEach((r, i) => {
+  const row = "#r" + i;
+  tl.fromTo(row, { autoAlpha: 0, x: 120 }, { autoAlpha: 1, x: 0, duration: 0.32, ease: expo }, r.c - 0.06);
+  if (i > 0) tl.to("#r" + (i - 1), { backgroundColor: "rgba(255,255,255,.07)", duration: 0.2 }, r.c - 0.06);
+  tl.to(row, { backgroundColor: "rgba(59,227,255,.22)", duration: 0.2 }, r.c - 0.06);
+  tl.fromTo(row + " .i span:first-child", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.32, ease: "back.out(2.4)" }, r.i - 0.04);
+  if (r.m) tl.fromTo(row + " .i .m", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.28, ease: out3 }, r.m - 0.04);
+});
+tl.to("#table", { autoAlpha: 0, scale: 0.9, y: -40, duration: 0.24, ease: in3 }, E.table_out - 0.24);
+
+// ---------- A3: MASTERY Luxe lens card ----------
+tl.fromTo("#lens", { autoAlpha: 0, rotationX: -70, y: 60, transformPerspective: 1200, transformOrigin: "50% 0%" },
+                   { autoAlpha: 1, rotationX: 0, y: 0, duration: 0.45, ease: back }, E.lens_in);
+tl.fromTo(".disc", { rotation: -200, scale: 0.4 }, { rotation: 0, scale: 1, duration: 0.6, ease: "back.out(1.6)" }, E.lens_in + 0.05);
+tl.fromTo("#lensA", { autoAlpha: 0, clipPath: "inset(0 100% 0 0)" }, { autoAlpha: 1, clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power2.inOut" }, E.lens_name - 0.06);
+tl.fromTo("#lensB", { autoAlpha: 1, clipPath: "inset(-30% 100% -30% -10%)" }, { clipPath: "inset(-30% -10% -30% -10%)", duration: 0.45, ease: "power2.inOut" }, E.lens_name + 0.3);
+[["#p174", E.lens_org - 0.5], ["#porg", E.lens_org], ["#pplas", E.lens_plastic]].forEach(([id, t]) =>
+  tl.fromTo(id, { autoAlpha: 0, scale: 0.3, y: 20 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(2.6)" }, t - 0.04));
+tl.to("#cmp", { height: 250, opacity: 1, duration: 0.36, ease: out3 }, E.lens_thin - 0.3);
+tl.fromTo("#prof1", { scale: 0.4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.3, ease: "back.out(2.2)" }, E.lens_thin - 0.1);
+tl.fromTo("#prof2", { scale: 0.4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.3, ease: "back.out(2.2)" }, E.lens_normal - 0.25);
+tl.to("#prof1 svg", { keyframes: [{ scale: 1.12, duration: 0.14 }, { scale: 1, duration: 0.2 }] }, E.lens_normal + 0.15);
+tl.to("#lens", { autoAlpha: 0, y: -40, duration: 0.2, ease: in3 }, E.lens_out - 0.2);
+
+// ---------- A2: frame-arm diagram ----------
+tl.fromTo("#arm", { autoAlpha: 0, x: -200, rotation: -4 }, { autoAlpha: 1, x: 0, rotation: 0, duration: 0.42, ease: expo }, E.arm_in);
+tl.to("#digits", { attr: { fill: "#ffffff" }, duration: 0.25 }, E.arm_digits);
+tl.to("#digits", { keyframes: [{ y: -6, duration: 0.1 }, { y: 0, duration: 0.14 }] }, E.arm_digits);
+tl.to("#d48ring", { attr: { "stroke-dashoffset": 0 }, duration: 0.4, ease: "power2.inOut" }, E.arm_d - 0.05);
+tl.to("#dlab", { opacity: 1, duration: 0.25 }, E.arm_d + 0.1);
+tl.to("#d48", { attr: { fill: "#ffc93c" }, duration: 0.2 }, E.arm_d);
+tl.fromTo("#t48", { autoAlpha: 0, scale: 0.3 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2.6)" }, E.arm_48 - 0.04);
+tl.fromTo("#t46", { autoAlpha: 0, scale: 0.3 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2.6)" }, E.arm_46 - 0.1);
+tl.to("#t48", { opacity: 0.45, scale: 0.9, duration: 0.2 }, E.arm_46);
+tl.to("#arm", { autoAlpha: 0, x: 160, duration: 0.2, ease: in3 }, E.arm_out - 0.2);
+
+// ---------- teaser: next video card ----------
+tl.fromTo("#next", { autoAlpha: 0, y: -80, scale: 0.85 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.4, ease: back }, E.next_in);
+tl.fromTo("#ncase", { autoAlpha: 0, scale: 2.2, rotation: -8 }, { autoAlpha: 1, scale: 1, rotation: -3, duration: 0.3, ease: "back.out(2)" }, E.next_case - 0.04);
+tl.fromTo("#rxold", { autoAlpha: 0, x: 60 }, { autoAlpha: 0.8, x: 0, duration: 0.3, ease: out3 }, E.next_old - 0.3);
+tl.fromTo("#rxa", { autoAlpha: 0, x: 30 }, { autoAlpha: 1, x: 0, duration: 0.25, ease: out3 }, E.next_new - 0.25);
+tl.fromTo("#rxnew", { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.32, ease: "back.out(2.4)" }, E.next_new - 0.04);
+tl.to("#next", { autoAlpha: 0, y: -40, duration: 0.2, ease: in3 }, E.next_out - 0.2);
+
+// ---------- CTA: save button ----------
+tl.fromTo("#save", { autoAlpha: 0, scale: 0.4, y: 40 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.42, ease: "back.out(2.2)" }, E.save_in);
+tl.fromTo("#tap", { autoAlpha: 0, scale: 1.6 }, { autoAlpha: 1, scale: 0.8, duration: 0.18, ease: out3 }, E.save_fill - 0.2);
+tl.to("#tap", { autoAlpha: 0, scale: 1.4, duration: 0.2 }, E.save_fill);
+tl.to("#bm", { attr: { fill: "#0b0d1a" }, duration: 0.08 }, E.save_fill);
+tl.to("#save .btn", { keyframes: [{ scale: 0.86, duration: 0.08 }, { scale: 1.08, duration: 0.14 }, { scale: 1, duration: 0.16 }] }, E.save_fill);
+const burst = $("burst");
+for (let i = 0; i < 10; i++) {
+  const d = document.createElement("i"); d.style.background = i % 2 ? "#3be3ff" : "#ffc93c"; burst.appendChild(d);
+  const a = (i / 10) * Math.PI * 2;
+  tl.fromTo(d, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: Math.cos(a) * 230, y: Math.sin(a) * 230, scale: 0.2, opacity: 0, duration: 0.5, ease: out3 }, E.save_fill + 0.02);
+}
+tl.fromTo("#save .lbl", { scale: 0.5, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.3, ease: "back.out(2.4)" }, E.save_fill + 0.08);
+
+// ---------- deterministic seek ----------
+const saidText = $("saidtext");
+window.seek = (t) => {
+  tl.seek(t, false);
+  saidText.innerHTML = saidHTML(t);
+};
+window.anyVisible = () => {
+  const scope = LAYER === "all" ? document : document.getElementById(LAYER);
+  return Array.from(scope.querySelectorAll(".layer")).some(el => {
+    const cs = getComputedStyle(el);
+    return cs.visibility !== "hidden" && parseFloat(cs.opacity) > 0.004;
+  });
+};
+
+/*FITPLACE*/
+function placeAll() {
+  document.querySelectorAll("#phrases > .phrase").forEach(ph =>
+    placeItem(ph, ph.dataset.place, +ph.dataset.t0, +ph.dataset.t1, { cx: parseFloat(ph.style.left) }));
+  E.quiz.forEach((q, k) => placeItem($("quiz" + k), "above", q.t, q.t + 1.2));
+  placeItem($("tag"), "above", E.tag_in, E.tag_out);
+  placeItem($("said"), "above", E.said_in, E.said_out);
+  placeItem($("table"), "above", E.table_in, E.table_out, { extra: 0 });
+  placeItem($("lens"), "above", E.lens_in, E.lens_out, { extra: 250 });
+  placeItem($("arm"), "above", E.arm_in, E.arm_out);
+  placeItem($("next"), "above", E.next_in, E.next_out);
+  placeItem($("save"), "above", E.save_in, E.duration);
+}
+
+window.ready = (async () => {
+  const faces = ['900 150px "Cairo"', '800 46px "Cairo"', '700 56px "Cairo"', '400 168px "Anton"', '400 126px "Great Vibes"'];
+  await Promise.all(faces.flatMap(f => [document.fonts.load(f, "abc éû"), document.fonts.load(f, "واش")]));
+  await document.fonts.ready;
+  const missing = faces.filter(f => !document.fonts.check(f, f.includes("Cairo") ? "abc واش" : "abc éû"));
+  if (missing.length) throw new Error("fonts not loaded: " + missing.join(", "));
+  await Promise.all(Array.from(document.images).map(img => img.decode()));
+  // table rows are measured at full height (they start hidden)
+  fitLines();
+  placeAll();
+  return true;
+})();
+</script>
+</body>
+</html>
