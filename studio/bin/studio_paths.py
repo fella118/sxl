@@ -28,6 +28,8 @@ def project_dir_for(path: Path) -> Path:
     path = path.resolve()
     if path.is_file():
         path = path.parent
+    if path.name == "proxy" and path.parent.name == "edit":
+        return path.parent.parent
     if path.name in {"source", "edit", "deliver"}:
         return path.parent
     return path

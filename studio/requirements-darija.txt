@@ -1,0 +1,6 @@
+# Darija pipeline (studio/bin/darija_transcribe.py), separate venv: qwen-asr pins transformers.
+# torch/torchaudio come from the CPU index in setup.sh.
+qwen-asr
+silero-vad
+uroman
+soundfile

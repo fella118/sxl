@@ -35,6 +35,7 @@ EDL, SRT, project.md) are committed so the next session can pick up the work.
 | Open project, ingest footage | `$PY studio/bin/new_project.py <client> <project> <files/dirs/urls>`: Drive share links via gdown, other URLs via yt-dlp. YouTube/Vimeo refuse cloud IPs without a login: ask for a `cookies.txt` and pass `--cookies`, or ask for the file itself |
 | Understand the footage | `$PY studio/bin/analyze.py projects/<c>/<p>` then Read `edit/analysis.md` and each `edit/analysis/<clip>/contact.jpg` |
 | Transcribe (word level) | `$PY studio/bin/transcribe.py projects/<c>/<p> [--language fr] [--model small] [--prompt "Brand, Names"]` |
+| Transcribe Darija / Darija-French | `studio/.venv-darija/bin/python studio/bin/darija_transcribe.py projects/<c>/<p>`: Silero VAD → MoulSot v0.3 → MMS forced alignment. Darija in Arabic script, French in Latin. Also writes `edit/darija/<clip>.{srt,txt,words.json,words.txt}`. ~6 min per minute of speech on CPU |
 | Visual drill-down at a cut | `$PY studio/.vendor/video-use/helpers/timeline_view.py <video> <start> <end>` |
 | Render from EDL | `$PY studio/.vendor/video-use/helpers/render.py <edit>/edl.json -o <edit>/preview.mp4 --preview --build-subtitles` (`--draft` for cut checks; final: no flag) |
 | Color grade presets | `$PY studio/.vendor/video-use/helpers/grade.py --list` |
@@ -49,6 +50,12 @@ about 3.5 min). `--model small` is about 2x faster again, for quick drafts.
 Pass `--language` when you know it (fr, ar, en...), and `--prompt` with
 names, brands and jargon so they are spelled right.
 Use `--engine scribe` when a key is set and speaker labels matter.
+
+**Moroccan speakers: use `darija_transcribe.py`, not Whisper.** Whisper
+silently translates Darija into English or MSA and repeats phrases; the
+language check (detect per 6s window) shows `ar`/`fr` flipping on
+code-switched speech. Pass `--context` only with care: MoulSot can echo it on
+very short chunks (the script detects and retries without it).
 
 For the editing craft (hard rules on cuts, fades, subtitles last, EDL format,
 self-eval loop), read `studio/.vendor/video-use/SKILL.md` before the first

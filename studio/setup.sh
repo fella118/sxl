@@ -28,7 +28,16 @@ else
   "$VENV/bin/pip" install -q -r "$STUDIO/requirements.txt"
 fi
 
+# Darija pipeline: Silero VAD -> MoulSot v0.3 -> MMS alignment (own venv).
+DVENV="$STUDIO/.venv-darija"
+if command -v uv >/dev/null; then
+  [ -x "$DVENV/bin/python" ] || uv venv -q "$DVENV" --python 3.12
+  uv pip install -q --python "$DVENV/bin/python" torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+  uv pip install -q --python "$DVENV/bin/python" -r "$STUDIO/requirements-darija.txt"
+fi
+
 echo "studio ready"
 echo "  python:    $VENV/bin/python"
+echo "  darija:    $DVENV/bin/python studio/bin/darija_transcribe.py"
 echo "  video-use: $VIDEO_USE/helpers"
 "$VENV/bin/python" "$STUDIO/bin/doctor.py" || true
