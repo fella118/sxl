@@ -1,0 +1,217 @@
+{
+ "language_code": "ary",
+ "engine": "moulsot.v0.3+mms_fa",
+ "text": "واش les progressives كايدوخو bien sûr يقدرو يدوخوك داك اللي كنقرا هنايا عاود عاود الله يجازيك",
+ "words": [
+  {
+   "type": "word",
+   "text": "واش",
+   "start": 2.86,
+   "end": 3.201,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.201,
+   "end": 3.702,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "les",
+   "start": 3.702,
+   "end": 3.802,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.802,
+   "end": 3.882,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "progressives",
+   "start": 3.882,
+   "end": 4.544,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.544,
+   "end": 4.704,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كايدوخو",
+   "start": 4.704,
+   "end": 5.205,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.205,
+   "end": 6.267,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "bien",
+   "start": 6.267,
+   "end": 6.488,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.488,
+   "end": 6.548,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "sûr",
+   "start": 6.548,
+   "end": 6.748,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.748,
+   "end": 6.909,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يقدرو",
+   "start": 6.909,
+   "end": 7.209,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.209,
+   "end": 7.249,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يدوخوك",
+   "start": 7.249,
+   "end": 7.75,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.75,
+   "end": 8.091,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "داك",
+   "start": 8.091,
+   "end": 8.151,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.151,
+   "end": 8.171,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "اللي",
+   "start": 8.171,
+   "end": 8.291,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كنقرا",
+   "start": 8.291,
+   "end": 8.612,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.612,
+   "end": 8.632,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هنايا",
+   "start": 8.632,
+   "end": 8.913,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.913,
+   "end": 9.454,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عاود",
+   "start": 9.454,
+   "end": 9.634,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.634,
+   "end": 10.416,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عاود",
+   "start": 10.416,
+   "end": 10.596,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.596,
+   "end": 10.656,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "الله",
+   "start": 10.656,
+   "end": 10.937,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.937,
+   "end": 10.957,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يجازيك",
+   "start": 10.957,
+   "end": 11.298,
+   "speaker_id": "speaker_0"
+  }
+ ]
+}

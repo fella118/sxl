@@ -1,0 +1,1708 @@
+{
+ "language_code": "ary",
+ "engine": "moulsot.v0.3+mms_fa",
+ "text": "حسن بالنسبة ل les progressifs اه يقدرو يدوخوك surtout المرة اللولة أنا كانصح الناس أنهم une fois تخرج ليهم une adition يعني باقي عندهم plus 1 ولا plus 2 de préférence مايسباريوش les mesures مايديروش la vision de loin و la vision de près بوحديتهم حيت كلما طلعات l'addition مثلا وصلات ل plus 3 كلما صعاب أنك تادابطا على les progressifs وكيجيو des critères آخرين اللي هما le centrage la hauteur كيفاش l'opticien خدا ليك هاد les mesures واش la correction أصلا صحيحة أولا لا يعني يلا ماولفتيهمش داكشي مثلا واحد تلتيام de préférence ترجع عندنا نتاكدو ليك من le centrage من بعد تمشي عند le professionnel يلا عندك شي تساؤل على les progressifs تقدر تخليه لنا فالكومونتير ونجاوبوك ف la vidéo الجاية إن شاء الله شكرا c'est bon",
+ "words": [
+  {
+   "type": "word",
+   "text": "حسن",
+   "start": 1.624,
+   "end": 1.932,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 1.932,
+   "end": 4.521,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "بالنسبة",
+   "start": 4.521,
+   "end": 4.963,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.963,
+   "end": 5.506,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ل",
+   "start": 5.506,
+   "end": 5.526,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.526,
+   "end": 5.546,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "les",
+   "start": 5.546,
+   "end": 5.646,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.646,
+   "end": 5.666,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "progressifs",
+   "start": 5.666,
+   "end": 7.054,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.054,
+   "end": 7.074,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "اه",
+   "start": 7.074,
+   "end": 7.235,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.235,
+   "end": 7.275,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يقدرو",
+   "start": 7.275,
+   "end": 7.616,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.616,
+   "end": 7.637,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يدوخوك",
+   "start": 7.637,
+   "end": 8.099,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.099,
+   "end": 8.7,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "surtout",
+   "start": 8.7,
+   "end": 9.1,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.1,
+   "end": 9.22,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "المرة",
+   "start": 9.22,
+   "end": 9.541,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.541,
+   "end": 9.561,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "اللولة",
+   "start": 9.561,
+   "end": 9.881,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.881,
+   "end": 10.321,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أنا",
+   "start": 10.321,
+   "end": 10.441,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.441,
+   "end": 10.501,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كانصح",
+   "start": 10.501,
+   "end": 10.881,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.881,
+   "end": 10.941,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "الناس",
+   "start": 10.941,
+   "end": 11.262,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.262,
+   "end": 11.422,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أنهم",
+   "start": 11.422,
+   "end": 11.802,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.802,
+   "end": 11.922,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "une",
+   "start": 11.922,
+   "end": 12.022,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "fois",
+   "start": 12.022,
+   "end": 12.202,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تخرج",
+   "start": 12.202,
+   "end": 12.442,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.442,
+   "end": 12.522,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ليهم",
+   "start": 12.522,
+   "end": 12.642,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.642,
+   "end": 12.742,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "une",
+   "start": 12.742,
+   "end": 12.862,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.862,
+   "end": 12.922,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "adition",
+   "start": 12.922,
+   "end": 13.323,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 13.323,
+   "end": 13.823,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يعني",
+   "start": 13.823,
+   "end": 14.023,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.023,
+   "end": 14.103,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "باقي",
+   "start": 14.103,
+   "end": 14.343,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.343,
+   "end": 14.403,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عندهم",
+   "start": 14.403,
+   "end": 14.723,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.723,
+   "end": 15.064,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "plus",
+   "start": 15.064,
+   "end": 15.284,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "1",
+   "start": 15.284,
+   "end": 15.484,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ولا",
+   "start": 15.484,
+   "end": 15.604,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 15.604,
+   "end": 15.664,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "plus",
+   "start": 15.664,
+   "end": 15.884,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "2",
+   "start": 15.884,
+   "end": 16.284,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 16.284,
+   "end": 16.544,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "de",
+   "start": 16.544,
+   "end": 16.625,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 16.625,
+   "end": 16.665,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "préférence",
+   "start": 16.665,
+   "end": 17.225,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 17.225,
+   "end": 17.345,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مايسباريوش",
+   "start": 17.345,
+   "end": 18.025,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 18.025,
+   "end": 19.646,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "les",
+   "start": 19.646,
+   "end": 19.746,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 19.746,
+   "end": 19.766,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "mesures",
+   "start": 19.766,
+   "end": 20.126,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مايديروش",
+   "start": 20.126,
+   "end": 20.487,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 20.487,
+   "end": 20.507,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "la",
+   "start": 20.507,
+   "end": 20.567,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 20.567,
+   "end": 20.607,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "vision",
+   "start": 20.607,
+   "end": 20.867,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 20.867,
+   "end": 20.927,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "de",
+   "start": 20.927,
+   "end": 21.007,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 21.007,
+   "end": 21.047,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "loin",
+   "start": 21.047,
+   "end": 21.227,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 21.227,
+   "end": 21.347,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "و",
+   "start": 21.347,
+   "end": 21.367,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 21.367,
+   "end": 21.407,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "la",
+   "start": 21.407,
+   "end": 21.467,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 21.467,
+   "end": 21.507,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "vision",
+   "start": 21.507,
+   "end": 21.747,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 21.747,
+   "end": 21.787,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "de",
+   "start": 21.787,
+   "end": 21.867,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 21.867,
+   "end": 21.907,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "près",
+   "start": 21.907,
+   "end": 22.068,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 22.068,
+   "end": 22.108,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "بوحديتهم",
+   "start": 22.108,
+   "end": 22.528,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 22.528,
+   "end": 22.628,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "حيت",
+   "start": 22.628,
+   "end": 22.788,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 22.788,
+   "end": 22.888,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كلما",
+   "start": 22.888,
+   "end": 23.248,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 23.248,
+   "end": 23.328,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "طلعات",
+   "start": 23.328,
+   "end": 23.769,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 23.769,
+   "end": 23.969,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "l'addition",
+   "start": 23.969,
+   "end": 24.429,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 24.429,
+   "end": 24.769,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مثلا",
+   "start": 24.769,
+   "end": 25.049,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 25.049,
+   "end": 25.149,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "وصلات",
+   "start": 25.149,
+   "end": 25.469,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 25.469,
+   "end": 25.55,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ل",
+   "start": 25.55,
+   "end": 25.57,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 25.57,
+   "end": 25.63,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "plus",
+   "start": 25.63,
+   "end": 25.83,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "3",
+   "start": 25.83,
+   "end": 26.23,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 26.23,
+   "end": 26.61,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كلما",
+   "start": 26.61,
+   "end": 27.05,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 27.05,
+   "end": 27.19,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "صعاب",
+   "start": 27.19,
+   "end": 27.551,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 27.551,
+   "end": 27.651,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أنك",
+   "start": 27.651,
+   "end": 27.931,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 27.931,
+   "end": 27.991,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تادابطا",
+   "start": 27.991,
+   "end": 28.351,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 28.351,
+   "end": 28.391,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "على",
+   "start": 28.391,
+   "end": 28.491,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 28.491,
+   "end": 28.551,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "les",
+   "start": 28.551,
+   "end": 28.671,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "progressifs",
+   "start": 28.671,
+   "end": 29.212,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 29.212,
+   "end": 29.252,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "وكيجيو",
+   "start": 29.252,
+   "end": 29.632,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 29.632,
+   "end": 29.672,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "des",
+   "start": 29.672,
+   "end": 29.832,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 29.832,
+   "end": 29.892,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "critères",
+   "start": 29.892,
+   "end": 30.412,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "آخرين",
+   "start": 30.412,
+   "end": 30.792,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 30.792,
+   "end": 30.993,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "اللي",
+   "start": 30.993,
+   "end": 31.313,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 31.313,
+   "end": 31.393,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هما",
+   "start": 31.393,
+   "end": 31.653,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 31.653,
+   "end": 32.113,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "le",
+   "start": 32.113,
+   "end": 32.193,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 32.193,
+   "end": 32.273,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "centrage",
+   "start": 32.273,
+   "end": 32.914,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 32.914,
+   "end": 33.054,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "la",
+   "start": 33.054,
+   "end": 33.154,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 33.154,
+   "end": 33.214,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "hauteur",
+   "start": 33.214,
+   "end": 33.694,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 33.694,
+   "end": 34.134,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كيفاش",
+   "start": 34.134,
+   "end": 34.575,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 34.575,
+   "end": 34.615,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "l'opticien",
+   "start": 34.615,
+   "end": 35.075,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 35.075,
+   "end": 35.155,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "خدا",
+   "start": 35.155,
+   "end": 35.335,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 35.335,
+   "end": 35.415,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ليك",
+   "start": 35.415,
+   "end": 35.515,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 35.515,
+   "end": 35.575,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هاد",
+   "start": 35.575,
+   "end": 35.715,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 35.715,
+   "end": 36.736,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "les",
+   "start": 36.736,
+   "end": 36.836,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 36.836,
+   "end": 36.856,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "mesures",
+   "start": 36.856,
+   "end": 37.636,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 37.636,
+   "end": 37.656,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "واش",
+   "start": 37.656,
+   "end": 37.856,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 37.856,
+   "end": 37.916,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "la",
+   "start": 37.916,
+   "end": 37.976,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 37.976,
+   "end": 38.057,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "correction",
+   "start": 38.057,
+   "end": 38.597,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 38.597,
+   "end": 38.757,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أصلا",
+   "start": 38.757,
+   "end": 39.037,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 39.037,
+   "end": 39.177,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "صحيحة",
+   "start": 39.177,
+   "end": 39.537,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 39.537,
+   "end": 39.697,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أولا",
+   "start": 39.697,
+   "end": 39.878,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 39.878,
+   "end": 39.978,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "لا",
+   "start": 39.978,
+   "end": 40.038,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 40.038,
+   "end": 40.478,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يعني",
+   "start": 40.478,
+   "end": 40.698,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 40.698,
+   "end": 40.798,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يلا",
+   "start": 40.798,
+   "end": 40.918,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 40.918,
+   "end": 41.679,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ماولفتيهمش",
+   "start": 41.679,
+   "end": 42.679,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 42.679,
+   "end": 42.739,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "داكشي",
+   "start": 42.739,
+   "end": 43.019,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 43.019,
+   "end": 43.279,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مثلا",
+   "start": 43.279,
+   "end": 43.6,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 43.6,
+   "end": 43.74,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "واحد",
+   "start": 43.74,
+   "end": 44.04,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 44.04,
+   "end": 44.68,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تلتيام",
+   "start": 44.68,
+   "end": 45.261,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 45.261,
+   "end": 45.822,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "de",
+   "start": 45.822,
+   "end": 45.902,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 45.902,
+   "end": 45.982,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "préférence",
+   "start": 45.982,
+   "end": 46.483,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 46.483,
+   "end": 46.503,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ترجع",
+   "start": 46.503,
+   "end": 46.763,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 46.763,
+   "end": 46.803,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عندنا",
+   "start": 46.803,
+   "end": 47.063,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 47.063,
+   "end": 47.124,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "نتاكدو",
+   "start": 47.124,
+   "end": 47.524,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 47.524,
+   "end": 47.584,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ليك",
+   "start": 47.584,
+   "end": 47.704,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 47.704,
+   "end": 47.764,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "من",
+   "start": 47.764,
+   "end": 47.845,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 47.845,
+   "end": 47.865,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "le",
+   "start": 47.865,
+   "end": 47.945,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 47.945,
+   "end": 48.005,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "centrage",
+   "start": 48.005,
+   "end": 48.706,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "من",
+   "start": 48.706,
+   "end": 48.806,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 48.806,
+   "end": 48.866,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "بعد",
+   "start": 48.866,
+   "end": 49.066,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 49.066,
+   "end": 49.106,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تمشي",
+   "start": 49.106,
+   "end": 49.327,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 49.327,
+   "end": 49.387,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عند",
+   "start": 49.387,
+   "end": 49.487,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 49.487,
+   "end": 49.547,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "le",
+   "start": 49.547,
+   "end": 49.587,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "professionnel",
+   "start": 49.587,
+   "end": 50.248,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 50.248,
+   "end": 50.688,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يلا",
+   "start": 50.688,
+   "end": 50.809,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 50.809,
+   "end": 50.869,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عندك",
+   "start": 50.869,
+   "end": 51.089,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 51.089,
+   "end": 51.109,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شي",
+   "start": 51.109,
+   "end": 51.189,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 51.189,
+   "end": 51.249,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تساؤل",
+   "start": 51.249,
+   "end": 51.65,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 51.65,
+   "end": 51.67,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "على",
+   "start": 51.67,
+   "end": 51.79,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 51.79,
+   "end": 51.83,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "les",
+   "start": 51.83,
+   "end": 51.93,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 51.93,
+   "end": 51.97,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "progressifs",
+   "start": 51.97,
+   "end": 52.551,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تقدر",
+   "start": 52.551,
+   "end": 52.811,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 52.811,
+   "end": 52.851,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تخليه",
+   "start": 52.851,
+   "end": 53.172,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 53.172,
+   "end": 53.212,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "لنا",
+   "start": 53.212,
+   "end": 53.312,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 53.312,
+   "end": 53.352,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "فالكومونتير",
+   "start": 53.352,
+   "end": 53.993,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 53.993,
+   "end": 54.113,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ونجاوبوك",
+   "start": 54.113,
+   "end": 54.674,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 54.674,
+   "end": 54.834,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ف",
+   "start": 54.834,
+   "end": 54.854,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 54.854,
+   "end": 54.914,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "la",
+   "start": 54.914,
+   "end": 54.974,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 54.974,
+   "end": 55.034,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "vidéo",
+   "start": 55.034,
+   "end": 55.255,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 55.255,
+   "end": 55.275,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "الجاية",
+   "start": 55.275,
+   "end": 55.475,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "إن",
+   "start": 55.475,
+   "end": 55.515,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 55.515,
+   "end": 55.555,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شاء",
+   "start": 55.555,
+   "end": 55.675,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "الله",
+   "start": 55.675,
+   "end": 55.876,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 55.876,
+   "end": 56.497,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شكرا",
+   "start": 56.497,
+   "end": 56.797,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 56.797,
+   "end": 56.997,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "c'est",
+   "start": 56.997,
+   "end": 57.618,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 57.618,
+   "end": 57.658,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "bon",
+   "start": 57.658,
+   "end": 57.778,
+   "speaker_id": "speaker_0"
+  }
+ ]
+}

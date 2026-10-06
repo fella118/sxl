@@ -1,0 +1,776 @@
+[
+ {
+  "word": "حسن",
+  "start": 1.624,
+  "end": 1.932,
+  "chunk": 0
+ },
+ {
+  "word": "بالنسبة",
+  "start": 4.521,
+  "end": 4.963,
+  "chunk": 1
+ },
+ {
+  "word": "ل",
+  "start": 5.506,
+  "end": 5.526,
+  "chunk": 1
+ },
+ {
+  "word": "les",
+  "start": 5.546,
+  "end": 5.646,
+  "chunk": 1
+ },
+ {
+  "word": "progressifs",
+  "start": 5.666,
+  "end": 7.054,
+  "chunk": 1
+ },
+ {
+  "word": "اه",
+  "start": 7.074,
+  "end": 7.235,
+  "chunk": 1
+ },
+ {
+  "word": "يقدرو",
+  "start": 7.275,
+  "end": 7.616,
+  "chunk": 1
+ },
+ {
+  "word": "يدوخوك",
+  "start": 7.637,
+  "end": 8.099,
+  "chunk": 1
+ },
+ {
+  "word": "surtout",
+  "start": 8.7,
+  "end": 9.1,
+  "chunk": 2
+ },
+ {
+  "word": "المرة",
+  "start": 9.22,
+  "end": 9.541,
+  "chunk": 2
+ },
+ {
+  "word": "اللولة",
+  "start": 9.561,
+  "end": 9.881,
+  "chunk": 2
+ },
+ {
+  "word": "أنا",
+  "start": 10.321,
+  "end": 10.441,
+  "chunk": 2
+ },
+ {
+  "word": "كانصح",
+  "start": 10.501,
+  "end": 10.881,
+  "chunk": 2
+ },
+ {
+  "word": "الناس",
+  "start": 10.941,
+  "end": 11.262,
+  "chunk": 2
+ },
+ {
+  "word": "أنهم",
+  "start": 11.422,
+  "end": 11.802,
+  "chunk": 2
+ },
+ {
+  "word": "une",
+  "start": 11.922,
+  "end": 12.022,
+  "chunk": 2
+ },
+ {
+  "word": "fois",
+  "start": 12.022,
+  "end": 12.202,
+  "chunk": 2
+ },
+ {
+  "word": "تخرج",
+  "start": 12.202,
+  "end": 12.442,
+  "chunk": 2
+ },
+ {
+  "word": "ليهم",
+  "start": 12.522,
+  "end": 12.642,
+  "chunk": 2
+ },
+ {
+  "word": "une",
+  "start": 12.742,
+  "end": 12.862,
+  "chunk": 2
+ },
+ {
+  "word": "adition",
+  "start": 12.922,
+  "end": 13.323,
+  "chunk": 2
+ },
+ {
+  "word": "يعني",
+  "start": 13.823,
+  "end": 14.023,
+  "chunk": 2
+ },
+ {
+  "word": "باقي",
+  "start": 14.103,
+  "end": 14.343,
+  "chunk": 2
+ },
+ {
+  "word": "عندهم",
+  "start": 14.403,
+  "end": 14.723,
+  "chunk": 2
+ },
+ {
+  "word": "plus",
+  "start": 15.064,
+  "end": 15.284,
+  "chunk": 2
+ },
+ {
+  "word": "1",
+  "start": 15.284,
+  "end": 15.484,
+  "chunk": 2
+ },
+ {
+  "word": "ولا",
+  "start": 15.484,
+  "end": 15.604,
+  "chunk": 2
+ },
+ {
+  "word": "plus",
+  "start": 15.664,
+  "end": 15.884,
+  "chunk": 2
+ },
+ {
+  "word": "2",
+  "start": 15.884,
+  "end": 16.284,
+  "chunk": 2
+ },
+ {
+  "word": "de",
+  "start": 16.544,
+  "end": 16.625,
+  "chunk": 2
+ },
+ {
+  "word": "préférence",
+  "start": 16.665,
+  "end": 17.225,
+  "chunk": 2
+ },
+ {
+  "word": "مايسباريوش",
+  "start": 17.345,
+  "end": 18.025,
+  "chunk": 2
+ },
+ {
+  "word": "les",
+  "start": 19.646,
+  "end": 19.746,
+  "chunk": 2
+ },
+ {
+  "word": "mesures",
+  "start": 19.766,
+  "end": 20.126,
+  "chunk": 2
+ },
+ {
+  "word": "مايديروش",
+  "start": 20.126,
+  "end": 20.487,
+  "chunk": 2
+ },
+ {
+  "word": "la",
+  "start": 20.507,
+  "end": 20.567,
+  "chunk": 2
+ },
+ {
+  "word": "vision",
+  "start": 20.607,
+  "end": 20.867,
+  "chunk": 2
+ },
+ {
+  "word": "de",
+  "start": 20.927,
+  "end": 21.007,
+  "chunk": 2
+ },
+ {
+  "word": "loin",
+  "start": 21.047,
+  "end": 21.227,
+  "chunk": 2
+ },
+ {
+  "word": "و",
+  "start": 21.347,
+  "end": 21.367,
+  "chunk": 2
+ },
+ {
+  "word": "la",
+  "start": 21.407,
+  "end": 21.467,
+  "chunk": 2
+ },
+ {
+  "word": "vision",
+  "start": 21.507,
+  "end": 21.747,
+  "chunk": 2
+ },
+ {
+  "word": "de",
+  "start": 21.787,
+  "end": 21.867,
+  "chunk": 2
+ },
+ {
+  "word": "près",
+  "start": 21.907,
+  "end": 22.068,
+  "chunk": 2
+ },
+ {
+  "word": "بوحديتهم",
+  "start": 22.108,
+  "end": 22.528,
+  "chunk": 2
+ },
+ {
+  "word": "حيت",
+  "start": 22.628,
+  "end": 22.788,
+  "chunk": 2
+ },
+ {
+  "word": "كلما",
+  "start": 22.888,
+  "end": 23.248,
+  "chunk": 2
+ },
+ {
+  "word": "طلعات",
+  "start": 23.328,
+  "end": 23.769,
+  "chunk": 2
+ },
+ {
+  "word": "l'addition",
+  "start": 23.969,
+  "end": 24.429,
+  "chunk": 2
+ },
+ {
+  "word": "مثلا",
+  "start": 24.769,
+  "end": 25.049,
+  "chunk": 2
+ },
+ {
+  "word": "وصلات",
+  "start": 25.149,
+  "end": 25.469,
+  "chunk": 2
+ },
+ {
+  "word": "ل",
+  "start": 25.55,
+  "end": 25.57,
+  "chunk": 2
+ },
+ {
+  "word": "plus",
+  "start": 25.63,
+  "end": 25.83,
+  "chunk": 2
+ },
+ {
+  "word": "3",
+  "start": 25.83,
+  "end": 26.23,
+  "chunk": 2
+ },
+ {
+  "word": "كلما",
+  "start": 26.61,
+  "end": 27.05,
+  "chunk": 2
+ },
+ {
+  "word": "صعاب",
+  "start": 27.19,
+  "end": 27.551,
+  "chunk": 2
+ },
+ {
+  "word": "أنك",
+  "start": 27.651,
+  "end": 27.931,
+  "chunk": 2
+ },
+ {
+  "word": "تادابطا",
+  "start": 27.991,
+  "end": 28.351,
+  "chunk": 2
+ },
+ {
+  "word": "على",
+  "start": 28.391,
+  "end": 28.491,
+  "chunk": 2
+ },
+ {
+  "word": "les",
+  "start": 28.551,
+  "end": 28.671,
+  "chunk": 2
+ },
+ {
+  "word": "progressifs",
+  "start": 28.671,
+  "end": 29.212,
+  "chunk": 2
+ },
+ {
+  "word": "وكيجيو",
+  "start": 29.252,
+  "end": 29.632,
+  "chunk": 2
+ },
+ {
+  "word": "des",
+  "start": 29.672,
+  "end": 29.832,
+  "chunk": 2
+ },
+ {
+  "word": "critères",
+  "start": 29.892,
+  "end": 30.412,
+  "chunk": 2
+ },
+ {
+  "word": "آخرين",
+  "start": 30.412,
+  "end": 30.792,
+  "chunk": 2
+ },
+ {
+  "word": "اللي",
+  "start": 30.993,
+  "end": 31.313,
+  "chunk": 2
+ },
+ {
+  "word": "هما",
+  "start": 31.393,
+  "end": 31.653,
+  "chunk": 2
+ },
+ {
+  "word": "le",
+  "start": 32.113,
+  "end": 32.193,
+  "chunk": 2
+ },
+ {
+  "word": "centrage",
+  "start": 32.273,
+  "end": 32.914,
+  "chunk": 2
+ },
+ {
+  "word": "la",
+  "start": 33.054,
+  "end": 33.154,
+  "chunk": 2
+ },
+ {
+  "word": "hauteur",
+  "start": 33.214,
+  "end": 33.694,
+  "chunk": 2
+ },
+ {
+  "word": "كيفاش",
+  "start": 34.134,
+  "end": 34.575,
+  "chunk": 2
+ },
+ {
+  "word": "l'opticien",
+  "start": 34.615,
+  "end": 35.075,
+  "chunk": 2
+ },
+ {
+  "word": "خدا",
+  "start": 35.155,
+  "end": 35.335,
+  "chunk": 2
+ },
+ {
+  "word": "ليك",
+  "start": 35.415,
+  "end": 35.515,
+  "chunk": 2
+ },
+ {
+  "word": "هاد",
+  "start": 35.575,
+  "end": 35.715,
+  "chunk": 2
+ },
+ {
+  "word": "les",
+  "start": 36.736,
+  "end": 36.836,
+  "chunk": 2
+ },
+ {
+  "word": "mesures",
+  "start": 36.856,
+  "end": 37.636,
+  "chunk": 2
+ },
+ {
+  "word": "واش",
+  "start": 37.656,
+  "end": 37.856,
+  "chunk": 2
+ },
+ {
+  "word": "la",
+  "start": 37.916,
+  "end": 37.976,
+  "chunk": 2
+ },
+ {
+  "word": "correction",
+  "start": 38.057,
+  "end": 38.597,
+  "chunk": 2
+ },
+ {
+  "word": "أصلا",
+  "start": 38.757,
+  "end": 39.037,
+  "chunk": 2
+ },
+ {
+  "word": "صحيحة",
+  "start": 39.177,
+  "end": 39.537,
+  "chunk": 2
+ },
+ {
+  "word": "أولا",
+  "start": 39.697,
+  "end": 39.878,
+  "chunk": 2
+ },
+ {
+  "word": "لا",
+  "start": 39.978,
+  "end": 40.038,
+  "chunk": 2
+ },
+ {
+  "word": "يعني",
+  "start": 40.478,
+  "end": 40.698,
+  "chunk": 2
+ },
+ {
+  "word": "يلا",
+  "start": 40.798,
+  "end": 40.918,
+  "chunk": 2
+ },
+ {
+  "word": "ماولفتيهمش",
+  "start": 41.679,
+  "end": 42.679,
+  "chunk": 2
+ },
+ {
+  "word": "داكشي",
+  "start": 42.739,
+  "end": 43.019,
+  "chunk": 2
+ },
+ {
+  "word": "مثلا",
+  "start": 43.279,
+  "end": 43.6,
+  "chunk": 2
+ },
+ {
+  "word": "واحد",
+  "start": 43.74,
+  "end": 44.04,
+  "chunk": 2
+ },
+ {
+  "word": "تلتيام",
+  "start": 44.68,
+  "end": 45.261,
+  "chunk": 3
+ },
+ {
+  "word": "de",
+  "start": 45.822,
+  "end": 45.902,
+  "chunk": 3
+ },
+ {
+  "word": "préférence",
+  "start": 45.982,
+  "end": 46.483,
+  "chunk": 3
+ },
+ {
+  "word": "ترجع",
+  "start": 46.503,
+  "end": 46.763,
+  "chunk": 3
+ },
+ {
+  "word": "عندنا",
+  "start": 46.803,
+  "end": 47.063,
+  "chunk": 3
+ },
+ {
+  "word": "نتاكدو",
+  "start": 47.124,
+  "end": 47.524,
+  "chunk": 3
+ },
+ {
+  "word": "ليك",
+  "start": 47.584,
+  "end": 47.704,
+  "chunk": 3
+ },
+ {
+  "word": "من",
+  "start": 47.764,
+  "end": 47.845,
+  "chunk": 3
+ },
+ {
+  "word": "le",
+  "start": 47.865,
+  "end": 47.945,
+  "chunk": 3
+ },
+ {
+  "word": "centrage",
+  "start": 48.005,
+  "end": 48.706,
+  "chunk": 3
+ },
+ {
+  "word": "من",
+  "start": 48.706,
+  "end": 48.806,
+  "chunk": 3
+ },
+ {
+  "word": "بعد",
+  "start": 48.866,
+  "end": 49.066,
+  "chunk": 3
+ },
+ {
+  "word": "تمشي",
+  "start": 49.106,
+  "end": 49.327,
+  "chunk": 3
+ },
+ {
+  "word": "عند",
+  "start": 49.387,
+  "end": 49.487,
+  "chunk": 3
+ },
+ {
+  "word": "le",
+  "start": 49.547,
+  "end": 49.587,
+  "chunk": 3
+ },
+ {
+  "word": "professionnel",
+  "start": 49.587,
+  "end": 50.248,
+  "chunk": 3
+ },
+ {
+  "word": "يلا",
+  "start": 50.688,
+  "end": 50.809,
+  "chunk": 3
+ },
+ {
+  "word": "عندك",
+  "start": 50.869,
+  "end": 51.089,
+  "chunk": 3
+ },
+ {
+  "word": "شي",
+  "start": 51.109,
+  "end": 51.189,
+  "chunk": 3
+ },
+ {
+  "word": "تساؤل",
+  "start": 51.249,
+  "end": 51.65,
+  "chunk": 3
+ },
+ {
+  "word": "على",
+  "start": 51.67,
+  "end": 51.79,
+  "chunk": 3
+ },
+ {
+  "word": "les",
+  "start": 51.83,
+  "end": 51.93,
+  "chunk": 3
+ },
+ {
+  "word": "progressifs",
+  "start": 51.97,
+  "end": 52.551,
+  "chunk": 3
+ },
+ {
+  "word": "تقدر",
+  "start": 52.551,
+  "end": 52.811,
+  "chunk": 3
+ },
+ {
+  "word": "تخليه",
+  "start": 52.851,
+  "end": 53.172,
+  "chunk": 3
+ },
+ {
+  "word": "لنا",
+  "start": 53.212,
+  "end": 53.312,
+  "chunk": 3
+ },
+ {
+  "word": "فالكومونتير",
+  "start": 53.352,
+  "end": 53.993,
+  "chunk": 3
+ },
+ {
+  "word": "ونجاوبوك",
+  "start": 54.113,
+  "end": 54.674,
+  "chunk": 3
+ },
+ {
+  "word": "ف",
+  "start": 54.834,
+  "end": 54.854,
+  "chunk": 3
+ },
+ {
+  "word": "la",
+  "start": 54.914,
+  "end": 54.974,
+  "chunk": 3
+ },
+ {
+  "word": "vidéo",
+  "start": 55.034,
+  "end": 55.255,
+  "chunk": 3
+ },
+ {
+  "word": "الجاية",
+  "start": 55.275,
+  "end": 55.475,
+  "chunk": 3
+ },
+ {
+  "word": "إن",
+  "start": 55.475,
+  "end": 55.515,
+  "chunk": 3
+ },
+ {
+  "word": "شاء",
+  "start": 55.555,
+  "end": 55.675,
+  "chunk": 3
+ },
+ {
+  "word": "الله",
+  "start": 55.675,
+  "end": 55.876,
+  "chunk": 3
+ },
+ {
+  "word": "شكرا",
+  "start": 56.497,
+  "end": 56.797,
+  "chunk": 3
+ },
+ {
+  "word": "c'est",
+  "start": 56.997,
+  "end": 57.618,
+  "chunk": 3
+ },
+ {
+  "word": "bon",
+  "start": 57.658,
+  "end": 57.778,
+  "chunk": 3
+ }
+]
