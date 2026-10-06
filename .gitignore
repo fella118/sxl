@@ -1,0 +1,17 @@
+# Client media stays out of git; briefs, transcripts, EDLs, SRTs and logs are kept.
+projects/**/source/
+projects/**/deliver/
+projects/**/edit/analysis/
+projects/**/edit/clips_*/
+projects/**/edit/animations/**/node_modules/
+projects/**/*.mp4
+projects/**/*.mov
+projects/**/*.mkv
+projects/**/*.m4v
+projects/**/*.webm
+projects/**/*.wav
+projects/**/*.mp3
+projects/**/*.m4a
+projects/**/*.png
+projects/**/*.jpg
+__pycache__/

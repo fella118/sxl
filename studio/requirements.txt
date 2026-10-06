@@ -1,0 +1,12 @@
+# video-use helpers
+requests
+librosa
+matplotlib
+pillow
+numpy
+# local transcription (word timestamps, VAD)
+faster-whisper
+# scene detection for analysis
+scenedetect[opencv-headless]
+# pulling sources from URLs
+yt-dlp
