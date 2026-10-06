@@ -118,3 +118,8 @@ All videos: H.264 High 1080x1920 50 fps, AAC 48 kHz, 43.68s, -14.0 LUFS / -1.5 d
 Masters were muxed from final_v3.mp4 without re-encoding the picture; chat
 uploads are capped at 30 MB and the Drive connector only takes inline uploads,
 so the full masters stay on the server.
+
+Housekeeping (2026-10-06): raw footage C2412/C2416 and render intermediates deleted
+to make room for the next project; re-download from the client's Drive folder
+(15Miyjbpfqjpj6dJebXphJCZULPVMBQxm; C2416 = file 1s92l2st4wWKs5yjvyQ5z28Nc9Yma81nq)
+and rerun track_subject.py + render_base.py + capture + composite to revise.
