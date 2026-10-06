@@ -1,0 +1,416 @@
+[
+ {
+  "word": "خويا",
+  "start": 2.28,
+  "end": 2.501,
+  "chunk": 0
+ },
+ {
+  "word": "خلصت",
+  "start": 2.581,
+  "end": 2.942,
+  "chunk": 0
+ },
+ {
+  "word": "2500",
+  "start": 2.942,
+  "end": 3.342,
+  "chunk": 0
+ },
+ {
+  "word": "درهم",
+  "start": 3.886,
+  "end": 4.086,
+  "chunk": 0
+ },
+ {
+  "word": "فالنظارات",
+  "start": 4.146,
+  "end": 4.909,
+  "chunk": 0
+ },
+ {
+  "word": "وزادت",
+  "start": 5.049,
+  "end": 5.391,
+  "chunk": 0
+ },
+ {
+  "word": "جغليض",
+  "start": 5.431,
+  "end": 6.013,
+  "chunk": 0
+ },
+ {
+  "word": "وتقيل",
+  "start": 6.053,
+  "end": 6.454,
+  "chunk": 0
+ },
+ {
+  "word": "ماعرفتش",
+  "start": 6.856,
+  "end": 7.257,
+  "chunk": 0
+ },
+ {
+  "word": "واش",
+  "start": 7.297,
+  "end": 7.437,
+  "chunk": 0
+ },
+ {
+  "word": "تقولبت",
+  "start": 7.458,
+  "end": 7.919,
+  "chunk": 0
+ },
+ {
+  "word": "صافي",
+  "start": 40.002,
+  "end": 40.383,
+  "chunk": 1
+ },
+ {
+  "word": "c'est",
+  "start": 41.064,
+  "end": 51.634,
+  "chunk": 1
+ },
+ {
+  "word": "bon",
+  "start": 52.175,
+  "end": 56.68,
+  "chunk": 1
+ },
+ {
+  "word": "هادي",
+  "start": 57.661,
+  "end": 57.882,
+  "chunk": 2
+ },
+ {
+  "word": "هي",
+  "start": 57.902,
+  "end": 57.943,
+  "chunk": 2
+ },
+ {
+  "word": "اللي",
+  "start": 57.983,
+  "end": 58.104,
+  "chunk": 2
+ },
+ {
+  "word": "كتحميك",
+  "start": 58.144,
+  "end": 58.587,
+  "chunk": 2
+ },
+ {
+  "word": "من",
+  "start": 58.647,
+  "end": 58.748,
+  "chunk": 2
+ },
+ {
+  "word": "كل",
+  "start": 58.828,
+  "end": 59.009,
+  "chunk": 2
+ },
+ {
+  "word": "opticien",
+  "start": 59.15,
+  "end": 59.633,
+  "chunk": 2
+ },
+ {
+  "word": "يعني",
+  "start": 59.734,
+  "end": 59.915,
+  "chunk": 2
+ },
+ {
+  "word": "مثلا",
+  "start": 59.955,
+  "end": 60.297,
+  "chunk": 2
+ },
+ {
+  "word": "قالك",
+  "start": 61.12,
+  "end": 61.421,
+  "chunk": 3
+ },
+ {
+  "word": "l'opticien",
+  "start": 61.461,
+  "end": 61.921,
+  "chunk": 3
+ },
+ {
+  "word": "أنني",
+  "start": 62.001,
+  "end": 62.301,
+  "chunk": 3
+ },
+ {
+  "word": "درت",
+  "start": 62.341,
+  "end": 62.502,
+  "chunk": 3
+ },
+ {
+  "word": "لك",
+  "start": 62.562,
+  "end": 62.722,
+  "chunk": 3
+ },
+ {
+  "word": "واحد",
+  "start": 62.942,
+  "end": 63.262,
+  "chunk": 3
+ },
+ {
+  "word": "l'indis",
+  "start": 63.322,
+  "end": 63.683,
+  "chunk": 3
+ },
+ {
+  "word": "de",
+  "start": 63.723,
+  "end": 63.823,
+  "chunk": 3
+ },
+ {
+  "word": "10614",
+  "start": 63.823,
+  "end": 64.223,
+  "chunk": 3
+ },
+ {
+  "word": "خصك",
+  "start": 64.484,
+  "end": 65.425,
+  "chunk": 3
+ },
+ {
+  "word": "تلقاها",
+  "start": 65.465,
+  "end": 65.885,
+  "chunk": 3
+ },
+ {
+  "word": "فهاد",
+  "start": 66.225,
+  "end": 66.486,
+  "chunk": 3
+ },
+ {
+  "word": "la",
+  "start": 66.546,
+  "end": 66.626,
+  "chunk": 3
+ },
+ {
+  "word": "carte",
+  "start": 66.706,
+  "end": 66.926,
+  "chunk": 3
+ },
+ {
+  "word": "de",
+  "start": 66.926,
+  "end": 67.006,
+  "chunk": 3
+ },
+ {
+  "word": "garantie",
+  "start": 67.006,
+  "end": 67.727,
+  "chunk": 3
+ },
+ {
+  "word": "هادي",
+  "start": 67.727,
+  "end": 67.867,
+  "chunk": 3
+ },
+ {
+  "word": "أول",
+  "start": 67.947,
+  "end": 68.167,
+  "chunk": 3
+ },
+ {
+  "word": "حاجة",
+  "start": 68.187,
+  "end": 68.428,
+  "chunk": 3
+ },
+ {
+  "word": "وثاني",
+  "start": 68.748,
+  "end": 69.068,
+  "chunk": 3
+ },
+ {
+  "word": "حاجة",
+  "start": 69.128,
+  "end": 69.829,
+  "chunk": 3
+ },
+ {
+  "word": "تقدر",
+  "start": 70.149,
+  "end": 70.47,
+  "chunk": 3
+ },
+ {
+  "word": "تكون",
+  "start": 70.53,
+  "end": 70.73,
+  "chunk": 3
+ },
+ {
+  "word": "ماتقولبتيش",
+  "start": 70.77,
+  "end": 71.371,
+  "chunk": 3
+ },
+ {
+  "word": "فالثمن",
+  "start": 71.411,
+  "end": 71.891,
+  "chunk": 3
+ },
+ {
+  "word": "قد",
+  "start": 72.131,
+  "end": 72.372,
+  "chunk": 3
+ },
+ {
+  "word": "ماتقولبتي",
+  "start": 72.732,
+  "end": 73.493,
+  "chunk": 3
+ },
+ {
+  "word": "ف",
+  "start": 73.573,
+  "end": 73.593,
+  "chunk": 3
+ },
+ {
+  "word": "l'expertise",
+  "start": 73.693,
+  "end": 74.374,
+  "chunk": 3
+ },
+ {
+  "word": "ديال",
+  "start": 74.414,
+  "end": 74.594,
+  "chunk": 3
+ },
+ {
+  "word": "l'opticien",
+  "start": 74.614,
+  "end": 75.054,
+  "chunk": 3
+ },
+ {
+  "word": "اللي",
+  "start": 75.054,
+  "end": 75.715,
+  "chunk": 3
+ },
+ {
+  "word": "ماعطاكش",
+  "start": 75.815,
+  "end": 76.456,
+  "chunk": 3
+ },
+ {
+  "word": "le",
+  "start": 76.796,
+  "end": 76.896,
+  "chunk": 3
+ },
+ {
+  "word": "choix",
+  "start": 77.016,
+  "end": 77.157,
+  "chunk": 3
+ },
+ {
+  "word": "اللي",
+  "start": 77.197,
+  "end": 77.897,
+  "chunk": 3
+ },
+ {
+  "word": "غيجيك",
+  "start": 77.977,
+  "end": 78.398,
+  "chunk": 3
+ },
+ {
+  "word": "مع",
+  "start": 78.518,
+  "end": 78.618,
+  "chunk": 3
+ },
+ {
+  "word": "les",
+  "start": 78.698,
+  "end": 78.798,
+  "chunk": 3
+ },
+ {
+  "word": "verres",
+  "start": 78.818,
+  "end": 78.978,
+  "chunk": 3
+ },
+ {
+  "word": "ديالك",
+  "start": 79.038,
+  "end": 79.379,
+  "chunk": 3
+ },
+ {
+  "word": "هادشي",
+  "start": 79.739,
+  "end": 79.959,
+  "chunk": 3
+ },
+ {
+  "word": "اللي",
+  "start": 79.959,
+  "end": 80.079,
+  "chunk": 3
+ },
+ {
+  "word": "كاين",
+  "start": 80.14,
+  "end": 80.32,
+  "chunk": 3
+ },
+ {
+  "word": "دراري",
+  "start": 81.541,
+  "end": 81.726,
+  "chunk": 4
+ },
+ {
+  "word": "گالصونت",
+  "start": 81.787,
+  "end": 82.177,
+  "chunk": 4
+ }
+]

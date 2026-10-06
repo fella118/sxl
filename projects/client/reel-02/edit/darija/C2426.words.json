@@ -1,0 +1,572 @@
+[
+ {
+  "word": "ça",
+  "start": 2.46,
+  "end": 2.54,
+  "chunk": 0
+ },
+ {
+  "word": "dépend",
+  "start": 2.6,
+  "end": 2.921,
+  "chunk": 0
+ },
+ {
+  "word": "العبار",
+  "start": 2.921,
+  "end": 3.201,
+  "chunk": 0
+ },
+ {
+  "word": "ديالك",
+  "start": 3.262,
+  "end": 3.582,
+  "chunk": 0
+ },
+ {
+  "word": "بالنسبة",
+  "start": 3.843,
+  "end": 4.263,
+  "chunk": 0
+ },
+ {
+  "word": "للعبار",
+  "start": 4.464,
+  "end": 4.844,
+  "chunk": 0
+ },
+ {
+  "word": "كايمشي",
+  "start": 5.004,
+  "end": 5.385,
+  "chunk": 0
+ },
+ {
+  "word": "ب",
+  "start": 5.686,
+  "end": 5.706,
+  "chunk": 0
+ },
+ {
+  "word": "0,25",
+  "start": 5.706,
+  "end": 6.106,
+  "chunk": 0
+ },
+ {
+  "word": "0,25",
+  "start": 6.106,
+  "end": 6.506,
+  "chunk": 0
+ },
+ {
+  "word": "هنا",
+  "start": 7.529,
+  "end": 7.689,
+  "chunk": 0
+ },
+ {
+  "word": "غايبان",
+  "start": 7.769,
+  "end": 8.089,
+  "chunk": 0
+ },
+ {
+  "word": "ليكم",
+  "start": 8.109,
+  "end": 8.43,
+  "chunk": 0
+ },
+ {
+  "word": "واحد",
+  "start": 8.65,
+  "end": 8.971,
+  "chunk": 0
+ },
+ {
+  "word": "المهم",
+  "start": 9.191,
+  "end": 10.333,
+  "chunk": 0
+ },
+ {
+  "word": "des",
+  "start": 10.393,
+  "end": 10.994,
+  "chunk": 0
+ },
+ {
+  "word": "indices",
+  "start": 11.034,
+  "end": 11.295,
+  "chunk": 0
+ },
+ {
+  "word": "ولا",
+  "start": 11.355,
+  "end": 11.475,
+  "chunk": 0
+ },
+ {
+  "word": "des",
+  "start": 11.695,
+  "end": 11.795,
+  "chunk": 0
+ },
+ {
+  "word": "corrections",
+  "start": 11.815,
+  "end": 12.897,
+  "chunk": 0
+ },
+ {
+  "word": "وكل",
+  "start": 13.418,
+  "end": 13.679,
+  "chunk": 0
+ },
+ {
+  "word": "correction",
+  "start": 13.799,
+  "end": 14.3,
+  "chunk": 0
+ },
+ {
+  "word": "والأنديس",
+  "start": 15.201,
+  "end": 15.622,
+  "chunk": 1
+ },
+ {
+  "word": "اللي",
+  "start": 15.622,
+  "end": 15.742,
+  "chunk": 1
+ },
+ {
+  "word": "خصنا",
+  "start": 15.782,
+  "end": 15.943,
+  "chunk": 1
+ },
+ {
+  "word": "نخدموها",
+  "start": 15.983,
+  "end": 16.364,
+  "chunk": 1
+ },
+ {
+  "word": "متفقين",
+  "start": 16.504,
+  "end": 16.985,
+  "chunk": 1
+ },
+ {
+  "word": "كاينة",
+  "start": 17.226,
+  "end": 17.507,
+  "chunk": 1
+ },
+ {
+  "word": "من",
+  "start": 17.667,
+  "end": 17.787,
+  "chunk": 1
+ },
+ {
+  "word": "-0,25",
+  "start": 17.787,
+  "end": 18.187,
+  "chunk": 1
+ },
+ {
+  "word": "ل-2,2",
+  "start": 18.951,
+  "end": 18.971,
+  "chunk": 1
+ },
+ {
+  "word": "كانخدموها",
+  "start": 19.572,
+  "end": 20.154,
+  "chunk": 1
+ },
+ {
+  "word": "le",
+  "start": 20.374,
+  "end": 20.455,
+  "chunk": 1
+ },
+ {
+  "word": "maximum",
+  "start": 20.515,
+  "end": 20.936,
+  "chunk": 1
+ },
+ {
+  "word": "ب",
+  "start": 20.956,
+  "end": 20.976,
+  "chunk": 1
+ },
+ {
+  "word": "1,5",
+  "start": 20.976,
+  "end": 21.026,
+  "chunk": 1
+ },
+ {
+  "word": "ل",
+  "start": 21.016,
+  "end": 21.036,
+  "chunk": 1
+ },
+ {
+  "word": "1,56",
+  "start": 21.036,
+  "end": 21.436,
+  "chunk": 1
+ },
+ {
+  "word": "من",
+  "start": 22.82,
+  "end": 22.92,
+  "chunk": 2
+ },
+ {
+  "word": "moins",
+  "start": 22.96,
+  "end": 23.22,
+  "chunk": 2
+ },
+ {
+  "word": "deux",
+  "start": 23.22,
+  "end": 23.321,
+  "chunk": 2
+ },
+ {
+  "word": "ل",
+  "start": 23.461,
+  "end": 23.481,
+  "chunk": 2
+ },
+ {
+  "word": "moins",
+  "start": 23.541,
+  "end": 23.781,
+  "chunk": 2
+ },
+ {
+  "word": "quatre",
+  "start": 23.781,
+  "end": 24.081,
+  "chunk": 2
+ },
+ {
+  "word": "كيتخدم",
+  "start": 24.081,
+  "end": 24.462,
+  "chunk": 2
+ },
+ {
+  "word": "ب",
+  "start": 24.502,
+  "end": 24.522,
+  "chunk": 2
+ },
+ {
+  "word": "l-1600",
+  "start": 24.582,
+  "end": 24.602,
+  "chunk": 2
+ },
+ {
+  "word": "من",
+  "start": 24.682,
+  "end": 24.762,
+  "chunk": 2
+ },
+ {
+  "word": "moins",
+  "start": 24.862,
+  "end": 25.062,
+  "chunk": 2
+ },
+ {
+  "word": "quatre",
+  "start": 25.122,
+  "end": 26.243,
+  "chunk": 2
+ },
+ {
+  "word": "ل",
+  "start": 26.243,
+  "end": 26.263,
+  "chunk": 2
+ },
+ {
+  "word": "moins",
+  "start": 26.323,
+  "end": 26.583,
+  "chunk": 2
+ },
+ {
+  "word": "six",
+  "start": 26.704,
+  "end": 26.764,
+  "chunk": 2
+ },
+ {
+  "word": "كيتخدم",
+  "start": 26.764,
+  "end": 27.124,
+  "chunk": 2
+ },
+ {
+  "word": "ب",
+  "start": 27.164,
+  "end": 27.184,
+  "chunk": 2
+ },
+ {
+  "word": "l-167",
+  "start": 27.224,
+  "end": 27.244,
+  "chunk": 2
+ },
+ {
+  "word": "من",
+  "start": 28.285,
+  "end": 28.385,
+  "chunk": 2
+ },
+ {
+  "word": "moins",
+  "start": 28.425,
+  "end": 28.665,
+  "chunk": 2
+ },
+ {
+  "word": "six",
+  "start": 28.685,
+  "end": 28.885,
+  "chunk": 2
+ },
+ {
+  "word": "و",
+  "start": 29.006,
+  "end": 29.026,
+  "chunk": 2
+ },
+ {
+  "word": "نتا",
+  "start": 29.066,
+  "end": 29.206,
+  "chunk": 2
+ },
+ {
+  "word": "طالع",
+  "start": 29.266,
+  "end": 29.546,
+  "chunk": 2
+ },
+ {
+  "word": "كنقدرو",
+  "start": 29.626,
+  "end": 30.026,
+  "chunk": 2
+ },
+ {
+  "word": "نخدمو",
+  "start": 30.087,
+  "end": 30.347,
+  "chunk": 2
+ },
+ {
+  "word": "ب",
+  "start": 30.407,
+  "end": 30.427,
+  "chunk": 2
+ },
+ {
+  "word": "l-1614",
+  "start": 30.467,
+  "end": 30.487,
+  "chunk": 2
+ },
+ {
+  "word": "أولا",
+  "start": 31.448,
+  "end": 31.608,
+  "chunk": 2
+ },
+ {
+  "word": "كندوزو",
+  "start": 31.648,
+  "end": 31.988,
+  "chunk": 2
+ },
+ {
+  "word": "للمينيرال",
+  "start": 32.028,
+  "end": 32.509,
+  "chunk": 2
+ },
+ {
+  "word": "direct",
+  "start": 32.549,
+  "end": 32.889,
+  "chunk": 2
+ },
+ {
+  "word": "أولا",
+  "start": 33.329,
+  "end": 33.53,
+  "chunk": 2
+ },
+ {
+  "word": "كاينة",
+  "start": 33.59,
+  "end": 33.83,
+  "chunk": 2
+ },
+ {
+  "word": "des",
+  "start": 33.91,
+  "end": 34.03,
+  "chunk": 2
+ },
+ {
+  "word": "verres",
+  "start": 34.09,
+  "end": 34.45,
+  "chunk": 2
+ },
+ {
+  "word": "عندنا",
+  "start": 34.611,
+  "end": 34.931,
+  "chunk": 2
+ },
+ {
+  "word": "فݣزلنا",
+  "start": 35.091,
+  "end": 35.631,
+  "chunk": 2
+ },
+ {
+  "word": "سميتو",
+  "start": 35.992,
+  "end": 36.372,
+  "chunk": 2
+ },
+ {
+  "word": "MASTERY",
+  "start": 36.752,
+  "end": 37.113,
+  "chunk": 2
+ },
+ {
+  "word": "Luxe",
+  "start": 37.133,
+  "end": 37.433,
+  "chunk": 2
+ },
+ {
+  "word": "كيجي",
+  "start": 37.433,
+  "end": 37.713,
+  "chunk": 2
+ },
+ {
+  "word": "l-1614",
+  "start": 39.355,
+  "end": 39.375,
+  "chunk": 2
+ },
+ {
+  "word": "organique",
+  "start": 39.475,
+  "end": 40.095,
+  "chunk": 2
+ },
+ {
+  "word": "يعني",
+  "start": 40.095,
+  "end": 40.276,
+  "chunk": 2
+ },
+ {
+  "word": "كيفما",
+  "start": 40.736,
+  "end": 40.996,
+  "chunk": 2
+ },
+ {
+  "word": "كيقولو",
+  "start": 41.056,
+  "end": 41.357,
+  "chunk": 2
+ },
+ {
+  "word": "الناس",
+  "start": 41.357,
+  "end": 41.617,
+  "chunk": 2
+ },
+ {
+  "word": "البلاستيك",
+  "start": 41.657,
+  "end": 42.317,
+  "chunk": 2
+ },
+ {
+  "word": "و",
+  "start": 42.858,
+  "end": 42.878,
+  "chunk": 2
+ },
+ {
+  "word": "كيجي",
+  "start": 42.938,
+  "end": 43.178,
+  "chunk": 2
+ },
+ {
+  "word": "رقيق",
+  "start": 43.278,
+  "end": 43.578,
+  "chunk": 2
+ },
+ {
+  "word": "على",
+  "start": 43.639,
+  "end": 43.759,
+  "chunk": 2
+ },
+ {
+  "word": "l-1614",
+  "start": 43.819,
+  "end": 43.839,
+  "chunk": 2
+ },
+ {
+  "word": "normal",
+  "start": 44.78,
+  "end": 45.1,
+  "chunk": 2
+ },
+ {
+  "word": "ça",
+  "start": 46.366,
+  "end": 46.469,
+  "chunk": 3
+ },
+ {
+  "word": "va",
+  "start": 46.51,
+  "end": 46.593,
+  "chunk": 3
+ }
+]

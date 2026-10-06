@@ -195,6 +195,9 @@ def main() -> None:
     ap.add_argument("--min-gap", type=float, default=0.3, help="VAD silence that splits speech (s)")
     ap.add_argument("--audio-track", type=int, default=0)
     ap.add_argument("--threads", type=int, default=0, help="torch CPU threads (0 = all)")
+    ap.add_argument("--dtype", choices=["bfloat16", "float32"], default="float32",
+                    help="Model weights: float32 (default, ~10x faster on CPU) or bfloat16 (half the RAM, very slow on CPU)")
+    ap.add_argument("--batch", type=int, default=1, help="ASR chunks per forward pass (memory grows with it)")
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
 
@@ -220,9 +223,9 @@ def main() -> None:
             chunks = vad_chunks(audio, args.max_chunk, args.min_gap)
             print(f"  {len(chunks)} speech chunks, {sum(b - a for a, b in chunks):.1f}s of speech", flush=True)
             if asr is None:
-                print(f"  loading {MODEL_ID} (cpu, float32)", flush=True)
-                asr = Qwen3ASRModel.from_pretrained(MODEL_ID, dtype=torch.float32, device_map="cpu",
-                                                    max_inference_batch_size=4)
+                print(f"  loading {MODEL_ID} (cpu, {args.dtype})", flush=True)
+                asr = Qwen3ASRModel.from_pretrained(MODEL_ID, dtype=getattr(torch, args.dtype), device_map="cpu",
+                                                    max_inference_batch_size=args.batch, low_cpu_mem_usage=True)
                 aligner = Aligner()
             pieces = [(audio[int(a * SR):int(b * SR)], SR) for a, b in chunks]
             results = asr.transcribe(audio=pieces, context=args.context, language="Arabic")

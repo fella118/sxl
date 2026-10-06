@@ -1,0 +1,217 @@
+{
+ "language_code": "ary",
+ "engine": "moulsot.v0.3+mms_fa",
+ "text": "سوفݣاردي هاد la vidéo عندك غتحتاجو نهار اللي غتبغي دير نضادر ان شاء الله ça va bien مزيان",
+ "words": [
+  {
+   "type": "word",
+   "text": "سوفݣاردي",
+   "start": 2.163,
+   "end": 2.625,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.625,
+   "end": 2.686,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هاد",
+   "start": 2.686,
+   "end": 2.786,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.786,
+   "end": 2.826,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "la",
+   "start": 2.826,
+   "end": 2.887,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.887,
+   "end": 2.927,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "vidéo",
+   "start": 2.927,
+   "end": 3.148,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.148,
+   "end": 3.188,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عندك",
+   "start": 3.188,
+   "end": 3.469,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.469,
+   "end": 3.55,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "غتحتاجو",
+   "start": 3.55,
+   "end": 3.972,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.972,
+   "end": 4.032,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "نهار",
+   "start": 4.032,
+   "end": 4.112,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "اللي",
+   "start": 4.112,
+   "end": 4.253,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.253,
+   "end": 4.273,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "غتبغي",
+   "start": 4.273,
+   "end": 4.555,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.555,
+   "end": 4.595,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "دير",
+   "start": 4.595,
+   "end": 4.735,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.735,
+   "end": 4.796,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "نضادر",
+   "start": 4.796,
+   "end": 5.097,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ان",
+   "start": 5.097,
+   "end": 5.157,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.157,
+   "end": 5.178,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شاء",
+   "start": 5.178,
+   "end": 5.318,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "الله",
+   "start": 5.318,
+   "end": 5.519,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.519,
+   "end": 6.843,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ça",
+   "start": 6.843,
+   "end": 6.925,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "va",
+   "start": 6.925,
+   "end": 6.965,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "bien",
+   "start": 6.965,
+   "end": 7.067,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.067,
+   "end": 7.088,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مزيان",
+   "start": 7.088,
+   "end": 7.333,
+   "speaker_id": "speaker_0"
+  }
+ ]
+}

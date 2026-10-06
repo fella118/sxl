@@ -1,0 +1,476 @@
+[
+ {
+  "word": "Alors",
+  "start": 2.12,
+  "end": 2.361,
+  "chunk": 0
+ },
+ {
+  "word": "عندك",
+  "start": 2.421,
+  "end": 2.661,
+  "chunk": 0
+ },
+ {
+  "word": "زناية",
+  "start": 2.722,
+  "end": 3.022,
+  "chunk": 0
+ },
+ {
+  "word": "optique",
+  "start": 3.122,
+  "end": 3.724,
+  "chunk": 0
+ },
+ {
+  "word": "bien",
+  "start": 3.724,
+  "end": 3.864,
+  "chunk": 0
+ },
+ {
+  "word": "sûr",
+  "start": 3.924,
+  "end": 4.085,
+  "chunk": 0
+ },
+ {
+  "word": "ديما",
+  "start": 4.125,
+  "end": 4.305,
+  "chunk": 0
+ },
+ {
+  "word": "كاين",
+  "start": 4.365,
+  "end": 4.546,
+  "chunk": 0
+ },
+ {
+  "word": "الحل",
+  "start": 4.546,
+  "end": 4.786,
+  "chunk": 0
+ },
+ {
+  "word": "هنا",
+  "start": 5.728,
+  "end": 5.909,
+  "chunk": 0
+ },
+ {
+  "word": "غانوريكم",
+  "start": 6.189,
+  "end": 6.871,
+  "chunk": 0
+ },
+ {
+  "word": "deux",
+  "start": 7.232,
+  "end": 7.352,
+  "chunk": 0
+ },
+ {
+  "word": "montures",
+  "start": 7.392,
+  "end": 7.873,
+  "chunk": 0
+ },
+ {
+  "word": "كاين",
+  "start": 8.374,
+  "end": 8.575,
+  "chunk": 0
+ },
+ {
+  "word": "هادي",
+  "start": 8.635,
+  "end": 8.895,
+  "chunk": 0
+ },
+ {
+  "word": "وكاين",
+  "start": 10.118,
+  "end": 10.439,
+  "chunk": 0
+ },
+ {
+  "word": "هادي",
+  "start": 10.499,
+  "end": 10.739,
+  "chunk": 0
+ },
+ {
+  "word": "غتجي",
+  "start": 11.641,
+  "end": 11.941,
+  "chunk": 1
+ },
+ {
+  "word": "للجنب",
+  "start": 12.001,
+  "end": 12.342,
+  "chunk": 1
+ },
+ {
+  "word": "ديال",
+  "start": 12.382,
+  "end": 12.522,
+  "chunk": 1
+ },
+ {
+  "word": "la",
+  "start": 12.542,
+  "end": 12.602,
+  "chunk": 1
+ },
+ {
+  "word": "monture",
+  "start": 12.662,
+  "end": 13.203,
+  "chunk": 1
+ },
+ {
+  "word": "غتقرا",
+  "start": 13.203,
+  "end": 13.623,
+  "chunk": 1
+ },
+ {
+  "word": "هاد",
+  "start": 13.944,
+  "end": 14.104,
+  "chunk": 1
+ },
+ {
+  "word": "les",
+  "start": 14.144,
+  "end": 14.304,
+  "chunk": 1
+ },
+ {
+  "word": "chiffres",
+  "start": 14.304,
+  "end": 14.545,
+  "chunk": 1
+ },
+ {
+  "word": "اللي",
+  "start": 14.545,
+  "end": 14.665,
+  "chunk": 1
+ },
+ {
+  "word": "كاينين",
+  "start": 14.705,
+  "end": 14.985,
+  "chunk": 1
+ },
+ {
+  "word": "هنايا",
+  "start": 15.025,
+  "end": 15.326,
+  "chunk": 1
+ },
+ {
+  "word": "خاصك",
+  "start": 15.526,
+  "end": 15.846,
+  "chunk": 1
+ },
+ {
+  "word": "تلقى",
+  "start": 15.926,
+  "end": 16.267,
+  "chunk": 1
+ },
+ {
+  "word": "فـdiamètre",
+  "start": 16.688,
+  "end": 17.749,
+  "chunk": 1
+ },
+ {
+  "word": "ما",
+  "start": 17.749,
+  "end": 17.809,
+  "chunk": 1
+ },
+ {
+  "word": "فايتش",
+  "start": 17.869,
+  "end": 18.21,
+  "chunk": 1
+ },
+ {
+  "word": "48",
+  "start": 18.21,
+  "end": 18.51,
+  "chunk": 1
+ },
+ {
+  "word": "و",
+  "start": 18.51,
+  "end": 18.55,
+  "chunk": 1
+ },
+ {
+  "word": "deux",
+  "start": 18.63,
+  "end": 19.091,
+  "chunk": 1
+ },
+ {
+  "word": "préférences",
+  "start": 19.131,
+  "end": 19.612,
+  "chunk": 1
+ },
+ {
+  "word": "تختارها",
+  "start": 19.612,
+  "end": 20.373,
+  "chunk": 1
+ },
+ {
+  "word": "46",
+  "start": 20.373,
+  "end": 20.423,
+  "chunk": 1
+ },
+ {
+  "word": "يلا",
+  "start": 20.393,
+  "end": 21.033,
+  "chunk": 1
+ },
+ {
+  "word": "خدمنا",
+  "start": 21.074,
+  "end": 21.394,
+  "chunk": 1
+ },
+ {
+  "word": "هنايا",
+  "start": 21.434,
+  "end": 21.754,
+  "chunk": 1
+ },
+ {
+  "word": "أرق",
+  "start": 21.915,
+  "end": 22.215,
+  "chunk": 1
+ },
+ {
+  "word": "زاج",
+  "start": 22.435,
+  "end": 22.696,
+  "chunk": 1
+ },
+ {
+  "word": "160",
+  "start": 22.696,
+  "end": 23.096,
+  "chunk": 1
+ },
+ {
+  "word": "14",
+  "start": 23.096,
+  "end": 23.496,
+  "chunk": 1
+ },
+ {
+  "word": "bien",
+  "start": 24.338,
+  "end": 24.558,
+  "chunk": 1
+ },
+ {
+  "word": "sûr",
+  "start": 24.618,
+  "end": 24.779,
+  "chunk": 1
+ },
+ {
+  "word": "غيطلع",
+  "start": 24.819,
+  "end": 25.179,
+  "chunk": 1
+ },
+ {
+  "word": "غليظ",
+  "start": 25.259,
+  "end": 25.6,
+  "chunk": 1
+ },
+ {
+  "word": "par",
+  "start": 26.28,
+  "end": 26.38,
+  "chunk": 2
+ },
+ {
+  "word": "rapport",
+  "start": 26.4,
+  "end": 26.761,
+  "chunk": 2
+ },
+ {
+  "word": "لهذا",
+  "start": 27.002,
+  "end": 27.302,
+  "chunk": 2
+ },
+ {
+  "word": "وف",
+  "start": 27.442,
+  "end": 27.523,
+  "chunk": 2
+ },
+ {
+  "word": "la",
+  "start": 27.583,
+  "end": 27.643,
+  "chunk": 2
+ },
+ {
+  "word": "vidéo",
+  "start": 27.683,
+  "end": 27.923,
+  "chunk": 2
+ },
+ {
+  "word": "الجاية",
+  "start": 27.943,
+  "end": 28.204,
+  "chunk": 2
+ },
+ {
+  "word": "إن",
+  "start": 28.204,
+  "end": 28.244,
+  "chunk": 2
+ },
+ {
+  "word": "شاء",
+  "start": 28.284,
+  "end": 28.404,
+  "chunk": 2
+ },
+ {
+  "word": "الله",
+  "start": 28.424,
+  "end": 28.645,
+  "chunk": 2
+ },
+ {
+  "word": "غانوريكم",
+  "start": 29.066,
+  "end": 29.747,
+  "chunk": 2
+ },
+ {
+  "word": "cas",
+  "start": 30.048,
+  "end": 30.408,
+  "chunk": 2
+ },
+ {
+  "word": "réel",
+  "start": 30.469,
+  "end": 30.809,
+  "chunk": 2
+ },
+ {
+  "word": "ديال",
+  "start": 31.09,
+  "end": 31.451,
+  "chunk": 2
+ },
+ {
+  "word": "واحد",
+  "start": 31.711,
+  "end": 31.992,
+  "chunk": 2
+ },
+ {
+  "word": "le",
+  "start": 32.372,
+  "end": 32.453,
+  "chunk": 2
+ },
+ {
+  "word": "client",
+  "start": 32.493,
+  "end": 32.813,
+  "chunk": 2
+ },
+ {
+  "word": "جا",
+  "start": 32.833,
+  "end": 32.913,
+  "chunk": 2
+ },
+ {
+  "word": "عندنا",
+  "start": 32.954,
+  "end": 33.194,
+  "chunk": 2
+ },
+ {
+  "word": "ب",
+  "start": 33.775,
+  "end": 33.795,
+  "chunk": 2
+ },
+ {
+  "word": "la",
+  "start": 33.855,
+  "end": 33.915,
+  "chunk": 2
+ },
+ {
+  "word": "mention",
+  "start": 33.956,
+  "end": 34.256,
+  "chunk": 2
+ },
+ {
+  "word": "القديمة",
+  "start": 34.256,
+  "end": 34.677,
+  "chunk": 2
+ },
+ {
+  "word": "ديالو",
+  "start": 34.737,
+  "end": 35.038,
+  "chunk": 2
+ },
+ {
+  "word": "والجديدة",
+  "start": 35.479,
+  "end": 35.899,
+  "chunk": 2
+ },
+ {
+  "word": "Ça",
+  "start": 37.304,
+  "end": 37.388,
+  "chunk": 3
+ },
+ {
+  "word": "va",
+  "start": 37.429,
+  "end": 37.492,
+  "chunk": 3
+ },
+ {
+  "word": "مزيان",
+  "start": 39.345,
+  "end": 39.593,
+  "chunk": 4
+ }
+]

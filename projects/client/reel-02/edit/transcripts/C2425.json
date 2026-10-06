@@ -1,0 +1,161 @@
+{
+ "language_code": "ary",
+ "engine": "moulsot.v0.3+mms_fa",
+ "text": "قالو ليا خاصك un soixante-quatorze واش بصح ولا غير باش نخلص كثر",
+ "words": [
+  {
+   "type": "word",
+   "text": "قالو",
+   "start": 1.76,
+   "end": 1.961,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 1.961,
+   "end": 2.021,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ليا",
+   "start": 2.021,
+   "end": 2.202,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.202,
+   "end": 2.543,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "خاصك",
+   "start": 2.543,
+   "end": 2.944,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.944,
+   "end": 3.386,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "un",
+   "start": 3.386,
+   "end": 3.466,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.466,
+   "end": 3.506,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "soixante-quatorze",
+   "start": 3.506,
+   "end": 4.851,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "واش",
+   "start": 4.851,
+   "end": 5.032,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.032,
+   "end": 5.092,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "بصح",
+   "start": 5.092,
+   "end": 5.413,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.413,
+   "end": 5.875,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ولا",
+   "start": 5.875,
+   "end": 6.015,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.015,
+   "end": 6.075,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "غير",
+   "start": 6.075,
+   "end": 6.276,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.276,
+   "end": 6.336,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "باش",
+   "start": 6.336,
+   "end": 6.477,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.477,
+   "end": 6.517,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "نخلص",
+   "start": 6.517,
+   "end": 6.858,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.858,
+   "end": 6.918,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كثر",
+   "start": 6.918,
+   "end": 7.119,
+   "speaker_id": "speaker_0"
+  }
+ ]
+}
