@@ -15,3 +15,5 @@ projects/**/*.m4a
 projects/**/*.png
 projects/**/*.jpg
 __pycache__/
+projects/**/*.log
+projects/**/verify/
