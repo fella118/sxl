@@ -77,13 +77,13 @@
   }
   .tick { width: 58px; height: 58px; flex: none; }
 
-  #lp { left: 70px; top: 380px; width: 940px; }
-  .lp-row { display: flex; gap: 130px; justify-content: center; position: relative; }
+  #lp { left: 40px; top: 300px; width: 1000px; }
+  .lp-row { display: flex; gap: 110px; justify-content: center; position: relative; }
   .lp-card {
-    width: 390px; padding: 34px 20px 30px; text-align: center; opacity: 0; visibility: hidden;
+    width: 430px; padding: 34px 20px 30px; text-align: center; opacity: 0; visibility: hidden;
   }
   .lp-card svg { width: 130px; height: 130px; }
-  .lp-card .label { font-size: 50px; color: #fff; margin-top: 10px; }
+  .lp-card .label { font-size: 44px; white-space: nowrap; color: #fff; margin-top: 10px; }
   .xmark {
     position: absolute; left: 50%; top: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px;
     opacity: 0; visibility: hidden;
@@ -105,9 +105,9 @@
   .g-tick::after { content: ""; position: absolute; left: 50%; top: 66px; width: 4px; height: 56px; background: rgba(0,0,0,.35); }
   #g-hard { margin-top: 26px; text-align: center; font-weight: 900; font-size: 74px; color: var(--bad); opacity: 0; visibility: hidden; }
 
-  #crit { left: 130px; top: 250px; width: 820px; }
-  .crow { display: flex; align-items: center; gap: 26px; font-weight: 800; font-size: 60px; margin-top: 18px; opacity: 0; visibility: hidden; unicode-bidi: plaintext; }
-  .box { width: 66px; height: 66px; border-radius: 18px; border: 4px solid rgba(255,255,255,.6); flex: none; position: relative; }
+  #crit { left: 150px; top: 170px; width: 780px; }
+  .crow { display: flex; align-items: center; gap: 24px; font-weight: 800; font-size: 54px; height: 0; margin-top: 0; overflow: hidden; opacity: 0; visibility: hidden; unicode-bidi: plaintext; }
+  .box { width: 60px; height: 60px; border-radius: 18px; border: 4px solid rgba(255,255,255,.6); flex: none; position: relative; }
   .box .fill { position: absolute; inset: -4px; border-radius: 18px; background: var(--ok); transform: scale(0); }
   .box svg { position: absolute; inset: 6px; width: 46px; height: 46px; opacity: 0; }
 
@@ -321,7 +321,7 @@ popOut("#gauge", E.gauge_out);
 popIn("#crit", E.crit_in, { y: 40 });
 E.crit.forEach((t, i) => {
   const row = "#c" + i;
-  tl.fromTo(row, { autoAlpha: 0, x: 40 }, { autoAlpha: 1, x: 0, duration: 0.25, ease: out3 }, t - 0.3);
+  tl.fromTo(row, { autoAlpha: 0, height: 0, marginTop: 0, x: 40 }, { autoAlpha: 1, height: 76, marginTop: 12, x: 0, duration: 0.3, ease: out3 }, t - 0.35);
   tl.to(row + " .fill", { scale: 1, duration: 0.22, ease: back }, t);
   tl.to(row + " svg", { opacity: 1, duration: 0.12 }, t + 0.08);
   tl.to(row + " .box", { borderColor: "#35d07f", duration: 0.1 }, t);

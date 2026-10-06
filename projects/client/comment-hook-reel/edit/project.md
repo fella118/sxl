@@ -25,3 +25,10 @@ professional, comment bar + "gzenaya optique a répondu" notification.
 render_base.py -> build_audio.py -> composite.py
 
 **Outstanding:** music file (YouTube blocked from the server).
+
+**Preview v1 (edit/preview_v1.mp4):** 47.72s, 1080x1920 50 fps, H.264 ~12 Mbps,
+AAC 256k. Mix -14.0 LUFS, -1.5 dBTP, no clipping, 8 cuts click-free.
+QC fixes before sending: checklist panel grows row by row (was covering his
+forehead), "l'addition" panel enters just before "plus 1", loin/près cards
+widened and moved up.
+Not yet in v1: music (waiting for the file from the client).
