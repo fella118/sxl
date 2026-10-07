@@ -44,6 +44,8 @@ def main() -> None:
 
     wanted: dict[str, set[int]] = {}
     for r in tl["ranges"]:
+        if r.get("src_start") is None:          # pad ranges (held frame under a full-screen card)
+            continue
         f0, f1 = round(r["src_start"] * fps), round(r["src_end"] * fps)
         wanted.setdefault(r["source"], set()).update(range(max(0, f0 - args.margin), f1 + args.margin))
 

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root {
+    --navy: #01115f;          /* Gzenaya Optique logo blue */
+    --navy-soft: rgba(1, 17, 95, .08);
+    --yellow: #ffc93c;
+    --gold: #c98f00;
+    --red: #ff4d5e;
+    --ok: #2fbf71;
+    --ink: rgba(8, 10, 22, .58);
+    --muted: #6b7290;
+  }
+  html, body { margin: 0; width: 1080px; height: 1920px; background: transparent; overflow: hidden; }
+  body { font-family: "Cairo", sans-serif; -webkit-font-smoothing: antialiased; }
+  .root { position: absolute; inset: 0; }
+  .layer { position: absolute; visibility: hidden; opacity: 0; }
+
+  /* ---------- phrase typography (house style v3, navy edition) ---------- */
+  .place { position: absolute; left: 0; top: 0; width: 1080px; height: 0; }
+  .phrase { left: 520px; display: flex; flex-direction: column; align-items: center; width: 1000px; }
+  .phrase.inline { position: relative; left: 0; width: auto; }
+  .line { display: flex; align-items: baseline; justify-content: center; gap: 22px; line-height: 1.02; }
+  .run { display: flex; align-items: baseline; gap: 18px; }
+  .w { position: relative; display: inline-block; white-space: nowrap; paint-order: stroke fill;
+       text-shadow: 0 10px 28px rgba(0,0,0,.45); }
+  .w .ghost { position: absolute; inset: 0; -webkit-text-stroke: 0; text-shadow: none; opacity: 0; pointer-events: none; }
+  .small  { font: 700 56px/1.05 "Cairo"; color: rgba(255,255,255,.96); -webkit-text-stroke: 8px var(--ink); }
+  .key    { font: 900 150px/1.0 "Cairo"; color: #fff; -webkit-text-stroke: 14px var(--ink); }
+  .key.lat { font: 400 168px/0.98 "Anton"; text-transform: uppercase; letter-spacing: 1px; }
+  .script { font: 400 126px/1.0 "Great Vibes"; color: var(--yellow); -webkit-text-stroke: 7px var(--ink);
+            margin-bottom: -26px; transform: rotate(-4deg); padding: 0 18px; }
+  .num    { font: 400 250px/0.95 "Anton"; color: #fff; -webkit-text-stroke: 16px var(--ink); }
+  .yellow { color: var(--yellow); } .red { color: var(--red); }
+  .w.navy { color: var(--navy); -webkit-text-stroke-color: #fff !important; }
+  .w.navy.key { -webkit-text-stroke-width: 16px; }
+  .w.navy.num { -webkit-text-stroke-width: 18px; }
+  .panel { background: rgba(255,255,255,.97); border: 6px solid var(--navy); border-radius: 38px; color: var(--navy);
+           box-shadow: 0 26px 60px rgba(0,0,0,.35); }
+
+  /* ---------- hook: STOP sign + test card (also the loop's end state) ---------- */
+  #hook { left: 40px; top: 170px; width: 1000px; height: 360px; }
+  #stop { position: absolute; left: 10px; top: 20px; width: 300px; height: 300px; }
+  #stop svg { width: 300px; height: 300px; overflow: visible; filter: drop-shadow(0 18px 30px rgba(0,0,0,.4)); }
+  #hcard { position: absolute; left: 330px; top: 30px; width: 640px; height: 290px; display: flex; align-items: center; gap: 30px;
+           padding: 0 34px; box-sizing: border-box; }
+  #hcard .e { width: 210px; height: 210px; flex: none; }
+  #hcard .txt { display: flex; flex-direction: column; align-items: flex-start; }
+  #hcard .t1 { font: 400 120px/0.9 "Anton"; letter-spacing: 3px; color: var(--navy); }
+  #hcard .t2 { font: 900 54px/1.2 "Cairo"; color: var(--navy); direction: rtl; }
+  #hcard .pill { margin-top: 8px; display: flex; align-items: center; gap: 10px; background: var(--yellow); color: var(--navy);
+                 border-radius: 30px; padding: 4px 22px 4px 12px; font: 400 52px/1.1 "Anton"; letter-spacing: 1px; }
+  #hcard .pill svg { width: 46px; height: 46px; }
+
+  /* ---------- how-to steps panel ---------- */
+  #steps { left: 90px; top: 140px; width: 900px; height: 600px; }
+  #steps .panel { position: absolute; inset: 0; }
+  .step { position: absolute; left: 0; right: 0; top: 0; height: 520px; display: flex; flex-direction: column; align-items: center;
+          justify-content: flex-start; visibility: hidden; opacity: 0; }
+  .step .pic { height: 380px; width: 820px; display: flex; align-items: center; justify-content: center; position: relative; margin-top: 18px; }
+  .step .lbl { font: 900 66px/1.15 "Cairo"; color: var(--navy); direction: rtl; text-align: center; white-space: nowrap; }
+  .step .lbl b { color: #fff; background: var(--navy); padding: 0 18px; border-radius: 16px; font-weight: 900; }
+  #dots { position: absolute; left: 0; right: 0; bottom: 26px; display: flex; justify-content: center; gap: 18px; direction: rtl; }
+  #dots i { width: 22px; height: 22px; border-radius: 50%; background: rgba(1,17,95,.18); }
+  #dots i.on { background: var(--navy); }
+  .bigE { width: 300px; height: 300px; }
+  .dirword { position: absolute; right: 70px; top: 120px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .dirword .arr { width: 150px; height: 150px; }
+  .dirword .wd { font: 900 70px/1 "Cairo"; color: var(--navy); }
+  .dist { font: 400 170px/1 "Anton"; color: var(--navy); letter-spacing: 2px; }
+  .fourE { display: flex; align-items: flex-end; gap: 46px; direction: ltr; }
+  .fourE svg { visibility: hidden; opacity: 0; }
+  .fourN { position: absolute; right: 60px; top: 30px; font: 400 150px/1 "Anton"; color: #fff; background: var(--navy);
+           width: 170px; height: 170px; border-radius: 50%; display: grid; place-items: center; visibility: hidden; opacity: 0; }
+
+  /* ---------- the test: full-screen chart ---------- */
+  #test { left: 0; top: 0; width: 1080px; height: 1920px; background: #fff; }
+  #test .brand { position: absolute; left: 0; right: 0; top: 150px; display: flex; justify-content: center; align-items: center; gap: 18px;
+                 font: 700 44px/1 "Cairo"; color: var(--navy); }
+  #test .brand img { width: 84px; height: 84px; }
+  #test .dist3 { position: absolute; right: 70px; top: 158px; font: 400 44px/1 "Anton"; color: var(--navy); background: var(--yellow);
+                 padding: 6px 18px; border-radius: 22px; letter-spacing: 1px; }
+  .eyeban { position: absolute; left: 90px; right: 90px; top: 260px; height: 130px; border-radius: 34px; background: var(--navy); color: #fff;
+            display: flex; align-items: center; justify-content: center; gap: 22px; direction: rtl; }
+  .eyeban .big { font: 900 72px/1 "Cairo"; }
+  .eyeban .sm { font: 700 42px/1 "Cairo"; color: var(--yellow); }
+  .eyeban svg { width: 90px; height: 90px; }
+  #bar { position: absolute; left: 140px; right: 140px; top: 420px; height: 18px; border-radius: 9px; background: rgba(1,17,95,.12); overflow: hidden; }
+  #barfill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: var(--navy); border-radius: 9px; transform-origin: 0 50%; }
+  #secs { position: absolute; right: 70px; top: 398px; font: 400 64px/1 "Anton"; color: var(--navy); }
+  .chart { position: absolute; left: 0; right: 0; top: 500px; display: flex; flex-direction: column; align-items: center; gap: 62px; }
+  .row { position: relative; display: flex; align-items: center; justify-content: center; width: 1080px; }
+  .row .n { position: absolute; left: 150px; font: 400 54px/1 "Anton"; color: #b4b9cc; }
+  .disc { position: absolute; left: 0; right: 0; top: 1440px; text-align: center; font: 600 32px/1.3 "Cairo"; color: var(--muted); direction: rtl; }
+  #switch { position: absolute; left: 140px; right: 140px; top: 820px; height: 260px; border-radius: 40px; background: var(--yellow); color: var(--navy);
+            display: flex; align-items: center; justify-content: center; gap: 24px; font: 900 96px/1 "Cairo"; direction: rtl;
+            visibility: hidden; opacity: 0; box-shadow: 0 20px 50px rgba(0,0,0,.25); }
+  #switch svg { width: 130px; height: 130px; }
+
+  /* ---------- CTA: comment bar ---------- */
+  #cta { left: 60px; top: 300px; width: 960px; }
+  .ig-bar { display: flex; align-items: center; gap: 22px; background: #fff; border-radius: 70px; padding: 18px 26px 18px 18px;
+            border: 5px solid var(--navy); box-shadow: 0 24px 60px rgba(0,0,0,.35); font-family: "Roboto", sans-serif; }
+  .ig-bar .avatar { width: 84px; height: 84px; border-radius: 50%; background: #dbdbdb; display: grid; place-items: center; flex: none; }
+  #cta-text { flex: 1; font: 800 46px "Cairo"; color: #8e8e8e; unicode-bidi: plaintext; text-align: start; white-space: nowrap; overflow: hidden; }
+  #cta-text.typed { color: var(--navy); }
+  #cta-send { font: 700 38px "Roboto"; color: #0095f6; opacity: .45; }
+  #heart { position: absolute; right: -10px; top: -80px; width: 120px; height: 120px; visibility: hidden; opacity: 0; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs id="fxdefs">
+  <symbol id="E" viewBox="0 0 5 5"><path d="M0 0H5V1H1V2H5V3H1V4H5V5H0Z" fill="currentColor"/></symbol>
+  <symbol id="arrow" viewBox="0 0 100 100"><path d="M12 50H78M56 26l26 24-26 24" fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="eye" viewBox="0 0 64 64"><path d="M4 32s10-16 28-16 28 16 28 16-10 16-28 16S4 32 4 32z" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="32" cy="32" r="9" fill="currentColor"/></symbol>
+  <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 8.5V13l3 2M9 2.5h6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<div id="back" class="root"></div>
+
+<div id="front" class="root">
+  <div id="phrases"></div>
+
+  <div id="hook" class="layer">
+    <div id="stop"><svg viewBox="0 0 100 100"><polygon points="30,2 70,2 98,30 98,70 70,98 30,98 2,70 2,30" fill="#ff4d5e" stroke="#fff" stroke-width="5"/>
+      <text x="50" y="62" text-anchor="middle" font-family="Anton" font-size="31" fill="#fff" letter-spacing="1">STOP</text></svg></div>
+    <div id="hcard" class="panel">
+      <svg class="e" style="color:#01115f"><use href="#E" id="hookE"/></svg>
+      <div class="txt"><div class="t1">TEST</div><div class="t2">ديال النظر</div>
+        <div class="pill"><svg style="color:#01115f"><use href="#clock"/></svg>10s</div></div>
+    </div>
+  </div>
+
+  <div id="steps" class="layer"><div class="panel">
+    <div class="step" id="st0"><div class="pic">
+        <svg width="230" height="380" viewBox="0 0 230 380"><rect x="8" y="8" width="214" height="364" rx="34" fill="#fff" stroke="#01115f" stroke-width="12"/>
+          <g fill="#01115f"><use href="#E" x="70" y="70" width="90" height="90"/><use href="#E" x="88" y="185" width="54" height="54" transform="rotate(90 115 212)"/><use href="#E" x="98" y="265" width="34" height="34" transform="rotate(180 115 282)"/></g></svg>
+        <svg id="st0arrow" width="150" height="220" viewBox="0 0 100 150" style="margin-left:50px;color:#ffc93c"><path d="M50 10V120M20 92l30 34 30-34" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div><div class="lbl">غاتبان ليك <b>تصويرة</b> لتحت</div></div>
+    <div class="step" id="st1"><div class="pic">
+        <svg width="760" height="330" viewBox="0 0 760 330">
+          <circle cx="90" cy="120" r="60" fill="#01115f"/><path d="M10 330c6-90 40-130 80-130s74 40 80 130z" fill="#01115f"/>
+          <rect x="640" y="70" width="100" height="180" rx="18" fill="#fff" stroke="#01115f" stroke-width="10"/>
+          <use href="#E" x="666" y="128" width="48" height="48" style="color:#01115f" fill="#01115f"/>
+          <path d="M200 160H610" stroke="#ffc93c" stroke-width="10" stroke-dasharray="20 14"/><path d="M220 140l-24 20 24 20M590 140l24 20-24 20" fill="none" stroke="#ffc93c" stroke-width="10" stroke-linecap="round"/>
+        </svg>
+        <div class="dist" id="distnum" style="position:absolute;top:30px">3 m</div>
+      </div><div class="lbl">بعد التيليفون <b>3 ميترو</b></div></div>
+    <div class="step" id="st2"><div class="pic"><svg class="bigE" style="color:#01115f"><use href="#E"/></svg></div>
+      <div class="lbl">غيبانو ليك حروف <b>E</b></div></div>
+    <div class="step" id="st3"><div class="pic">
+        <svg class="bigE" style="color:#01115f"><use href="#E" id="dirE"/></svg>
+        <div class="dirword"><svg class="arr" style="color:#ffc93c" id="dirArrow"><use href="#arrow"/></svg><div class="wd" id="dirWord">ليمن</div></div>
+      </div><div class="lbl">قول <b>الاتجاه</b> ديال كل E</div></div>
+    <div class="step" id="st4"><div class="pic">
+        <svg width="640" height="300" viewBox="0 0 640 300">
+          <g transform="translate(40 40)" style="color:#01115f"><use href="#eye" width="240" height="240"/></g>
+          <g transform="translate(360 40)" fill="none" stroke="#01115f" stroke-width="16" stroke-linecap="round">
+            <path id="lid" d="M10 120 Q120 40 230 120"/><path d="M10 120 Q120 200 230 120"/>
+            <g id="lashes" opacity="0"><path d="M60 150 l-18 34M120 160 v38M180 150 l18 34"/></g></g>
+          <text x="160" y="296" text-anchor="middle" font-family="Anton" font-size="44" fill="#01115f">OPEN</text>
+          <text x="480" y="296" text-anchor="middle" font-family="Anton" font-size="44" fill="#ff4d5e">CLOSED</text>
+        </svg>
+      </div><div class="lbl">غمض <b>عين وحدة</b> · œil par œil</div></div>
+    <div class="step" id="st5"><div class="pic">
+        <div class="fourE" style="color:#01115f">
+          <svg width="220" height="220"><use href="#E" width="220" height="220" transform="rotate(90 110 110)"/></svg>
+          <svg width="150" height="150"><use href="#E" width="150" height="150" transform="rotate(180 75 75)"/></svg>
+          <svg width="100" height="100"><use href="#E" width="100" height="100"/></svg>
+          <svg width="64" height="64"><use href="#E" width="64" height="64" transform="rotate(270 32 32)"/></svg>
+        </div>
+        <div class="fourN" id="fourN">4</div>
+      </div><div class="lbl">حاول <b>تقرا 4</b> ديال E</div></div>
+    <div id="dots"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div></div>
+
+  <div id="test" class="layer">
+    <div class="brand"><img src="go_logo_navy.png">Gzenaya Optique</div>
+    <div class="dist3">↔ 3 m</div>
+    <div class="eyeban" id="banR"><svg style="color:#fff"><use href="#eye"/></svg><span class="big">العين ليمنى</span><span class="sm">غمض ليسرى</span></div>
+    <div class="eyeban" id="banL" style="visibility:hidden"><svg style="color:#fff"><use href="#eye"/></svg><span class="big">العين ليسرى</span><span class="sm">غمض ليمنى</span></div>
+    <div id="bar"><div id="barfill"></div></div>
+    <div id="secs">4</div>
+    <div class="chart" id="chart"></div>
+    <div id="switch"><svg viewBox="0 0 24 24" style="color:#01115f"><path d="M4 9h13l-3-3M20 15H7l3 3" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>بدل العين</div>
+    <div class="disc">هاد التست ماكيعوضش الفحص عند المختص</div>
+  </div>
+
+  <div id="cta" class="layer">
+    <div style="position:relative">
+      <div class="ig-bar">
+        <div class="avatar"><svg width="56" height="56" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="8" r="4.6"/><path d="M2.5 23c.8-5.2 4.6-8.2 9.5-8.2s8.7 3 9.5 8.2z"/></svg></div>
+        <div id="cta-text" dir="auto">Ajouter un commentaire…</div>
+        <div id="cta-send">Publier</div>
+      </div>
+      <svg id="heart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.2 0 3.6 1.2 5.3 3.2 1.7-2 3.1-3.2 5.3-3.2 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z" fill="#ff4d5e" stroke="#fff" stroke-width="1.5"/></svg>
+    </div>
+  </div>
+</div>
+
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script src="events.js"></script>
+<script src="facepos.js"></script>
+<script>
+const E = window.EV, FACE = window.FACE || { fps: 50, frames: [] };
+const LAYER = new URLSearchParams(location.search).get("layer") || "all";
+if (LAYER === "back") document.getElementById("front").style.display = "none";
+if (LAYER === "front") document.getElementById("back").style.display = "none";
+
+/*ENGINE*/
+
+const $ = (id) => document.getElementById(id);
+const ROT = { right: 0, down: 90, left: 180, up: 270 };
+const setRot = (useEl, dir, size) => useEl.setAttribute("transform", `rotate(${ROT[dir]} ${size / 2} ${size / 2})`);
+
+// ---------- hook: on screen from frame 1, leaves when the steps start, comes back for the loop ----------
+const HOOK_DIRS = ["right", "down", "left", "up"];
+$("hookE").setAttribute("width", 210); $("hookE").setAttribute("height", 210);
+tl.set("#hook", { autoAlpha: 1 }, 0);
+tl.fromTo("#stop", { scale: 1.12, rotation: -6 }, { scale: 1, rotation: 0, duration: 0.3, ease: "back.out(3)" }, 0);
+tl.to("#stop", { keyframes: [{ x: -8, duration: 0.05 }, { x: 8, duration: 0.05 }, { x: -4, duration: 0.05 }, { x: 0, duration: 0.05 }] }, 0.3);
+tl.to("#hook", { autoAlpha: 0, y: -40, scale: 0.92, duration: 0.22, ease: in3 }, E.hook_end - 0.22);
+// loop: the same state as frame 1
+tl.fromTo("#hook", { autoAlpha: 0, y: -40, scale: 0.92 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.3, ease: back, immediateRender: false }, E.loop_in);
+
+// ---------- how-to steps ----------
+tl.fromTo("#steps", { autoAlpha: 0, y: -40, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.34, ease: back }, E.steps[0].t - 0.1);
+const dots = Array.from(document.querySelectorAll("#dots i"));
+E.steps.forEach((st, i) => {
+  const el = $("st" + i);
+  const end = i + 1 < E.steps.length ? E.steps[i + 1].t : E.steps_out;
+  tl.fromTo(el, { autoAlpha: 0, x: 120 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: expo }, st.t - 0.04);
+  tl.to(el, { autoAlpha: 0, x: -120, duration: 0.18, ease: in3 }, end - 0.18);
+  tl.set(dots[i], { attr: { class: "on" } }, st.t);
+  if (i > 0) tl.set(dots[i - 1], { attr: { class: "" } }, st.t);
+});
+tl.to("#st0arrow", { keyframes: [{ y: 26, duration: 0.25 }, { y: 0, duration: 0.25 }, { y: 26, duration: 0.25 }, { y: 0, duration: 0.25 }] }, E.steps[0].t + 0.2);
+tl.fromTo("#distnum", { scale: 0.3, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.32, ease: "back.out(2.6)" }, E.dist_num - 0.05);
+const DIRS = [["right", "ليمن", 0], ["left", "ليسر", 180], ["up", "لفوق", 270], ["down", "لتحت", 90]];
+$("dirE").setAttribute("width", 300); $("dirE").setAttribute("height", 300);
+const DIRSTATE = { i: -1 };
+E.dirs.forEach((t, k) => {
+  tl.set(DIRSTATE, { i: k }, t - 0.04);
+  tl.fromTo("#dirE", { scale: 0.86 }, { scale: 1, duration: 0.2, ease: "back.out(3)", svgOrigin: "150 150" }, t - 0.04);
+  tl.fromTo("#dirArrow", { scale: 0.6 }, { scale: 1, duration: 0.2, ease: "back.out(3)" }, t - 0.04);
+});
+tl.to("#lid", { attr: { d: "M10 120 Q120 200 230 120" }, duration: 0.22, ease: "power2.in" }, E.eye_close - 0.1);
+tl.to("#lashes", { opacity: 1, duration: 0.15 }, E.eye_close + 0.1);
+document.querySelectorAll(".fourE svg").forEach((svg, k) => {
+  tl.fromTo(svg, { autoAlpha: 0, scale: 0.3 }, { autoAlpha: 1, scale: 1, duration: 0.24, ease: "back.out(2.6)" }, E.steps[5].t + 0.1 + k * 0.14);
+});
+tl.fromTo("#fourN", { autoAlpha: 0, scale: 0.3 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2.6)" }, E.four_pop - 0.05);
+tl.to("#steps", { autoAlpha: 0, y: -40, duration: 0.2, ease: in3 }, E.steps_out - 0.2);
+
+// ---------- the test ----------
+const SIZES = [310, 190, 125, 78];
+const chart = $("chart");
+const rows = SIZES.map((sz, k) => {
+  const row = document.createElement("div"); row.className = "row";
+  row.innerHTML = `<span class="n">${k + 1}</span><svg width="${sz}" height="${sz}" style="color:#01115f"><use href="#E" width="${sz}" height="${sz}"/></svg>`;
+  chart.appendChild(row);
+  return row.querySelector("use");
+});
+const setSet = (set) => rows.forEach((u, k) => setRot(u, set[k], SIZES[k]));
+setSet(E.right_set);
+const TESTSTATE = { set: 0 };
+tl.set("#test", { autoAlpha: 1 }, E.test_in);
+tl.fromTo("#test", { y: 1920 }, { y: 0, duration: 0.4, ease: "power3.out" }, E.test_in);
+rows.forEach((u, k) => tl.fromTo(u.parentNode, { autoAlpha: 0, scale: 0.5 }, { autoAlpha: 1, scale: 1, duration: 0.22, ease: "back.out(2)" }, E.right_in + k * 0.08));
+const COUNT = { r: 1, l: 1 };
+tl.fromTo("#barfill", { scaleX: 1 }, { scaleX: 0, duration: E.switch - E.right_in, ease: "none" }, E.right_in);
+tl.fromTo(COUNT, { r: 1 }, { r: 0, duration: E.switch - E.right_in, ease: "none" }, E.right_in);
+// switch eyes
+tl.fromTo("#switch", { autoAlpha: 0, scale: 0.6 }, { autoAlpha: 1, scale: 1, duration: 0.2, ease: "back.out(2.4)" }, E.switch);
+tl.to("#switch", { autoAlpha: 0, scale: 0.9, duration: 0.14 }, E.left_in - 0.14);
+tl.to("#chart", { autoAlpha: 0, duration: 0.1 }, E.switch);
+tl.set(TESTSTATE, { set: 1 }, E.switch + 0.15);
+tl.set("#banR", { visibility: "hidden" }, E.switch + 0.2);
+tl.set("#banL", { visibility: "visible" }, E.switch + 0.2);
+tl.fromTo("#banL", { scale: 0.9 }, { scale: 1, duration: 0.2, ease: "back.out(3)" }, E.switch + 0.2);
+tl.to("#chart", { autoAlpha: 1, duration: 0.12 }, E.left_in);
+tl.fromTo("#barfill", { scaleX: 1 }, { scaleX: 0, duration: E.test_out - E.left_in, ease: "none", immediateRender: false }, E.left_in);
+tl.fromTo(COUNT, { l: 1 }, { l: 0, duration: E.test_out - E.left_in, ease: "none" }, E.left_in);
+tl.to("#test", { y: 1920, duration: 0.3, ease: "power3.in" }, E.test_out);
+tl.set("#test", { autoAlpha: 0 }, E.test_out + 0.3);
+
+// ---------- CTA: comment bar types an example answer ----------
+tl.fromTo("#cta", { autoAlpha: 0, scale: 0.82, y: 60 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.38, ease: back }, E.cta_in);
+tl.to("#cta-send", { opacity: 1, duration: 0.1 }, E.cta_type + 1.2);
+tl.to("#cta-send", { keyframes: [{ scale: 0.86, duration: 0.08 }, { scale: 1, duration: 0.14 }] }, E.cta_send);
+tl.fromTo("#heart", { autoAlpha: 0, scale: 0, rotation: -20 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.36, ease: "back.out(2.4)" }, E.cta_send + 0.05);
+tl.to("#cta", { autoAlpha: 0, y: -30, duration: 0.2, ease: in3 }, E.loop_in - 0.05);
+const CTA_WORDS = [["ليمن", 0], ["4/4", 0.3], ["·", 0.7], ["ليسر", 0.9], ["3/4", 1.2]].map(([text, d]) => ({ text, start: E.cta_type + d, end: E.cta_type + d + 0.25 }));
+function typed(t, words) {
+  const out = [];
+  for (const w of words) {
+    if (t <= w.start) break;
+    if (AR.test(w.text)) { out.push(w.text); continue; }
+    const chars = Array.from(w.text);
+    const p = Math.min(1, (t - w.start) / Math.max(0.12, w.end - w.start));
+    out.push(chars.slice(0, Math.max(1, Math.round(p * chars.length))).join(""));
+  }
+  return out.join(" ");
+}
+
+// ---------- deterministic seek ----------
+const ctaText = $("cta-text"), secs = $("secs");
+let lastHook = -1, lastSet = -1;
+window.seek = (t) => {
+  tl.seek(Math.max(t, 0.001), false);      // zero-length sets at t=0 render only once the playhead is past 0
+  // hook E turns every 0.5 s (frame 1 and the loop's last frame both show "right")
+  const hk = t < E.hook_end ? Math.floor(t / 0.5) % 4 : 0;
+  if (hk !== lastHook) { setRot($("hookE"), HOOK_DIRS[hk], 210); lastHook = hk; }
+  if (DIRSTATE.i >= 0) {
+    const [dir, word, deg] = DIRS[DIRSTATE.i];
+    setRot($("dirE"), dir, 300);
+    $("dirWord").textContent = word;
+    $("dirArrow").style.transform = `rotate(${deg}deg)`;
+  }
+  if (TESTSTATE.set !== lastSet) { setSet(TESTSTATE.set ? E.left_set : E.right_set); lastSet = TESTSTATE.set; }
+  const remaining = t < E.switch ? COUNT.r * (E.switch - E.right_in) : COUNT.l * (E.test_out - E.left_in);
+  secs.textContent = Math.max(0, Math.ceil(remaining - 0.001));
+  if (t < E.cta_type) { ctaText.textContent = "Ajouter un commentaire…"; ctaText.classList.remove("typed"); }
+  else { ctaText.textContent = typed(t, CTA_WORDS); ctaText.classList.add("typed"); }
+};
+window.anyVisible = () => {
+  const scope = LAYER === "all" ? document : document.getElementById(LAYER);
+  return Array.from(scope.querySelectorAll(".layer")).some(el => {
+    const cs = getComputedStyle(el);
+    return cs.visibility !== "hidden" && parseFloat(cs.opacity) > 0.004;
+  });
+};
+
+/*FITPLACE*/
+function placeAll() {
+  document.querySelectorAll("#phrases > .phrase").forEach(ph =>
+    placeItem(ph, ph.dataset.place, +ph.dataset.t0, +ph.dataset.t1, { cx: parseFloat(ph.style.left) }));
+  placeItem($("hook"), "above", 0, E.hook_end);
+  placeItem($("steps"), "above", E.steps[0].t, E.steps_out);
+  placeItem($("cta"), "above", E.cta_in, E.loop_in);
+}
+
+window.ready = (async () => {
+  const faces = ['900 150px "Cairo"', '800 46px "Cairo"', '700 56px "Cairo"', '600 32px "Cairo"', '400 168px "Anton"', '400 126px "Great Vibes"', '700 38px "Roboto"'];
+  await Promise.all(faces.flatMap(f => [document.fonts.load(f, "abc éû"), document.fonts.load(f, "واش")]));
+  await document.fonts.ready;
+  const missing = faces.filter(f => !document.fonts.check(f, f.includes("Cairo") ? "abc واش" : "abc éû"));
+  if (missing.length) throw new Error("fonts not loaded: " + missing.join(", "));
+  await Promise.all(Array.from(document.images).map(img => img.decode()));
+  fitLines();
+  placeAll();
+  return true;
+})();
+</script>
+</body>
+</html>

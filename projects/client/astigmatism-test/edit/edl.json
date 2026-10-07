@@ -1,0 +1,114 @@
+{
+ "version": 2,
+ "sources": {
+  "C2430": "/home/user/sxl/projects/client/astigmatism-test/source/C2430.MP4",
+  "C2437": "/home/user/sxl/projects/client/astigmatism-test/source/C2437.MP4",
+  "C2438": "/home/user/sxl/projects/client/astigmatism-test/source/C2438.MP4"
+ },
+ "ranges": [
+  {
+   "source": "C2430",
+   "start": 1.42,
+   "end": 1.72,
+   "beat": "HOOK"
+  },
+  {
+   "source": "C2430",
+   "start": 2.2,
+   "end": 4.28,
+   "beat": "HOOK"
+  },
+  {
+   "source": "C2430",
+   "start": 4.34,
+   "end": 6.6,
+   "beat": "HOOK"
+  },
+  {
+   "source": "C2437",
+   "start": 2.12,
+   "end": 3.62,
+   "beat": "HOW"
+  },
+  {
+   "source": "C2437",
+   "start": 4.0,
+   "end": 5.04,
+   "beat": "HOW"
+  },
+  {
+   "source": "C2437",
+   "start": 5.22,
+   "end": 6.74,
+   "beat": "HOW"
+  },
+  {
+   "source": "C2437",
+   "start": 6.88,
+   "end": 8.1,
+   "beat": "HOW"
+  },
+  {
+   "source": "C2437",
+   "start": 8.8,
+   "end": 9.64,
+   "beat": "HOW"
+  },
+  {
+   "source": "C2437",
+   "start": 9.72,
+   "end": 13.34,
+   "beat": "HOW"
+  },
+  {
+   "source": "C2437",
+   "start": 13.54,
+   "end": 14.3,
+   "beat": "HOW"
+  },
+  {
+   "source": "C2437",
+   "start": 14.42,
+   "end": 17.88,
+   "beat": "HOW"
+  },
+  {
+   "source": "C2437",
+   "start": 17.96,
+   "end": 18.48,
+   "beat": "HOW"
+  },
+  {
+   "source": "C2437",
+   "start": 18.56,
+   "end": 19.14,
+   "beat": "HOW"
+  },
+  {
+   "source": "C2438",
+   "start": 0.98,
+   "end": 1.64,
+   "beat": "CTA"
+  },
+  {
+   "source": "C2438",
+   "start": 1.8,
+   "end": 4.04,
+   "beat": "CTA"
+  },
+  {
+   "source": "C2438",
+   "start": 4.16,
+   "end": 5.26,
+   "beat": "CTA"
+  }
+ ],
+ "pads": [
+  {
+   "beat": "TEST",
+   "out_start": 19.7,
+   "duration": 8.5
+  }
+ ],
+ "total_duration_s": 32.2
+}

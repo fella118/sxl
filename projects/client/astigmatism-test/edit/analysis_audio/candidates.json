@@ -1,0 +1,86 @@
+[
+ {
+  "clip": "C2430",
+  "beat": "HOOK",
+  "kind": "breath",
+  "start": 1.77,
+  "end": 1.87,
+  "db": -38.8,
+  "voicing": 0.28,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2430",
+  "beat": "HOOK",
+  "kind": "breath",
+  "start": 1.95,
+  "end": 2.14,
+  "db": -37.2,
+  "voicing": 0.33,
+  "zcr": 0.13
+ },
+ {
+  "clip": "C2430",
+  "beat": "HOOK",
+  "kind": "breath",
+  "start": 3.53,
+  "end": 3.64,
+  "db": -28.9,
+  "voicing": 0.33,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2430",
+  "beat": "HOOK",
+  "kind": "breath",
+  "start": 4.95,
+  "end": 5.09,
+  "db": -27.1,
+  "voicing": 0.41,
+  "zcr": 0.04
+ },
+ {
+  "clip": "C2437",
+  "beat": "HOW",
+  "kind": "long_word",
+  "start": 4.124,
+  "end": 4.885,
+  "word": "غاتبعدوها"
+ },
+ {
+  "clip": "C2437",
+  "beat": "HOW",
+  "kind": "breath",
+  "start": 4.95,
+  "end": 5.06,
+  "db": -22.0,
+  "voicing": 0.24,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2437",
+  "beat": "HOW",
+  "kind": "long_word",
+  "start": 16.337,
+  "end": 17.038,
+  "word": "وغتحاول"
+ },
+ {
+  "clip": "C2437",
+  "beat": "HOW",
+  "kind": "breath",
+  "start": 18.4,
+  "end": 18.5,
+  "db": -30.4,
+  "voicing": 0.3,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2438",
+  "beat": "CTA",
+  "kind": "long_word",
+  "start": 1.023,
+  "end": 1.746,
+  "word": "commentaire"
+ }
+]
