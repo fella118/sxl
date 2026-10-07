@@ -86,8 +86,8 @@ EV = {
     # the test: full-screen chart, right eye then left eye
     "test_in": t0, "right_in": t0 + 0.45, "switch": t0 + 4.05, "left_in": t0 + 4.65, "test_out": TEST[1] - 0.3,
     # answers (for the pinned comment); directions the open side of the E faces
-    "right_set": ["right", "down", "left", "up"],
-    "left_set": ["up", "left", "right", "down"],
+    "right_set": ["right", "down", "left", "up", "left"],     # 5th = tiny bonus E
+    "left_set": ["up", "left", "right", "down", "up"],
     # CTA
     "cta_in": s(0.92, C38) - 0.05,
     "cta_type": s(2.03, C38),

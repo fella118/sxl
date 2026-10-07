@@ -159,13 +159,15 @@ window.EV = {
   "right",
   "down",
   "left",
-  "up"
+  "up",
+  "left"
  ],
  "left_set": [
   "up",
   "left",
   "right",
-  "down"
+  "down",
+  "up"
  ],
  "cta_in": 27.31,
  "cta_type": 28.248,

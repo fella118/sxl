@@ -84,3 +84,20 @@ final exports need no source. For a re-cut, re-download the Drive folder
 https://drive.google.com/drive/folders/1bLTrtH8HF8nUfKkYshsD304ALbobKhbS
 (new_project.py client reel-02 <link>) and re-run analysis_audio (fillers.py,
 vad_probs.py) if needed.
+
+## Session (cont.), client fixes, 2026-10-07 (Q2 v3, Q3 v3)
+
+- **Q2:** the lens is "Master Luxe", not "MASTERY Luxe" (transcript spelling).
+  - Fixed on the lens card ("MASTER" + script "Luxe") and the comparison label
+    ("MASTER LUXE").
+  - Fixed in Part 2 post caption 3 ("Master Luxe", #MasterLuxe).
+- **Q3:** in the teaser he says "le client جا عندنا ب la monture القديمة ديالو
+  والجديدة". MoulSot heard "la mention", so the next-video card read
+  "LA MENTION". Both chips now read "LA MONTURE".
+- **Re-render:** overlay + composite only (base renders and mattes kept). The
+  raw clips are still off disk (Drive folder 1bLTrtH8HF8nUfKkYshsD304ALbobKhbS).
+- **QC:**
+  - Q2 v3: 38.00 s, -14.0 LUFS, -1.5 dBTP, head check clean.
+  - Q3 v3: 34.94 s, -14.0 LUFS, -1.5 dBTP, head check clean.
+- **Sent:** q2/reel-02_q2_preview_v3_review.mp4,
+  q3/reel-02_q3_preview_v3_review.mp4.

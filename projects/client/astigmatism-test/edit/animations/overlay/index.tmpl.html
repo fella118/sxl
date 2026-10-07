@@ -99,9 +99,11 @@
   #bar { position: absolute; left: 140px; right: 140px; top: 420px; height: 18px; border-radius: 9px; background: rgba(1,17,95,.12); overflow: hidden; }
   #barfill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: var(--navy); border-radius: 9px; transform-origin: 0 50%; }
   #secs { position: absolute; right: 70px; top: 398px; font: 400 64px/1 "Anton"; color: var(--navy); }
-  .chart { position: absolute; left: 0; right: 0; top: 500px; display: flex; flex-direction: column; align-items: center; gap: 62px; }
+  .chart { position: absolute; left: 0; right: 0; top: 500px; display: flex; flex-direction: column; align-items: center; gap: 44px; }
   .row { position: relative; display: flex; align-items: center; justify-content: center; width: 1080px; }
   .row .n { position: absolute; left: 150px; font: 400 54px/1 "Anton"; color: #b4b9cc; }
+  .row .n.bonus { left: 112px; font: 400 34px/1 "Anton"; letter-spacing: 1px; color: var(--navy); background: var(--yellow);
+                  padding: 7px 14px 6px; border-radius: 16px; }
   .disc { position: absolute; left: 0; right: 0; top: 1440px; text-align: center; font: 600 32px/1.3 "Cairo"; color: var(--muted); direction: rtl; }
   #switch { position: absolute; left: 140px; right: 140px; top: 820px; height: 260px; border-radius: 40px; background: var(--yellow); color: var(--navy);
             display: flex; align-items: center; justify-content: center; gap: 24px; font: 900 96px/1 "Cairo"; direction: rtl;
@@ -266,11 +268,13 @@ tl.fromTo("#fourN", { autoAlpha: 0, scale: 0.3 }, { autoAlpha: 1, scale: 1, dura
 tl.to("#steps", { autoAlpha: 0, y: -40, duration: 0.2, ease: in3 }, E.steps_out - 0.2);
 
 // ---------- the test ----------
-const SIZES = [310, 190, 125, 78];
+// his script says four E; the fifth is a tiny bonus to separate sharp eyes (two sizes below the fourth)
+const SIZES = [310, 190, 125, 78, 30];
 const chart = $("chart");
 const rows = SIZES.map((sz, k) => {
   const row = document.createElement("div"); row.className = "row";
-  row.innerHTML = `<span class="n">${k + 1}</span><svg width="${sz}" height="${sz}" style="color:#01115f"><use href="#E" width="${sz}" height="${sz}"/></svg>`;
+  const label = k < 4 ? `<span class="n">${k + 1}</span>` : `<span class="n bonus">BONUS</span>`;
+  row.innerHTML = `${label}<svg width="${sz}" height="${sz}" style="color:#01115f"><use href="#E" width="${sz}" height="${sz}"/></svg>`;
   chart.appendChild(row);
   return row.querySelector("use");
 });
@@ -303,7 +307,7 @@ tl.to("#cta-send", { opacity: 1, duration: 0.1 }, E.cta_type + 1.2);
 tl.to("#cta-send", { keyframes: [{ scale: 0.86, duration: 0.08 }, { scale: 1, duration: 0.14 }] }, E.cta_send);
 tl.fromTo("#heart", { autoAlpha: 0, scale: 0, rotation: -20 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.36, ease: "back.out(2.4)" }, E.cta_send + 0.05);
 tl.to("#cta", { autoAlpha: 0, y: -30, duration: 0.2, ease: in3 }, E.loop_in - 0.05);
-const CTA_WORDS = [["ليمن", 0], ["4/4", 0.3], ["·", 0.7], ["ليسر", 0.9], ["3/4", 1.2]].map(([text, d]) => ({ text, start: E.cta_type + d, end: E.cta_type + d + 0.25 }));
+const CTA_WORDS = [["ليمن", 0], ["5/5", 0.3], ["·", 0.7], ["ليسر", 0.9], ["4/5", 1.2]].map(([text, d]) => ({ text, start: E.cta_type + d, end: E.cta_type + d + 0.25 }));
 function typed(t, words) {
   const out = [];
   for (const w of words) {

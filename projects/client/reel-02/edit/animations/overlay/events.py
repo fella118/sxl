@@ -132,7 +132,7 @@ if "Q2" in BEATS:
     EV["gray"].append([s(6.52, C25), beat_end("Q2") - 0.05])
 if "A2" in BEATS:
     table_in = s(7.53, C26) + 0.3              # "هنا غايبان ليكم": drops in as the camera tilt settles
-    lens_in = s(35.99, C26) - 0.12             # "سميتو MASTERY Luxe"
+    lens_in = s(35.99, C26) - 0.12             # "سميتو Master Luxe"
     PHRASES += [
         phrase("a2a", C26, [[(2.46, "script", "yellow", "ça dépend")], [(2.92, "key", "navy"), (3.26, "key", None)]],
                end=table_in - 0.05),

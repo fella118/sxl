@@ -42,3 +42,20 @@ redrawn, steps panel compacted (head sits higher in C2437; it was scaled to
 **Pipeline:** cut.py -> vad_probs.py/fillers.py -> track_subject.py ->
 render_base.py -> safe_zones.py zones -> overlay events.py + build_html.py ->
 capture_html.py -> safe_zones.py check -> build_audio.py -> composite.py
+
+## Session (cont.), client fix, 2026-10-07 (v2)
+
+- **The fix:** a 5th E on both eye charts, tiny (30 px, two sizes below the
+  4th at 78 px), to separate sharp eyes.
+  - His voice and the step card say "ربعة ديال les E", so the 5th is labelled
+    "BONUS" (yellow tag where the row numbers sit) and the audio stays true.
+  - Rows are spaced at 44 px so the chart ends above the disclaimer.
+  - After the review encode the bonus E is still crisp (6 px strokes).
+- **Answers (pinned comment):**
+  - Right eye: ➡️ ⬇️ ⬅️ ⬆️ · BONUS ⬅️
+  - Left eye: ⬆️ ⬅️ ➡️ ⬇️ · BONUS ⬆️
+- **Updated to match:** the comment-bar example ("ليمن 5/5 · ليسر 4/5") and
+  post captions 1-3 (5 E, 5/5).
+- **QC v2:** 31.36 s, -14.0 LUFS, -1.4 dBTP; the head check flags only the
+  three intended white flashes; the freezes are the held test chart.
+- **Sent:** vision-test_preview_v2_review.mp4.
