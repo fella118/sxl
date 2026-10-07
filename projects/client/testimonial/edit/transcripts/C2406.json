@@ -1,0 +1,392 @@
+{
+ "language_code": "ary",
+ "engine": "moulsot.v0.3+mms_fa",
+ "text": "Okay now اليوم معانا monsieur Ednan Ogaata غادي يعطينا l'avis ديالو و l'expérience ديالو اللي كانت معانا ف Sojiccel fondeur ديال une chaîne des magasins d'optique و une marque e-commerce",
+ "words": [
+  {
+   "type": "word",
+   "text": "Okay",
+   "start": 0.342,
+   "end": 0.565,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 0.565,
+   "end": 0.606,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "now",
+   "start": 0.606,
+   "end": 0.788,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 0.788,
+   "end": 2.92,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "اليوم",
+   "start": 2.92,
+   "end": 3.08,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.08,
+   "end": 3.181,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "معانا",
+   "start": 3.181,
+   "end": 3.461,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.461,
+   "end": 3.661,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "monsieur",
+   "start": 3.661,
+   "end": 3.982,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "Ednan",
+   "start": 3.982,
+   "end": 4.442,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.442,
+   "end": 4.463,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "Ogaata",
+   "start": 4.463,
+   "end": 4.863,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.863,
+   "end": 5.164,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "غادي",
+   "start": 5.164,
+   "end": 5.324,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.324,
+   "end": 5.344,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يعطينا",
+   "start": 5.344,
+   "end": 5.704,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.704,
+   "end": 6.105,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "l'avis",
+   "start": 6.105,
+   "end": 6.425,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.425,
+   "end": 6.466,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ديالو",
+   "start": 6.466,
+   "end": 6.846,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.846,
+   "end": 7.026,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "و",
+   "start": 7.026,
+   "end": 7.046,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.046,
+   "end": 7.106,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "l'expérience",
+   "start": 7.106,
+   "end": 7.727,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.727,
+   "end": 7.767,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ديالو",
+   "start": 7.767,
+   "end": 8.028,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "اللي",
+   "start": 8.028,
+   "end": 8.148,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.148,
+   "end": 8.188,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كانت",
+   "start": 8.188,
+   "end": 8.368,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.368,
+   "end": 8.428,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "معانا",
+   "start": 8.428,
+   "end": 8.709,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.709,
+   "end": 8.909,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ف",
+   "start": 8.909,
+   "end": 8.929,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.929,
+   "end": 8.949,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "Sojiccel",
+   "start": 8.949,
+   "end": 9.73,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.73,
+   "end": 10.492,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "fondeur",
+   "start": 10.492,
+   "end": 10.872,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.872,
+   "end": 10.932,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ديال",
+   "start": 10.932,
+   "end": 11.072,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.072,
+   "end": 11.153,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "une",
+   "start": 11.153,
+   "end": 11.253,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.253,
+   "end": 11.273,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "chaîne",
+   "start": 11.273,
+   "end": 11.533,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.533,
+   "end": 11.553,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "des",
+   "start": 11.553,
+   "end": 11.633,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.633,
+   "end": 11.653,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "magasins",
+   "start": 11.653,
+   "end": 12.054,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "d'optique",
+   "start": 12.054,
+   "end": 12.675,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.675,
+   "end": 13.075,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "و",
+   "start": 13.075,
+   "end": 13.095,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 13.095,
+   "end": 13.436,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "une",
+   "start": 13.436,
+   "end": 13.556,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "marque",
+   "start": 13.556,
+   "end": 14.137,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.137,
+   "end": 14.157,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "e-commerce",
+   "start": 14.157,
+   "end": 14.618,
+   "speaker_id": "speaker_0"
+  }
+ ]
+}

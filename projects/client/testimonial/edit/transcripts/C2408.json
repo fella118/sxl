@@ -1,0 +1,469 @@
+{
+ "language_code": "ary",
+ "engine": "moulsot.v0.3+mms_fa",
+ "text": "اليوم معانا مسعود بنعطير fondateur ديال une chaîne des magasins d'optique و une marque e-commerce غادي يعطينا la vie ديالو و l'expérience ديالو كيف كانت معانا ف Sojic زاد مسعود بنعطير خلي ليك الكلمة مزيانة",
+ "words": [
+  {
+   "type": "word",
+   "text": "اليوم",
+   "start": 2.1,
+   "end": 2.28,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.28,
+   "end": 2.361,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "معانا",
+   "start": 2.361,
+   "end": 2.641,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.641,
+   "end": 2.821,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مسعود",
+   "start": 2.821,
+   "end": 3.723,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.723,
+   "end": 3.743,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "بنعطير",
+   "start": 3.743,
+   "end": 4.344,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.344,
+   "end": 4.624,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "fondateur",
+   "start": 4.624,
+   "end": 5.045,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.045,
+   "end": 5.085,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ديال",
+   "start": 5.085,
+   "end": 5.205,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.205,
+   "end": 5.265,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "une",
+   "start": 5.265,
+   "end": 5.365,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.365,
+   "end": 5.405,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "chaîne",
+   "start": 5.405,
+   "end": 5.606,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "des",
+   "start": 5.606,
+   "end": 5.686,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.686,
+   "end": 5.706,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "magasins",
+   "start": 5.706,
+   "end": 6.086,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "d'optique",
+   "start": 6.086,
+   "end": 6.587,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.587,
+   "end": 6.768,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "و",
+   "start": 6.768,
+   "end": 6.788,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.788,
+   "end": 6.848,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "une",
+   "start": 6.848,
+   "end": 6.948,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.948,
+   "end": 6.968,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "marque",
+   "start": 6.968,
+   "end": 7.168,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.168,
+   "end": 7.208,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "e-commerce",
+   "start": 7.208,
+   "end": 7.729,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.729,
+   "end": 8.27,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "غادي",
+   "start": 8.27,
+   "end": 8.41,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.41,
+   "end": 8.43,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يعطينا",
+   "start": 8.43,
+   "end": 8.731,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.731,
+   "end": 8.951,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "la",
+   "start": 8.951,
+   "end": 9.051,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.051,
+   "end": 9.111,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "vie",
+   "start": 9.111,
+   "end": 9.252,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.252,
+   "end": 9.272,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ديالو",
+   "start": 9.272,
+   "end": 9.612,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.612,
+   "end": 9.792,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "و",
+   "start": 9.792,
+   "end": 9.812,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.812,
+   "end": 9.852,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "l'expérience",
+   "start": 9.852,
+   "end": 10.514,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.514,
+   "end": 10.554,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ديالو",
+   "start": 10.554,
+   "end": 10.814,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.814,
+   "end": 10.974,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كيف",
+   "start": 10.974,
+   "end": 11.114,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.114,
+   "end": 11.155,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كانت",
+   "start": 11.155,
+   "end": 11.335,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.335,
+   "end": 11.395,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "معانا",
+   "start": 11.395,
+   "end": 11.635,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.635,
+   "end": 11.856,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ف",
+   "start": 11.856,
+   "end": 11.876,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.876,
+   "end": 11.916,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "Sojic",
+   "start": 11.916,
+   "end": 12.176,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.176,
+   "end": 12.216,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "زاد",
+   "start": 12.216,
+   "end": 12.376,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.376,
+   "end": 13.318,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مسعود",
+   "start": 13.318,
+   "end": 13.438,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "بنعطير",
+   "start": 13.438,
+   "end": 13.739,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 13.739,
+   "end": 13.759,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "خلي",
+   "start": 13.759,
+   "end": 13.919,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 13.919,
+   "end": 13.939,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ليك",
+   "start": 13.939,
+   "end": 14.019,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.019,
+   "end": 14.039,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "الكلمة",
+   "start": 14.039,
+   "end": 14.36,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.36,
+   "end": 15.741,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مزيانة",
+   "start": 15.741,
+   "end": 16.093,
+   "speaker_id": "speaker_0"
+  }
+ ]
+}

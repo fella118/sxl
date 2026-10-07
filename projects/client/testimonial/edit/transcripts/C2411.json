@@ -1,0 +1,511 @@
+{
+ "language_code": "ary",
+ "engine": "moulsot.v0.3+mms_fa",
+ "text": "و منصة بالنسبة ل la durée شحال نتا معانا أسي عبد الله دابا ça fait واحد العام و grosso modo كانريكومندي أي واحد يخدم مع سي سعد وغيكون satisfait إن شاء الله بإذن الله مرفي؟ آه فيك ميرسي",
+ "words": [
+  {
+   "type": "word",
+   "text": "و",
+   "start": 0.782,
+   "end": 0.802,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 0.802,
+   "end": 1.085,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "منصة",
+   "start": 1.085,
+   "end": 1.389,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 1.389,
+   "end": 3.861,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "بالنسبة",
+   "start": 3.861,
+   "end": 4.141,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ل",
+   "start": 4.141,
+   "end": 4.161,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.161,
+   "end": 4.181,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "la",
+   "start": 4.181,
+   "end": 4.281,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.281,
+   "end": 4.342,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "durée",
+   "start": 4.342,
+   "end": 5.043,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.043,
+   "end": 5.063,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شحال",
+   "start": 5.063,
+   "end": 5.283,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.283,
+   "end": 5.363,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "نتا",
+   "start": 5.363,
+   "end": 5.483,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.483,
+   "end": 5.524,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "معانا",
+   "start": 5.524,
+   "end": 5.784,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.784,
+   "end": 5.864,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أسي",
+   "start": 5.864,
+   "end": 6.044,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.044,
+   "end": 6.084,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عبد",
+   "start": 6.084,
+   "end": 6.205,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.205,
+   "end": 6.245,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "الله",
+   "start": 6.245,
+   "end": 6.385,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.385,
+   "end": 6.866,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "دابا",
+   "start": 6.866,
+   "end": 7.086,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.086,
+   "end": 7.306,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ça",
+   "start": 7.306,
+   "end": 7.407,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.407,
+   "end": 7.587,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "fait",
+   "start": 7.587,
+   "end": 7.747,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.747,
+   "end": 7.887,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "واحد",
+   "start": 7.887,
+   "end": 8.288,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.288,
+   "end": 8.388,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "العام",
+   "start": 8.388,
+   "end": 8.969,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.969,
+   "end": 9.39,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "و",
+   "start": 9.39,
+   "end": 9.41,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.41,
+   "end": 9.951,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "grosso",
+   "start": 9.951,
+   "end": 10.271,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.271,
+   "end": 10.331,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "modo",
+   "start": 10.331,
+   "end": 10.592,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.592,
+   "end": 10.732,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كانريكومندي",
+   "start": 10.732,
+   "end": 11.513,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.513,
+   "end": 11.854,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أي",
+   "start": 11.854,
+   "end": 11.954,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.954,
+   "end": 12.054,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "واحد",
+   "start": 12.054,
+   "end": 12.415,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.415,
+   "end": 12.555,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يخدم",
+   "start": 12.555,
+   "end": 12.836,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.836,
+   "end": 12.876,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مع",
+   "start": 12.876,
+   "end": 12.956,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.956,
+   "end": 13.076,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "سي",
+   "start": 13.076,
+   "end": 13.156,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 13.156,
+   "end": 13.256,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "سعد",
+   "start": 13.256,
+   "end": 13.497,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 13.497,
+   "end": 13.657,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "وغيكون",
+   "start": 13.657,
+   "end": 13.977,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 13.977,
+   "end": 14.018,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "satisfait",
+   "start": 14.018,
+   "end": 14.418,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "إن",
+   "start": 14.418,
+   "end": 14.458,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.458,
+   "end": 14.498,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شاء",
+   "start": 14.498,
+   "end": 14.599,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "الله",
+   "start": 14.599,
+   "end": 14.759,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.759,
+   "end": 14.819,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "بإذن",
+   "start": 14.819,
+   "end": 15.079,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 15.079,
+   "end": 15.099,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "الله",
+   "start": 15.099,
+   "end": 15.26,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 15.26,
+   "end": 17.081,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مرفي؟",
+   "start": 17.081,
+   "end": 17.627,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 17.627,
+   "end": 17.931,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "آه",
+   "start": 17.931,
+   "end": 17.992,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 17.992,
+   "end": 18.032,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "فيك",
+   "start": 18.032,
+   "end": 18.214,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 18.214,
+   "end": 18.295,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ميرسي",
+   "start": 18.295,
+   "end": 18.579,
+   "speaker_id": "speaker_0"
+  }
+ ]
+}
