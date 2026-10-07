@@ -75,7 +75,10 @@ for k, i in enumerate(beat_ranges("HOW")):
 # "غانغمضو عين": push in on him covering his eye
 i_eye = rng("C2437", 15.40)
 if i_eye is not None:
-    OVERRIDE[i_eye] = [(0, 1.12, LOW), (("w", 15.40, -0.3), 1.12, LOW), (("w", 15.40, 0.2), 1.30, 0.45), ("end", 1.32, 0.45)]
+    OVERRIDE[i_eye] = [(0, 1.06, LOW), (("w", 15.40, -0.3), 1.06, LOW), (("w", 15.40, 0.2), 1.16, LOW), ("end", 1.18, LOW)]
+    for i in beat_ranges("HOW"):
+        if i > i_eye:                        # he leans in after covering his eye: keep it wide under the panel
+            OVERRIDE[i] = [(0, 1.00 if (i - i_eye) % 2 else 1.04, LOW), ("end", 1.04 if (i - i_eye) % 2 else 1.08, LOW)]
 
 # no cutaways in this reel
 CUTAWAYS: list = []

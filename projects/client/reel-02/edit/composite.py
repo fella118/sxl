@@ -45,6 +45,8 @@ def load_rgba(path: Path):
     if not path.exists():
         return None
     ov = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
+    if ov.shape[2] == 3:                     # fully opaque frame saved without alpha (full-screen card)
+        return ov.astype(np.float32), np.ones(ov.shape[:2] + (1,), np.float32)
     return ov[:, :, :3].astype(np.float32), ov[:, :, 3:4].astype(np.float32) / 255
 
 
