@@ -76,3 +76,11 @@ instead of the sky blue; no misspellings.
   غليظ (was غليض), "ف Gzenaya" (transcript had فݣزلنا), full CTA line
   "غتحتاجو نهار اللي غتبغي دير نضاضر". Question card and chips no longer
   numbered (each reel stands alone).
+
+**Disk (2026-10-07):** the raw 4K clips (reel-02/source/C24*.MP4, 12 GB) were
+deleted locally to make room for the next project. Bases, masks, mixes and the
+full-quality composites (q1-q3/preview_v2.mp4) are kept, so overlay changes and
+final exports need no source. For a re-cut, re-download the Drive folder
+https://drive.google.com/drive/folders/1bLTrtH8HF8nUfKkYshsD304ALbobKhbS
+(new_project.py client reel-02 <link>) and re-run analysis_audio (fillers.py,
+vad_probs.py) if needed.
