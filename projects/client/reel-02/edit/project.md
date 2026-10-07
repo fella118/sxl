@@ -42,3 +42,14 @@ composite.py.
 **Pipeline:** cut.py -> track_subject.py -> render_base.py -> safe_zones.py
 zones -> overlay events.py + build_html.py -> capture_html.py (back, front) ->
 safe_zones.py check -> build_audio.py -> composite.py
+
+**Preview v1 (edit/preview_v1.mp4, review copy reel-02_preview_v1_review.mp4 720p 28 MB):**
+103.42 s (= cut list), 1080x1920 50 fps, -14.0 LUFS, -1.4 dBTP, 51 cuts with a
+framing change on each, no black or frozen frames. Head check: 0 frames over
+0.5% of the head except 19.00-19.14 (white-card close-up: the pointer is over
+his hand, his head is not in the shot). Fixes before sending: table delayed
+0.3 s (it clipped his head during the camera tilt), CTA save button moved under
+the chin (C2428 is a tight shot, no room above), white-card pointer re-aimed.
+Not yet in v1: music (client track to come).
+Lessons: never pgrep/pkill -f a pattern that also matches the waiting shell
+(it kills or blocks itself); still frames: seek with -ss, not select=eq(n).
