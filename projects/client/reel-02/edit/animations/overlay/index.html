@@ -101,7 +101,7 @@
   #co-arrow { position: absolute; left: 500px; top: 690px; width: 80px; height: 150px; }
 
   /* ---------- A3 index table ---------- */
-  #table { left: 90px; top: 170px; width: 900px; }
+  #table { left: 90px; top: 140px; width: 900px; }
   #table .panel { padding: 22px 30px 26px; }
   .trow { display: grid; grid-template-columns: 1fr 1fr; align-items: center; height: 104px; border-radius: 24px; padding: 0 18px; }
   .thead { height: 86px; margin-bottom: 6px; }
@@ -114,7 +114,7 @@
   .tr .arr { color: var(--yellow); margin: 0 10px; }
 
   /* ---------- A3 lens card ---------- */
-  #lens { left: 110px; top: 170px; width: 860px; }
+  #lens { left: 110px; top: 140px; width: 860px; }
   #lens .panel { padding: 30px 36px 30px; display: flex; flex-direction: column; align-items: center; }
   #lens .top { display: flex; align-items: center; gap: 30px; }
   #lens .disc { width: 170px; height: 170px; flex: none; }
@@ -132,7 +132,7 @@
   #lens .prof .lb { font: 400 46px/1.1 "Anton"; letter-spacing: 1px; }
 
   /* ---------- A2 frame-arm diagram ---------- */
-  #arm { left: 70px; top: 220px; width: 940px; }
+  #arm { left: 70px; top: 140px; width: 940px; }
   #arm .panel { padding: 30px 30px 34px; }
   #arm .ttl { font: 800 46px/1 "Cairo"; color: var(--cyan); text-align: center; margin-bottom: 18px; direction: rtl; }
   #armsvg { width: 880px; height: 220px; overflow: visible; }
@@ -144,7 +144,7 @@
   .tagp svg { width: 60px; height: 60px; }
 
   /* ---------- teaser: next video ---------- */
-  #next { left: 110px; top: 190px; width: 860px; }
+  #next { left: 110px; top: 140px; width: 860px; }
   #next .panel { padding: 26px 34px 30px; text-align: center; }
   #next .hd { display: flex; align-items: center; justify-content: center; gap: 20px; font: 400 64px/1 "Great Vibes"; color: var(--yellow); }
   #next .hd b { font: 900 70px/1 "Cairo"; color: #fff; }
@@ -159,7 +159,7 @@
   #next .rxa { width: 90px; height: 60px; opacity: 0; visibility: hidden; }
 
   /* ---------- CTA: save button ---------- */
-  #save { left: 290px; top: 190px; width: 500px; height: 470px; }
+  #save { left: 290px; top: 150px; width: 500px; height: 470px; }
   #save .btn { position: absolute; left: 90px; top: 0; width: 320px; height: 320px; border-radius: 80px; background: #fff;
                box-shadow: 0 30px 70px rgba(0,0,0,.45); display: grid; place-items: center; }
   #save .btn svg { width: 190px; height: 190px; overflow: visible; }
@@ -390,8 +390,17 @@ E.chips.forEach((c, k) => {
   el.className = "layer chip " + c.kind; el.id = "chip" + k;
   el.innerHTML = `<span class="ico">${c.kind === "q" ? "?" : "✓"}</span><span>${c.kind === "q" ? "سؤال" : "جواب"}</span><span class="of">${c.n}/3</span>`;
   front.appendChild(el);
-  tl.fromTo(el, { autoAlpha: 0, scale: 0.4 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, c.start);
-  tl.to(el, { autoAlpha: 0, scale: 0.6, duration: 0.14, ease: in3 }, c.end - 0.14);
+  // the chip steps aside while a big panel uses the top of the frame
+  const PANELS = [[E.table_in, E.table_out], [E.lens_in, E.lens_out], [E.arm_in, E.arm_out]];
+  let shown = [[c.start, c.end]];
+  PANELS.forEach(([a, b]) => {
+    shown = shown.flatMap(([s0, s1]) => (a - 0.05 >= s1 || b + 0.1 <= s0) ? [[s0, s1]]
+      : [[s0, a - 0.05], [b + 0.1, s1]].filter(([x, y]) => y - x > 0.6));
+  });
+  shown.forEach(([s0, s1], j) => {
+    tl.fromTo(el, { autoAlpha: 0, scale: 0.4 }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)", immediateRender: false }, s0);
+    tl.to(el, { autoAlpha: 0, scale: 0.6, duration: 0.14, ease: in3 }, s1 - 0.14);
+  });
 });
 
 // ---------- "جواب" wall behind him at each answer ----------

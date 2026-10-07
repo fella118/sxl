@@ -115,7 +115,7 @@ PHRASES = [
     # ---- A3 (the table and the lens card carry the rest) ----
     phrase("a3a", C26, [[(2.46, "script", "yellow", "ça dépend")], [(2.92, "key", "cyan"), (3.26, "key", None)]],
            end=table_in - 0.05),
-    phrase("a3b", C26, [[(33.33, "small", None), (33.59, "small", None)], [(34.09, "key", "cyan", "des verres")],
+    phrase("a3b", C26, [[(33.59, "small", None), (34.09, "key", "cyan", "des verres")],
                         [(34.61, "small", None), (35.09, "small", None)]], end=lens_in - 0.05),
     # ---- Q2 ----
     phrase("q2a", C22, [[(1.30, "small", None), (1.74, "small", None)], [(2.18, "num", "yellow", "-10")]],
@@ -131,9 +131,10 @@ PHRASES = [
                         [(4.12, "small", None), (4.37, "small", None), (4.55, "key", "yellow")]], end=s(5.73, C23)),
     phrase("a2c", C23, [[(5.73, "small", None), (6.19, "small", None)], [(7.23, "key", "cyan", "deux montures")]],
            end=s(8.37, C23)),
-    phrase("a2d", C23, [[(8.37, "small", None, "كاين هادي")], [(8.63, "num", "cyan", "1")]], end=s(10.12, C23)),
+    phrase("a2d", C23, [[(8.37, "small", None, "كاين هادي")], [(8.63, "num", "cyan", "1")]], end=s(10.12, C23),
+           y=200, place="above"),
     phrase("a2e", C23, [[(10.12, "small", None, "وكاين هادي")], [(10.50, "num", "yellow", "2")]],
-           end=frames["out_start"] + frames["duration"] - 0.03),
+           end=frames["out_start"] + frames["duration"] - 0.03, y=200, place="above"),
     phrase("a2f", C23, [[(21.91, "small", None), (22.43, "small", None)], [(23.10, "num", "cyan", "1.74")]],
            end=s(24.34, C23)),
     phrase("a2g", C23, [[(24.34, "script", "yellow", "bien sûr")], [(24.82, "key", "red"), (25.26, "key", "red")]],
@@ -142,8 +143,8 @@ PHRASES = [
     phrase("t3", C23, [[(32.37, "small", None, "le client"), (32.83, "small", None, "جا عندنا")]], end=s(33.77, C23)),
     # ---- CTA ----
     phrase("c1", C28, [[(2.69, "small", None), (2.83, "key", "cyan", "la vidéo")]], end=s(3.55, C28)),
-    phrase("c2", C28, [[(3.55, "small", None), (4.03, "small", None), (4.27, "small", None)],
-                       [(4.80, "key", "yellow", "نضاضر")]], end=DUR),
+    phrase("c2", C28, [[(3.55, "small", None), (4.27, "small", None, "غتبغي دير"), (4.80, "key", "yellow", "نضاضر")]],
+           end=DUR),
 ]
 PHRASES.sort(key=lambda p: p["start"])
 # one phrase at a time: each ends just before the next begins

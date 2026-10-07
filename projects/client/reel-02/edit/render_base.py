@@ -48,7 +48,7 @@ SMOOTH_S = 0.35                          # follow-cam smoothing (Gaussian sigma,
 AUTO_Z = [1.00, 1.13, 1.05, 1.17]
 DRIFT = 0.03
 EYE_Y = 0.40                             # default eye line (fraction of the output height)
-LOW = 0.50                               # eye line while a big graphic sits above his head
+LOW = 0.53                               # eye line while a big graphic sits above his head
 
 
 def rng(clip: str, src: float) -> int:
@@ -69,12 +69,12 @@ OVERRIDE[i_here] = [(0, 1.06), (("w", 7.53), 1.06, EYE_Y), (("w", 7.53, 0.5), 1.
 for k, i in enumerate(i for i in beat_ranges("A3") if i > i_here):
     z = [1.13, 1.00][k % 2]
     OVERRIDE[i] = [(0, z, LOW), ("end", z + 0.02, LOW)]
-# A2: frame-arm diagram above his head from "غتجي للجنب" to "تختارها 46"
-for k, i in enumerate(range(rng("C2423", 11.64), rng("C2423", 20.37) + 1)):
+# A2: frame-arm diagram above his head from "غتجي للجنب" until it leaves on "خدمنا هنايا"
+for k, i in enumerate(range(rng("C2423", 11.64), rng("C2423", 21.07) + 1)):
     z = [1.13, 1.00][k % 2]
     OVERRIDE[i] = [(0, z, LOW), ("end", z + 0.02, LOW)]
 # CTA: save button above his head, slow push-in
-OVERRIDE[beat_ranges("CTA")[0]] = [(0, 1.02, 0.46), ("end", 1.16, 0.46)]
+OVERRIDE[beat_ranges("CTA")[0]] = [(0, 1.00, 0.50), ("end", 1.08, 0.50)]
 
 # Cutaways (source seconds, can span a cut): "on" = point of the 9:16 source frame, zoom, drift over the shot.
 CUTAWAYS = [

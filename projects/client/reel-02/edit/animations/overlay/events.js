@@ -567,26 +567,18 @@ window.EV = {
   },
   {
    "id": "a3b",
-   "start": 55.289,
+   "start": 55.55,
    "end": 57.582,
    "x": 520,
    "y": 1250,
    "lines": [
     [
      {
-      "t": "أولا",
-      "at": 55.289,
-      "role": "small",
-      "color": null
-     },
-     {
       "t": "كاينة",
       "at": 55.55,
       "role": "small",
       "color": null
-     }
-    ],
-    [
+     },
      {
       "t": "des verres",
       "at": 56.05,
@@ -833,7 +825,7 @@ window.EV = {
    "start": 76.094,
    "end": 77.788,
    "x": 520,
-   "y": 1250,
+   "y": 200,
    "lines": [
     [
      {
@@ -852,7 +844,7 @@ window.EV = {
      }
     ]
    ],
-   "place": "below",
+   "place": "above",
    "parent": null
   },
   {
@@ -860,7 +852,7 @@ window.EV = {
    "start": 77.838,
    "end": 78.41,
    "x": 520,
-   "y": 1250,
+   "y": 200,
    "lines": [
     [
      {
@@ -879,7 +871,7 @@ window.EV = {
      }
     ]
    ],
-   "place": "below",
+   "place": "above",
    "parent": null
   },
   {
@@ -1013,19 +1005,11 @@ window.EV = {
       "color": null
      },
      {
-      "t": "نهار",
-      "at": 101.352,
-      "role": "small",
-      "color": null
-     },
-     {
-      "t": "غتبغي",
+      "t": "غتبغي دير",
       "at": 101.593,
       "role": "small",
       "color": null
-     }
-    ],
-    [
+     },
      {
       "t": "نضاضر",
       "at": 102.116,
