@@ -1,0 +1,462 @@
+{
+ "fps": 50,
+ "duration": 22.16,
+ "width": 1080,
+ "height": 1920,
+ "ranges": [
+  {
+   "beat": "HOOK",
+   "source": "C2439",
+   "src_start": 0.5,
+   "src_end": 2.0,
+   "frames": 75,
+   "out_start": 0.0,
+   "duration": 1.5,
+   "speed": 1.0,
+   "mute": true
+  },
+  {
+   "beat": "HOOK",
+   "source": "C2439",
+   "src_start": 2.0,
+   "src_end": 6.0,
+   "frames": 50,
+   "out_start": 1.5,
+   "duration": 1.0,
+   "speed": 4.0,
+   "mute": true
+  },
+  {
+   "beat": "HOOK",
+   "source": "C2439",
+   "src_start": 6.0,
+   "src_end": 7.9,
+   "frames": 63,
+   "out_start": 2.5,
+   "duration": 1.26,
+   "speed": 1.5,
+   "mute": true
+  },
+  {
+   "beat": "HOOK",
+   "source": "C2439",
+   "src_start": 7.9,
+   "src_end": 9.1,
+   "frames": 100,
+   "out_start": 3.76,
+   "duration": 2.0,
+   "speed": 0.6,
+   "mute": true
+  },
+  {
+   "beat": "HOOK",
+   "source": "C2439",
+   "src_start": 9.1,
+   "src_end": 10.7,
+   "frames": 40,
+   "out_start": 5.76,
+   "duration": 0.8,
+   "speed": 2.0,
+   "mute": true
+  },
+  {
+   "beat": "ADVICE",
+   "source": "C2449",
+   "src_start": 27.22,
+   "src_end": 33.52,
+   "frames": 315,
+   "out_start": 6.56,
+   "duration": 6.3
+  },
+  {
+   "beat": "SOL",
+   "source": "C2452",
+   "src_start": 14.12,
+   "src_end": 16.26,
+   "frames": 107,
+   "out_start": 12.86,
+   "duration": 2.14
+  },
+  {
+   "beat": "SOL",
+   "source": "C2452",
+   "src_start": 16.36,
+   "src_end": 19.3,
+   "frames": 147,
+   "out_start": 15.0,
+   "duration": 2.94
+  },
+  {
+   "beat": "SOL",
+   "source": "C2452",
+   "src_start": 19.62,
+   "src_end": 20.38,
+   "frames": 38,
+   "out_start": 17.94,
+   "duration": 0.76
+  },
+  {
+   "beat": "SOL",
+   "source": "C2452",
+   "src_start": 20.48,
+   "src_end": 23.94,
+   "frames": 173,
+   "out_start": 18.7,
+   "duration": 3.46
+  }
+ ],
+ "words": [
+  {
+   "id": "C2449@27.27",
+   "word": "يلا",
+   "beat": "ADVICE",
+   "src": 27.273,
+   "start": 6.613,
+   "end": 6.773
+  },
+  {
+   "id": "C2449@27.49",
+   "word": "وصلتي",
+   "beat": "ADVICE",
+   "src": 27.494,
+   "start": 6.834,
+   "end": 7.254
+  },
+  {
+   "id": "C2449@27.99",
+   "word": "لهاد",
+   "beat": "ADVICE",
+   "src": 27.994,
+   "start": 7.334,
+   "end": 7.494
+  },
+  {
+   "id": "C2449@28.19",
+   "word": "المرحلة",
+   "beat": "ADVICE",
+   "src": 28.194,
+   "start": 7.534,
+   "end": 7.995
+  },
+  {
+   "id": "C2449@28.75",
+   "word": "أنك",
+   "beat": "ADVICE",
+   "src": 28.755,
+   "start": 8.095,
+   "end": 8.355
+  },
+  {
+   "id": "C2449@29.07",
+   "word": "تباع",
+   "beat": "ADVICE",
+   "src": 29.075,
+   "start": 8.415,
+   "end": 8.635
+  },
+  {
+   "id": "C2449@29.38",
+   "word": "التيليفون",
+   "beat": "ADVICE",
+   "src": 29.375,
+   "start": 8.715,
+   "end": 9.236
+  },
+  {
+   "id": "C2449@30.04",
+   "word": "باش",
+   "beat": "ADVICE",
+   "src": 30.036,
+   "start": 9.376,
+   "end": 9.536
+  },
+  {
+   "id": "C2449@30.22",
+   "word": "تشوف",
+   "beat": "ADVICE",
+   "src": 30.216,
+   "start": 9.556,
+   "end": 9.777
+  },
+  {
+   "id": "C2449@30.50",
+   "word": "مزيان",
+   "beat": "ADVICE",
+   "src": 30.497,
+   "start": 9.837,
+   "end": 10.197
+  },
+  {
+   "id": "C2449@30.94",
+   "word": "هادي",
+   "beat": "ADVICE",
+   "src": 30.937,
+   "start": 10.277,
+   "end": 10.417
+  },
+  {
+   "id": "C2449@31.14",
+   "word": "علامة",
+   "beat": "ADVICE",
+   "src": 31.137,
+   "start": 10.477,
+   "end": 10.778
+  },
+  {
+   "id": "C2449@31.50",
+   "word": "كاتدل",
+   "beat": "ADVICE",
+   "src": 31.498,
+   "start": 10.838,
+   "end": 11.198
+  },
+  {
+   "id": "C2449@31.94",
+   "word": "على",
+   "beat": "ADVICE",
+   "src": 31.938,
+   "start": 11.278,
+   "end": 11.398
+  },
+  {
+   "id": "C2449@32.14",
+   "word": "أنو",
+   "beat": "ADVICE",
+   "src": 32.138,
+   "start": 11.478,
+   "end": 11.799
+  },
+  {
+   "id": "C2449@32.52",
+   "word": "عندك",
+   "beat": "ADVICE",
+   "src": 32.519,
+   "start": 11.859,
+   "end": 12.059
+  },
+  {
+   "id": "C2449@32.78",
+   "word": "مشكل",
+   "beat": "ADVICE",
+   "src": 32.779,
+   "start": 12.119,
+   "end": 12.419
+  },
+  {
+   "id": "C2449@33.12",
+   "word": "فالقرب",
+   "beat": "ADVICE",
+   "src": 33.119,
+   "start": 12.459,
+   "end": 12.86
+  },
+  {
+   "id": "C2452@14.16",
+   "word": "والنصيحة",
+   "beat": "SOL",
+   "src": 14.16,
+   "start": 12.9,
+   "end": 13.301
+  },
+  {
+   "id": "C2452@14.58",
+   "word": "اللي",
+   "beat": "SOL",
+   "src": 14.581,
+   "start": 13.321,
+   "end": 13.441
+  },
+  {
+   "id": "C2452@14.74",
+   "word": "نقدر",
+   "beat": "SOL",
+   "src": 14.741,
+   "start": 13.481,
+   "end": 13.742
+  },
+  {
+   "id": "C2452@15.04",
+   "word": "نعطيك",
+   "beat": "SOL",
+   "src": 15.042,
+   "start": 13.782,
+   "end": 14.122
+  },
+  {
+   "id": "C2452@15.50",
+   "word": "هو",
+   "beat": "SOL",
+   "src": 15.503,
+   "start": 14.243,
+   "end": 14.423
+  },
+  {
+   "id": "C2452@15.80",
+   "word": "تمشي",
+   "beat": "SOL",
+   "src": 15.803,
+   "start": 14.543,
+   "end": 14.824
+  },
+  {
+   "id": "C2452@16.16",
+   "word": "لأقرب",
+   "beat": "SOL",
+   "src": 16.164,
+   "start": 14.904,
+   "end": 15.445
+  },
+  {
+   "id": "C2452@16.89",
+   "word": "وقت",
+   "beat": "SOL",
+   "src": 16.885,
+   "start": 15.525,
+   "end": 15.765
+  },
+  {
+   "id": "C2452@17.20",
+   "word": "لأقرب",
+   "beat": "SOL",
+   "src": 17.205,
+   "start": 15.845,
+   "end": 16.286
+  },
+  {
+   "id": "C2452@17.71",
+   "word": "spécialiste",
+   "beat": "SOL",
+   "src": 17.706,
+   "start": 16.346,
+   "end": 17.128
+  },
+  {
+   "id": "C2452@18.49",
+   "word": "دوز",
+   "beat": "SOL",
+   "src": 18.488,
+   "start": 17.128,
+   "end": 17.368
+  },
+  {
+   "id": "C2452@18.77",
+   "word": "على",
+   "beat": "SOL",
+   "src": 18.768,
+   "start": 17.408,
+   "end": 17.548
+  },
+  {
+   "id": "C2452@18.95",
+   "word": "عينيك",
+   "beat": "SOL",
+   "src": 18.948,
+   "start": 17.588,
+   "end": 17.929
+  },
+  {
+   "id": "C2452@19.69",
+   "word": "وماتنساش",
+   "beat": "SOL",
+   "src": 19.69,
+   "start": 18.01,
+   "end": 18.651
+  },
+  {
+   "id": "C2452@20.37",
+   "word": "تبارطاجي",
+   "beat": "SOL",
+   "src": 20.371,
+   "start": 18.691,
+   "end": 19.152
+  },
+  {
+   "id": "C2452@20.99",
+   "word": "هاد",
+   "beat": "SOL",
+   "src": 20.992,
+   "start": 19.212,
+   "end": 19.352
+  },
+  {
+   "id": "C2452@21.19",
+   "word": "la",
+   "beat": "SOL",
+   "src": 21.192,
+   "start": 19.412,
+   "end": 19.472
+  },
+  {
+   "id": "C2452@21.29",
+   "word": "vidéo",
+   "beat": "SOL",
+   "src": 21.292,
+   "start": 19.512,
+   "end": 19.773
+  },
+  {
+   "id": "C2452@21.63",
+   "word": "هادي",
+   "beat": "SOL",
+   "src": 21.633,
+   "start": 19.853,
+   "end": 20.073
+  },
+  {
+   "id": "C2452@21.93",
+   "word": "مع",
+   "beat": "SOL",
+   "src": 21.933,
+   "start": 20.153,
+   "end": 20.254
+  },
+  {
+   "id": "C2452@22.07",
+   "word": "الناس",
+   "beat": "SOL",
+   "src": 22.074,
+   "start": 20.294,
+   "end": 20.534
+  },
+  {
+   "id": "C2452@22.31",
+   "word": "اللي",
+   "beat": "SOL",
+   "src": 22.314,
+   "start": 20.534,
+   "end": 20.654
+  },
+  {
+   "id": "C2452@22.47",
+   "word": "كتباع",
+   "beat": "SOL",
+   "src": 22.474,
+   "start": 20.694,
+   "end": 21.015
+  },
+  {
+   "id": "C2452@22.84",
+   "word": "التيليفون",
+   "beat": "SOL",
+   "src": 22.835,
+   "start": 21.055,
+   "end": 21.576
+  },
+  {
+   "id": "C2452@23.52",
+   "word": "باش",
+   "beat": "SOL",
+   "src": 23.516,
+   "start": 21.736,
+   "end": 21.916
+  },
+  {
+   "id": "C2452@23.72",
+   "word": "تشوف",
+   "beat": "SOL",
+   "src": 23.716,
+   "start": 21.936,
+   "end": 22.16
+  }
+ ]
+}

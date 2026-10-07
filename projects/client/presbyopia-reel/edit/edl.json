@@ -1,0 +1,76 @@
+{
+ "version": 2,
+ "sources": {
+  "C2439": "/home/user/sxl/projects/client/presbyopia-reel/source/C2439.MP4",
+  "C2449": "/home/user/sxl/projects/client/presbyopia-reel/source/C2449.MP4",
+  "C2452": "/home/user/sxl/projects/client/presbyopia-reel/source/C2452.MP4"
+ },
+ "ranges": [
+  {
+   "source": "C2439",
+   "start": 0.5,
+   "end": 2.0,
+   "beat": "HOOK",
+   "speed": 1.0
+  },
+  {
+   "source": "C2439",
+   "start": 2.0,
+   "end": 6.0,
+   "beat": "HOOK",
+   "speed": 4.0
+  },
+  {
+   "source": "C2439",
+   "start": 6.0,
+   "end": 7.9,
+   "beat": "HOOK",
+   "speed": 1.5
+  },
+  {
+   "source": "C2439",
+   "start": 7.9,
+   "end": 9.1,
+   "beat": "HOOK",
+   "speed": 0.6
+  },
+  {
+   "source": "C2439",
+   "start": 9.1,
+   "end": 10.7,
+   "beat": "HOOK",
+   "speed": 2.0
+  },
+  {
+   "source": "C2449",
+   "start": 27.22,
+   "end": 33.52,
+   "beat": "ADVICE"
+  },
+  {
+   "source": "C2452",
+   "start": 14.12,
+   "end": 16.26,
+   "beat": "SOL"
+  },
+  {
+   "source": "C2452",
+   "start": 16.36,
+   "end": 19.3,
+   "beat": "SOL"
+  },
+  {
+   "source": "C2452",
+   "start": 19.62,
+   "end": 20.38,
+   "beat": "SOL"
+  },
+  {
+   "source": "C2452",
+   "start": 20.48,
+   "end": 23.94,
+   "beat": "SOL"
+  }
+ ],
+ "total_duration_s": 22.16
+}

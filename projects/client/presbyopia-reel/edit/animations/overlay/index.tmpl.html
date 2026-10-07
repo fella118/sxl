@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root {
+    --navy: #01115f;          /* Gzenaya Optique logo blue */
+    --yellow: #ffc93c;
+    --red: #ff4d5e;
+    --ok: #2fbf71;
+    --ink: rgba(8, 10, 22, .6);
+    --muted: #6b7290;
+  }
+  html, body { margin: 0; width: 1080px; height: 1920px; background: transparent; overflow: hidden; }
+  body { font-family: "Cairo", sans-serif; -webkit-font-smoothing: antialiased; }
+  .root { position: absolute; inset: 0; }
+  .layer { position: absolute; visibility: hidden; opacity: 0; }
+  .place { position: absolute; left: 0; top: 0; width: 1080px; height: 0; }
+  .panel { background: rgba(255,255,255,.97); border: 6px solid var(--navy); border-radius: 38px; color: var(--navy);
+           box-shadow: 0 26px 60px rgba(0,0,0,.35); }
+
+  /* ---------- karaoke captions (this reel's look) ---------- */
+  .kline { left: 40px; width: 1000px; top: 1230px; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 14px; direction: rtl; }
+  .kw { font: 900 74px/1.3 "Cairo"; color: rgba(255,255,255,.55); padding: 0 16px 8px; border-radius: 20px; white-space: nowrap;
+        -webkit-text-stroke: 9px var(--ink); paint-order: stroke fill; text-shadow: 0 8px 22px rgba(0,0,0,.4); display: inline-block; }
+  .kw.lat { font: 400 76px/1.3 "Anton"; letter-spacing: 1px; }
+  .kw.said { color: #fff; }
+  .kw.on { color: #fff; background: var(--navy); -webkit-text-stroke: 0; text-shadow: none; box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+  .kline.key .kw.on { color: var(--navy); background: var(--yellow); }
+  .kline.key .kw { font-size: 92px; }
+
+  /* ---------- silent hook ---------- */
+  #headline { left: 40px; top: 170px; width: 1000px; display: flex; flex-direction: column; align-items: center; gap: 0; direction: rtl; }
+  #headline .l1 { display: flex; gap: 18px; }
+  #headline .l2 { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .hw { font: 800 76px/1.25 "Cairo"; color: #fff; -webkit-text-stroke: 10px var(--ink); paint-order: stroke fill; display: inline-block;
+        text-shadow: 0 10px 26px rgba(0,0,0,.45); visibility: hidden; }
+  .hw.big { font: 900 112px/1.15 "Cairo"; }
+  .hw.mark { color: var(--navy); background: var(--yellow); -webkit-text-stroke: 0; padding: 0 22px 10px; border-radius: 24px; text-shadow: none;
+             box-shadow: 0 12px 28px rgba(0,0,0,.35); }
+  #ruler { left: 90px; top: 560px; width: 900px; height: 230px; }
+  #ruler .bar { position: absolute; left: 120px; right: 120px; top: 120px; height: 14px; border-radius: 7px; background: rgba(255,255,255,.35); }
+  #ruler .fill { position: absolute; right: 120px; top: 120px; height: 14px; width: 0; border-radius: 7px; background: var(--yellow); }
+  #ruler .eye { position: absolute; right: 0; top: 70px; width: 110px; height: 110px; border-radius: 50%; background: #fff; display: grid; place-items: center;
+                box-shadow: 0 12px 26px rgba(0,0,0,.35); }
+  #ruler .phone { position: absolute; top: 52px; width: 84px; height: 150px; border-radius: 16px; background: var(--navy); border: 6px solid #fff;
+                  box-shadow: 0 12px 26px rgba(0,0,0,.35); }
+  #ruler .phone i { position: absolute; left: 14px; right: 14px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.7); }
+  #rnum { position: absolute; left: 0; right: 0; top: -30px; text-align: center; font: 400 96px/1 "Anton"; color: #fff; letter-spacing: 2px;
+          -webkit-text-stroke: 10px var(--ink); paint-order: stroke fill; }
+  #rnum.hot { color: var(--yellow); }
+
+  /* ---------- advice: near blurry / far sharp ---------- */
+  #near { left: 90px; top: 150px; width: 900px; }
+  #near .panel { padding: 22px 30px 26px; }
+  #near .ttl { text-align: center; font: 900 84px/1.2 "Cairo"; color: var(--navy); direction: rtl; }
+  #near .ttl b { background: var(--yellow); padding: 0 18px 6px; border-radius: 18px; }
+  #near .rows { display: flex; justify-content: center; gap: 70px; margin-top: 14px; direction: rtl; }
+  .ex { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .ex .ph { width: 150px; height: 230px; border-radius: 26px; background: #fff; border: 8px solid var(--navy); position: relative; overflow: hidden; }
+  .ex .ph i { position: absolute; left: 20px; right: 20px; height: 12px; border-radius: 6px; background: var(--navy); }
+  .ex.blur .ph i { filter: blur(5px); opacity: .7; }
+  .ex .lb { display: flex; align-items: center; gap: 10px; font: 900 56px/1.1 "Cairo"; color: var(--navy); }
+  .ex .lb svg { width: 56px; height: 56px; }
+
+  /* ---------- solution: three steps ---------- */
+  #tip { left: 70px; top: 150px; width: 940px; }
+  #tip .panel { padding: 22px 26px 26px; }
+  #tip .ttl { display: flex; justify-content: center; align-items: center; gap: 16px; font: 900 70px/1.2 "Cairo"; color: var(--navy); direction: rtl; }
+  #tip .ttl svg { width: 76px; height: 76px; }
+  #tip .steps { display: flex; justify-content: center; gap: 26px; margin-top: 16px; direction: rtl; }
+  .stp { width: 270px; display: flex; flex-direction: column; align-items: center; gap: 8px; visibility: hidden; opacity: 0; }
+  .stp .ic { width: 150px; height: 150px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; }
+  .stp .ic svg { width: 92px; height: 92px; }
+  .stp .lb { font: 900 46px/1.15 "Cairo"; color: var(--navy); text-align: center; direction: rtl; white-space: nowrap; }
+  .stp .lb.lat { font: 400 50px/1.15 "Anton"; letter-spacing: 1px; }
+
+  /* ---------- CTA: share + save ---------- */
+  #cta { left: 150px; top: 200px; width: 780px; height: 330px; display: flex; justify-content: center; gap: 90px; direction: rtl; }
+  .btnw { display: flex; flex-direction: column; align-items: center; gap: 12px; position: relative; }
+  .btn { width: 230px; height: 230px; border-radius: 64px; background: #fff; border: 7px solid var(--navy); display: grid; place-items: center;
+         box-shadow: 0 26px 60px rgba(0,0,0,.4); }
+  .btn svg { width: 130px; height: 130px; overflow: visible; }
+  .btnw .lb { font: 900 54px/1.1 "Cairo"; color: #fff; -webkit-text-stroke: 9px var(--ink); paint-order: stroke fill; }
+  .tap { position: absolute; left: 75px; top: 75px; width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,.65);
+         border: 5px solid var(--navy); visibility: hidden; opacity: 0; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="eye" viewBox="0 0 64 64"><path d="M4 32s10-16 28-16 28 16 28 16-10 16-28 16S4 32 4 32z" fill="none" stroke="currentColor" stroke-width="5"/><circle cx="32" cy="32" r="9" fill="currentColor"/></symbol>
+  <symbol id="x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#ff4d5e"/><path d="M8 8l8 8M16 8l-8 8" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/></symbol>
+  <symbol id="ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#2fbf71"/><path d="M6.5 12.5l3.5 3.5 7.5-8" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<div id="back" class="root"></div>
+<div id="front" class="root">
+  <div id="kara"></div>
+
+  <div id="headline" class="layer">
+    <div class="l1"><span class="hw">حتى</span><span class="hw">نتا</span></div>
+    <div class="l2"><span class="hw big">كتباعد</span><span class="hw big mark">التيليفون</span><span class="hw big">باش تقرا؟</span></div>
+  </div>
+
+  <div id="ruler" class="layer">
+    <div class="bar"></div><div class="fill" id="rfill"></div>
+    <div class="eye"><svg width="80" height="80" style="color:#01115f"><use href="#eye"/></svg></div>
+    <div class="phone" id="rphone"><i style="top:30px"></i><i style="top:52px"></i><i style="top:74px"></i><i style="top:96px"></i></div>
+    <div id="rnum">20 cm</div>
+  </div>
+
+  <div id="near" class="layer"><div class="panel">
+    <div class="ttl" id="nearT">مشكل <b>فالقرب</b></div>
+    <div class="rows">
+      <div class="ex blur"><div class="ph"><i style="top:40px"></i><i style="top:72px"></i><i style="top:104px"></i><i style="top:136px"></i><i style="top:168px"></i></div>
+        <div class="lb"><svg><use href="#x"/></svg>قريب</div></div>
+      <div class="ex"><div class="ph" style="transform:scale(.72)"><i style="top:40px"></i><i style="top:72px"></i><i style="top:104px"></i><i style="top:136px"></i><i style="top:168px"></i></div>
+        <div class="lb"><svg><use href="#ok"/></svg>بعيد</div></div>
+    </div>
+  </div></div>
+
+  <div id="tip" class="layer"><div class="panel">
+    <div class="ttl"><svg viewBox="0 0 24 24" style="color:#ffc93c"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.9V16h5v-.2c0-.8.4-1.5 1-1.9A6 6 0 0 0 12 3z" fill="#ffc93c" stroke="#01115f" stroke-width="1.6" stroke-linejoin="round"/></svg>النصيحة</div>
+    <div class="steps">
+      <div class="stp" id="s0"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8.5" fill="none" stroke="#fff" stroke-width="2.2"/><path d="M12 8.5V13l3 2M9 2.5h6" fill="none" stroke="#ffc93c" stroke-width="2.4" stroke-linecap="round"/></svg></div><div class="lb">لأقرب وقت</div></div>
+      <div class="stp" id="s1"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" fill="#fff"/><path d="M4 22c.8-5 3.8-8 8-8s7.2 3 8 8z" fill="#fff"/><path d="M12 15v5M9.5 17.5h5" stroke="#ff4d5e" stroke-width="2" stroke-linecap="round"/></svg></div><div class="lb lat">SPÉCIALISTE</div></div>
+      <div class="stp" id="s2"><div class="ic"><svg viewBox="0 0 64 64" style="color:#fff"><use href="#eye"/></svg></div><div class="lb">دوز على عينيك</div></div>
+    </div>
+  </div></div>
+
+  <div id="cta" class="layer">
+    <div class="btnw"><div class="btn" id="btnS"><svg viewBox="0 0 64 64"><path id="plane" d="M58 6L6 28l20 8 8 20z" fill="#fff" stroke="#01115f" stroke-width="5" stroke-linejoin="round"/><path d="M26 36L58 6" stroke="#01115f" stroke-width="5"/></svg></div>
+      <div class="tap" id="tapS"></div><div class="lb">بارطاجي</div></div>
+    <div class="btnw"><div class="btn" id="btnV"><svg viewBox="0 0 64 64"><path id="bm" d="M16 6h32a4 4 0 0 1 4 4v48L32 44 12 58V10a4 4 0 0 1 4-4z" fill="#fff" stroke="#01115f" stroke-width="5" stroke-linejoin="round"/></svg></div>
+      <div class="tap" id="tapV"></div><div class="lb">سوفݣاردي</div></div>
+  </div>
+</div>
+
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script src="events.js"></script>
+<script src="facepos.js"></script>
+<script>
+const E = window.EV, FACE = window.FACE || { fps: 50, frames: [] };
+const LAYER = new URLSearchParams(location.search).get("layer") || "all";
+if (LAYER === "back") document.getElementById("front").style.display = "none";
+if (LAYER === "front") document.getElementById("back").style.display = "none";
+const tl = gsap.timeline({ paused: true });
+const back = "back.out(1.7)", out3 = "power3.out", in3 = "power3.in", expo = "expo.out";
+const AR = /[؀-ۿ]/;
+const $ = (id) => document.getElementById(id);
+
+// ---------- karaoke lines (state computed in seek) ----------
+const kara = $("kara");
+const KL = E.lines.map((ln, k) => {
+  const el = document.createElement("div");
+  el.className = "layer kline" + (ln.key ? " key" : ""); el.id = "kl" + k;
+  el.dataset.t0 = ln.start; el.dataset.t1 = ln.end;
+  const spans = ln.words.map(wd => {
+    const sp = document.createElement("span");
+    sp.className = "kw" + (AR.test(wd.t) ? "" : " lat"); sp.textContent = wd.t;
+    el.appendChild(sp); return sp;
+  });
+  kara.appendChild(el);
+  tl.fromTo(el, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.16, ease: out3 }, ln.start - 0.08);
+  tl.to(el, { autoAlpha: 0, y: -24, duration: 0.12, ease: in3 }, ln.end - 0.12);
+  return { el, spans, ln };
+});
+
+// ---------- silent hook: headline words pop in, distance ruler grows with the arm ----------
+const hws = Array.from(document.querySelectorAll("#headline .hw"));
+tl.set("#headline", { autoAlpha: 1 }, E.hook_in - 0.02);
+hws.forEach((el, k) => tl.fromTo(el, { autoAlpha: 0, scale: 0.3, y: 30 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(2.6)" }, E.hook_in + k * 0.18));
+tl.to("#headline", { autoAlpha: 0, y: -40, duration: 0.2, ease: in3 }, E.hook_out - 0.2);
+const RUL = { d: 0 };
+tl.fromTo("#ruler", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: back }, E.ruler_in - 0.15);
+tl.fromTo(RUL, { d: 0 }, { d: 1, duration: E.ruler_full - E.ruler_in, ease: "power2.in" }, E.ruler_in);
+tl.to("#ruler", { keyframes: [{ scale: 1.08, duration: 0.12 }, { scale: 1, duration: 0.2 }] }, E.ruler_full);
+tl.to("#ruler", { autoAlpha: 0, duration: 0.2 }, E.ruler_out - 0.2);
+
+// ---------- advice: near blurry / far sharp ----------
+tl.fromTo("#near", { autoAlpha: 0, y: -40, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.34, ease: back }, E.near_in);
+tl.fromTo("#nearT b", { backgroundColor: "rgba(255,201,60,0)" }, { backgroundColor: "rgba(255,201,60,1)", duration: 0.2 }, E.near_hit - 0.05);
+tl.to("#near", { keyframes: [{ scale: 1.06, duration: 0.12 }, { scale: 1, duration: 0.2 }] }, E.near_hit);
+tl.to("#near", { autoAlpha: 0, y: -30, duration: 0.18, ease: in3 }, E.near_out - 0.18);
+
+// ---------- solution: three steps ----------
+tl.fromTo("#tip", { autoAlpha: 0, y: -40, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.34, ease: back }, E.tip_in);
+E.tip_steps.forEach((t, k) => tl.fromTo("#s" + k, { autoAlpha: 0, scale: 0.4, y: 20 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(2.6)" }, t - 0.05));
+tl.to("#tip", { autoAlpha: 0, y: -30, duration: 0.18, ease: in3 }, E.tip_out - 0.18);
+
+// ---------- CTA: share + save ----------
+tl.fromTo("#cta", { autoAlpha: 0, scale: 0.6, y: 40 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(2.2)" }, E.cta_in);
+[["#tapS", "#plane", "#btnS", E.share_tap], ["#tapV", "#bm", "#btnV", E.save_tap]].forEach(([tap, icon, btn, t]) => {
+  tl.fromTo(tap, { autoAlpha: 0, scale: 1.6 }, { autoAlpha: 1, scale: 0.8, duration: 0.16, ease: out3 }, t - 0.18);
+  tl.to(tap, { autoAlpha: 0, scale: 1.4, duration: 0.2 }, t);
+  tl.to(icon, { attr: { fill: "#01115f" }, duration: 0.08 }, t);
+  tl.to(btn, { keyframes: [{ scale: 0.86, duration: 0.08 }, { scale: 1.08, duration: 0.14 }, { scale: 1, duration: 0.16 }] }, t);
+});
+
+// ---------- deterministic seek ----------
+const rnum = $("rnum"), rphone = $("rphone"), rfill = $("rfill");
+window.seek = (t) => {
+  tl.seek(Math.max(t, 0.001), false);
+  KL.forEach(({ spans, ln }) => {
+    if (t < ln.start - 0.1 || t > ln.end + 0.05) return;
+    let cur = -1;
+    ln.words.forEach((wd, i) => { if (t >= wd.at - 0.02) cur = i; });
+    spans.forEach((sp, i) => {
+      sp.classList.toggle("on", i === cur);
+      sp.classList.toggle("said", i < cur);
+      const pop = i === cur ? Math.max(0, 1 - (t - ln.words[i].at) / 0.14) : 0;
+      sp.style.transform = `scale(${(1 + 0.12 * pop).toFixed(3)})`;
+    });
+  });
+  // ruler: phone slides away from the eye, 20 cm -> 70 cm
+  const d = RUL.d, span = 900 - 240 - 84;
+  rphone.style.right = (130 + d * span).toFixed(1) + "px";
+  rfill.style.width = (d * span + 10).toFixed(1) + "px";
+  rnum.textContent = `${Math.round(20 + 50 * d)} cm`;
+  rnum.classList.toggle("hot", d > 0.97);
+};
+window.anyVisible = () => {
+  const scope = LAYER === "all" ? document : document.getElementById(LAYER);
+  return Array.from(scope.querySelectorAll(".layer")).some(el => {
+    const cs = getComputedStyle(el);
+    return cs.visibility !== "hidden" && parseFloat(cs.opacity) > 0.004;
+  });
+};
+
+/*FITPLACE*/
+function placeAll() {
+  KL.forEach(({ el, ln }) => placeItem(el, "below", ln.start, ln.end, { cx: 540 }));
+  placeItem($("headline"), "above", E.hook_in, E.hook_out);
+  placeItem($("ruler"), "above", E.ruler_in, E.ruler_out);
+  placeItem($("near"), "above", E.near_in, E.near_out);
+  placeItem($("tip"), "above", E.tip_in, E.tip_out);
+  placeItem($("cta"), "above", E.cta_in, E.duration);
+}
+
+window.ready = (async () => {
+  const faces = ['900 112px "Cairo"', '800 76px "Cairo"', '400 96px "Anton"'];
+  await Promise.all(faces.flatMap(f => [document.fonts.load(f, "abc éû"), document.fonts.load(f, "واش")]));
+  await document.fonts.ready;
+  const missing = faces.filter(f => !document.fonts.check(f, f.includes("Cairo") ? "abc واش" : "abc éû"));
+  if (missing.length) throw new Error("fonts not loaded: " + missing.join(", "));
+  placeAll();
+  return true;
+})();
+</script>
+</body>
+</html>
