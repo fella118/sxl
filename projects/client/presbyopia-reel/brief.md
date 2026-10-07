@@ -28,7 +28,11 @@ CTA 17-23 s: share-arrow animation on "تبارطاجي هاد la vidéo"; the l
 Look: smooth zoom transitions on the music's beat, clean karaoke captions
 (one line, active word in a navy box), navy/white brand.
 
-## Open questions
-- Hook text: "حتى نتا كتباعد التيليفون باش تقرا؟" or a POV line?
-- Show the word "presbytie" (he does not say it)?
-- CTA: his share ask only, or add save?
+## Decisions (client, 2026-10-07)
+- Hook text: "حتى نتا كتباعد التيليفون باش تقرا؟"
+- No "presbytie" on screen (he does not say it).
+- CTA: share (his ask) + save button animation.
+
+## Deliverables
+- Reels 1080x1920, -14 LUFS, captions burned in (karaoke, navy/white/yellow).
+- 3 post captions (social_captions.md).

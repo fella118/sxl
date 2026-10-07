@@ -273,8 +273,8 @@ window.EV = {
   }
  ],
  "hook_in": 0.25,
- "hook_out": 6.409999999999999,
- "ruler_in": 2.5,
+ "hook_out": 3.0,
+ "ruler_in": 3.1,
  "ruler_full": 4.16,
  "ruler_out": 6.409999999999999,
  "near_in": 10.177,

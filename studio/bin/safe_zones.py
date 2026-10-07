@@ -83,8 +83,14 @@ def check(edit: Path, frames_dir: Path, max_pct: float) -> None:
         if pct > max_pct:
             bad.append((i, round(i / 50, 2), round(float(pct), 1)))
     print(f"{len(bad)} frames cover more than {max_pct}% of the head")
-    for b in bad[:60]:
-        print(f"  frame {b[0]} ({b[1]}s): {b[2]}%")
+    runs = []                                   # contiguous stretches, worst coverage in each
+    for b in bad:
+        if runs and b[0] == runs[-1][1] + 1:
+            runs[-1] = (runs[-1][0], b[0], max(runs[-1][2], b[2]))
+        else:
+            runs.append((b[0], b[0], b[2]))
+    for a, z, worst in runs:
+        print(f"  {a / 50:6.2f}-{z / 50:6.2f}s  ({z - a + 1} frames, worst {worst}%)")
 
 
 def main() -> None:

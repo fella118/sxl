@@ -31,7 +31,7 @@
   .kline.key .kw { font-size: 92px; }
 
   /* ---------- silent hook ---------- */
-  #headline { left: 40px; top: 170px; width: 1000px; display: flex; flex-direction: column; align-items: center; gap: 0; direction: rtl; }
+  #headline { left: 40px; top: 900px; width: 1000px; display: flex; flex-direction: column; align-items: center; gap: 0; direction: rtl; }
   #headline .l1 { display: flex; gap: 18px; }
   #headline .l2 { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
   .hw { font: 800 76px/1.25 "Cairo"; color: #fff; -webkit-text-stroke: 10px var(--ink); paint-order: stroke fill; display: inline-block;
@@ -39,7 +39,7 @@
   .hw.big { font: 900 112px/1.15 "Cairo"; }
   .hw.mark { color: var(--navy); background: var(--yellow); -webkit-text-stroke: 0; padding: 0 22px 10px; border-radius: 24px; text-shadow: none;
              box-shadow: 0 12px 28px rgba(0,0,0,.35); }
-  #ruler { left: 90px; top: 560px; width: 900px; height: 230px; }
+  #ruler { left: 90px; top: 170px; width: 900px; height: 230px; }
   #ruler .bar { position: absolute; left: 120px; right: 120px; top: 120px; height: 14px; border-radius: 7px; background: rgba(255,255,255,.35); }
   #ruler .fill { position: absolute; right: 120px; top: 120px; height: 14px; width: 0; border-radius: 7px; background: var(--yellow); }
   #ruler .eye { position: absolute; right: 0; top: 70px; width: 110px; height: 110px; border-radius: 50%; background: #fff; display: grid; place-items: center;
@@ -52,11 +52,14 @@
   #rnum.hot { color: var(--yellow); }
 
   /* ---------- advice: near blurry / far sharp ---------- */
-  #near { left: 90px; top: 150px; width: 900px; }
-  #near .panel { padding: 22px 30px 26px; }
-  #near .ttl { text-align: center; font: 900 84px/1.2 "Cairo"; color: var(--navy); direction: rtl; }
-  #near .ttl b { background: var(--yellow); padding: 0 18px 6px; border-radius: 18px; }
-  #near .rows { display: flex; justify-content: center; gap: 70px; margin-top: 14px; direction: rtl; }
+  /* two chips flanking the head (no room above it in this shot): near = blurry, far = sharp */
+  .chip { top: 340px; width: 250px; }
+  #nearL { left: 30px; }
+  #nearR { left: 800px; }
+  .chip .panel { padding: 22px 0 18px; display: flex; justify-content: center; }
+  .chip .ex .ph { width: 120px; height: 184px; border-width: 7px; border-radius: 22px; }
+  .chip .ex .ph i { left: 16px; right: 16px; height: 10px; }
+  .chip .ex .lb { font-size: 50px; }
   .ex { display: flex; flex-direction: column; align-items: center; gap: 10px; }
   .ex .ph { width: 150px; height: 230px; border-radius: 26px; background: #fff; border: 8px solid var(--navy); position: relative; overflow: hidden; }
   .ex .ph i { position: absolute; left: 20px; right: 20px; height: 12px; border-radius: 6px; background: var(--navy); }
@@ -71,6 +74,9 @@
   #tip .ttl svg { width: 76px; height: 76px; }
   #tip .steps { display: flex; justify-content: center; gap: 26px; margin-top: 16px; direction: rtl; }
   .stp { width: 270px; display: flex; flex-direction: column; align-items: center; gap: 8px; visibility: hidden; opacity: 0; }
+  .slot { position: relative; width: 270px; }
+  .gh { position: absolute; left: 60px; top: 0; width: 150px; height: 150px; box-sizing: border-box; border-radius: 50%;
+        border: 6px dashed rgba(1,17,95,.28); display: grid; place-items: center; font: 400 84px/1 "Anton"; color: rgba(1,17,95,.28); }
   .stp .ic { width: 150px; height: 150px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; }
   .stp .ic svg { width: 92px; height: 92px; }
   .stp .lb { font: 900 46px/1.15 "Cairo"; color: var(--navy); text-align: center; direction: rtl; white-space: nowrap; }
@@ -110,22 +116,19 @@
     <div id="rnum">20 cm</div>
   </div>
 
-  <div id="near" class="layer"><div class="panel">
-    <div class="ttl" id="nearT">مشكل <b>فالقرب</b></div>
-    <div class="rows">
-      <div class="ex blur"><div class="ph"><i style="top:40px"></i><i style="top:72px"></i><i style="top:104px"></i><i style="top:136px"></i><i style="top:168px"></i></div>
-        <div class="lb"><svg><use href="#x"/></svg>قريب</div></div>
-      <div class="ex"><div class="ph" style="transform:scale(.72)"><i style="top:40px"></i><i style="top:72px"></i><i style="top:104px"></i><i style="top:136px"></i><i style="top:168px"></i></div>
-        <div class="lb"><svg><use href="#ok"/></svg>بعيد</div></div>
-    </div>
+  <div id="nearL" class="layer chip"><div class="panel">
+    <div class="ex blur"><div class="ph"><i style="top:30px"></i><i style="top:56px"></i><i style="top:82px"></i><i style="top:108px"></i><i style="top:134px"></i></div><div class="lb"><svg><use href="#x"/></svg>قريب</div></div>
+  </div></div>
+  <div id="nearR" class="layer chip"><div class="panel">
+    <div class="ex"><div class="ph" style="transform:scale(.72);margin:-26px 0"><i style="top:30px"></i><i style="top:56px"></i><i style="top:82px"></i><i style="top:108px"></i><i style="top:134px"></i></div><div class="lb"><svg><use href="#ok"/></svg>بعيد</div></div>
   </div></div>
 
   <div id="tip" class="layer"><div class="panel">
     <div class="ttl"><svg viewBox="0 0 24 24" style="color:#ffc93c"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.9V16h5v-.2c0-.8.4-1.5 1-1.9A6 6 0 0 0 12 3z" fill="#ffc93c" stroke="#01115f" stroke-width="1.6" stroke-linejoin="round"/></svg>النصيحة</div>
     <div class="steps">
-      <div class="stp" id="s0"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8.5" fill="none" stroke="#fff" stroke-width="2.2"/><path d="M12 8.5V13l3 2M9 2.5h6" fill="none" stroke="#ffc93c" stroke-width="2.4" stroke-linecap="round"/></svg></div><div class="lb">لأقرب وقت</div></div>
-      <div class="stp" id="s1"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" fill="#fff"/><path d="M4 22c.8-5 3.8-8 8-8s7.2 3 8 8z" fill="#fff"/><path d="M12 15v5M9.5 17.5h5" stroke="#ff4d5e" stroke-width="2" stroke-linecap="round"/></svg></div><div class="lb lat">SPÉCIALISTE</div></div>
-      <div class="stp" id="s2"><div class="ic"><svg viewBox="0 0 64 64" style="color:#fff"><use href="#eye"/></svg></div><div class="lb">دوز على عينيك</div></div>
+      <div class="slot"><div class="gh" id="g0">1</div><div class="stp" id="s0"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8.5" fill="none" stroke="#fff" stroke-width="2.2"/><path d="M12 8.5V13l3 2M9 2.5h6" fill="none" stroke="#ffc93c" stroke-width="2.4" stroke-linecap="round"/></svg></div><div class="lb">لأقرب وقت</div></div></div>
+      <div class="slot"><div class="gh" id="g1">2</div><div class="stp" id="s1"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" fill="#fff"/><path d="M4 22c.8-5 3.8-8 8-8s7.2 3 8 8z" fill="#fff"/><path d="M12 15v5M9.5 17.5h5" stroke="#ff4d5e" stroke-width="2" stroke-linecap="round"/></svg></div><div class="lb lat">SPÉCIALISTE</div></div></div>
+      <div class="slot"><div class="gh" id="g2">3</div><div class="stp" id="s2"><div class="ic"><svg viewBox="0 0 64 64" style="color:#fff"><use href="#eye"/></svg></div><div class="lb">دوز على عينيك</div></div></div>
     </div>
   </div></div>
 
@@ -179,13 +182,16 @@ tl.to("#ruler", { keyframes: [{ scale: 1.08, duration: 0.12 }, { scale: 1, durat
 tl.to("#ruler", { autoAlpha: 0, duration: 0.2 }, E.ruler_out - 0.2);
 
 // ---------- advice: near blurry / far sharp ----------
-tl.fromTo("#near", { autoAlpha: 0, y: -40, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.34, ease: back }, E.near_in);
-tl.fromTo("#nearT b", { backgroundColor: "rgba(255,201,60,0)" }, { backgroundColor: "rgba(255,201,60,1)", duration: 0.2 }, E.near_hit - 0.05);
-tl.to("#near", { keyframes: [{ scale: 1.06, duration: 0.12 }, { scale: 1, duration: 0.2 }] }, E.near_hit);
-tl.to("#near", { autoAlpha: 0, y: -30, duration: 0.18, ease: in3 }, E.near_out - 0.18);
+tl.fromTo("#nearL", { autoAlpha: 0, x: -90, rotation: -8 }, { autoAlpha: 1, x: 0, rotation: -3, duration: 0.36, ease: back }, E.near_in);
+tl.fromTo("#nearR", { autoAlpha: 0, x: 90, rotation: 8 }, { autoAlpha: 1, x: 0, rotation: 3, duration: 0.36, ease: back }, E.near_in + 0.22);
+tl.to("#nearL", { keyframes: [{ x: -14, duration: 0.05 }, { x: 12, duration: 0.07 }, { x: -8, duration: 0.06 }, { x: 0, duration: 0.06 }] }, E.near_hit);
+tl.to("#nearL .ph", { keyframes: [{ scale: 1.08, duration: 0.12 }, { scale: 1, duration: 0.2 }] }, E.near_hit);
+tl.to("#nearL", { autoAlpha: 0, x: -70, duration: 0.2, ease: in3 }, E.near_out - 0.2);
+tl.to("#nearR", { autoAlpha: 0, x: 70, duration: 0.2, ease: in3 }, E.near_out - 0.2);
 
 // ---------- solution: three steps ----------
 tl.fromTo("#tip", { autoAlpha: 0, y: -40, scale: 0.9 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.34, ease: back }, E.tip_in);
+E.tip_steps.forEach((t, k) => tl.to("#g" + k, { autoAlpha: 0, scale: 0.5, duration: 0.18, ease: in3 }, t - 0.06));
 E.tip_steps.forEach((t, k) => tl.fromTo("#s" + k, { autoAlpha: 0, scale: 0.4, y: 20 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(2.6)" }, t - 0.05));
 tl.to("#tip", { autoAlpha: 0, y: -30, duration: 0.18, ease: in3 }, E.tip_out - 0.18);
 
@@ -231,9 +237,8 @@ window.anyVisible = () => {
 /*FITPLACE*/
 function placeAll() {
   KL.forEach(({ el, ln }) => placeItem(el, "below", ln.start, ln.end, { cx: 540 }));
-  placeItem($("headline"), "above", E.hook_in, E.hook_out);
+  placeItem($("headline"), "below", E.hook_in, E.hook_out);
   placeItem($("ruler"), "above", E.ruler_in, E.ruler_out);
-  placeItem($("near"), "above", E.near_in, E.near_out);
   placeItem($("tip"), "above", E.tip_in, E.tip_out);
   placeItem($("cta"), "above", E.cta_in, E.duration);
 }

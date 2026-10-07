@@ -73,7 +73,7 @@ for k, i in enumerate(beat_ranges("HOOK")):                 # one continuous sho
 # "مشكل فالقرب": push in on the key phrase
 i_adv = rng("C2449", 32.78)
 if i_adv is not None:
-    OVERRIDE[i_adv] = [(0, 1.04), (("w", 32.78, -0.35), 1.08), (("w", 32.78, 0.15), 1.22), ("end", 1.24)]
+    OVERRIDE[i_adv] = [(0, 1.00, 0.48), (("w", 32.78, -0.35), 1.03, 0.48), (("w", 32.78, 0.15), 1.10, 0.48), ("end", 1.11, 0.48)]
 CUTAWAYS: list = []
 XFADE = 9                                  # frames of zoom-through on each side of a beat change
 XZOOM = 0.32

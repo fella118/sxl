@@ -116,6 +116,7 @@ def build_sfx(n: int) -> np.ndarray:
         place(tr, sfx.whoosh(0.4, 0.4, -0.4), r["out_start"] - 0.2, -15)
     # advice card, punch on "مشكل فالقرب"
     place(tr, sfx.pop(1.0), EV["near_in"], -16)
+    place(tr, sfx.pop(1.25), EV["near_in"] + 0.22, -17)
     for a, _ in EV["gray"]:
         place(tr, sfx.impact(), a, -14)
     # solution steps
