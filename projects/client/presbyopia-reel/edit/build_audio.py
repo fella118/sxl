@@ -37,7 +37,9 @@ EV = json.loads(re.sub(r"^window\.EV = |;\s*$", "", (EDIT / "animations/overlay/
 SRC = EDIT.parent / "source"
 SR = 48000
 FADE = int(0.03 * SR)
-MUSIC_START = 17.35        # Dj Zeka "Am I Dreaming" (instrumental part): the 21.11 s kick lands on the stretched-arm reveal (3.76 s)
+MUSIC_KICK = 21.11         # Dj Zeka "Am I Dreaming" (instrumental part): this kick lands on the stretched-arm reveal
+_HOOK = [r for r in TL["ranges"] if r["beat"] == "HOOK"]
+MUSIC_START = MUSIC_KICK - _HOOK[3]["out_start"]          # v1: 17.35 (reveal 3.76 s); v2: 18.11 (reveal 3.00 s)
 MUSIC_REL_LU = -10.0       # ducked music stem vs voice stem
 MUSIC_DUCK_DB = -9.0       # reduction while he speaks (full level during the silent hook)
 
@@ -98,6 +100,12 @@ def build_sfx(n: int) -> np.ndarray:
     """One effect per visible event; soft, the music carries the hook."""
     tr = np.zeros((n, 2), np.float32)
     hook = [r for r in TL["ranges"] if r["beat"] == "HOOK"]
+    # v2 opens on him typing: soft key taps while the thumbs move (real time, then ramped)
+    if hook[0]["source"] == "C2439" and abs(hook[0]["src_start"] - 3.36) < 0.05:
+        for k, dt in enumerate((0.42, 0.55, 0.71, 0.83, 1.01, 1.12)):
+            place(tr, sfx.key(0.95 + 0.04 * (k % 3)), dt, -25)
+        for k in range(6):
+            place(tr, sfx.key(1.05 + 0.03 * (k % 2)), hook[1]["out_start"] + 0.04 + k * 0.09, -27)
     # headline words pop in
     for k in range(6):
         place(tr, sfx.pop(0.9 + 0.08 * k), EV["hook_in"] + k * 0.18, -21)

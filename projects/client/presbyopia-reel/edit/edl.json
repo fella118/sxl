@@ -8,21 +8,21 @@
  "ranges": [
   {
    "source": "C2439",
-   "start": 0.5,
-   "end": 2.0,
+   "start": 3.36,
+   "end": 4.56,
    "beat": "HOOK",
    "speed": 1.0
   },
   {
    "source": "C2439",
-   "start": 2.0,
-   "end": 6.0,
+   "start": 4.56,
+   "end": 6.16,
    "beat": "HOOK",
-   "speed": 4.0
+   "speed": 2.5
   },
   {
    "source": "C2439",
-   "start": 6.0,
+   "start": 6.16,
    "end": 7.9,
    "beat": "HOOK",
    "speed": 1.5
@@ -30,16 +30,9 @@
   {
    "source": "C2439",
    "start": 7.9,
-   "end": 9.1,
+   "end": 9.5,
    "beat": "HOOK",
-   "speed": 0.6
-  },
-  {
-   "source": "C2439",
-   "start": 9.1,
-   "end": 10.7,
-   "beat": "HOOK",
-   "speed": 2.0
+   "speed": 0.7
   },
   {
    "source": "C2449",
@@ -72,5 +65,5 @@
    "beat": "SOL"
   }
  ],
- "total_duration_s": 22.16
+ "total_duration_s": 20.88
 }

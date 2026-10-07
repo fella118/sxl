@@ -5,16 +5,21 @@
   تشوف") lead straight back into the hook, so the reel loops on the same idea.
 
 HOOK_SEGS are picture-only speed segments (output frames = source frames / speed;
-render_base blends frames below 1x). KEEP lists the spoken passages; inside them
+render_base blends frames below 1x). Two hooks (HOOK=v1|v2, default v2):
+  v1  squint with the phone in one hand > ramp > pull-back > stretched arm >
+      brings it back and looks at camera (6.6 s)
+  v2  starts as he begins typing (left hand comes in) and ends while the arm is
+      still fully stretched, the phone far away (5.3 s, client note) KEEP lists the spoken passages; inside them
 everything that is not speech is cut down to POST + PRE of air (lav level +
 Silero VAD + voicing, edit/vad_probs.py and edit/fillers.py).
 
-    studio/.venv/bin/python edit/cut.py [-v]
+    HOOK=v2 studio/.venv/bin/python edit/cut.py [-v]
 """
 
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -32,13 +37,22 @@ CLIPS = ("C2449", "C2452")
 
 # silent hook: (source start, source end, speed)
 HOOK_CLIP = "C2439"
-HOOK_SEGS = [
-    (0.50, 2.00, 1.0),    # squints at the phone up close
-    (2.00, 6.00, 4.0),    # fidgets, scrolls (ramped through)
-    (6.00, 7.90, 1.5),    # camera pulls back, the arm starts to stretch
-    (7.90, 9.10, 0.6),    # arm fully stretched: slow-motion hold (the payoff)
-    (9.10, 10.70, 2.0),   # brings it back, looks at camera
-]
+HOOK_V = os.environ.get("HOOK", "v2")
+HOOK_SEGS = {
+    "v1": [
+        (0.50, 2.00, 1.0),    # squints at the phone up close
+        (2.00, 6.00, 4.0),    # fidgets, scrolls (ramped through)
+        (6.00, 7.90, 1.5),    # camera pulls back, the arm starts to stretch
+        (7.90, 9.10, 0.6),    # arm fully stretched: slow-motion hold (the payoff)
+        (9.10, 10.70, 2.0),   # brings it back, looks at camera
+    ],
+    "v2": [
+        (3.35, 4.55, 1.0),    # left hand comes in, he starts typing up close (squinting)
+        (4.55, 6.15, 2.5),    # keeps typing (ramped)
+        (6.15, 7.90, 1.5),    # camera pulls back, the arm stretches
+        (7.90, 9.50, 0.7),    # arm fully stretched, phone far away: slow-motion hold; the cut comes before he brings it back
+    ],
+}[HOOK_V]
 # (beat, clip, first word start, last word end) in source seconds
 KEEP = [
     ("ADVICE", "C2449", 27.27, 33.52),   # يلا وصلتي لهاد المرحلة ... عندك مشكل فالقرب (take 3)

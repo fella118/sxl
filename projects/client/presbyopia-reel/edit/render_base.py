@@ -68,8 +68,17 @@ def beat_ranges(beat: str) -> list[int]:
 
 OVERRIDE: dict[int, list] = {}
 # silent hook: keep the camera operator's pull-back readable (light zoom, eyes a bit lower to show the arm)
-for k, i in enumerate(beat_ranges("HOOK")):                 # one continuous shot: zoom carries across the speed segments
-    OVERRIDE[i] = [(0, 1.00 + 0.012 * k, 0.36), ("end", 1.012 + 0.012 * k, 0.36)]
+_hook = beat_ranges("HOOK")
+if TL["ranges"][_hook[0]]["src_start"] > 3.0:               # hook v2: typing > ramp > pull-back > stretched arm
+    # one continuous shot; with the camera's pull-back the framing widens to the full frame so the
+    # stretched arm and the phone at the edge of the frame stay in
+    OVERRIDE.update(zip(_hook, [[(0, 1.000, 0.36), ("end", 1.012, 0.36)],
+                                [(0, 1.012, 0.36), ("end", 1.024, 0.36)],
+                                [(0, 1.024, 0.36), ("end", 0.94, 0.38)],
+                                [(0, 0.94, 0.38), ("end", 0.90, 0.38)]]))
+else:
+    for k, i in enumerate(_hook):                           # v1: one continuous shot, zoom carries across the speed segments
+        OVERRIDE[i] = [(0, 1.00 + 0.012 * k, 0.36), ("end", 1.012 + 0.012 * k, 0.36)]
 # "مشكل فالقرب": push in on the key phrase
 i_adv = rng("C2449", 32.78)
 if i_adv is not None:

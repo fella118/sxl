@@ -67,7 +67,7 @@ EV = {
     "duration": DUR,
     "lines": LINES,
     # silent hook: headline + distance ruler while the arm stretches
-    "hook_in": 0.25,
+    "hook_in": 0.08,                                          # headline words start on the first frames
     "hook_out": hook_ranges[2]["out_start"] + 0.5,            # headline under his chin while the shot is close
     "ruler_in": hook_ranges[2]["out_start"] + 0.6,           # the camera has pulled back: ruler over his head
     "ruler_full": hook_ranges[3]["out_start"] + 0.4,         # arm fully stretched (slow motion)

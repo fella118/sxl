@@ -67,3 +67,30 @@ frame.
 track_subject.py -> render_base.py -> safe_zones.py zones -> overlay events.py
 + build_html.py -> capture_html.py -> safe_zones.py check -> build_audio.py ->
 composite.py
+
+## Session 1 (cont.), version 2 hook, 2026-10-07
+
+Client: a second version where the silent hook starts as he begins typing on
+the phone and ends while he is still holding it far away. v1 is kept as sent
+(preview_v1.mp4); cut.py builds either one (HOOK=v1|v2, default v2).
+
+- **Hook v2 (C2439, 5.28 s; v1 was 6.6 s):**
+  - 3.36-4.56 1.0x: the left hand comes in and he starts typing up close,
+    squinting.
+  - 4.56-6.16 2.5x: still typing.
+  - 6.16-7.90 1.5x: the pull-back; the arm stretches.
+  - 7.90-9.50 0.7x: the arm fully stretched, the phone far away. The cut
+    comes before he brings it back (9.6 s).
+- **Framing:** one continuous shot. With the camera's pull-back the zoom widens
+  to the full frame (render_base OVERRIDE), so the stretched arm and the phone
+  at the right edge stay in. At face-centred framing the hand was cropped out.
+- **Overlay and sound:**
+  - The headline starts at 0.08 s (frame 4).
+  - The ruler grows with the arm to 70 cm.
+  - Soft key taps while he types.
+  - Music start is computed so the kick (21.11 s in the track) still lands on
+    the reveal: 18.11 s for v2, 17.35 s for v1.
+- **QC v2:** 20.88 s, equal to the timeline; -13.9 LUFS, -1.5 dBTP; no black
+  or frozen frames; head check clean. The loop (last words -> typing
+  close-up) holds.
+- **Sent:** presbyopia_preview_v2_review.mp4.
