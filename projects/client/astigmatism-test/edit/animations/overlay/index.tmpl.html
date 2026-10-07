@@ -35,9 +35,17 @@
             margin-bottom: -26px; transform: rotate(-4deg); padding: 0 18px; }
   .num    { font: 400 250px/0.95 "Anton"; color: #fff; -webkit-text-stroke: 16px var(--ink); }
   .yellow { color: var(--yellow); } .red { color: var(--red); }
-  .w.navy { color: var(--navy); -webkit-text-stroke-color: #fff !important; }
-  .w.navy.key { -webkit-text-stroke-width: 16px; }
-  .w.navy.num { -webkit-text-stroke-width: 18px; }
+  /* this reel: sticker captions (word boxes with an offset shadow) instead of outlined type */
+  .line { gap: 16px; margin: 6px 0; }
+  .run { gap: 14px; }
+  .w { text-shadow: none; -webkit-text-stroke: 0 !important; border-radius: 22px; }
+  .small { font: 800 54px/1.25 "Cairo"; color: #fff; background: rgba(1,17,95,.86); padding: 2px 20px 6px; border-radius: 18px; }
+  .key { font: 900 118px/1.15 "Cairo"; color: var(--navy); background: #fff; padding: 0 30px 10px; box-shadow: 10px 10px 0 var(--yellow); }
+  .key.lat { font: 400 130px/1.1 "Anton"; padding: 6px 30px 10px; }
+  .num { font: 400 190px/1.05 "Anton"; color: var(--navy); background: var(--yellow); padding: 6px 36px; box-shadow: 10px 10px 0 #fff; }
+  .w.navy { color: #fff; background: var(--navy); box-shadow: 10px 10px 0 var(--yellow); }
+  .w.yellow.key { color: var(--navy); background: var(--yellow); box-shadow: 10px 10px 0 #fff; }
+  #flash { left: 0; top: 0; width: 1080px; height: 1920px; background: #fff; }
   .panel { background: rgba(255,255,255,.97); border: 6px solid var(--navy); border-radius: 38px; color: var(--navy);
            box-shadow: 0 26px 60px rgba(0,0,0,.35); }
 
@@ -189,6 +197,8 @@
     <div class="disc">هاد التست ماكيعوضش الفحص عند المختص</div>
   </div>
 
+  <div id="flash" class="layer"></div>
+
   <div id="cta" class="layer">
     <div style="position:relative">
       <div class="ig-bar">
@@ -305,6 +315,11 @@ function typed(t, words) {
   }
   return out.join(" ");
 }
+
+// ---------- white flashes on the big moments ----------
+[E.hook_end, E.test_in + 0.02, E.test_out + 0.28, E.loop_in].forEach(t => {
+  tl.fromTo("#flash", { autoAlpha: 0 }, { keyframes: [{ autoAlpha: 0.85, duration: 0.05 }, { autoAlpha: 0, duration: 0.16 }], immediateRender: false }, t - 0.05);
+});
 
 // ---------- deterministic seek ----------
 const ctaText = $("cta-text"), secs = $("secs");

@@ -1,6 +1,6 @@
 {
  "fps": 50,
- "duration": 32.2,
+ "duration": 31.36,
  "width": 1080,
  "height": 1920,
  "ranges": [
@@ -70,19 +70,10 @@
   {
    "beat": "HOW",
    "source": "C2437",
-   "src_start": 8.8,
-   "src_end": 9.64,
-   "frames": 42,
-   "out_start": 9.92,
-   "duration": 0.84
-  },
-  {
-   "beat": "HOW",
-   "source": "C2437",
    "src_start": 9.72,
    "src_end": 13.34,
    "frames": 181,
-   "out_start": 10.76,
+   "out_start": 9.92,
    "duration": 3.62
   },
   {
@@ -91,7 +82,7 @@
    "src_start": 13.54,
    "src_end": 14.3,
    "frames": 38,
-   "out_start": 14.38,
+   "out_start": 13.54,
    "duration": 0.76
   },
   {
@@ -100,7 +91,7 @@
    "src_start": 14.42,
    "src_end": 17.88,
    "frames": 173,
-   "out_start": 15.14,
+   "out_start": 14.3,
    "duration": 3.46
   },
   {
@@ -109,7 +100,7 @@
    "src_start": 17.96,
    "src_end": 18.48,
    "frames": 26,
-   "out_start": 18.6,
+   "out_start": 17.76,
    "duration": 0.52
   },
   {
@@ -118,7 +109,7 @@
    "src_start": 18.56,
    "src_end": 19.14,
    "frames": 29,
-   "out_start": 19.12,
+   "out_start": 18.28,
    "duration": 0.58
   },
   {
@@ -127,7 +118,7 @@
    "src_start": null,
    "src_end": null,
    "frames": 425,
-   "out_start": 19.7,
+   "out_start": 18.86,
    "duration": 8.5
   },
   {
@@ -136,7 +127,7 @@
    "src_start": 0.98,
    "src_end": 1.64,
    "frames": 33,
-   "out_start": 28.2,
+   "out_start": 27.36,
    "duration": 0.66
   },
   {
@@ -145,7 +136,7 @@
    "src_start": 1.8,
    "src_end": 4.04,
    "frames": 112,
-   "out_start": 28.86,
+   "out_start": 28.02,
    "duration": 2.24
   },
   {
@@ -154,7 +145,7 @@
    "src_start": 4.16,
    "src_end": 5.26,
    "frames": 55,
-   "out_start": 31.1,
+   "out_start": 30.26,
    "duration": 1.1
   }
  ],
@@ -400,284 +391,260 @@
    "end": 9.92
   },
   {
-   "id": "C2437@8.87",
-   "word": "هادوك",
-   "beat": "HOW",
-   "src": 8.869,
-   "start": 9.989,
-   "end": 10.229
-  },
-  {
-   "id": "C2437@9.19",
-   "word": "les",
-   "beat": "HOW",
-   "src": 9.189,
-   "start": 10.309,
-   "end": 10.49
-  },
-  {
-   "id": "C2437@9.43",
-   "word": "œils",
-   "beat": "HOW",
-   "src": 9.43,
-   "start": 10.55,
-   "end": 10.81
-  },
-  {
    "id": "C2437@9.77",
    "word": "خاصك",
    "beat": "HOW",
    "src": 9.77,
-   "start": 10.81,
-   "end": 11.07
+   "start": 9.97,
+   "end": 10.23
   },
   {
    "id": "C2437@10.09",
    "word": "تقولنا",
    "beat": "HOW",
    "src": 10.09,
-   "start": 11.13,
-   "end": 11.451
+   "start": 10.29,
+   "end": 10.611
   },
   {
    "id": "C2437@10.57",
    "word": "الاتجاه",
    "beat": "HOW",
    "src": 10.571,
-   "start": 11.611,
-   "end": 12.091
+   "start": 10.771,
+   "end": 11.251
   },
   {
    "id": "C2437@11.13",
    "word": "ديالهم",
    "beat": "HOW",
    "src": 11.131,
-   "start": 12.171,
-   "end": 12.512
+   "start": 11.331,
+   "end": 11.672
   },
   {
    "id": "C2437@11.49",
    "word": "واش",
    "beat": "HOW",
    "src": 11.492,
-   "start": 12.532,
-   "end": 12.692
+   "start": 11.692,
+   "end": 11.852
   },
   {
    "id": "C2437@11.69",
    "word": "ليمن",
    "beat": "HOW",
    "src": 11.692,
-   "start": 12.732,
-   "end": 13.032
+   "start": 11.892,
+   "end": 12.192
   },
   {
    "id": "C2437@12.09",
    "word": "ليسر",
    "beat": "HOW",
    "src": 12.092,
-   "start": 13.132,
-   "end": 13.473
+   "start": 12.292,
+   "end": 12.633
   },
   {
    "id": "C2437@12.59",
    "word": "لفوق",
    "beat": "HOW",
    "src": 12.593,
-   "start": 13.633,
-   "end": 13.913
+   "start": 12.793,
+   "end": 13.073
   },
   {
    "id": "C2437@13.03",
    "word": "لتحت",
    "beat": "HOW",
    "src": 13.033,
-   "start": 14.073,
-   "end": 14.38
+   "start": 13.233,
+   "end": 13.54
   },
   {
    "id": "C2437@13.63",
    "word": "وغنبداو",
    "beat": "HOW",
    "src": 13.634,
-   "start": 14.474,
-   "end": 15.055
+   "start": 13.634,
+   "end": 14.215
   },
   {
    "id": "C2437@14.52",
    "word": "œil",
    "beat": "HOW",
    "src": 14.515,
-   "start": 15.235,
-   "end": 15.395
+   "start": 14.395,
+   "end": 14.555
   },
   {
    "id": "C2437@14.73",
    "word": "par",
    "beat": "HOW",
    "src": 14.735,
-   "start": 15.455,
-   "end": 15.615
+   "start": 14.615,
+   "end": 14.775
   },
   {
    "id": "C2437@15.04",
    "word": "œil",
    "beat": "HOW",
    "src": 15.036,
-   "start": 15.756,
-   "end": 16.096
+   "start": 14.916,
+   "end": 15.256
   },
   {
    "id": "C2437@15.40",
    "word": "غانغمضو",
    "beat": "HOW",
    "src": 15.396,
-   "start": 16.116,
-   "end": 16.576
+   "start": 15.276,
+   "end": 15.736
   },
   {
    "id": "C2437@15.94",
    "word": "عين",
    "beat": "HOW",
    "src": 15.936,
-   "start": 16.656,
-   "end": 16.857
+   "start": 15.816,
+   "end": 16.017
   },
   {
    "id": "C2437@16.34",
    "word": "وغتحاول",
    "beat": "HOW",
    "src": 16.337,
-   "start": 17.057,
-   "end": 17.758
+   "start": 16.217,
+   "end": 16.918
   },
   {
    "id": "C2437@17.16",
    "word": "تديتيكطي",
    "beat": "HOW",
    "src": 17.158,
-   "start": 17.878,
-   "end": 18.458
+   "start": 17.038,
+   "end": 17.618
   },
   {
    "id": "C2437@18.08",
    "word": "ربعة",
    "beat": "HOW",
    "src": 18.079,
-   "start": 18.719,
-   "end": 18.979
+   "start": 17.879,
+   "end": 18.139
   },
   {
    "id": "C2437@18.64",
    "word": "ديال",
    "beat": "HOW",
    "src": 18.639,
-   "start": 19.199,
-   "end": 19.379
+   "start": 18.359,
+   "end": 18.539
   },
   {
    "id": "C2437@18.86",
    "word": "les",
    "beat": "HOW",
    "src": 18.86,
-   "start": 19.42,
-   "end": 19.6
+   "start": 18.58,
+   "end": 18.76
   },
   {
    "id": "C2437@19.08",
    "word": "œils",
    "beat": "HOW",
    "src": 19.08,
-   "start": 19.64,
-   "end": 19.7
+   "start": 18.8,
+   "end": 18.86
   },
   {
    "id": "C2438@0.92",
    "word": "ف",
    "beat": "CTA",
    "src": 0.923,
-   "start": 28.2,
-   "end": 28.2
+   "start": 27.36,
+   "end": 27.36
   },
   {
    "id": "C2438@1.02",
    "word": "commentaire",
    "beat": "CTA",
    "src": 1.023,
-   "start": 28.243,
-   "end": 28.86
+   "start": 27.403,
+   "end": 28.02
   },
   {
    "id": "C2438@1.75",
    "word": "تقدر",
    "beat": "CTA",
    "src": 1.746,
-   "start": 28.86,
-   "end": 29.068
+   "start": 28.02,
+   "end": 28.228
   },
   {
    "id": "C2438@2.03",
    "word": "تقول",
    "beat": "CTA",
    "src": 2.028,
-   "start": 29.088,
-   "end": 29.268
+   "start": 28.248,
+   "end": 28.428
   },
   {
    "id": "C2438@2.23",
    "word": "لينا",
    "beat": "CTA",
    "src": 2.229,
-   "start": 29.289,
-   "end": 29.489
+   "start": 28.449,
+   "end": 28.649
   },
   {
    "id": "C2438@2.61",
    "word": "شحال",
    "beat": "CTA",
    "src": 2.61,
-   "start": 29.67,
-   "end": 29.952
+   "start": 28.83,
+   "end": 29.112
   },
   {
    "id": "C2438@3.07",
    "word": "شفتي",
    "beat": "CTA",
    "src": 3.072,
-   "start": 30.132,
-   "end": 30.373
+   "start": 29.292,
+   "end": 29.533
   },
   {
    "id": "C2438@3.37",
    "word": "من",
    "beat": "CTA",
    "src": 3.374,
-   "start": 30.434,
-   "end": 30.554
+   "start": 29.594,
+   "end": 29.714
   },
   {
    "id": "C2438@3.55",
    "word": "اتجاه",
    "beat": "CTA",
    "src": 3.554,
-   "start": 30.614,
-   "end": 31.016
+   "start": 29.774,
+   "end": 30.176
   },
   {
    "id": "C2438@4.08",
    "word": "فكل",
    "beat": "CTA",
    "src": 4.077,
-   "start": 31.1,
-   "end": 31.258
+   "start": 30.26,
+   "end": 30.418
   },
   {
    "id": "C2438@4.44",
    "word": "عين",
    "beat": "CTA",
    "src": 4.438,
-   "start": 31.378,
-   "end": 31.539
+   "start": 30.538,
+   "end": 30.699
   }
  ]
 }

@@ -1,5 +1,5 @@
 window.EV = {
- "duration": 32.2,
+ "duration": 31.36,
  "phrases": [
   {
    "id": "h2",
@@ -75,15 +75,15 @@ window.EV = {
   },
   {
    "id": "c1",
-   "start": 29.67,
-   "end": 31.6,
+   "start": 28.83,
+   "end": 30.76,
    "x": 520,
    "y": 1250,
    "lines": [
     [
      {
       "t": "شحال شفتي من",
-      "at": 29.67,
+      "at": 28.83,
       "role": "small",
       "color": null
      }
@@ -91,13 +91,13 @@ window.EV = {
     [
      {
       "t": "اتجاه",
-      "at": 30.614,
+      "at": 29.774,
       "role": "key",
       "color": "navy"
      },
      {
       "t": "ف كل عين؟",
-      "at": 31.1,
+      "at": 30.26,
       "role": "small",
       "color": null
      }
@@ -129,32 +129,32 @@ window.EV = {
   },
   {
    "k": "dirs",
-   "t": 10.81
+   "t": 9.97
   },
   {
    "k": "eye",
-   "t": 14.474
+   "t": 13.634
   },
   {
    "k": "four",
-   "t": 17.057
+   "t": 16.217
   }
  ],
  "dist_num": 7.546,
  "dirs": [
-  12.732,
-  13.132,
-  13.633,
-  14.073
+  11.892,
+  12.292,
+  12.793,
+  13.233
  ],
- "eye_close": 16.116,
- "four_pop": 18.719,
- "steps_out": 19.65,
- "test_in": 19.7,
- "right_in": 20.15,
- "switch": 23.75,
- "left_in": 24.35,
- "test_out": 27.9,
+ "eye_close": 15.276,
+ "four_pop": 17.879,
+ "steps_out": 18.81,
+ "test_in": 18.86,
+ "right_in": 19.31,
+ "switch": 22.91,
+ "left_in": 23.509999999999998,
+ "test_out": 27.06,
  "right_set": [
   "right",
   "down",
@@ -167,8 +167,8 @@ window.EV = {
   "right",
   "down"
  ],
- "cta_in": 28.15,
- "cta_type": 29.088,
- "cta_send": 31.528,
- "loop_in": 31.650000000000002
+ "cta_in": 27.31,
+ "cta_type": 28.248,
+ "cta_send": 30.688,
+ "loop_in": 30.81
 };

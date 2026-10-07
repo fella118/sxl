@@ -17,6 +17,8 @@ Same engine as the comment-hook reel (v3):
 
 PAD ranges (the silent test, covered by the full-screen chart) hold the last
 frame of the previous range, blurred and dimmed; their matte is empty.
+Look (different from Reel 02 on purpose): warmer grade, soft vignette, slow
+push-in through every range, and a 4-frame whip blur on each cut.
 """
 
 from __future__ import annotations
@@ -41,7 +43,7 @@ FPS = TL["fps"]
 OW, OH = 1080, 1920
 FW, FH = 2160, 3840                      # full-res 9:16 crop of the source
 IW, IH = 1440, 2560                      # working size for normal framing (1.33x headroom)
-GRADE = "eq=contrast=1.045:saturation=1.06:gamma=0.985"
+GRADE = "eq=contrast=1.07:saturation=1.12:gamma=0.98,colorbalance=rs=0.03:bs=-0.03:rm=0.015:bm=-0.02"   # warmer than Reel 02
 Z_OFFSET = 0.10                          # room for the follow-cam to pan
 FACE_TARGET = (0.50, 0.40)               # where the eyes sit in the output frame (y: see plan())
 FOLLOW = 0.85                            # 1 = locked on the face, 0 = fixed framing
@@ -50,8 +52,8 @@ SMOOTH_S = 0.35                          # follow-cam smoothing (Gaussian sigma,
 # Framing: every range alternates between these zooms (+ a slow drift), unless
 # OVERRIDE gives it keys. Keys are (t, z) or (t, z, eye_y): t = local seconds,
 # "end", or ("w", src[, offset]) = that word's start in the range.
-AUTO_Z = [1.00, 1.13, 1.05, 1.17]
-DRIFT = 0.03
+AUTO_Z = [1.02, 1.10]
+DRIFT = 0.06                             # slow push-in through every range (Reel 02: 0.03)
 EYE_Y = 0.40                             # default eye line (fraction of the output height)
 LOW = 0.53                               # eye line while a big graphic sits above his head
 
@@ -68,8 +70,8 @@ OVERRIDE: dict[int, list] = {}
 OVERRIDE[0] = [(0, 1.24), (0.3, 1.10)]                                   # "شوف!" punch
 # HOW: the step pictograms sit above his head -> lower eye line for the whole beat
 for k, i in enumerate(beat_ranges("HOW")):
-    z = [1.00, 1.12][k % 2]
-    OVERRIDE[i] = [(0, z, LOW), ("end", z + 0.02, LOW)]
+    z = [1.00, 1.08][k % 2]
+    OVERRIDE[i] = [(0, z, LOW), ("end", z + 0.06, LOW)]
 # "غانغمضو عين": push in on him covering his eye
 i_eye = rng("C2437", 15.40)
 if i_eye is not None:
@@ -82,7 +84,7 @@ CUTAWAYS: list = []
 def build_plans() -> list[list]:
     """Every cut changes the framing: an auto range takes the next AUTO_Z level that is
     at least MIN_STEP away from where the previous range ended."""
-    MIN_STEP = 0.08
+    MIN_STEP = 0.05                       # the whip blur carries the cut
     plans, prev, k = [], None, 0
     for idx in range(len(TL["ranges"])):
         if idx in OVERRIDE:
@@ -176,6 +178,19 @@ def decoder(clip: str, start: float, n: int, w: int, h: int) -> subprocess.Popen
         stdout=subprocess.PIPE, stdin=subprocess.DEVNULL, bufsize=w * h * 3 * 2)
 
 
+WHIP = [46, 30, 16, 7]                   # horizontal blur (px) on the first frames after a cut
+_yy, _xx = np.mgrid[0:OH, 0:OW].astype(np.float32)
+VIGNETTE = (1 - 0.32 * np.clip((((_xx - OW / 2) / (OW * 0.62)) ** 2 + ((_yy - OH * 0.45) / (OH * 0.62)) ** 2) - 0.25, 0, 1))[..., None]
+
+
+def whip(img: np.ndarray, k: int, direction: int) -> np.ndarray:
+    """Directional smear for the first frames after a cut (alternating left/right)."""
+    kern = np.zeros((1, k), np.float32)
+    kern[0, : k // 2 + 1] = np.linspace(1, 0.2, k // 2 + 1) if direction > 0 else np.linspace(0.2, 1, k // 2 + 1)
+    kern /= kern.sum()
+    return cv2.filter2D(img, -1, kern, borderType=cv2.BORDER_REFLECT)
+
+
 def sharpen(img: np.ndarray, amount: float = 0.35) -> np.ndarray:
     blur = cv2.GaussianBlur(img, (0, 0), 1.1)
     return cv2.addWeighted(img, 1 + amount, blur, -amount, 0)
@@ -250,6 +265,9 @@ def main() -> None:
             out = cv2.warpAffine(src, affine(x0, y0, w, src.shape[1], src.shape[0]), (OW, OH), flags=cv2.INTER_CUBIC,
                                  borderMode=cv2.BORDER_REFLECT)
             last_out = sharpen(out, 0.45 if cut else 0.35)
+            if idx > 0 and i < len(WHIP) and TL["ranges"][idx - 1]["source"] != "PAD":
+                last_out = whip(last_out, WHIP[i], 1 if idx % 2 else -1)
+            last_out = (last_out * VIGNETTE).astype(np.uint8)
             enc.stdin.write(last_out.tobytes())
 
             matte_path = TRACK / r["source"] / f"{f0 + i:06d}.png"
