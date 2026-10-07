@@ -535,7 +535,7 @@ window.EV = {
   {
    "id": "a3a",
    "start": 35.6,
-   "end": 36.819,
+   "end": 37.119,
    "x": 520,
    "y": 1250,
    "lines": [
@@ -1093,7 +1093,7 @@ window.EV = {
  "said_out": 17.424000000000003,
  "callout_in": 18.900000000000002,
  "callout_out": 19.92,
- "table_in": 36.869,
+ "table_in": 37.169,
  "table_out": 55.189,
  "hdr": [
   38.339,
