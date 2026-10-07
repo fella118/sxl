@@ -1,0 +1,19 @@
+{
+  "name": "sxl-remotion",
+  "private": true,
+  "description": "Remotion (React -> MP4) for the studio's animated overlays. Render with the pre-installed headless Chromium (see README).",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.533",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "remotion": "4.0.533"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.12",
+    "typescript": "5.9.2"
+  }
+}
