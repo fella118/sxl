@@ -1,0 +1,147 @@
+{
+ "language_code": "ary",
+ "engine": "moulsot.v0.3+mms_fa",
+ "text": "ف commentaire تقدر تقول لينا شحال شفتي من اتجاه فكل عين",
+ "words": [
+  {
+   "type": "word",
+   "text": "ف",
+   "start": 0.923,
+   "end": 0.943,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 0.943,
+   "end": 1.023,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "commentaire",
+   "start": 1.023,
+   "end": 1.746,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تقدر",
+   "start": 1.746,
+   "end": 2.008,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.008,
+   "end": 2.028,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تقول",
+   "start": 2.028,
+   "end": 2.208,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.208,
+   "end": 2.229,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "لينا",
+   "start": 2.229,
+   "end": 2.429,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.429,
+   "end": 2.61,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شحال",
+   "start": 2.61,
+   "end": 2.892,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.892,
+   "end": 3.072,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شفتي",
+   "start": 3.072,
+   "end": 3.313,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.313,
+   "end": 3.374,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "من",
+   "start": 3.374,
+   "end": 3.494,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.494,
+   "end": 3.554,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "اتجاه",
+   "start": 3.554,
+   "end": 3.956,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.956,
+   "end": 4.077,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "فكل",
+   "start": 4.077,
+   "end": 4.318,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.318,
+   "end": 4.438,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عين",
+   "start": 4.438,
+   "end": 4.599,
+   "speaker_id": "speaker_0"
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+[
+ {
+  "word": "ف",
+  "start": 0.923,
+  "end": 0.943,
+  "chunk": 0
+ },
+ {
+  "word": "commentaire",
+  "start": 1.023,
+  "end": 1.746,
+  "chunk": 0
+ },
+ {
+  "word": "تقدر",
+  "start": 1.746,
+  "end": 2.008,
+  "chunk": 0
+ },
+ {
+  "word": "تقول",
+  "start": 2.028,
+  "end": 2.208,
+  "chunk": 0
+ },
+ {
+  "word": "لينا",
+  "start": 2.229,
+  "end": 2.429,
+  "chunk": 0
+ },
+ {
+  "word": "شحال",
+  "start": 2.61,
+  "end": 2.892,
+  "chunk": 0
+ },
+ {
+  "word": "شفتي",
+  "start": 3.072,
+  "end": 3.313,
+  "chunk": 0
+ },
+ {
+  "word": "من",
+  "start": 3.374,
+  "end": 3.494,
+  "chunk": 0
+ },
+ {
+  "word": "اتجاه",
+  "start": 3.554,
+  "end": 3.956,
+  "chunk": 0
+ },
+ {
+  "word": "فكل",
+  "start": 4.077,
+  "end": 4.318,
+  "chunk": 0
+ },
+ {
+  "word": "عين",
+  "start": 4.438,
+  "end": 4.599,
+  "chunk": 0
+ }
+]

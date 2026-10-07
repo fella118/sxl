@@ -1,0 +1,525 @@
+{
+ "language_code": "ary",
+ "engine": "moulsot.v0.3+mms_fa",
+ "text": "شوف فقل من 10 تواني هاد le test كافي باش تعرف واش عندك نقص النظر نعوضوها وخليها سموت خليها تبدا ماتقطع شوف، فقل، شوف، فقل من عشرة د الثواني، هاد le test كافي غاتعرف بانه واش عندك ناسخة. شوف، ماشي مشكل هادا.",
+ "words": [
+  {
+   "type": "word",
+   "text": "شوف",
+   "start": 1.462,
+   "end": 1.703,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 1.703,
+   "end": 2.204,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "فقل",
+   "start": 2.204,
+   "end": 2.504,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 2.504,
+   "end": 2.585,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "من",
+   "start": 2.585,
+   "end": 2.685,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "10",
+   "start": 2.685,
+   "end": 3.026,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تواني",
+   "start": 3.026,
+   "end": 3.467,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.467,
+   "end": 3.707,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هاد",
+   "start": 3.707,
+   "end": 3.847,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.847,
+   "end": 3.907,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "le",
+   "start": 3.907,
+   "end": 4.028,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.028,
+   "end": 4.068,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "test",
+   "start": 4.068,
+   "end": 4.369,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.369,
+   "end": 4.509,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كافي",
+   "start": 4.509,
+   "end": 4.89,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.89,
+   "end": 5.15,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "باش",
+   "start": 5.15,
+   "end": 5.311,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.311,
+   "end": 5.331,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تعرف",
+   "start": 5.331,
+   "end": 5.611,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.611,
+   "end": 5.731,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "واش",
+   "start": 5.731,
+   "end": 5.892,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.892,
+   "end": 5.932,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عندك",
+   "start": 5.932,
+   "end": 6.152,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.152,
+   "end": 6.193,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "نقص",
+   "start": 6.193,
+   "end": 6.373,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "النظر",
+   "start": 6.373,
+   "end": 6.493,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "نعوضوها",
+   "start": 6.493,
+   "end": 6.714,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "وخليها",
+   "start": 6.714,
+   "end": 8.939,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.939,
+   "end": 8.999,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "سموت",
+   "start": 8.999,
+   "end": 9.079,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.079,
+   "end": 9.139,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "خليها",
+   "start": 9.139,
+   "end": 9.259,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.259,
+   "end": 9.319,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تبدا",
+   "start": 9.319,
+   "end": 9.42,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ماتقطع",
+   "start": 9.42,
+   "end": 9.6,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.6,
+   "end": 10.96,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شوف،",
+   "start": 10.96,
+   "end": 11.201,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.201,
+   "end": 11.782,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "فقل،",
+   "start": 11.782,
+   "end": 12.083,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.083,
+   "end": 13.065,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شوف،",
+   "start": 13.065,
+   "end": 13.265,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 13.265,
+   "end": 13.345,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "فقل",
+   "start": 13.345,
+   "end": 13.606,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 13.606,
+   "end": 13.646,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "من",
+   "start": 13.646,
+   "end": 13.706,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 13.706,
+   "end": 13.746,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عشرة",
+   "start": 13.746,
+   "end": 13.967,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "د",
+   "start": 13.967,
+   "end": 13.987,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "الثواني،",
+   "start": 13.987,
+   "end": 14.408,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.408,
+   "end": 14.588,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هاد",
+   "start": 14.588,
+   "end": 14.728,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.728,
+   "end": 14.768,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "le",
+   "start": 14.768,
+   "end": 14.869,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.869,
+   "end": 14.909,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "test",
+   "start": 14.909,
+   "end": 15.149,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 15.149,
+   "end": 15.229,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كافي",
+   "start": 15.229,
+   "end": 15.55,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 15.55,
+   "end": 15.751,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "غاتعرف",
+   "start": 15.751,
+   "end": 16.151,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 16.151,
+   "end": 16.292,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "بانه",
+   "start": 16.292,
+   "end": 16.733,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 16.733,
+   "end": 16.993,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "واش",
+   "start": 16.993,
+   "end": 17.174,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 17.174,
+   "end": 17.234,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عندك",
+   "start": 17.234,
+   "end": 17.474,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 17.474,
+   "end": 17.574,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ناسخة.",
+   "start": 17.574,
+   "end": 17.895,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 17.895,
+   "end": 18.837,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "شوف،",
+   "start": 18.837,
+   "end": 19.058,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 19.058,
+   "end": 19.118,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ماشي",
+   "start": 19.118,
+   "end": 19.358,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 19.358,
+   "end": 19.398,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مشكل",
+   "start": 19.398,
+   "end": 19.699,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هادا.",
+   "start": 19.699,
+   "end": 19.899,
+   "speaker_id": "speaker_0"
+  }
+ ]
+}
