@@ -48,3 +48,9 @@ barrage, no music, -14 LUFS.
 - SOGIXEL logo + brand colours (captions, end card, CTA button).
 - Formats: 9:16 only, or also 4:5 (feed ads) / 16:9 (portfolio site)?
 - One ~60 s version, or also a 30 s ad cutdown?
+
+## Decisions (client, 2026-10-07)
+- Founder: Dnanou Atae, Fondateur · Gzenaya Optique. SXL logo small, top centre,
+  no background. One 9:16 video, no music.
+- v2: open on the host's voice (no smile hook); keep the host's question
+  "شحال نتا معانا" audible; cut "ولكن عطيتو des points اللي خصو يخدم عليهم".

@@ -64,13 +64,16 @@ def beat_ranges(beat: str) -> list[int]:
 
 
 OVERRIDE: dict[int, list] = {}
-# hook: the smile, a gentle push-in through the slow motion
-OVERRIDE[0] = [(0, 1.12, 0.40), ("end", 1.22, 0.40)]
-# the founder (C2410): opens on the medium (his name card sits on the plain wall), then alternates with the full wide (the Gzenaya Optique neon sits under the SXL logo,
-# so the eye line is low: the crop starts at the top of the frame) and a closer medium shot
-# with the eyes on the top third, framed under the neon so the sign is never sliced.
+# the founder (C2410): opens on a medium shot (his name card sits on the plain wall, eyes on the
+# top third, framed under the neon so the sign is never sliced), then alternates with the full
+# wide (the Gzenaya Optique neon under the SXL logo: low eye line, the crop starts at the top).
 for k, i in enumerate(beat_ranges("STORY")):
     OVERRIDE[i] = [(0, 1.30, 0.31), ("end", 1.33, 0.31)] if k % 2 == 0 else [(0, 1.00, 0.56), ("end", 1.02, 0.56)]
+# the host's off-camera question and his answer are one take: hold while he listens, then a
+# gentle push-in as he starts answering ("دابا ça fait واحد العام")
+i_qa = rng("C2411", 3.50)
+if i_qa is not None:
+    OVERRIDE[i_qa] = [(0, 1.00, 0.40), (("w", 6.87, -0.15), 1.01, 0.40), (("w", 6.87, 0.85), 1.10, 0.40), ("end", 1.11, 0.40)]
 # CTA selfie: already close; eyes on the top third (a tight selfie crop) so the caption and the
 # "FORMULAIRE" button fit under his chin; small zoom steps only
 for k, i in enumerate(beat_ranges("CTA")):

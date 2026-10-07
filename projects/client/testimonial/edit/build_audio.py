@@ -2,10 +2,11 @@
 
 1. Voice: left channel (lav; the right channel is a -40 dB camera mic; the
    iPhone CTA is dual mono), cut on the same frames as the picture, 30 ms
-   fades at every join. The hook range plays C2408's sound under the C2406
-   smile (range["audio"]), so C2408 runs as one continuous track.
+   fades at every join. A range may borrow another clip's sound
+   (range["audio"]).
 2. Each source is levelled to the same speech loudness before the chain (the
-   iPhone CTA is ~3 dB quieter than the lav).
+   iPhone CTA is ~3 dB quieter than the lav). timeline["gain"] lifts stretches
+   recorded off-mic (the host's question on the founder's lav, +4 dB) first.
 3. Voice chain: rumble filter, light denoise, de-ess, compression, warmth,
    presence, air, limiter.
 4. No music (brief). Two soft UI sounds: the name card and the CTA button.
@@ -81,7 +82,22 @@ def build_voice() -> np.ndarray:
         n = r["frames"] * SR // TL["fps"]
         au = r.get("audio")
         clip, start = (au["source"], au["start"]) if au else (r["source"], r["src_start"])
-        parts.append(source_audio(clip, start, n))
+        x = source_audio(clip, start, n)
+        for g in TL.get("gain", []):              # e.g. the host's question, off-mic on the founder's lav
+            if g["source"] != clip:
+                continue
+            i0 = int(round((max(g["a"], start) - start) * SR))
+            i1 = int(round((min(g["b"], start + n / SR) - start) * SR))
+            if i1 > i0:
+                env = np.ones(n, np.float32)
+                k = min(int(0.04 * SR), (i1 - i0) // 2)
+                lift = 10 ** (g["db"] / 20) - 1
+                seg = np.ones(i1 - i0, np.float32)
+                seg[:k] = np.linspace(0, 1, k)
+                seg[len(seg) - k:] = np.linspace(1, 0, k)
+                env[i0:i1] += lift * seg
+                x = x * env
+        parts.append(x)
         owners.append(clip)
     # level each source on its own kept speech
     for clip in sorted(set(owners)):

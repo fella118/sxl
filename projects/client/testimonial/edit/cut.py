@@ -1,15 +1,16 @@
 """Cut list for the SOGIXEL testimonial (Dnanou Atae, Gzenaya Optique) -> edl.json + timeline.json.
 
-  HOOK   C2406 0.0-0.6: the host's smile, eased slow motion. Its sound is
-         C2408 already running (J-cut), so C2408 is one continuous track
-         from the first frame.
-  INTRO  C2408 from 2.85 (in sync with that track) to "خلي ليك الكلمة".
+  INTRO  C2408: the host's voice from the first frame ("اليوم معانا monsieur
+         Dnanou Atae ... سي Atae، نخلي ليك الكلمة").
   STORY  C2410 (wide, desk + neon): other agencies / ROI > Si Saad called >
-         store was slow > "des points" > agreed on the return > "جاب الله
-         التيسير". Off-topic banter (0-4 s), "متفقين", the doubled "نفس",
-         "هادشي اللي كاين" and the trailing "avec... صافي" are out.
-  PROOF  C2411 close-up: "دابا ça fait واحد العام ... satisfait إن شاء الله"
-         (the off-camera question is cut).
+         store was slow > same pitch as every marketer > "وحتى هو فهمني"
+         > agreed on the return > "جاب الله التيسير". Off-topic banter (0-4 s),
+         "متفقين", the doubled "نفس", "ولكن عطيتو des points اللي خصو يخدم
+         عليهم" (client note, v2), "هادشي اللي كاين" and the trailing
+         "avec... صافي" are out.
+  PROOF  C2411 close-up: the host's off-camera question "وبالنسبة لla durée،
+         شحال نتا معانا أسي Atae؟" (raised GAIN dB: it is on the founder's lav),
+         then "دابا ça fait واحد العام ... satisfait إن شاء الله".
   CTA    IMG_6057 (iPhone selfie, 50 fps proxy) + a short hold for the end card.
 
 Inside every passage, non-speech longer than MIN_PAUSE is cut down to POST +
@@ -41,11 +42,9 @@ CLIPS = ("C2408", "C2410", "C2411", "IMG_6057")
 PATHS = {"C2406": SRC / "C2406.MP4", "C2408": SRC / "C2408.MP4", "C2410": SRC / "C2410.MP4",
          "C2411": SRC / "C2411.MP4", "IMG_6057": EDIT / "proxy" / "IMG_6057.mov"}
 
-HOOK = {"clip": "C2406", "a": 0.00, "b": 0.60, "speed": 0.60,     # 1.0 s of smile
-        "audio": "C2408", "audio_end": 2.85}                       # C2408 sound under it, picture cuts in at 2.85
-# (beat, clip, start, end) in source seconds. A start given as ("exact", t) is kept as is.
+# (beat, clip, start, end[, options]) in source seconds. ("exact", t) is kept as is.
 KEEP = [
-    ("INTRO", "C2408", ("exact", 2.85), 14.36),            # ... monsieur Dnanou Atae ... SOGIXEL. سي Atae، نخلي ليك الكلمة
+    ("INTRO", "C2408", ("exact", 2.08), 14.36),            # اليوم معانا monsieur Dnanou Atae ... SOGIXEL. سي Atae، نخلي ليك الكلمة
     # C2410: the cuts at exact times drop a drawn-out "euhhh" (flat harmonics in analysis_audio/C2410_*.png)
     ("STORY", "C2410", 6.50, ("exact", 9.34)),            # باختصار نعاود ليكم l'histoire ديالي مع
     ("STORY", "C2410", ("exact", 11.34), ("exact", 15.10)),  # les agences marketing. déjà كنت بديت مع
@@ -55,17 +54,19 @@ KEEP = [
     ("STORY", "C2410", ("exact", 31.94), 34.76),          # العام بحال هكا كانت الأمور ناعسة
     ("STORY", "C2410", ("exact", 36.76), 38.24),          # عيط ليا السي سعد حتى هو
     ("STORY", "C2410", 39.06, ("exact", 41.87)),          # الصراحة نفس الدخلة اللي كيدخلوها الناس ديال
-    ("STORY", "C2410", ("exact", 43.56), ("exact", 50.34)),  # الماركوتينغ كاملين ولكن عطيتو des points ... فهاد الأمر
+    ("STORY", "C2410", ("exact", 43.56), ("exact", 44.74)),  # الماركوتينغ كاملين
+    ("STORY", "C2410", ("exact", 48.46), ("exact", 50.34)),  # وحتى هو فهمني فهاد الأمر ("ولكن عطيتو des points ..." out)
     ("STORY", "C2410", ("exact", 54.22), ("exact", 57.62)),  # تفاهمنا على le retour أهم حاجة عندي
     ("STORY", "C2410", ("exact", 58.58), 59.11),          # فالمڭازة
     ("STORY", "C2410", 60.73, ("exact", 61.83)),          # وجاب الله التيسير مع
     ("STORY", "C2410", ("exact", 62.34), 62.99),          # سي سعد
-    ("PROOF", "C2411", 6.87, ("exact", 9.05)),            # دابا ça fait واحد العام
+    ("PROOF", "C2411", ("exact", 3.46), ("exact", 9.05), {"min_pause": 1.0}),   # question + دابا ça fait واحد العام (one take: the Q/A beat stays)
     ("PROOF", "C2411", ("exact", 9.92), 14.76),           # grosso modo كانريكومندي أي واحد يخدم مع سي سعد وغيكون satisfait إن شاء الله
     ("CTA", "IMG_6057", 0.00, 9.58),                      # يلا كنتي حتى نتايا عييتي ... نقدرو نعاونوك
 ]
 CTA_TAIL = 0.50     # picture after the last word (end card)
-ORDER = ["HOOK", "INTRO", "STORY", "PROOF", "CTA"]
+ORDER = ["INTRO", "STORY", "PROOF", "CTA"]
+GAIN = [("C2411", 3.40, 6.50, 4.0)]   # (clip, src from, src to, dB): the host's question, off-mic on the founder's lav
 
 
 def speech_mask(clip: str) -> np.ndarray:
@@ -81,7 +82,7 @@ def load_words(clip: str) -> list[dict]:
     return sorted(json.loads((EDIT / "darija" / f"{clip}.words.json").read_text()), key=lambda w: w["start"])
 
 
-def nonspeech_runs(keep: np.ndarray, a: float, b: float) -> list[tuple[float, float]]:
+def nonspeech_runs(keep: np.ndarray, a: float, b: float, min_pause: float = MIN_PAUSE) -> list[tuple[float, float]]:
     i0, i1 = int(a * 100), int(np.ceil(b * 100))
     q = ~keep[i0:i1]
     runs, start = [], None
@@ -89,13 +90,13 @@ def nonspeech_runs(keep: np.ndarray, a: float, b: float) -> list[tuple[float, fl
         if val and start is None:
             start = k
         elif not val and start is not None:
-            if (k - start) / 100 >= MIN_PAUSE:
+            if (k - start) / 100 >= min_pause:
                 runs.append(((i0 + start) / 100, (i0 + k) / 100))
             start = None
     return runs
 
 
-def passage_ranges(beat: str, clip: str, a, b, keep: np.ndarray, tail: float = 0.0) -> list[dict]:
+def passage_ranges(beat: str, clip: str, a, b, keep: np.ndarray, tail: float = 0.0, min_pause: float = MIN_PAUSE) -> list[dict]:
     exact = isinstance(a, tuple)
     a = a[1] if exact else a
     exact_end = isinstance(b, tuple)
@@ -103,7 +104,7 @@ def passage_ranges(beat: str, clip: str, a, b, keep: np.ndarray, tail: float = 0
     s = a if exact else max(0.0, a - PRE)
     t = min(b + POST + tail, len(keep) / 100)
     pieces, cur = [], s
-    for qa, qb in nonspeech_runs(keep, s, b + POST):
+    for qa, qb in nonspeech_runs(keep, s, b + POST, min_pause):
         if qa - cur < 0.03:                       # passage opens on non-speech: trim it
             if not exact:
                 cur = max(cur, qb - PRE)
@@ -122,12 +123,12 @@ def passage_ranges(beat: str, clip: str, a, b, keep: np.ndarray, tail: float = 0
 
 
 def build(words: dict, keeps: dict) -> None:
-    ranges = [{"beat": "HOOK", "source": HOOK["clip"], "f0": round(HOOK["a"] * FPS), "f1": round(HOOK["b"] * FPS),
-               "speed": HOOK["speed"]}]
-    for beat in ORDER[1:]:
-        for b_, clip, a, b in KEEP:
+    ranges = []
+    for beat in ORDER:
+        for b_, clip, a, b, *opt in KEEP:
             if b_ == beat:
-                ranges += passage_ranges(beat, clip, a, b, keeps[clip], CTA_TAIL if beat == "CTA" else 0.0)
+                mp = (opt[0] if opt else {}).get("min_pause", MIN_PAUSE)
+                ranges += passage_ranges(beat, clip, a, b, keeps[clip], CTA_TAIL if beat == "CTA" else 0.0, mp)
     merged = [ranges[0]]
     for r in ranges[1:]:
         m = merged[-1]
@@ -162,9 +163,6 @@ def build(words: dict, keeps: dict) -> None:
         n = round((r["f1"] - r["f0"]) / sp)
         o = {"beat": r["beat"], "source": r["source"], "src_start": r["f0"] / FPS, "src_end": r["f1"] / FPS,
              "frames": n, "out_start": t_out / FPS, "duration": n / FPS}
-        if r["beat"] == "HOOK":
-            nxt = next(m for m in merged if m["beat"] == "INTRO")      # C2408's own picture picks up its sound here
-            o.update({"speed": sp, "audio": {"source": HOOK["audio"], "start": round(nxt["f0"] / FPS - n / FPS, 3)}})
         out_ranges.append(o)
         t_out += n
 
@@ -178,11 +176,9 @@ def build(words: dict, keeps: dict) -> None:
         return None
 
     out_words = []
-    for beat, clip, a, b in KEEP:
+    for beat, clip, a, b, *_ in KEEP:
         a = a[1] if isinstance(a, tuple) else a
         b = b[1] if isinstance(b, tuple) else b
-        if beat == "INTRO":
-            a = HOOK["audio_end"] - out_ranges[0]["duration"]
         for w in words[clip]:
             if w["start"] >= a - 0.05 and w["end"] <= b + 0.005:
                 s, e = to_out(clip, w["start"]), to_out(clip, w["end"])
@@ -195,8 +191,9 @@ def build(words: dict, keeps: dict) -> None:
                                   "start": round(s, 3), "end": round(e if e is not None else s + 0.2, 3)})
     total = t_out / FPS
     (EDIT / "timeline.json").write_text(json.dumps(
-        {"fps": FPS, "duration": total, "width": 1080, "height": 1920,
-         "ranges": out_ranges, "words": out_words}, ensure_ascii=False, indent=1), encoding="utf-8")
+        {"fps": FPS, "duration": total, "width": 1080, "height": 1920, "ranges": out_ranges, "words": out_words,
+         "gain": [{"source": c, "a": ga, "b": gb, "db": db} for c, ga, gb, db in GAIN]}, ensure_ascii=False, indent=1),
+        encoding="utf-8")
     (EDIT / "edl.json").write_text(json.dumps({
         "version": 2,
         "sources": {c: str(PATHS[c]) for c in sorted({r["source"] for r in out_ranges})},

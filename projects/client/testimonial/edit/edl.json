@@ -1,7 +1,6 @@
 {
  "version": 2,
  "sources": {
-  "C2406": "/home/user/sxl/projects/client/testimonial/source/C2406.MP4",
   "C2408": "/home/user/sxl/projects/client/testimonial/source/C2408.MP4",
   "C2410": "/home/user/sxl/projects/client/testimonial/source/C2410.MP4",
   "C2411": "/home/user/sxl/projects/client/testimonial/source/C2411.MP4",
@@ -9,19 +8,8 @@
  },
  "ranges": [
   {
-   "source": "C2406",
-   "start": 0.0,
-   "end": 0.6,
-   "beat": "HOOK",
-   "speed": 0.6,
-   "audio": {
-    "source": "C2408",
-    "start": 1.84
-   }
-  },
-  {
    "source": "C2408",
-   "start": 2.84,
+   "start": 2.08,
    "end": 7.86,
    "beat": "INTRO"
   },
@@ -100,12 +88,12 @@
   {
    "source": "C2410",
    "start": 43.56,
-   "end": 45.74,
+   "end": 44.74,
    "beat": "STORY"
   },
   {
    "source": "C2410",
-   "start": 46.1,
+   "start": 48.46,
    "end": 50.34,
    "beat": "STORY"
   },
@@ -147,7 +135,7 @@
   },
   {
    "source": "C2411",
-   "start": 6.8,
+   "start": 3.46,
    "end": 9.06,
    "beat": "PROOF"
   },
@@ -170,5 +158,5 @@
    "beat": "CTA"
   }
  ],
- "total_duration_s": 64.96
+ "total_duration_s": 64.7
 }

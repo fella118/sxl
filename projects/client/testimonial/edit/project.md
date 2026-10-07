@@ -77,3 +77,44 @@ frame. Original SXL logo file to replace the rebuilt one, if wanted.
 vad_probs.py / fillers.py > cut.py > (proxy) > track_subject.py >
 render_base.py > safe_zones.py zones > overlay events.py + build_html.py >
 capture_html.py > safe_zones.py check > build_audio.py > composite.py
+
+## Session 1 (cont.), v2 final, 2026-10-07
+
+**Client notes on v1:**
+- The hook starts with the host's voice directly: the slowed smile (C2406) is
+  out. The video opens on C2408 at 2.08 s, so the voice is on frame 1.
+- The host's question must be heard: C2411 3.46-9.05 is now one take. The
+  off-camera question "وبالنسبة لla durée، شحال نتا معانا أسي Atae؟" (onset
+  3.52 s from the lav energy) runs into his answer "دابا ça fait واحد العام".
+  - The question is +4 dB (timeline "gain": it was recorded off-mic on the
+    founder's lav, -24 vs -20 LUFS). It now measures -12.9 LUFS against the
+    answer's -13.4.
+  - It is captioned with a small yellow "سؤال" tag and a white highlight.
+  - The name was checked with MMS forced alignment: "asi atae" scores -1.6 per
+    token against -3.7 for "abdellah" (MoulSot's guess).
+  - Gentle push-in as he starts answering.
+- "ولكن عطيتو des points اللي خصو يخدم عليهم" removed. His words join
+  directly: "…الناس ديال الماركوتينغ كاملين، وحتى هو فهمني فهاد الأمر، تفاهمنا
+  على le retour…" (cuts at 44.74 / 48.46 on the lav energy).
+
+**Fixes:**
+- A caption faded in at a negative timeline position (first word at 0.02 s),
+  which shifted the whole GSAP timeline 3 frames late and hid the logo on
+  frames 0-2. Fade-ins are now clamped to t ≥ 0.
+- "Atae" lost its Arabic punctuation ("،"/"؟"), so it renders in Anton like
+  "Dnanou Atae".
+
+**QC final:**
+- 64.70 s, equal to the timeline; 24 cuts; no black or frozen frames;
+  -14.0 LUFS, -1.4 dBTP.
+- Head check:
+  - Clean except the intended logo-on-hair in the tight selfie.
+  - One frame at 31.76 s: a caption fading in, at ~15% opacity, across a cut.
+
+**Delivered (deliver/, media not in git):**
+- testimonial_reels_v2.mp4: master, H.264 High 1080x1920 50 fps, AAC 192k,
+  15 Mbps, 122 MB.
+- testimonial_reels_v2_upload.mp4: 2-pass 3.25 Mbps, 28.7 MB, sent in chat.
+- testimonial_reels_v2.jpg: cover at 12.8 s, the name card on the medium shot.
+
+**Open:** swap in the original SXL logo PNG if the client sends the file.
