@@ -1,0 +1,174 @@
+{
+ "version": 2,
+ "sources": {
+  "C2406": "/home/user/sxl/projects/client/testimonial/source/C2406.MP4",
+  "C2408": "/home/user/sxl/projects/client/testimonial/source/C2408.MP4",
+  "C2410": "/home/user/sxl/projects/client/testimonial/source/C2410.MP4",
+  "C2411": "/home/user/sxl/projects/client/testimonial/source/C2411.MP4",
+  "IMG_6057": "/home/user/sxl/projects/client/testimonial/edit/proxy/IMG_6057.mov"
+ },
+ "ranges": [
+  {
+   "source": "C2406",
+   "start": 0.0,
+   "end": 0.6,
+   "beat": "HOOK",
+   "speed": 0.6,
+   "audio": {
+    "source": "C2408",
+    "start": 1.84
+   }
+  },
+  {
+   "source": "C2408",
+   "start": 2.84,
+   "end": 7.86,
+   "beat": "INTRO"
+  },
+  {
+   "source": "C2408",
+   "start": 8.18,
+   "end": 12.38,
+   "beat": "INTRO"
+  },
+  {
+   "source": "C2408",
+   "start": 13.24,
+   "end": 14.48,
+   "beat": "INTRO"
+  },
+  {
+   "source": "C2410",
+   "start": 6.42,
+   "end": 9.34,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 11.34,
+   "end": 12.76,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 13.16,
+   "end": 15.1,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 16.38,
+   "end": 21.96,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 23.64,
+   "end": 24.88,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 25.2,
+   "end": 27.0,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 28.04,
+   "end": 30.76,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 31.94,
+   "end": 34.88,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 36.76,
+   "end": 38.36,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 39.14,
+   "end": 41.88,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 43.56,
+   "end": 45.74,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 46.1,
+   "end": 50.34,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 54.22,
+   "end": 55.52,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 55.78,
+   "end": 56.44,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 56.8,
+   "end": 57.62,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 58.58,
+   "end": 59.22,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 60.66,
+   "end": 61.84,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2410",
+   "start": 62.34,
+   "end": 63.1,
+   "beat": "STORY"
+  },
+  {
+   "source": "C2411",
+   "start": 6.8,
+   "end": 9.06,
+   "beat": "PROOF"
+  },
+  {
+   "source": "C2411",
+   "start": 9.92,
+   "end": 14.88,
+   "beat": "PROOF"
+  },
+  {
+   "source": "IMG_6057",
+   "start": 0.0,
+   "end": 7.74,
+   "beat": "CTA"
+  },
+  {
+   "source": "IMG_6057",
+   "start": 8.26,
+   "end": 10.12,
+   "beat": "CTA"
+  }
+ ],
+ "total_duration_s": 64.96
+}

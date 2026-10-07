@@ -39,6 +39,8 @@ def main() -> None:
     tl = json.loads((args.edit / "timeline.json").read_text())
     fps = tl["fps"]
     src_dir = args.edit.parent / "source"
+    edl = args.edit / "edl.json"                 # the EDL may point a clip at a proxy (e.g. a 50 fps iPhone conform)
+    paths = {k: Path(v) for k, v in json.loads(edl.read_text()).get("sources", {}).items()} if edl.exists() else {}
     out_dir = args.edit / "track"
     out_dir.mkdir(exist_ok=True)
 
@@ -69,7 +71,7 @@ def main() -> None:
                 start = b                        # open a run starting at b
         for f0, f1 in runs:
             n = f1 - f0 + 1
-            dec = subprocess.Popen(["ffmpeg", "-nostdin", "-v", "error", "-ss", f"{f0 / fps:.3f}", "-i", str(src_dir / f"{clip}.MP4"),
+            dec = subprocess.Popen(["ffmpeg", "-nostdin", "-v", "error", "-ss", f"{f0 / fps:.3f}", "-i", str(paths.get(clip, src_dir / f"{clip}.MP4")),
                                     "-frames:v", str(n), "-vf", f"{CROP},scale={AW}:{AH}:flags=area",
                                     "-f", "rawvideo", "-pix_fmt", "bgr24", "-"], stdout=subprocess.PIPE, stdin=subprocess.DEVNULL)
             for i in range(n):

@@ -1,0 +1,522 @@
+[
+ {
+  "clip": "C2408",
+  "beat": "INTRO",
+  "kind": "long_word",
+  "start": 3.743,
+  "end": 4.344,
+  "word": "بنعطير"
+ },
+ {
+  "clip": "C2408",
+  "beat": "INTRO",
+  "kind": "long_word",
+  "start": 9.852,
+  "end": 10.514,
+  "word": "l'expérience"
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "long_word",
+  "start": 6.502,
+  "end": 7.143,
+  "word": "باختصار"
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "long_word",
+  "start": 7.864,
+  "end": 8.685,
+  "word": "l'histoire"
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 9.37,
+  "end": 9.57,
+  "db": -12.6,
+  "voicing": 0.69,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 9.57,
+  "end": 9.68,
+  "db": -24.4,
+  "voicing": 0.33,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 9.68,
+  "end": 10.12,
+  "db": -17.9,
+  "voicing": 0.7,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 10.13,
+  "end": 10.23,
+  "db": -23.4,
+  "voicing": 0.63,
+  "zcr": 0.04
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 10.25,
+  "end": 10.36,
+  "db": -18.7,
+  "voicing": 0.67,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 10.37,
+  "end": 10.48,
+  "db": -23.0,
+  "voicing": 0.64,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 10.91,
+  "end": 11.32,
+  "db": -27.8,
+  "voicing": 0.25,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "long_word",
+  "start": 11.989,
+  "end": 12.609,
+  "word": "marketing"
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 12.78,
+  "end": 13.12,
+  "db": -36.5,
+  "voicing": 0.22,
+  "zcr": 0.22
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 15.14,
+  "end": 15.41,
+  "db": -11.7,
+  "voicing": 0.71,
+  "zcr": 0.09
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 15.59,
+  "end": 16.04,
+  "db": -19.2,
+  "voicing": 0.72,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 16.1,
+  "end": 16.24,
+  "db": -31.9,
+  "voicing": 0.46,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "long_word",
+  "start": 16.434,
+  "end": 17.575,
+  "word": "d'autres"
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "long_word",
+  "start": 17.575,
+  "end": 18.196,
+  "word": "agences"
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 27.04,
+  "end": 27.18,
+  "db": -22.2,
+  "voicing": 0.37,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 27.18,
+  "end": 27.28,
+  "db": -23.5,
+  "voicing": 0.67,
+  "zcr": 0.04
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 27.3,
+  "end": 27.49,
+  "db": -20.2,
+  "voicing": 0.68,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 27.5,
+  "end": 27.63,
+  "db": -22.5,
+  "voicing": 0.66,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 27.64,
+  "end": 27.8,
+  "db": -21.7,
+  "voicing": 0.66,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 27.81,
+  "end": 27.93,
+  "db": -25.0,
+  "voicing": 0.65,
+  "zcr": 0.04
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 29.98,
+  "end": 30.12,
+  "db": -21.9,
+  "voicing": 0.64,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 30.13,
+  "end": 30.21,
+  "db": -27.7,
+  "voicing": 0.61,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 30.93,
+  "end": 31.01,
+  "db": -26.5,
+  "voicing": 0.6,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 31.01,
+  "end": 31.18,
+  "db": -26.8,
+  "voicing": 0.46,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 31.25,
+  "end": 31.41,
+  "db": -29.5,
+  "voicing": 0.38,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 31.44,
+  "end": 31.8,
+  "db": -31.3,
+  "voicing": 0.31,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 31.81,
+  "end": 31.91,
+  "db": -34.8,
+  "voicing": 0.3,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 33.91,
+  "end": 33.99,
+  "db": -25.5,
+  "voicing": 0.59,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 34.01,
+  "end": 34.35,
+  "db": -27.4,
+  "voicing": 0.32,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "long_word",
+  "start": 35.8,
+  "end": 37.022,
+  "word": "وعيط"
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 42.0,
+  "end": 42.09,
+  "db": -22.8,
+  "voicing": 0.74,
+  "zcr": 0.03
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 42.12,
+  "end": 42.22,
+  "db": -18.7,
+  "voicing": 0.71,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 42.23,
+  "end": 42.33,
+  "db": -26.0,
+  "voicing": 0.69,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 42.37,
+  "end": 42.47,
+  "db": -20.3,
+  "voicing": 0.67,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 42.71,
+  "end": 43.19,
+  "db": -27.1,
+  "voicing": 0.38,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 43.22,
+  "end": 43.53,
+  "db": -31.7,
+  "voicing": 0.38,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 49.15,
+  "end": 49.25,
+  "db": -20.5,
+  "voicing": 0.43,
+  "zcr": 0.09
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "long_word",
+  "start": 49.977,
+  "end": 51.639,
+  "word": "الأمر"
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "long_word",
+  "start": 52.96,
+  "end": 54.782,
+  "word": "وتفاهمنا"
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 55.41,
+  "end": 55.51,
+  "db": -33.7,
+  "voicing": 0.46,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "voiced",
+  "start": 57.75,
+  "end": 57.89,
+  "db": -19.4,
+  "voicing": 0.66,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 57.89,
+  "end": 58.05,
+  "db": -26.0,
+  "voicing": 0.3,
+  "zcr": 0.17
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "breath",
+  "start": 58.09,
+  "end": 58.54,
+  "db": -25.3,
+  "voicing": 0.27,
+  "zcr": 0.15
+ },
+ {
+  "clip": "C2410",
+  "beat": "STORY",
+  "kind": "long_word",
+  "start": 61.87,
+  "end": 62.591,
+  "word": "السي"
+ },
+ {
+  "clip": "C2411",
+  "beat": "PROOF",
+  "kind": "voiced",
+  "start": 7.15,
+  "end": 7.23,
+  "db": -14.0,
+  "voicing": 0.76,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2411",
+  "beat": "PROOF",
+  "kind": "voiced",
+  "start": 9.24,
+  "end": 9.33,
+  "db": -18.5,
+  "voicing": 0.75,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2411",
+  "beat": "PROOF",
+  "kind": "voiced",
+  "start": 9.48,
+  "end": 9.88,
+  "db": -15.5,
+  "voicing": 0.74,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2411",
+  "beat": "PROOF",
+  "kind": "long_word",
+  "start": 10.732,
+  "end": 11.513,
+  "word": "كانريكومندي"
+ },
+ {
+  "clip": "IMG_6057",
+  "beat": "CTA",
+  "kind": "long_word",
+  "start": 1.643,
+  "end": 2.285,
+  "word": "promesses"
+ },
+ {
+  "clip": "IMG_6057",
+  "beat": "CTA",
+  "kind": "long_word",
+  "start": 2.545,
+  "end": 3.166,
+  "word": "résultat"
+ },
+ {
+  "clip": "IMG_6057",
+  "beat": "CTA",
+  "kind": "long_word",
+  "start": 6.854,
+  "end": 7.696,
+  "word": "الفورمولير"
+ }
+]
