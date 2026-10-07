@@ -1,0 +1,889 @@
+{
+ "language_code": "ary",
+ "engine": "moulsot.v0.3+mms_fa",
+ "text": "ثلاثة، جوج، واحد، action. يلا وصلتي لهاد المرحلة أنك كتباعد التيليفون عاد كتشوف، هذا مشكل، يقدر يكون عندك مشكل ديال القرب. نعاودو نعاودو، هاهما كات... يلا وصلتي لهاد المرحلة أنك تباع التيليفون باش تشوف مزيان هادي علامة كاتدل على أنو عندك مشكل فالقرب لا لا يلا وصلتي لهاد المرحلة أنك تباع التيليفون باش تشوف مزيان هادي علامة كاتدل على أنو عندك مشكل فالقرب زيانة ديما مخايل",
+ "words": [
+  {
+   "type": "word",
+   "text": "ثلاثة،",
+   "start": 2.443,
+   "end": 2.884,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "جوج،",
+   "start": 2.884,
+   "end": 2.944,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "واحد،",
+   "start": 2.944,
+   "end": 3.124,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "action.",
+   "start": 3.124,
+   "end": 3.245,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.245,
+   "end": 3.305,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يلا",
+   "start": 3.305,
+   "end": 3.485,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 3.485,
+   "end": 3.926,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "وصلتي",
+   "start": 3.926,
+   "end": 4.306,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.306,
+   "end": 4.366,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "لهاد",
+   "start": 4.366,
+   "end": 4.506,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.506,
+   "end": 4.546,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "المرحلة",
+   "start": 4.546,
+   "end": 4.947,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 4.947,
+   "end": 5.067,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أنك",
+   "start": 5.067,
+   "end": 5.288,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.288,
+   "end": 5.328,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كتباعد",
+   "start": 5.328,
+   "end": 5.828,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 5.828,
+   "end": 6.009,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "التيليفون",
+   "start": 6.009,
+   "end": 6.569,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.569,
+   "end": 6.73,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عاد",
+   "start": 6.73,
+   "end": 6.87,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 6.87,
+   "end": 6.93,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كتشوف،",
+   "start": 6.93,
+   "end": 7.33,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 7.33,
+   "end": 7.751,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هذا",
+   "start": 7.751,
+   "end": 8.052,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.052,
+   "end": 8.412,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مشكل،",
+   "start": 8.412,
+   "end": 8.873,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 8.873,
+   "end": 8.993,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يقدر",
+   "start": 8.993,
+   "end": 9.273,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.273,
+   "end": 9.313,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يكون",
+   "start": 9.313,
+   "end": 9.494,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.494,
+   "end": 9.554,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عندك",
+   "start": 9.554,
+   "end": 9.734,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 9.734,
+   "end": 9.794,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مشكل",
+   "start": 9.794,
+   "end": 10.094,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.094,
+   "end": 10.115,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ديال",
+   "start": 10.115,
+   "end": 10.275,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "القرب.",
+   "start": 10.275,
+   "end": 10.555,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 10.555,
+   "end": 10.816,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "نعاودو",
+   "start": 10.816,
+   "end": 11.076,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.076,
+   "end": 11.116,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "نعاودو،",
+   "start": 11.116,
+   "end": 11.376,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.376,
+   "end": 11.476,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هاهما",
+   "start": 11.476,
+   "end": 11.997,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 11.997,
+   "end": 12.057,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كات...",
+   "start": 12.057,
+   "end": 12.258,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 12.258,
+   "end": 14.7,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يلا",
+   "start": 14.7,
+   "end": 14.82,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 14.82,
+   "end": 14.88,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "وصلتي",
+   "start": 14.88,
+   "end": 15.241,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 15.241,
+   "end": 15.321,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "لهاد",
+   "start": 15.321,
+   "end": 15.461,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 15.461,
+   "end": 15.501,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "المرحلة",
+   "start": 15.501,
+   "end": 15.901,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 15.901,
+   "end": 16.002,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أنك",
+   "start": 16.002,
+   "end": 16.242,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 16.242,
+   "end": 16.322,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تباع",
+   "start": 16.322,
+   "end": 16.542,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 16.542,
+   "end": 16.642,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "التيليفون",
+   "start": 16.642,
+   "end": 17.163,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 17.163,
+   "end": 17.323,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "باش",
+   "start": 17.323,
+   "end": 17.523,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 17.523,
+   "end": 17.583,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تشوف",
+   "start": 17.583,
+   "end": 17.904,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 17.904,
+   "end": 18.404,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مزيان",
+   "start": 18.404,
+   "end": 18.845,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 18.845,
+   "end": 19.365,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هادي",
+   "start": 19.365,
+   "end": 19.585,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 19.585,
+   "end": 19.645,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "علامة",
+   "start": 19.645,
+   "end": 19.926,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 19.926,
+   "end": 19.986,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كاتدل",
+   "start": 19.986,
+   "end": 20.366,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 20.366,
+   "end": 20.606,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "على",
+   "start": 20.606,
+   "end": 20.747,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 20.747,
+   "end": 20.807,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أنو",
+   "start": 20.807,
+   "end": 21.087,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 21.087,
+   "end": 21.187,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عندك",
+   "start": 21.187,
+   "end": 21.507,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 21.507,
+   "end": 21.587,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مشكل",
+   "start": 21.587,
+   "end": 21.928,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 21.928,
+   "end": 21.968,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "فالقرب",
+   "start": 21.968,
+   "end": 22.388,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 22.388,
+   "end": 25.491,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "لا",
+   "start": 25.491,
+   "end": 25.552,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 25.552,
+   "end": 25.772,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "لا",
+   "start": 25.772,
+   "end": 26.412,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 26.412,
+   "end": 27.273,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "يلا",
+   "start": 27.273,
+   "end": 27.433,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 27.433,
+   "end": 27.494,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "وصلتي",
+   "start": 27.494,
+   "end": 27.914,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 27.914,
+   "end": 27.994,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "لهاد",
+   "start": 27.994,
+   "end": 28.154,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 28.154,
+   "end": 28.194,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "المرحلة",
+   "start": 28.194,
+   "end": 28.655,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 28.655,
+   "end": 28.755,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أنك",
+   "start": 28.755,
+   "end": 29.015,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 29.015,
+   "end": 29.075,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تباع",
+   "start": 29.075,
+   "end": 29.295,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 29.295,
+   "end": 29.375,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "التيليفون",
+   "start": 29.375,
+   "end": 29.896,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 29.896,
+   "end": 30.036,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "باش",
+   "start": 30.036,
+   "end": 30.196,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 30.196,
+   "end": 30.216,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "تشوف",
+   "start": 30.216,
+   "end": 30.437,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 30.437,
+   "end": 30.497,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مزيان",
+   "start": 30.497,
+   "end": 30.857,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 30.857,
+   "end": 30.937,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "هادي",
+   "start": 30.937,
+   "end": 31.077,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 31.077,
+   "end": 31.137,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "علامة",
+   "start": 31.137,
+   "end": 31.438,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 31.438,
+   "end": 31.498,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "كاتدل",
+   "start": 31.498,
+   "end": 31.858,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 31.858,
+   "end": 31.938,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "على",
+   "start": 31.938,
+   "end": 32.058,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 32.058,
+   "end": 32.138,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "أنو",
+   "start": 32.138,
+   "end": 32.459,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 32.459,
+   "end": 32.519,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "عندك",
+   "start": 32.519,
+   "end": 32.719,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 32.719,
+   "end": 32.779,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مشكل",
+   "start": 32.779,
+   "end": 33.079,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 33.079,
+   "end": 33.119,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "فالقرب",
+   "start": 33.119,
+   "end": 33.52,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 33.52,
+   "end": 34.023,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "زيانة",
+   "start": 34.023,
+   "end": 34.389,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "spacing",
+   "text": " ",
+   "start": 34.389,
+   "end": 34.491,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "ديما",
+   "start": 34.491,
+   "end": 34.633,
+   "speaker_id": "speaker_0"
+  },
+  {
+   "type": "word",
+   "text": "مخايل",
+   "start": 34.633,
+   "end": 35.059,
+   "speaker_id": "speaker_0"
+  }
+ ]
+}
