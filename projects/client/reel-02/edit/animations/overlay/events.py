@@ -142,9 +142,11 @@ PHRASES = [
     # ---- teaser (the next-video card carries "la vidéo الجاية" and "cas réel") ----
     phrase("t3", C23, [[(32.37, "small", None, "le client"), (32.83, "small", None, "جا عندنا")]], end=s(33.77, C23)),
     # ---- CTA ----
-    phrase("c1", C28, [[(2.69, "small", None), (2.83, "key", "cyan", "la vidéo")]], end=s(3.55, C28)),
+    # C2428 is a tight shot: the lines go over his head, the save button under his chin
+    phrase("c1", C28, [[(2.69, "small", None), (2.83, "key", "cyan", "la vidéo")]], end=s(3.55, C28),
+           y=170, place="above"),
     phrase("c2", C28, [[(3.55, "small", None), (4.27, "small", None, "غتبغي دير"), (4.80, "key", "yellow", "نضاضر")]],
-           end=DUR),
+           end=DUR, y=170, place="above"),
 ]
 PHRASES.sort(key=lambda p: p["start"])
 # one phrase at a time: each ends just before the next begins

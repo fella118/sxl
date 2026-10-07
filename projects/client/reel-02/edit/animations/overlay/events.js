@@ -970,7 +970,7 @@ window.EV = {
    "start": 100.006,
    "end": 100.82,
    "x": 520,
-   "y": 1250,
+   "y": 170,
    "lines": [
     [
      {
@@ -987,7 +987,7 @@ window.EV = {
      }
     ]
    ],
-   "place": "below",
+   "place": "above",
    "parent": null
   },
   {
@@ -995,7 +995,7 @@ window.EV = {
    "start": 100.87,
    "end": 103.42,
    "x": 520,
-   "y": 1250,
+   "y": 170,
    "lines": [
     [
      {
@@ -1018,7 +1018,7 @@ window.EV = {
      }
     ]
    ],
-   "place": "below",
+   "place": "above",
    "parent": null
   }
  ],

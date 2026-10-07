@@ -94,11 +94,11 @@
 
   /* ---------- A1 white card pointer ---------- */
   #callout { left: 0; top: 0; width: 1080px; height: 1920px; }
-  #co-label { position: absolute; left: 300px; top: 560px; width: 480px; display: flex; align-items: center; justify-content: center; gap: 18px;
+  #co-label { position: absolute; left: 380px; top: 560px; width: 480px; display: flex; align-items: center; justify-content: center; gap: 18px;
               background: var(--glass); border: 4px solid var(--cyan); border-radius: 40px; padding: 18px 26px; color: #fff;
               font: 400 76px/1 "Anton"; letter-spacing: 1px; box-shadow: 0 0 34px rgba(59,227,255,.45); }
   #co-label svg { width: 70px; height: 70px; }
-  #co-arrow { position: absolute; left: 500px; top: 690px; width: 80px; height: 150px; }
+  #co-arrow { position: absolute; left: 580px; top: 690px; width: 80px; height: 150px; }
 
   /* ---------- A3 index table ---------- */
   #table { left: 90px; top: 140px; width: 900px; }
@@ -135,7 +135,7 @@
   #arm { left: 70px; top: 140px; width: 940px; }
   #arm .panel { padding: 30px 30px 34px; }
   #arm .ttl { font: 800 46px/1 "Cairo"; color: var(--cyan); text-align: center; margin-bottom: 18px; direction: rtl; }
-  #armsvg { width: 880px; height: 220px; overflow: visible; }
+  #armsvg { width: 880px; height: 240px; overflow: visible; }
   #arm .tags { display: flex; justify-content: center; gap: 30px; margin-top: 10px; height: 110px; direction: ltr; }
   .tagp { display: flex; align-items: center; gap: 12px; padding: 8px 28px; border-radius: 30px; font: 400 76px/1.1 "Anton";
           letter-spacing: 1px; opacity: 0; visibility: hidden; }
@@ -159,15 +159,15 @@
   #next .rxa { width: 90px; height: 60px; opacity: 0; visibility: hidden; }
 
   /* ---------- CTA: save button ---------- */
-  #save { left: 290px; top: 150px; width: 500px; height: 470px; }
-  #save .btn { position: absolute; left: 90px; top: 0; width: 320px; height: 320px; border-radius: 80px; background: #fff;
+  #save { left: 240px; top: 1180px; width: 600px; height: 220px; }
+  #save .btn { position: absolute; left: 0; top: 10px; width: 200px; height: 200px; border-radius: 56px; background: #fff;
                box-shadow: 0 30px 70px rgba(0,0,0,.45); display: grid; place-items: center; }
-  #save .btn svg { width: 190px; height: 190px; overflow: visible; }
-  #save .lbl { position: absolute; left: 0; right: 0; top: 340px; text-align: center; font: 400 120px/1 "Anton"; letter-spacing: 4px;
-               color: var(--yellow); -webkit-text-stroke: 12px var(--ink); paint-order: stroke fill; }
-  #save .burst { position: absolute; left: 250px; top: 160px; width: 0; height: 0; }
+  #save .btn svg { width: 120px; height: 120px; overflow: visible; }
+  #save .lbl { position: absolute; left: 240px; top: 30px; font: 400 160px/1 "Anton"; letter-spacing: 6px;
+               color: var(--yellow); -webkit-text-stroke: 14px var(--ink); paint-order: stroke fill; }
+  #save .burst { position: absolute; left: 100px; top: 110px; width: 0; height: 0; }
   #save .burst i { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; }
-  #tap { position: absolute; left: 330px; top: 200px; width: 120px; height: 120px; opacity: 0; visibility: hidden; }
+  #tap { position: absolute; left: 90px; top: 110px; width: 100px; height: 100px; opacity: 0; visibility: hidden; }
 </style>
 </head>
 <body>
@@ -233,16 +233,16 @@
 
   <div id="arm" class="layer"><div class="panel">
     <div class="ttl" id="armttl">les chiffres على الجنب ديال la monture</div>
-    <svg id="armsvg" viewBox="0 0 880 220">
-      <path d="M20 70 H700 Q760 70 800 110 L850 170" fill="none" stroke="#3b4256" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M40 52 H690" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="8" stroke-linecap="round"/>
-      <rect x="6" y="40" width="40" height="60" rx="10" fill="#3a3f52" stroke="#fff" stroke-width="3"/>
-      <g id="digits" font-family="Anton" font-size="58" fill="#c9cfdc" letter-spacing="2">
-        <text id="d48" x="100" y="91">48</text><rect x="182" y="52" width="36" height="36" fill="none" stroke="#c9cfdc" stroke-width="5"/>
-        <text x="238" y="91">20</text><text x="340" y="91">145</text>
+    <svg id="armsvg" viewBox="0 0 880 240">
+      <path d="M20 84 H690 Q760 84 805 130 L850 190" fill="none" stroke="#565e78" stroke-width="100" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M44 50 H680" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="8" stroke-linecap="round"/>
+      <rect x="4" y="44" width="44" height="80" rx="12" fill="#3a3f52" stroke="#fff" stroke-width="3"/>
+      <g id="digits" font-family="Anton" font-size="78" fill="#d9deea" letter-spacing="2">
+        <text id="d48" x="100" y="112">48</text><rect x="204" y="60" width="46" height="46" fill="none" stroke="#d9deea" stroke-width="6"/>
+        <text x="272" y="112">20</text><text x="386" y="112">145</text>
       </g>
-      <circle id="d48ring" cx="128" cy="70" r="58" fill="none" stroke="#ffc93c" stroke-width="8" stroke-dasharray="365" stroke-dashoffset="365"/>
-      <text id="dlab" x="128" y="190" font-family="Cairo" font-weight="900" font-size="52" fill="#ffc93c" text-anchor="middle" opacity="0">Ø diamètre</text>
+      <circle id="d48ring" cx="138" cy="84" r="70" fill="none" stroke="#ffc93c" stroke-width="9" stroke-dasharray="440" stroke-dashoffset="440"/>
+      <text id="dlab" x="138" y="232" font-family="Cairo" font-weight="900" font-size="54" fill="#ffc93c" text-anchor="middle" opacity="0">Ø diamètre</text>
     </svg>
     <div class="tags"><div class="tagp max" id="t48">MAX 48</div>
       <div class="tagp ok" id="t46">46 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#fff"/><path d="M6.5 12.5l3.5 3.5 7.5-8" fill="none" stroke="#35d07f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
@@ -592,11 +592,11 @@ function placeAll() {
   E.quiz.forEach((q, k) => placeItem($("quiz" + k), "above", q.t, q.t + 1.2));
   placeItem($("tag"), "above", E.tag_in, E.tag_out);
   placeItem($("said"), "above", E.said_in, E.said_out);
-  placeItem($("table"), "above", E.table_in, E.table_out, { extra: 0 });
+  placeItem($("table"), "above", E.table_in + 0.45, E.table_out);   // after the camera tilt
   placeItem($("lens"), "above", E.lens_in, E.lens_out, { extra: 250 });
   placeItem($("arm"), "above", E.arm_in, E.arm_out);
   placeItem($("next"), "above", E.next_in, E.next_out);
-  placeItem($("save"), "above", E.save_in, E.duration);
+  placeItem($("save"), "below", E.save_in, E.duration);
 }
 
 window.ready = (async () => {
