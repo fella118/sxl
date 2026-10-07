@@ -7,13 +7,14 @@ Per frame (v3):
      alpha multiplied by (1 - mask)
   3. front layer (animations/overlay/frames_front): drawn over everything
 
-    studio/.venv/bin/python edit/composite.py -o edit/preview_v1.mp4 [--until 21]
+    REEL=q1 studio/.venv/bin/python edit/composite.py -o edit/q1/preview_v2.mp4 [--until 21]
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import time
@@ -23,10 +24,12 @@ import cv2
 import numpy as np
 
 EDIT = Path(__file__).resolve().parent
-TL = json.loads((EDIT / "timeline.json").read_text())
-EV = json.loads(re.sub(r"^window\.EV = |;\s*$", "", (EDIT / "animations/overlay/events.js").read_text()))
+REEL = os.environ["REEL"]
+OUT = EDIT / REEL
+TL = json.loads((OUT / "timeline.json").read_text())
+EV = json.loads(re.sub(r"^window\.EV = |;\s*$", "", (EDIT / f"animations/overlay/events_{REEL}.js").read_text()))
 W, H, FPS = TL["width"], TL["height"], TL["fps"]
-OVL = EDIT / "animations" / "overlay"
+OVL = OUT
 RAMP = 0.15   # grayscale fade in/out, seconds
 
 
@@ -54,13 +57,13 @@ def main() -> None:
     args = ap.parse_args()
 
     n = round((args.until or TL["duration"]) * FPS)
-    dec = subprocess.Popen(["ffmpeg", "-nostdin", "-v", "error", "-i", str(EDIT / "base.mp4"), "-f", "rawvideo",
+    dec = subprocess.Popen(["ffmpeg", "-nostdin", "-v", "error", "-i", str(OUT / "base.mp4"), "-f", "rawvideo",
                             "-pix_fmt", "bgr24", "-"], stdout=subprocess.PIPE, bufsize=W * H * 6)
-    mdec = subprocess.Popen(["ffmpeg", "-nostdin", "-v", "error", "-i", str(EDIT / "mask.mkv"), "-f", "rawvideo",
+    mdec = subprocess.Popen(["ffmpeg", "-nostdin", "-v", "error", "-i", str(OUT / "mask.mkv"), "-f", "rawvideo",
                              "-pix_fmt", "gray", "-"], stdout=subprocess.PIPE, bufsize=W * H * 2)
     enc = subprocess.Popen(
         ["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}", "-r", str(FPS),
-         "-i", "-", "-i", str(EDIT / "mix.wav"), "-map", "0:v", "-map", "1:a",
+         "-i", "-", "-i", str(OUT / "mix.wav"), "-map", "0:v", "-map", "1:a",
          "-c:v", "libx264", "-preset", args.preset, "-crf", str(args.crf), "-profile:v", "high",
          "-pix_fmt", "yuv420p", "-color_primaries", "bt709", "-color_trc", "bt709", "-colorspace", "bt709",
          "-c:a", "aac", "-b:a", "256k", "-ar", "48000", "-movflags", "+faststart", "-shortest",

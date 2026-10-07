@@ -272,15 +272,99 @@
 </div>
 
 <script src="node_modules/gsap/dist/gsap.min.js"></script>
-<script src="events_REEL.js"></script>
-<script src="facepos_REEL.js"></script>
+<script src="events_q3.js"></script>
+<script src="facepos_q3.js"></script>
 <script>
 const E = window.EV, FACE = window.FACE || { fps: 50, frames: [] };
 const LAYER = new URLSearchParams(location.search).get("layer") || "all";
 if (LAYER === "back") document.getElementById("front").style.display = "none";
 if (LAYER === "front") document.getElementById("back").style.display = "none";
 
-/*ENGINE*/
+const tl = gsap.timeline({ paused: true });
+const back = "back.out(1.7)", out3 = "power3.out", in3 = "power3.in", io3 = "power3.inOut", expo = "expo.out";
+const AR = /[؀-ۿ]/;
+const SVGNS = "http://www.w3.org/2000/svg";
+const defs = document.getElementById("fxdefs");
+let fxId = 0;
+
+// Horizontal (or vertical) motion blur filter for one element; returns the blur node to animate.
+function motionBlur(el) {
+  const f = document.createElementNS(SVGNS, "filter");
+  f.setAttribute("id", "mb" + (++fxId));
+  f.setAttribute("x", "-60%"); f.setAttribute("y", "-60%"); f.setAttribute("width", "220%"); f.setAttribute("height", "220%");
+  const b = document.createElementNS(SVGNS, "feGaussianBlur");
+  b.setAttribute("stdDeviation", "0 0");
+  f.appendChild(b); defs.appendChild(f);
+  el.style.filter = `url(#mb${fxId})`;
+  return b;
+}
+function addGhosts(el, color) {
+  return [0, 1].map(i => {
+    const g = document.createElement("span");
+    g.className = "ghost"; g.textContent = el.dataset.text; g.style.color = color;
+    el.appendChild(g); return g;
+  });
+}
+
+// ---------- phrase typography ----------
+const ACCENT = { navy: "#ffffff", yellow: "#ffc93c", red: "#ff4d5e" };
+const phrasesEl = document.getElementById("phrases");
+E.phrases.forEach(p => {
+  const ph = document.createElement("div");
+  ph.className = "layer phrase" + (p.parent ? " inline" : "");
+  if (!p.parent) { ph.style.top = p.y + "px"; ph.style.left = p.x + "px"; }
+  (p.parent ? document.getElementById(p.parent) : phrasesEl).appendChild(ph);
+  ph.dataset.place = p.place; ph.dataset.t0 = p.start; ph.dataset.t1 = p.end;
+  const words = [];
+  p.lines.forEach(line => {
+    const lineDir = AR.test(line[0].t) ? "rtl" : "ltr";
+    const ln = document.createElement("div");
+    ln.className = "line"; ln.style.direction = lineDir;
+    ph.appendChild(ln);
+    // group same-script neighbours into runs so mixed lines keep their reading order
+    let run = null, runDir = null;
+    line.forEach(wd => {
+      const dir = AR.test(wd.t) ? "rtl" : (/[A-Za-zÀ-ÿ]/.test(wd.t) ? "ltr" : lineDir);
+      if (!run || dir !== runDir) {
+        run = document.createElement("div"); run.className = "run"; run.style.direction = dir; runDir = dir;
+        ln.appendChild(run);
+      }
+      const el = document.createElement("span");
+      const lat = dir === "ltr";
+      el.className = `w ${wd.role}${lat && wd.role === "key" ? " lat" : ""}${wd.color ? " " + wd.color : ""}`;
+      el.textContent = wd.t; el.dataset.text = wd.t;
+      run.appendChild(el);
+      words.push({ el, wd, dir });
+    });
+  });
+  tl.set(ph, p.parent ? { autoAlpha: 1 } : { autoAlpha: 1, xPercent: -50 }, p.start - 0.06);
+  words.forEach(({ el, wd, dir }) => {
+    const at = wd.at - 0.04, sign = dir === "rtl" ? 1 : -1;
+    if (wd.role === "small") {
+      tl.fromTo(el, { autoAlpha: 0, y: 34 }, { autoAlpha: 1, y: 0, duration: 0.2, ease: out3 }, at);
+    } else if (wd.role === "script") {
+      tl.fromTo(el, { autoAlpha: 1, clipPath: "inset(-30% 100% -30% -10%)", y: 14 },
+                    { clipPath: "inset(-30% -10% -30% -10%)", y: 0, duration: 0.42, ease: "power2.inOut" }, at);
+    } else {
+      const blur = motionBlur(el);
+      const ghosts = addGhosts(el, ACCENT[wd.color] || "#ffc93c");
+      const num = wd.role === "num";
+      tl.fromTo(el, num ? { autoAlpha: 0, scale: 0.35, rotation: -10 } : { autoAlpha: 0, scale: 1.35, x: sign * 60 },
+                    num ? { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.34, ease: "back.out(2.2)" }
+                        : { autoAlpha: 1, scale: 1, x: 0, duration: 0.26, ease: expo }, at);
+      // dark outline/shadow fade in after the blur, so the smear stays word-shaped
+      tl.fromTo(el, { webkitTextStrokeColor: "rgba(8,10,22,0)", textShadow: "0 10px 28px rgba(0,0,0,0)" },
+                    { webkitTextStrokeColor: "rgba(8,10,22,0.58)", textShadow: "0 10px 28px rgba(0,0,0,0.45)", duration: 0.2, ease: "power1.in" }, at + 0.06);
+      tl.fromTo(blur, { attr: { stdDeviation: num ? "0 12" : "12 0" } }, { attr: { stdDeviation: "0 0" }, duration: 0.24, ease: "power2.out" }, at);
+      ghosts.forEach((g, i) => tl.fromTo(g, num ? { opacity: 0.45 - 0.17 * i, y: 50 * (i + 1) } : { opacity: 0.5 - 0.18 * i, x: sign * 46 * (i + 1) },
+                                            { opacity: 0, x: 0, y: 0, duration: 0.32 + 0.1 * i, ease: out3 }, at + 0.02));
+    }
+  });
+  tl.to(words.map(w => w.el), { autoAlpha: 0, y: -26, duration: 0.16, ease: "power2.in", stagger: 0.015 }, p.end - 0.16);
+  tl.set(ph, { autoAlpha: 0 }, p.end + 0.08);
+});
+
+
 
 const $ = (id) => document.getElementById(id);
 const front = $("front"), backL = $("back");
@@ -464,7 +548,64 @@ window.anyVisible = () => {
   });
 };
 
-/*FITPLACE*/
+// Shrink a phrase line that would overflow the safe width (measured once fonts are in).
+function fitLines(maxW = 860) {
+  document.querySelectorAll(".phrase .line").forEach(ln => {
+    const ph = ln.closest(".phrase");
+    const prev = [ph.style.visibility, ph.style.opacity];
+    ph.style.visibility = "visible";
+    const w = ln.scrollWidth;
+    if (w > maxW) {
+      const k = maxW / w;
+      ln.querySelectorAll(".w").forEach(el => {
+        el.style.fontSize = (parseFloat(getComputedStyle(el).fontSize) * k).toFixed(1) + "px";
+      });
+    }
+    ph.style.visibility = prev[0];
+  });
+}
+
+// ---------- safe placement: never over the head, inside the Instagram safe area ----------
+const TOP_SAFE = 140, BOTTOM_SAFE = 1420, HEAD_MARGIN = 36;
+function headStats(t0, t1) {
+  let top = Infinity, chin = -Infinity;
+  for (let i = Math.floor(t0 * FACE.fps); i <= Math.ceil(t1 * FACE.fps); i++) {
+    const f = FACE.frames[i];
+    if (!f || f[3] === undefined) continue;
+    top = Math.min(top, f[3]); chin = Math.max(chin, f[4]);
+  }
+  return { top, chin };
+}
+function wrap(el) {
+  const w = document.createElement("div"); w.className = "place";
+  el.parentNode.insertBefore(w, el); w.appendChild(el); return w;
+}
+function placeItem(el, mode, t0, t1, opts = {}) {
+  const top = el.offsetTop, h = el.offsetHeight + (opts.extra || 0);
+  const cx = opts.cx ?? el.offsetLeft + el.offsetWidth / 2;
+  const hs = headStats(t0, t1);
+  let newTop = top, k = 1;
+  if (mode === "above" && isFinite(hs.top)) {
+    const maxB = hs.top - HEAD_MARGIN;
+    if (!(top >= TOP_SAFE && top + h <= maxB)) {
+      newTop = Math.max(TOP_SAFE, Math.min(top, maxB - h));
+      if (newTop + h > maxB) k = Math.max(0.5, (maxB - newTop) / h);
+    }
+  } else if (mode === "below" && isFinite(hs.chin)) {
+    const minT = hs.chin + HEAD_MARGIN;
+    if (!(top >= minT && top + h <= BOTTOM_SAFE)) {
+      newTop = Math.max(minT, Math.min(top, BOTTOM_SAFE - h));
+      if (newTop + h > BOTTOM_SAFE) k = Math.max(0.5, (BOTTOM_SAFE - newTop) / h);
+    }
+  }
+  if (newTop === top && k === 1) return;
+  const w = wrap(el);
+  w.style.transformOrigin = `${cx}px ${top}px`;
+  w.style.transform = `translate(0px, ${(newTop - top).toFixed(1)}px) scale(${k.toFixed(3)})`;
+  window.PLACED.push({ id: el.id || el.className, mode, top, newTop: Math.round(newTop), h, k: +k.toFixed(3) });
+}
+window.PLACED = [];
+
 function placeAll() {
   document.querySelectorAll("#phrases > .phrase").forEach(ph =>
     placeItem(ph, ph.dataset.place, +ph.dataset.t0, +ph.dataset.t1, { cx: parseFloat(ph.style.left) }));

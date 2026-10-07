@@ -13,13 +13,14 @@ Same engine as the comment-hook reel (v3):
   - Writes mask.mkv (person matte aligned to every output frame, lossless gray)
     and facepos.json (face centre/size in output pixels) for the overlay layers.
 
-    studio/.venv/bin/python edit/render_base.py [--until 21.0] [-o edit/base.mp4]
+    REEL=q1 studio/.venv/bin/python edit/render_base.py [--until 21.0]      # q1 | q2 | q3
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -29,7 +30,9 @@ import cv2
 import numpy as np
 
 EDIT = Path(__file__).resolve().parent
-TL = json.loads((EDIT / "timeline.json").read_text())
+REEL = os.environ["REEL"]
+OUT = EDIT / REEL
+TL = json.loads((OUT / "timeline.json").read_text())
 SRC = EDIT.parent / "source"
 TRACK = EDIT / "track"
 FPS = TL["fps"]
@@ -51,8 +54,8 @@ EYE_Y = 0.40                             # default eye line (fraction of the out
 LOW = 0.53                               # eye line while a big graphic sits above his head
 
 
-def rng(clip: str, src: float) -> int:
-    return next(i for i, r in enumerate(TL["ranges"]) if r["source"] == clip and r["src_start"] - 0.02 <= src < r["src_end"])
+def rng(clip: str, src: float) -> int | None:
+    return next((i for i, r in enumerate(TL["ranges"]) if r["source"] == clip and r["src_start"] - 0.02 <= src < r["src_end"]), None)
 
 
 def beat_ranges(beat: str) -> list[int]:
@@ -61,18 +64,21 @@ def beat_ranges(beat: str) -> list[int]:
 
 OVERRIDE: dict[int, list] = {}
 # questions open on a quick push-in
-for b in ("Q1", "Q3", "Q2"):
-    OVERRIDE[beat_ranges(b)[0]] = [(0, 1.22), (0.5, 1.08), ("end", 1.11)]
-# A3: the camera tilts down on "هنا غايبان ليكم" to make room for the table, and stays low for the lens card
+for b in ("Q1", "Q2", "Q3"):
+    if beat_ranges(b):
+        OVERRIDE[beat_ranges(b)[0]] = [(0, 1.22), (0.5, 1.08), ("end", 1.11)]
+# A2 (q2): the camera tilts down on "هنا غايبان ليكم" to make room for the table, and stays low for the lens card
 i_here = rng("C2426", 7.53)
-OVERRIDE[i_here] = [(0, 1.06), (("w", 7.53), 1.06, EYE_Y), (("w", 7.53, 0.5), 1.00, LOW), ("end", 1.01, LOW)]
-for k, i in enumerate(i for i in beat_ranges("A3") if i > i_here):
-    z = [1.13, 1.00][k % 2]
-    OVERRIDE[i] = [(0, z, LOW), ("end", z + 0.02, LOW)]
-# A2: frame-arm diagram above his head from "غتجي للجنب" until it leaves on "خدمنا هنايا"
-for k, i in enumerate(range(rng("C2423", 11.64), rng("C2423", 21.07) + 1)):
-    z = [1.13, 1.00][k % 2]
-    OVERRIDE[i] = [(0, z, LOW), ("end", z + 0.02, LOW)]
+if i_here is not None:
+    OVERRIDE[i_here] = [(0, 1.16), (("w", 7.53), 1.16, EYE_Y), (("w", 7.53, 0.5), 1.00, LOW), ("end", 1.01, LOW)]
+    for k, i in enumerate(i for i in beat_ranges("A2") if i > i_here):
+        z = [1.13, 1.00][k % 2]
+        OVERRIDE[i] = [(0, z, LOW), ("end", z + 0.02, LOW)]
+# A3 (q3): frame-arm diagram above his head from "غتجي للجنب" until it leaves on "خدمنا هنايا"
+if rng("C2423", 11.64) is not None:
+    for k, i in enumerate(range(rng("C2423", 11.64), rng("C2423", 21.07) + 1)):
+        z = [1.13, 1.00][k % 2]
+        OVERRIDE[i] = [(0, z, LOW), ("end", z + 0.02, LOW)]
 # CTA: save button above his head, slow push-in
 OVERRIDE[beat_ranges("CTA")[0]] = [(0, 1.00, 0.50), ("end", 1.08, 0.50)]
 
@@ -189,7 +195,7 @@ def sharpen(img: np.ndarray, amount: float = 0.35) -> np.ndarray:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("-o", "--output", type=Path, default=EDIT / "base.mp4")
+    ap.add_argument("-o", "--output", type=Path, default=OUT / "base.mp4")
     ap.add_argument("--until", type=float, default=None, help="Stop at this output time (samples)")
     ap.add_argument("--crf", type=int, default=12)
     args = ap.parse_args()
@@ -261,8 +267,8 @@ def main() -> None:
               f"({out_i / (time.time() - t0):.1f} fps)", flush=True)
     enc.stdin.close(); menc.stdin.close()
     enc.wait(); menc.wait()
-    (EDIT / "facepos.json").write_text(json.dumps({"fps": FPS, "frames": facepos}))
-    (EDIT / "animations" / "overlay" / "facepos.js").write_text(
+    (OUT / "facepos.json").write_text(json.dumps({"fps": FPS, "frames": facepos}))
+    (EDIT / "animations" / "overlay" / f"facepos_{REEL}.js").write_text(
         "window.FACE = " + json.dumps({"fps": FPS, "frames": facepos}) + ";\n")
     print(f"wrote {args.output}, mask.mkv, facepos ({out_i} frames, {out_i / FPS:.2f}s) in {time.time() - t0:.0f}s")
 

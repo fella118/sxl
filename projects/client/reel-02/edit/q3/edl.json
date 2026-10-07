@@ -1,0 +1,167 @@
+{
+ "version": 2,
+ "sources": {
+  "C2422": "/home/user/sxl/projects/client/reel-02/source/C2422.MP4",
+  "C2423": "/home/user/sxl/projects/client/reel-02/source/C2423.MP4",
+  "C2428": "/home/user/sxl/projects/client/reel-02/source/C2428.MP4"
+ },
+ "ranges": [
+  {
+   "source": "C2422",
+   "start": 1.26,
+   "end": 2.84,
+   "beat": "Q3"
+  },
+  {
+   "source": "C2422",
+   "start": 3.14,
+   "end": 3.66,
+   "beat": "Q3"
+  },
+  {
+   "source": "C2422",
+   "start": 3.86,
+   "end": 5.32,
+   "beat": "Q3"
+  },
+  {
+   "source": "C2422",
+   "start": 5.68,
+   "end": 6.54,
+   "beat": "Q3"
+  },
+  {
+   "source": "C2423",
+   "start": 2.08,
+   "end": 3.58,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 3.64,
+   "end": 4.86,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 5.62,
+   "end": 6.98,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 7.1,
+   "end": 7.8,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 8.34,
+   "end": 9.62,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 10.06,
+   "end": 10.68,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 11.54,
+   "end": 13.76,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 13.84,
+   "end": 15.46,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 15.56,
+   "end": 16.4,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 16.7,
+   "end": 17.34,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 17.68,
+   "end": 19.6,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 19.72,
+   "end": 20.42,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 20.74,
+   "end": 22.18,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 22.3,
+   "end": 22.82,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 23.16,
+   "end": 25.66,
+   "beat": "A3"
+  },
+  {
+   "source": "C2423",
+   "start": 27.4,
+   "end": 28.76,
+   "beat": "TEASE"
+  },
+  {
+   "source": "C2423",
+   "start": 28.94,
+   "end": 29.84,
+   "beat": "TEASE"
+  },
+  {
+   "source": "C2423",
+   "start": 30.0,
+   "end": 30.86,
+   "beat": "TEASE"
+  },
+  {
+   "source": "C2423",
+   "start": 30.98,
+   "end": 33.3,
+   "beat": "TEASE"
+  },
+  {
+   "source": "C2423",
+   "start": 33.7,
+   "end": 35.2,
+   "beat": "TEASE"
+  },
+  {
+   "source": "C2423",
+   "start": 35.4,
+   "end": 35.96,
+   "beat": "TEASE"
+  },
+  {
+   "source": "C2428",
+   "start": 2.12,
+   "end": 6.06,
+   "beat": "CTA"
+  }
+ ],
+ "total_duration_s": 34.94
+}

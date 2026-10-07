@@ -9,13 +9,14 @@
    and set MUSIC_START; it is ducked under the voice and levelled by measurement.
 5. Master: two-pass loudnorm to -14 LUFS / -1 dBTP.
 
-    studio/.venv/bin/python edit/build_audio.py [--no-music]
+    REEL=q1 studio/.venv/bin/python edit/build_audio.py [--no-music]
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -28,8 +29,10 @@ sys.path.insert(0, "/home/user/sxl/studio/bin")
 import sfx  # noqa: E402
 
 EDIT = Path(__file__).resolve().parent
-TL = json.loads((EDIT / "timeline.json").read_text())
-EV = json.loads(re.sub(r"^window\.EV = |;\s*$", "", (EDIT / "animations/overlay/events.js").read_text()))
+REEL = os.environ["REEL"]
+OUT = EDIT / REEL
+TL = json.loads((OUT / "timeline.json").read_text())
+EV = json.loads(re.sub(r"^window\.EV = |;\s*$", "", (EDIT / f"animations/overlay/events_{REEL}.js").read_text()))
 SRC = EDIT.parent / "source"
 SR = 48000
 FADE = int(0.03 * SR)
@@ -116,49 +119,56 @@ def build_sfx(n: int) -> np.ndarray:
     for a, _ in EV["gray"]:
         place(tr, sfx.impact(), a, -14)
     # Q1 price tag: drops on its string, lands, "DH" pops
-    place(tr, sfx.whoosh(0.35, 0.0, 0.0), EV["tag_in"] - 0.2, -17)
-    place(tr, sfx.tick(0.75), EV["tag_in"] + 0.22, -15)
-    place(tr, sfx.pop(1.3), EV["tag_dh"], -16)
+    if "tag_in" in EV:
+        place(tr, sfx.whoosh(0.35, 0.0, 0.0), EV["tag_in"] - 0.2, -17)
+        place(tr, sfx.tick(0.75), EV["tag_in"] + 0.22, -15)
+        place(tr, sfx.pop(1.3), EV["tag_dh"], -16)
     # close-ups (cutaways) and the camera tilt for the table
     for t in EV.get("cutaways", []):
         place(tr, sfx.whoosh(0.3, 0.5, -0.5), t - 0.15, -18)
     # A1: optician's speech bubble (taps on the typed words), white-card pointer
-    place(tr, sfx.pop(1.0), EV["said_in"], -16)
-    for k, (word, t) in enumerate([("درت", EV["said_in"] + 0.35), ("لك", EV["said_in"] + 0.55), ("l'indice", EV["said_type"])]):
-        taps = 1 if ar(word) else len(word)
-        for j in range(taps):
-            place(tr, sfx.key(rng.uniform(0.85, 1.2)), t + 0.4 * j / taps, -21)
-    place(tr, sfx.pop(1.1), EV["callout_in"], -15)
-    place(tr, sfx.tick(1.2), EV["callout_in"] + 0.4, -16)
+    if "said_in" in EV:
+        place(tr, sfx.pop(1.0), EV["said_in"], -16)
+        for k, (word, t) in enumerate([("درت", EV["said_in"] + 0.35), ("لك", EV["said_in"] + 0.55), ("l'indice", EV["said_type"])]):
+            taps = 1 if ar(word) else len(word)
+            for j in range(taps):
+                place(tr, sfx.key(rng.uniform(0.85, 1.2)), t + 0.4 * j / taps, -21)
+    if "callout_in" in EV:
+        place(tr, sfx.pop(1.1), EV["callout_in"], -15)
+        place(tr, sfx.tick(1.2), EV["callout_in"] + 0.4, -16)
     # A3: table pops in, headers tick, each row slides in and its index ticks
-    place(tr, sfx.whoosh(0.4, -0.6, 0.2), EV["table_in"] - 0.15, -16)
-    place(tr, sfx.pop(0.85), EV["table_in"] + 0.05, -15)
-    for t in EV["hdr"]:
-        place(tr, sfx.tick(0.9), t, -18)
-    for i, r in enumerate(EV["rows"]):
-        place(tr, sfx.whoosh(0.2, 0.6, -0.2), r["c"] - 0.14, -20)
-        place(tr, sfx.tick(1.0 + 0.08 * i), r["i"], -13)
-        if "m" in r:
-            place(tr, sfx.pop(1.15), r["m"], -15)
+    if "table_in" in EV:
+        place(tr, sfx.whoosh(0.4, -0.6, 0.2), EV["table_in"] - 0.15, -16)
+        place(tr, sfx.pop(0.85), EV["table_in"] + 0.05, -15)
+        for t in EV["hdr"]:
+            place(tr, sfx.tick(0.9), t, -18)
+        for i, r in enumerate(EV["rows"]):
+            place(tr, sfx.whoosh(0.2, 0.6, -0.2), r["c"] - 0.14, -20)
+            place(tr, sfx.tick(1.0 + 0.08 * i), r["i"], -13)
+            if "m" in r:
+                place(tr, sfx.pop(1.15), r["m"], -15)
     # A3: lens card flips in, name, pills, thin vs normal
-    place(tr, sfx.whoosh(0.45, 0.4, -0.4), EV["lens_in"] - 0.1, -16)
-    place(tr, sfx.pop(0.9), EV["lens_name"], -15)
-    for t in (EV["lens_org"] - 0.5, EV["lens_org"], EV["lens_plastic"]):
-        place(tr, sfx.pop(1.2), t, -18)
-    place(tr, sfx.pop(1.0), EV["lens_thin"], -16)
-    place(tr, sfx.pop(0.8), EV["lens_normal"] - 0.2, -16)
-    place(tr, sfx.ding(), EV["lens_normal"] + 0.15, -16)
+    if "lens_in" in EV:
+        place(tr, sfx.whoosh(0.45, 0.4, -0.4), EV["lens_in"] - 0.1, -16)
+        place(tr, sfx.pop(0.9), EV["lens_name"], -15)
+        for t in (EV["lens_org"] - 0.5, EV["lens_org"], EV["lens_plastic"]):
+            place(tr, sfx.pop(1.2), t, -18)
+        place(tr, sfx.pop(1.0), EV["lens_thin"], -16)
+        place(tr, sfx.pop(0.8), EV["lens_normal"] - 0.2, -16)
+        place(tr, sfx.ding(), EV["lens_normal"] + 0.15, -16)
     # A2: frame-arm diagram
-    place(tr, sfx.whoosh(0.4, -0.7, 0.5), EV["arm_in"] - 0.1, -16)
-    place(tr, sfx.tick(1.1), EV["arm_digits"], -16)
-    place(tr, sfx.whoosh(0.3, 0.2, -0.2), EV["arm_d"] - 0.05, -19)
-    place(tr, sfx.buzz(), EV["arm_48"], -19)
-    place(tr, sfx.ding(), EV["arm_46"], -13)
+    if "arm_in" in EV:
+        place(tr, sfx.whoosh(0.4, -0.7, 0.5), EV["arm_in"] - 0.1, -16)
+        place(tr, sfx.tick(1.1), EV["arm_digits"], -16)
+        place(tr, sfx.whoosh(0.3, 0.2, -0.2), EV["arm_d"] - 0.05, -19)
+        place(tr, sfx.buzz(), EV["arm_48"], -19)
+        place(tr, sfx.ding(), EV["arm_46"], -13)
     # teaser card
-    place(tr, sfx.whoosh(0.4, 0.0, 0.0), EV["next_in"] - 0.1, -16)
-    place(tr, sfx.impact(), EV["next_case"], -16)
-    place(tr, sfx.pop(0.95), EV["next_old"] - 0.3, -17)
-    place(tr, sfx.pop(1.3), EV["next_new"], -15)
+    if "next_in" in EV:
+        place(tr, sfx.whoosh(0.4, 0.0, 0.0), EV["next_in"] - 0.1, -16)
+        place(tr, sfx.impact(), EV["next_case"], -16)
+        place(tr, sfx.pop(0.95), EV["next_old"] - 0.3, -17)
+        place(tr, sfx.pop(1.3), EV["next_new"], -15)
     # CTA: save button pops, gets tapped, fills, ding
     place(tr, sfx.pop(0.9), EV["save_in"], -14)
     place(tr, sfx.key(1.0), EV["save_fill"] - 0.05, -14)
@@ -244,7 +254,7 @@ def main() -> None:
                                   "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
             print(f"  {name} stem: {re.findall(r'I:\s+(-?[\d.]+) LUFS', err)[-1]} LUFS")
     out = loudnorm(mix)[:n]
-    write_wav(EDIT / "mix.wav", out)
+    write_wav(OUT / "mix.wav", out)
     print(f"mix.wav: {n / SR:.3f}s, music: {'yes' if music is not None else 'no (source/music/track.* missing)'}")
 
 

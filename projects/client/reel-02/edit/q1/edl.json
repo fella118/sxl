@@ -1,0 +1,130 @@
+{
+ "version": 2,
+ "sources": {
+  "C2419": "/home/user/sxl/projects/client/reel-02/source/C2419.MP4",
+  "C2428": "/home/user/sxl/projects/client/reel-02/source/C2428.MP4"
+ },
+ "ranges": [
+  {
+   "source": "C2419",
+   "start": 2.22,
+   "end": 4.9,
+   "beat": "Q1"
+  },
+  {
+   "source": "C2419",
+   "start": 5.0,
+   "end": 6.44,
+   "beat": "Q1"
+  },
+  {
+   "source": "C2419",
+   "start": 6.8,
+   "end": 7.84,
+   "beat": "Q1"
+  },
+  {
+   "source": "C2419",
+   "start": 50.84,
+   "end": 53.08,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 53.66,
+   "end": 55.32,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 55.42,
+   "end": 56.84,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 57.56,
+   "end": 60.48,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 61.04,
+   "end": 62.8,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 62.9,
+   "end": 64.94,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 65.3,
+   "end": 66.04,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 66.22,
+   "end": 67.36,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 67.68,
+   "end": 68.48,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 68.66,
+   "end": 70.08,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 70.18,
+   "end": 71.42,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 71.52,
+   "end": 72.38,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 72.58,
+   "end": 75.12,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 75.48,
+   "end": 76.58,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 76.66,
+   "end": 77.42,
+   "beat": "A1"
+  },
+  {
+   "source": "C2419",
+   "start": 77.66,
+   "end": 79.28,
+   "beat": "A1"
+  },
+  {
+   "source": "C2428",
+   "start": 2.12,
+   "end": 6.06,
+   "beat": "CTA"
+  }
+ ],
+ "total_duration_s": 33.36
+}

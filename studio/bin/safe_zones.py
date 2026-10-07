@@ -9,7 +9,7 @@ check:  scans a rendered overlay layer (PNG frames) against the head region
         (matte pixels between head_top and chin, around the face) and lists
         frames where graphics cover the head.
 
-    studio/.venv/bin/python studio/bin/safe_zones.py zones <edit>
+    studio/.venv/bin/python studio/bin/safe_zones.py zones <edit> [--js <overlay>/facepos.js]
     studio/.venv/bin/python studio/bin/safe_zones.py check <edit> <frames_dir> [--max-pct 0.5]
 """
 
@@ -47,7 +47,7 @@ def head_box(m: np.ndarray, f: list) -> tuple[int, int, int, int]:
     return x0, x1, top, chin
 
 
-def zones(edit: Path) -> None:
+def zones(edit: Path, js: Path | None = None) -> None:
     fp = json.loads((edit / "facepos.json").read_text())
     frames = fp["frames"]
     out = []
@@ -59,7 +59,8 @@ def zones(edit: Path) -> None:
         out.append([f[0], f[1], f[2], top, chin])
     fp["frames"] = out
     (edit / "facepos.json").write_text(json.dumps(fp))
-    (edit / "animations" / "overlay" / "facepos.js").write_text("window.FACE = " + json.dumps(fp) + ";\n")
+    js = js or edit / "animations" / "overlay" / "facepos.js"
+    js.write_text("window.FACE = " + json.dumps(fp) + ";\n")
     tops = [f[3] for f in out if f]
     chins = [f[4] for f in out if f]
     print(f"{len(out)} frames: head top {min(tops)}..{max(tops)} px, chin {min(chins)}..{max(chins)} px")
@@ -92,9 +93,10 @@ def main() -> None:
     ap.add_argument("edit", type=Path)
     ap.add_argument("frames", type=Path, nargs="?")
     ap.add_argument("--max-pct", type=float, default=0.5)
+    ap.add_argument("--js", type=Path, default=None, help="zones: where to write the overlay's facepos.js")
     args = ap.parse_args()
     if args.mode == "zones":
-        zones(args.edit.resolve())
+        zones(args.edit.resolve(), args.js.resolve() if args.js else None)
     else:
         check(args.edit.resolve(), args.frames.resolve(), args.max_pct)
 

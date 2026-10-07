@@ -1,0 +1,155 @@
+{
+ "version": 2,
+ "sources": {
+  "C2425": "/home/user/sxl/projects/client/reel-02/source/C2425.MP4",
+  "C2426": "/home/user/sxl/projects/client/reel-02/source/C2426.MP4",
+  "C2428": "/home/user/sxl/projects/client/reel-02/source/C2428.MP4"
+ },
+ "ranges": [
+  {
+   "source": "C2425",
+   "start": 1.72,
+   "end": 2.34,
+   "beat": "Q2"
+  },
+  {
+   "source": "C2425",
+   "start": 2.46,
+   "end": 2.94,
+   "beat": "Q2"
+  },
+  {
+   "source": "C2425",
+   "start": 3.3,
+   "end": 4.48,
+   "beat": "Q2"
+  },
+  {
+   "source": "C2425",
+   "start": 4.78,
+   "end": 5.54,
+   "beat": "Q2"
+  },
+  {
+   "source": "C2425",
+   "start": 5.8,
+   "end": 7.18,
+   "beat": "Q2"
+  },
+  {
+   "source": "C2426",
+   "start": 2.42,
+   "end": 3.64,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 7.48,
+   "end": 8.54,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 13.38,
+   "end": 14.38,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 15.12,
+   "end": 16.4,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 16.58,
+   "end": 17.1,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 17.2,
+   "end": 18.7,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 18.9,
+   "end": 21.96,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 22.76,
+   "end": 23.98,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 24.04,
+   "end": 25.14,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 25.46,
+   "end": 27.98,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 28.24,
+   "end": 32.88,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 33.28,
+   "end": 34.36,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 34.52,
+   "end": 35.78,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 35.92,
+   "end": 37.28,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 37.38,
+   "end": 39.32,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 39.38,
+   "end": 40.4,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 40.74,
+   "end": 42.32,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 42.78,
+   "end": 45.06,
+   "beat": "A2"
+  },
+  {
+   "source": "C2428",
+   "start": 2.12,
+   "end": 6.06,
+   "beat": "CTA"
+  }
+ ],
+ "total_duration_s": 38.0
+}

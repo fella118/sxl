@@ -17,3 +17,5 @@ projects/**/*.jpg
 __pycache__/
 projects/**/*.log
 projects/**/verify/
+projects/**/analysis_audio/*.npz
+projects/**/analysis_audio/*.npy

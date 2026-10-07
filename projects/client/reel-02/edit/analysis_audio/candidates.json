@@ -1,0 +1,638 @@
+[
+ {
+  "clip": "C2419",
+  "beat": "Q1",
+  "kind": "breath",
+  "start": 3.52,
+  "end": 3.63,
+  "db": -27.9,
+  "voicing": 0.23,
+  "zcr": 0.6
+ },
+ {
+  "clip": "C2419",
+  "beat": "Q1",
+  "kind": "voiced",
+  "start": 3.63,
+  "end": 3.79,
+  "db": -19.7,
+  "voicing": 0.72,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2419",
+  "beat": "Q1",
+  "kind": "long_word",
+  "start": 4.146,
+  "end": 4.909,
+  "word": "فالنظارات"
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "long_word",
+  "start": 51.846,
+  "end": 52.448,
+  "word": "تقولبتي"
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "voiced",
+  "start": 57.62,
+  "end": 57.77,
+  "db": -10.1,
+  "voicing": 0.68,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "breath",
+  "start": 60.38,
+  "end": 60.52,
+  "db": -24.3,
+  "voicing": 0.34,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "long_word",
+  "start": 64.484,
+  "end": 65.425,
+  "word": "خصك"
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "long_word",
+  "start": 67.006,
+  "end": 67.727,
+  "word": "garantie"
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "breath",
+  "start": 68.49,
+  "end": 68.6,
+  "db": -39.9,
+  "voicing": 0.2,
+  "zcr": 0.19
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "long_word",
+  "start": 69.128,
+  "end": 69.829,
+  "word": "حاجة"
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "voiced",
+  "start": 69.97,
+  "end": 70.05,
+  "db": -29.3,
+  "voicing": 0.73,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "long_word",
+  "start": 70.77,
+  "end": 71.371,
+  "word": "ماتقولبتيش"
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "long_word",
+  "start": 72.732,
+  "end": 73.493,
+  "word": "ماتقولبتي"
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "long_word",
+  "start": 73.693,
+  "end": 74.374,
+  "word": "l'expertise"
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "long_word",
+  "start": 75.054,
+  "end": 75.715,
+  "word": "اللي"
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "long_word",
+  "start": 75.815,
+  "end": 76.456,
+  "word": "ماعطاكش"
+ },
+ {
+  "clip": "C2419",
+  "beat": "A1",
+  "kind": "long_word",
+  "start": 77.197,
+  "end": 77.897,
+  "word": "اللي"
+ },
+ {
+  "clip": "C2422",
+  "beat": "Q2",
+  "kind": "long_word",
+  "start": 2.183,
+  "end": 2.886,
+  "word": "موانديس"
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "long_word",
+  "start": 3.122,
+  "end": 3.724,
+  "word": "optique"
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "breath",
+  "start": 4.85,
+  "end": 5.2,
+  "db": -34.7,
+  "voicing": 0.24,
+  "zcr": 0.17
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "long_word",
+  "start": 6.189,
+  "end": 6.871,
+  "word": "غانوريكم"
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "breath",
+  "start": 7.95,
+  "end": 8.06,
+  "db": -37.2,
+  "voicing": 0.32,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "breath",
+  "start": 8.96,
+  "end": 9.16,
+  "db": -34.5,
+  "voicing": 0.33,
+  "zcr": 0.1
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "breath",
+  "start": 9.52,
+  "end": 9.68,
+  "db": -35.2,
+  "voicing": 0.38,
+  "zcr": 0.09
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "breath",
+  "start": 10.8,
+  "end": 10.97,
+  "db": -36.1,
+  "voicing": 0.34,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "breath",
+  "start": 11.05,
+  "end": 11.17,
+  "db": -34.2,
+  "voicing": 0.24,
+  "zcr": 0.09
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "breath",
+  "start": 11.18,
+  "end": 11.58,
+  "db": -23.7,
+  "voicing": 0.29,
+  "zcr": 0.12
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "breath",
+  "start": 13.69,
+  "end": 13.81,
+  "db": -32.2,
+  "voicing": 0.32,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "long_word",
+  "start": 16.688,
+  "end": 17.749,
+  "word": "فـdiamètre"
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "long_word",
+  "start": 19.612,
+  "end": 20.373,
+  "word": "تختارها"
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "long_word",
+  "start": 20.393,
+  "end": 21.033,
+  "word": "يلا"
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "breath",
+  "start": 23.65,
+  "end": 23.8,
+  "db": -21.8,
+  "voicing": 0.28,
+  "zcr": 0.09
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "voiced",
+  "start": 23.97,
+  "end": 24.08,
+  "db": -9.8,
+  "voicing": 0.8,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2423",
+  "beat": "A2",
+  "kind": "breath",
+  "start": 24.12,
+  "end": 24.27,
+  "db": -17.2,
+  "voicing": 0.32,
+  "zcr": 0.16
+ },
+ {
+  "clip": "C2423",
+  "beat": "TEASE",
+  "kind": "breath",
+  "start": 28.73,
+  "end": 28.85,
+  "db": -36.1,
+  "voicing": 0.38,
+  "zcr": 0.15
+ },
+ {
+  "clip": "C2423",
+  "beat": "TEASE",
+  "kind": "long_word",
+  "start": 29.066,
+  "end": 29.747,
+  "word": "غانوريكم"
+ },
+ {
+  "clip": "C2423",
+  "beat": "TEASE",
+  "kind": "voiced",
+  "start": 31.52,
+  "end": 31.65,
+  "db": -19.9,
+  "voicing": 0.68,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2423",
+  "beat": "TEASE",
+  "kind": "voiced",
+  "start": 32.07,
+  "end": 32.15,
+  "db": -17.7,
+  "voicing": 0.66,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2423",
+  "beat": "TEASE",
+  "kind": "breath",
+  "start": 33.26,
+  "end": 33.45,
+  "db": -33.2,
+  "voicing": 0.22,
+  "zcr": 0.11
+ },
+ {
+  "clip": "C2423",
+  "beat": "TEASE",
+  "kind": "breath",
+  "start": 35.1,
+  "end": 35.24,
+  "db": -25.9,
+  "voicing": 0.3,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2423",
+  "beat": "TEASE",
+  "kind": "breath",
+  "start": 35.29,
+  "end": 35.41,
+  "db": -37.1,
+  "voicing": 0.28,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2425",
+  "beat": "Q3",
+  "kind": "long_word",
+  "start": 3.506,
+  "end": 4.851,
+  "word": "soixante-quatorze"
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "voiced",
+  "start": 18.25,
+  "end": 18.35,
+  "db": -14.6,
+  "voicing": 0.78,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 18.35,
+  "end": 18.56,
+  "db": -14.6,
+  "voicing": 0.41,
+  "zcr": 0.27
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "voiced",
+  "start": 19.04,
+  "end": 19.25,
+  "db": -12.9,
+  "voicing": 0.73,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "voiced",
+  "start": 19.29,
+  "end": 19.38,
+  "db": -12.8,
+  "voicing": 0.68,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 19.38,
+  "end": 19.5,
+  "db": -24.5,
+  "voicing": 0.37,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 21.57,
+  "end": 21.69,
+  "db": -24.4,
+  "voicing": 0.24,
+  "zcr": 0.41
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 21.85,
+  "end": 22.22,
+  "db": -26.4,
+  "voicing": 0.26,
+  "zcr": 0.39
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "long_word",
+  "start": 25.122,
+  "end": 26.243,
+  "word": "quatre"
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 27.37,
+  "end": 27.47,
+  "db": -26.1,
+  "voicing": 0.33,
+  "zcr": 0.31
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 27.69,
+  "end": 27.97,
+  "db": -18.2,
+  "voicing": 0.29,
+  "zcr": 0.25
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 30.96,
+  "end": 31.06,
+  "db": -25.9,
+  "voicing": 0.39,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "voiced",
+  "start": 31.21,
+  "end": 31.34,
+  "db": -13.8,
+  "voicing": 0.74,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 32.95,
+  "end": 33.21,
+  "db": -34.2,
+  "voicing": 0.28,
+  "zcr": 0.22
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 35.7,
+  "end": 35.83,
+  "db": -30.4,
+  "voicing": 0.36,
+  "zcr": 0.06
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "voiced",
+  "start": 36.59,
+  "end": 36.69,
+  "db": -18.3,
+  "voicing": 0.65,
+  "zcr": 0.04
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 37.79,
+  "end": 37.97,
+  "db": -27.3,
+  "voicing": 0.35,
+  "zcr": 0.05
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "voiced",
+  "start": 37.97,
+  "end": 38.33,
+  "db": -16.5,
+  "voicing": 0.68,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 38.33,
+  "end": 38.43,
+  "db": -22.1,
+  "voicing": 0.35,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "voiced",
+  "start": 38.43,
+  "end": 38.51,
+  "db": -11.5,
+  "voicing": 0.68,
+  "zcr": 0.08
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 38.67,
+  "end": 38.77,
+  "db": -20.6,
+  "voicing": 0.42,
+  "zcr": 0.22
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 39.04,
+  "end": 39.14,
+  "db": -16.4,
+  "voicing": 0.35,
+  "zcr": 0.07
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "long_word",
+  "start": 39.475,
+  "end": 40.095,
+  "word": "organique"
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "long_word",
+  "start": 41.657,
+  "end": 42.317,
+  "word": "البلاستيك"
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 42.44,
+  "end": 42.61,
+  "db": -37.0,
+  "voicing": 0.22,
+  "zcr": 0.22
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "voiced",
+  "start": 43.9,
+  "end": 43.99,
+  "db": -14.5,
+  "voicing": 0.68,
+  "zcr": 0.12
+ },
+ {
+  "clip": "C2426",
+  "beat": "A3",
+  "kind": "breath",
+  "start": 44.29,
+  "end": 44.39,
+  "db": -29.5,
+  "voicing": 0.38,
+  "zcr": 0.1
+ }
+]

@@ -1,0 +1,1045 @@
+{
+ "reel": "q3",
+ "fps": 50,
+ "duration": 34.94,
+ "width": 1080,
+ "height": 1920,
+ "ranges": [
+  {
+   "beat": "Q3",
+   "source": "C2422",
+   "src_start": 1.26,
+   "src_end": 2.84,
+   "frames": 79,
+   "out_start": 0.0,
+   "duration": 1.58
+  },
+  {
+   "beat": "Q3",
+   "source": "C2422",
+   "src_start": 3.14,
+   "src_end": 3.66,
+   "frames": 26,
+   "out_start": 1.58,
+   "duration": 0.52
+  },
+  {
+   "beat": "Q3",
+   "source": "C2422",
+   "src_start": 3.86,
+   "src_end": 5.32,
+   "frames": 73,
+   "out_start": 2.1,
+   "duration": 1.46
+  },
+  {
+   "beat": "Q3",
+   "source": "C2422",
+   "src_start": 5.68,
+   "src_end": 6.54,
+   "frames": 43,
+   "out_start": 3.56,
+   "duration": 0.86
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 2.08,
+   "src_end": 3.58,
+   "frames": 75,
+   "out_start": 4.42,
+   "duration": 1.5
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 3.64,
+   "src_end": 4.86,
+   "frames": 61,
+   "out_start": 5.92,
+   "duration": 1.22
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 5.62,
+   "src_end": 6.98,
+   "frames": 68,
+   "out_start": 7.14,
+   "duration": 1.36
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 7.1,
+   "src_end": 7.8,
+   "frames": 35,
+   "out_start": 8.5,
+   "duration": 0.7
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 8.34,
+   "src_end": 9.62,
+   "frames": 64,
+   "out_start": 9.2,
+   "duration": 1.28
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 10.06,
+   "src_end": 10.68,
+   "frames": 31,
+   "out_start": 10.48,
+   "duration": 0.62
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 11.54,
+   "src_end": 13.76,
+   "frames": 111,
+   "out_start": 11.1,
+   "duration": 2.22
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 13.84,
+   "src_end": 15.46,
+   "frames": 81,
+   "out_start": 13.32,
+   "duration": 1.62
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 15.56,
+   "src_end": 16.4,
+   "frames": 42,
+   "out_start": 14.94,
+   "duration": 0.84
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 16.7,
+   "src_end": 17.34,
+   "frames": 32,
+   "out_start": 15.78,
+   "duration": 0.64
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 17.68,
+   "src_end": 19.6,
+   "frames": 96,
+   "out_start": 16.42,
+   "duration": 1.92
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 19.72,
+   "src_end": 20.42,
+   "frames": 35,
+   "out_start": 18.34,
+   "duration": 0.7
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 20.74,
+   "src_end": 22.18,
+   "frames": 72,
+   "out_start": 19.04,
+   "duration": 1.44
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 22.3,
+   "src_end": 22.82,
+   "frames": 26,
+   "out_start": 20.48,
+   "duration": 0.52
+  },
+  {
+   "beat": "A3",
+   "source": "C2423",
+   "src_start": 23.16,
+   "src_end": 25.66,
+   "frames": 125,
+   "out_start": 21.0,
+   "duration": 2.5
+  },
+  {
+   "beat": "TEASE",
+   "source": "C2423",
+   "src_start": 27.4,
+   "src_end": 28.76,
+   "frames": 68,
+   "out_start": 23.5,
+   "duration": 1.36
+  },
+  {
+   "beat": "TEASE",
+   "source": "C2423",
+   "src_start": 28.94,
+   "src_end": 29.84,
+   "frames": 45,
+   "out_start": 24.86,
+   "duration": 0.9
+  },
+  {
+   "beat": "TEASE",
+   "source": "C2423",
+   "src_start": 30.0,
+   "src_end": 30.86,
+   "frames": 43,
+   "out_start": 25.76,
+   "duration": 0.86
+  },
+  {
+   "beat": "TEASE",
+   "source": "C2423",
+   "src_start": 30.98,
+   "src_end": 33.3,
+   "frames": 116,
+   "out_start": 26.62,
+   "duration": 2.32
+  },
+  {
+   "beat": "TEASE",
+   "source": "C2423",
+   "src_start": 33.7,
+   "src_end": 35.2,
+   "frames": 75,
+   "out_start": 28.94,
+   "duration": 1.5
+  },
+  {
+   "beat": "TEASE",
+   "source": "C2423",
+   "src_start": 35.4,
+   "src_end": 35.96,
+   "frames": 28,
+   "out_start": 30.44,
+   "duration": 0.56
+  },
+  {
+   "beat": "CTA",
+   "source": "C2428",
+   "src_start": 2.12,
+   "src_end": 6.06,
+   "frames": 197,
+   "out_start": 31.0,
+   "duration": 3.94
+  }
+ ],
+ "words": [
+  {
+   "id": "C2422@1.30",
+   "word": "أنا",
+   "beat": "Q3",
+   "src": 1.3,
+   "start": 0.04,
+   "end": 0.241
+  },
+  {
+   "id": "C2422@1.74",
+   "word": "عندي",
+   "beat": "Q3",
+   "src": 1.742,
+   "start": 0.482,
+   "end": 0.743
+  },
+  {
+   "id": "C2422@2.18",
+   "word": "موانديس",
+   "beat": "Q3",
+   "src": 2.183,
+   "start": 0.923,
+   "end": 1.58
+  },
+  {
+   "id": "C2422@3.21",
+   "word": "والزاج",
+   "beat": "Q3",
+   "src": 3.207,
+   "start": 1.647,
+   "end": 2.089
+  },
+  {
+   "id": "C2422@3.87",
+   "word": "ديما",
+   "beat": "Q3",
+   "src": 3.869,
+   "start": 2.109,
+   "end": 2.43
+  },
+  {
+   "id": "C2422@4.25",
+   "word": "كيجيني",
+   "beat": "Q3",
+   "src": 4.251,
+   "start": 2.491,
+   "end": 2.852
+  },
+  {
+   "id": "C2422@4.65",
+   "word": "غليظ",
+   "beat": "Q3",
+   "src": 4.652,
+   "start": 2.892,
+   "end": 3.093
+  },
+  {
+   "id": "C2422@4.93",
+   "word": "من",
+   "beat": "Q3",
+   "src": 4.933,
+   "start": 3.173,
+   "end": 3.213
+  },
+  {
+   "id": "C2422@4.97",
+   "word": "الجناح",
+   "beat": "Q3",
+   "src": 4.973,
+   "start": 3.213,
+   "end": 3.56
+  },
+  {
+   "id": "C2422@5.78",
+   "word": "واش",
+   "beat": "Q3",
+   "src": 5.776,
+   "start": 3.656,
+   "end": 3.877
+  },
+  {
+   "id": "C2422@6.08",
+   "word": "كاين",
+   "beat": "Q3",
+   "src": 6.077,
+   "start": 3.957,
+   "end": 4.198
+  },
+  {
+   "id": "C2422@6.36",
+   "word": "شي",
+   "beat": "Q3",
+   "src": 6.358,
+   "start": 4.238,
+   "end": 4.338
+  },
+  {
+   "id": "C2422@6.54",
+   "word": "حل",
+   "beat": "Q3",
+   "src": 6.539,
+   "start": 4.419,
+   "end": 4.42
+  },
+  {
+   "id": "C2423@2.12",
+   "word": "Alors",
+   "beat": "A3",
+   "src": 2.12,
+   "start": 4.46,
+   "end": 4.701
+  },
+  {
+   "id": "C2423@2.42",
+   "word": "عندك",
+   "beat": "A3",
+   "src": 2.421,
+   "start": 4.761,
+   "end": 5.001
+  },
+  {
+   "id": "C2423@2.72",
+   "word": "زناية",
+   "beat": "A3",
+   "src": 2.722,
+   "start": 5.062,
+   "end": 5.362
+  },
+  {
+   "id": "C2423@3.12",
+   "word": "optique",
+   "beat": "A3",
+   "src": 3.122,
+   "start": 5.462,
+   "end": 6.004
+  },
+  {
+   "id": "C2423@3.72",
+   "word": "bien",
+   "beat": "A3",
+   "src": 3.724,
+   "start": 6.004,
+   "end": 6.144
+  },
+  {
+   "id": "C2423@3.92",
+   "word": "sûr",
+   "beat": "A3",
+   "src": 3.924,
+   "start": 6.204,
+   "end": 6.365
+  },
+  {
+   "id": "C2423@4.12",
+   "word": "ديما",
+   "beat": "A3",
+   "src": 4.125,
+   "start": 6.405,
+   "end": 6.585
+  },
+  {
+   "id": "C2423@4.37",
+   "word": "كاين",
+   "beat": "A3",
+   "src": 4.365,
+   "start": 6.645,
+   "end": 6.826
+  },
+  {
+   "id": "C2423@4.55",
+   "word": "الحل",
+   "beat": "A3",
+   "src": 4.546,
+   "start": 6.826,
+   "end": 7.066
+  },
+  {
+   "id": "C2423@5.73",
+   "word": "هنا",
+   "beat": "A3",
+   "src": 5.728,
+   "start": 7.248,
+   "end": 7.429
+  },
+  {
+   "id": "C2423@6.19",
+   "word": "غانوريكم",
+   "beat": "A3",
+   "src": 6.189,
+   "start": 7.709,
+   "end": 8.391
+  },
+  {
+   "id": "C2423@7.23",
+   "word": "deux",
+   "beat": "A3",
+   "src": 7.232,
+   "start": 8.632,
+   "end": 8.752
+  },
+  {
+   "id": "C2423@7.39",
+   "word": "montures",
+   "beat": "A3",
+   "src": 7.392,
+   "start": 8.792,
+   "end": 9.2
+  },
+  {
+   "id": "C2423@8.37",
+   "word": "كاين",
+   "beat": "A3",
+   "src": 8.374,
+   "start": 9.234,
+   "end": 9.435
+  },
+  {
+   "id": "C2423@8.63",
+   "word": "هادي",
+   "beat": "A3",
+   "src": 8.635,
+   "start": 9.495,
+   "end": 9.755
+  },
+  {
+   "id": "C2423@10.12",
+   "word": "وكاين",
+   "beat": "A3",
+   "src": 10.118,
+   "start": 10.538,
+   "end": 10.859
+  },
+  {
+   "id": "C2423@10.50",
+   "word": "هادي",
+   "beat": "A3",
+   "src": 10.499,
+   "start": 10.919,
+   "end": 11.1
+  },
+  {
+   "id": "C2423@11.64",
+   "word": "غتجي",
+   "beat": "A3",
+   "src": 11.641,
+   "start": 11.201,
+   "end": 11.501
+  },
+  {
+   "id": "C2423@12.00",
+   "word": "للجنب",
+   "beat": "A3",
+   "src": 12.001,
+   "start": 11.561,
+   "end": 11.902
+  },
+  {
+   "id": "C2423@12.38",
+   "word": "ديال",
+   "beat": "A3",
+   "src": 12.382,
+   "start": 11.942,
+   "end": 12.082
+  },
+  {
+   "id": "C2423@12.54",
+   "word": "la",
+   "beat": "A3",
+   "src": 12.542,
+   "start": 12.102,
+   "end": 12.162
+  },
+  {
+   "id": "C2423@12.66",
+   "word": "monture",
+   "beat": "A3",
+   "src": 12.662,
+   "start": 12.222,
+   "end": 12.763
+  },
+  {
+   "id": "C2423@13.20",
+   "word": "غتقرا",
+   "beat": "A3",
+   "src": 13.203,
+   "start": 12.763,
+   "end": 13.183
+  },
+  {
+   "id": "C2423@13.94",
+   "word": "هاد",
+   "beat": "A3",
+   "src": 13.944,
+   "start": 13.424,
+   "end": 13.584
+  },
+  {
+   "id": "C2423@14.14",
+   "word": "les",
+   "beat": "A3",
+   "src": 14.144,
+   "start": 13.624,
+   "end": 13.784
+  },
+  {
+   "id": "C2423@14.30",
+   "word": "chiffres",
+   "beat": "A3",
+   "src": 14.304,
+   "start": 13.784,
+   "end": 14.025
+  },
+  {
+   "id": "C2423@14.54",
+   "word": "اللي",
+   "beat": "A3",
+   "src": 14.545,
+   "start": 14.025,
+   "end": 14.145
+  },
+  {
+   "id": "C2423@14.71",
+   "word": "كاينين",
+   "beat": "A3",
+   "src": 14.705,
+   "start": 14.185,
+   "end": 14.465
+  },
+  {
+   "id": "C2423@15.03",
+   "word": "هنايا",
+   "beat": "A3",
+   "src": 15.025,
+   "start": 14.505,
+   "end": 14.806
+  },
+  {
+   "id": "C2423@15.53",
+   "word": "خاصك",
+   "beat": "A3",
+   "src": 15.526,
+   "start": 14.94,
+   "end": 15.226
+  },
+  {
+   "id": "C2423@15.93",
+   "word": "تلقى",
+   "beat": "A3",
+   "src": 15.926,
+   "start": 15.306,
+   "end": 15.647
+  },
+  {
+   "id": "C2423@16.69",
+   "word": "فـdiamètre",
+   "beat": "A3",
+   "src": 16.688,
+   "start": 15.78,
+   "end": 16.489
+  },
+  {
+   "id": "C2423@17.75",
+   "word": "ما",
+   "beat": "A3",
+   "src": 17.749,
+   "start": 16.489,
+   "end": 16.549
+  },
+  {
+   "id": "C2423@17.87",
+   "word": "فايتش",
+   "beat": "A3",
+   "src": 17.869,
+   "start": 16.609,
+   "end": 16.95
+  },
+  {
+   "id": "C2423@18.21",
+   "word": "48",
+   "beat": "A3",
+   "src": 18.21,
+   "start": 16.95,
+   "end": 17.25
+  },
+  {
+   "id": "C2423@18.51",
+   "word": "و",
+   "beat": "A3",
+   "src": 18.51,
+   "start": 17.25,
+   "end": 17.29
+  },
+  {
+   "id": "C2423@18.63",
+   "word": "deux",
+   "beat": "A3",
+   "src": 18.63,
+   "start": 17.37,
+   "end": 17.831
+  },
+  {
+   "id": "C2423@19.13",
+   "word": "préférences",
+   "beat": "A3",
+   "src": 19.131,
+   "start": 17.871,
+   "end": 18.34
+  },
+  {
+   "id": "C2423@19.61",
+   "word": "تختارها",
+   "beat": "A3",
+   "src": 19.612,
+   "start": 18.34,
+   "end": 18.993
+  },
+  {
+   "id": "C2423@20.37",
+   "word": "46",
+   "beat": "A3",
+   "src": 20.373,
+   "start": 18.993,
+   "end": 19.04
+  },
+  {
+   "id": "C2423@20.39",
+   "word": "يلا",
+   "beat": "A3",
+   "src": 20.393,
+   "start": 19.013,
+   "end": 19.333
+  },
+  {
+   "id": "C2423@21.07",
+   "word": "خدمنا",
+   "beat": "A3",
+   "src": 21.074,
+   "start": 19.374,
+   "end": 19.694
+  },
+  {
+   "id": "C2423@21.43",
+   "word": "هنايا",
+   "beat": "A3",
+   "src": 21.434,
+   "start": 19.734,
+   "end": 20.054
+  },
+  {
+   "id": "C2423@21.91",
+   "word": "أرق",
+   "beat": "A3",
+   "src": 21.915,
+   "start": 20.215,
+   "end": 20.48
+  },
+  {
+   "id": "C2423@22.43",
+   "word": "زاج",
+   "beat": "A3",
+   "src": 22.435,
+   "start": 20.615,
+   "end": 20.876
+  },
+  {
+   "id": "C2423@22.70",
+   "word": "160",
+   "beat": "A3",
+   "src": 22.696,
+   "start": 20.876,
+   "end": 21.0
+  },
+  {
+   "id": "C2423@23.10",
+   "word": "14",
+   "beat": "A3",
+   "src": 23.096,
+   "start": 21.0,
+   "end": 21.336
+  },
+  {
+   "id": "C2423@24.34",
+   "word": "bien",
+   "beat": "A3",
+   "src": 24.338,
+   "start": 22.178,
+   "end": 22.398
+  },
+  {
+   "id": "C2423@24.62",
+   "word": "sûr",
+   "beat": "A3",
+   "src": 24.618,
+   "start": 22.458,
+   "end": 22.619
+  },
+  {
+   "id": "C2423@24.82",
+   "word": "غيطلع",
+   "beat": "A3",
+   "src": 24.819,
+   "start": 22.659,
+   "end": 23.019
+  },
+  {
+   "id": "C2423@25.26",
+   "word": "غليظ",
+   "beat": "A3",
+   "src": 25.259,
+   "start": 23.099,
+   "end": 23.44
+  },
+  {
+   "id": "C2423@27.44",
+   "word": "وف",
+   "beat": "TEASE",
+   "src": 27.442,
+   "start": 23.542,
+   "end": 23.623
+  },
+  {
+   "id": "C2423@27.58",
+   "word": "la",
+   "beat": "TEASE",
+   "src": 27.583,
+   "start": 23.683,
+   "end": 23.743
+  },
+  {
+   "id": "C2423@27.68",
+   "word": "vidéo",
+   "beat": "TEASE",
+   "src": 27.683,
+   "start": 23.783,
+   "end": 24.023
+  },
+  {
+   "id": "C2423@27.94",
+   "word": "الجاية",
+   "beat": "TEASE",
+   "src": 27.943,
+   "start": 24.043,
+   "end": 24.304
+  },
+  {
+   "id": "C2423@28.20",
+   "word": "إن",
+   "beat": "TEASE",
+   "src": 28.204,
+   "start": 24.304,
+   "end": 24.344
+  },
+  {
+   "id": "C2423@28.28",
+   "word": "شاء",
+   "beat": "TEASE",
+   "src": 28.284,
+   "start": 24.384,
+   "end": 24.504
+  },
+  {
+   "id": "C2423@28.42",
+   "word": "الله",
+   "beat": "TEASE",
+   "src": 28.424,
+   "start": 24.524,
+   "end": 24.745
+  },
+  {
+   "id": "C2423@29.07",
+   "word": "غانوريكم",
+   "beat": "TEASE",
+   "src": 29.066,
+   "start": 24.986,
+   "end": 25.667
+  },
+  {
+   "id": "C2423@30.05",
+   "word": "cas",
+   "beat": "TEASE",
+   "src": 30.048,
+   "start": 25.808,
+   "end": 26.168
+  },
+  {
+   "id": "C2423@30.47",
+   "word": "réel",
+   "beat": "TEASE",
+   "src": 30.469,
+   "start": 26.229,
+   "end": 26.569
+  },
+  {
+   "id": "C2423@31.09",
+   "word": "ديال",
+   "beat": "TEASE",
+   "src": 31.09,
+   "start": 26.73,
+   "end": 27.091
+  },
+  {
+   "id": "C2423@31.71",
+   "word": "واحد",
+   "beat": "TEASE",
+   "src": 31.711,
+   "start": 27.351,
+   "end": 27.632
+  },
+  {
+   "id": "C2423@32.37",
+   "word": "le",
+   "beat": "TEASE",
+   "src": 32.372,
+   "start": 28.012,
+   "end": 28.093
+  },
+  {
+   "id": "C2423@32.49",
+   "word": "client",
+   "beat": "TEASE",
+   "src": 32.493,
+   "start": 28.133,
+   "end": 28.453
+  },
+  {
+   "id": "C2423@32.83",
+   "word": "جا",
+   "beat": "TEASE",
+   "src": 32.833,
+   "start": 28.473,
+   "end": 28.553
+  },
+  {
+   "id": "C2423@32.95",
+   "word": "عندنا",
+   "beat": "TEASE",
+   "src": 32.954,
+   "start": 28.594,
+   "end": 28.834
+  },
+  {
+   "id": "C2423@33.77",
+   "word": "ب",
+   "beat": "TEASE",
+   "src": 33.775,
+   "start": 29.015,
+   "end": 29.035
+  },
+  {
+   "id": "C2423@33.85",
+   "word": "la",
+   "beat": "TEASE",
+   "src": 33.855,
+   "start": 29.095,
+   "end": 29.155
+  },
+  {
+   "id": "C2423@33.96",
+   "word": "mention",
+   "beat": "TEASE",
+   "src": 33.956,
+   "start": 29.196,
+   "end": 29.496
+  },
+  {
+   "id": "C2423@34.26",
+   "word": "القديمة",
+   "beat": "TEASE",
+   "src": 34.256,
+   "start": 29.496,
+   "end": 29.917
+  },
+  {
+   "id": "C2423@34.74",
+   "word": "ديالو",
+   "beat": "TEASE",
+   "src": 34.737,
+   "start": 29.977,
+   "end": 30.278
+  },
+  {
+   "id": "C2423@35.48",
+   "word": "والجديدة",
+   "beat": "TEASE",
+   "src": 35.479,
+   "start": 30.519,
+   "end": 30.939
+  },
+  {
+   "id": "C2428@2.16",
+   "word": "سوفݣاردي",
+   "beat": "CTA",
+   "src": 2.163,
+   "start": 31.043,
+   "end": 31.505
+  },
+  {
+   "id": "C2428@2.69",
+   "word": "هاد",
+   "beat": "CTA",
+   "src": 2.686,
+   "start": 31.566,
+   "end": 31.666
+  },
+  {
+   "id": "C2428@2.83",
+   "word": "la",
+   "beat": "CTA",
+   "src": 2.826,
+   "start": 31.706,
+   "end": 31.767
+  },
+  {
+   "id": "C2428@2.93",
+   "word": "vidéo",
+   "beat": "CTA",
+   "src": 2.927,
+   "start": 31.807,
+   "end": 32.028
+  },
+  {
+   "id": "C2428@3.19",
+   "word": "عندك",
+   "beat": "CTA",
+   "src": 3.188,
+   "start": 32.068,
+   "end": 32.349
+  },
+  {
+   "id": "C2428@3.55",
+   "word": "غتحتاجو",
+   "beat": "CTA",
+   "src": 3.55,
+   "start": 32.43,
+   "end": 32.852
+  },
+  {
+   "id": "C2428@4.03",
+   "word": "نهار",
+   "beat": "CTA",
+   "src": 4.032,
+   "start": 32.912,
+   "end": 32.992
+  },
+  {
+   "id": "C2428@4.11",
+   "word": "اللي",
+   "beat": "CTA",
+   "src": 4.112,
+   "start": 32.992,
+   "end": 33.133
+  },
+  {
+   "id": "C2428@4.27",
+   "word": "غتبغي",
+   "beat": "CTA",
+   "src": 4.273,
+   "start": 33.153,
+   "end": 33.435
+  },
+  {
+   "id": "C2428@4.59",
+   "word": "دير",
+   "beat": "CTA",
+   "src": 4.595,
+   "start": 33.475,
+   "end": 33.615
+  },
+  {
+   "id": "C2428@4.80",
+   "word": "نضادر",
+   "beat": "CTA",
+   "src": 4.796,
+   "start": 33.676,
+   "end": 33.977
+  },
+  {
+   "id": "C2428@5.10",
+   "word": "ان",
+   "beat": "CTA",
+   "src": 5.097,
+   "start": 33.977,
+   "end": 34.037
+  },
+  {
+   "id": "C2428@5.18",
+   "word": "شاء",
+   "beat": "CTA",
+   "src": 5.178,
+   "start": 34.058,
+   "end": 34.198
+  },
+  {
+   "id": "C2428@5.32",
+   "word": "الله",
+   "beat": "CTA",
+   "src": 5.318,
+   "start": 34.198,
+   "end": 34.399
+  }
+ ]
+}
