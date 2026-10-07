@@ -37,9 +37,9 @@ EV = json.loads(re.sub(r"^window\.EV = |;\s*$", "", (EDIT / "animations/overlay/
 SRC = EDIT.parent / "source"
 SR = 48000
 FADE = int(0.03 * SR)
-MUSIC_START = 0.0          # seconds into the track (set when the client's track arrives)
-MUSIC_REL_LU = -11.0       # ducked music stem loudness relative to the voice stem (v2: more present)
-MUSIC_DUCK_DB = -9.0       # reduction while he speaks
+MUSIC_START = 12.17        # Mixkit "Trap Electro Vibes": the beat drops here -> lands on the STOP hit at frame 1
+MUSIC_REL_LU = -9.0        # ducked music stem vs voice stem (challenge energy: more present than Reel 02)
+MUSIC_DUCK_DB = -8.0       # reduction while he speaks (full level during the silent test)
 
 VOICE_CHAIN = ",".join([
     "highpass=f=80:poles=2",
@@ -176,7 +176,7 @@ def build_music(n: int, voice: np.ndarray) -> np.ndarray | None:
     k = int(0.15 * SR)
     speech = np.convolve(speech, np.ones(k) / k, mode="same")
     m *= (10 ** (MUSIC_DUCK_DB * speech / 20))[:, None]
-    fade_in, fade_out = int(0.3 * SR), int(1.2 * SR)
+    fade_in, fade_out = int(0.02 * SR), int(0.4 * SR)   # hit the drop on frame 1; short tail for the loop
     m[:fade_in] *= np.linspace(0, 1, fade_in)[:, None]
     m[-fade_out:] *= np.linspace(1, 0, fade_out)[:, None]
     # level by measurement: ducked music sits MUSIC_REL_LU under the voice
