@@ -53,3 +53,26 @@ the chin (C2428 is a tight shot, no room above), white-card pointer re-aimed.
 Not yet in v1: music (client track to come).
 Lessons: never pgrep/pkill -f a pattern that also matches the waiting shell
 (it kills or blocks itself); still frames: seek with -ss, not select=eq(n).
+
+## Session 2 — 2026-10-07 (client notes on preview v1)
+
+Notes: split into three separate question reels, each with the same CTA
+ending; remove every "ah/ehm", empty voice and breathing; use the logo navy
+instead of the sky blue; no misspellings.
+
+**Changes:**
+- Three reels (cut.py REELS): q1 = Q1+A1+CTA (33.4 s), q2 = 1.74 question +
+  table/lens answer + CTA (38.0 s), q3 = -10 question + frames answer + teaser
+  + CTA (34.9 s). Each script runs per reel (REEL=q1|q2|q3), outputs in edit/<reel>/.
+- Breaths and dead air: speech = lav > -31 dB and (Silero VAD or voiced);
+  everything else inside a passage is cut to 0.10 s of air (vad_probs.py,
+  fillers.py). Ranges under 0.4 s are joined to a neighbour (no framing flicker).
+  Filler scan: no free-standing "euh/aah"; the long "words" were pauses inside
+  the aligned span (now cut). The frame-1 hold in A3 is kept at 0.55 s.
+- Brand: Gzenaya navy #01115f (sampled from the logo, brand/go_logo_navy.png)
+  replaces the cyan: navy words with white outline, white panels with navy type,
+  navy chips and "جواب" wall, navy SAVE.
+- Spelling: "100%" (the word lookup picked "ب"; it now takes the nearest word),
+  غليظ (was غليض), "ف Gzenaya" (transcript had فݣزلنا), full CTA line
+  "غتحتاجو نهار اللي غتبغي دير نضاضر". Question card and chips no longer
+  numbered (each reel stands alone).
