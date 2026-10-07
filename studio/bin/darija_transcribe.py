@@ -222,6 +222,9 @@ def main() -> None:
             audio = load_audio(video, args.audio_track)
             chunks = vad_chunks(audio, args.max_chunk, args.min_gap)
             print(f"  {len(chunks)} speech chunks, {sum(b - a for a, b in chunks):.1f}s of speech", flush=True)
+            if not chunks:                       # silent clip (B-roll, silent hook): nothing to transcribe
+                print("  no speech, skipped", flush=True)
+                continue
             if asr is None:
                 print(f"  loading {MODEL_ID} (cpu, {args.dtype})", flush=True)
                 asr = Qwen3ASRModel.from_pretrained(MODEL_ID, dtype=getattr(torch, args.dtype), device_map="cpu",
