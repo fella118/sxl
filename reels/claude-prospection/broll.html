@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Claude Prospection Reel</title>
+<style>
+:root{
+  --bg:#0B0C11; --line:rgba(255,255,255,.09); --text:#F5F5F7; --muted:#8D91A5;
+  --acc:#FF8A4C; --acc2:#FFB547; --green:#34D399; --red:#F87171; --blue:#5B8CFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;background:transparent;overflow:hidden;
+  font-family:'Inter',sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+.mono{font-family:'DejaVu Sans Mono',monospace}
+.muted{color:var(--muted);font-weight:600}
+
+/* ---------- top half ---------- */
+#top{position:absolute;left:0;top:0;width:1080px;height:960px;background:var(--bg);overflow:hidden}
+#glow1{position:absolute;width:1000px;height:1000px;left:-360px;top:-480px;
+  background:radial-gradient(circle,rgba(255,138,76,.22),transparent 62%)}
+#glow2{position:absolute;width:1000px;height:1000px;right:-420px;bottom:-560px;
+  background:radial-gradient(circle,rgba(91,140,255,.16),transparent 62%)}
+#dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.075) 1.6px,transparent 1.8px);
+  background-size:40px 40px;-webkit-mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.3))}
+#seam{position:absolute;left:0;right:0;top:956px;height:4px;
+  background:linear-gradient(90deg,rgba(255,138,76,0),#FF8A4C 28%,#FFB547 72%,rgba(255,181,71,0))}
+#shade{position:absolute;left:0;right:0;top:960px;height:70px;background:linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,0))}
+
+/* header */
+.headline{position:absolute;top:40px;left:0;right:0;text-align:center;
+  font:800 54px/1.1 'Inter Display','Inter';letter-spacing:-1.2px}
+.headline span{color:var(--acc)}
+#tracker{position:absolute;top:44px;left:0;right:0;display:flex;justify-content:center;gap:8px;transform-origin:50% 0}
+.pill{height:54px;padding:0 17px;border-radius:27px;border:1.5px solid rgba(255,255,255,.13);color:#6E7285;
+  font:700 22px/1 'Inter';display:flex;align-items:center;gap:6px;white-space:nowrap;background:rgba(255,255,255,.02)}
+.pill .n{font-size:18px;opacity:.8}
+.pill.done{color:var(--green);border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.08)}
+.pill.active{color:#17110C;background:var(--acc);border-color:var(--acc);box-shadow:0 0 34px rgba(255,138,76,.55)}
+
+/* scenes */
+.scene{position:absolute;left:60px;top:136px;width:960px;height:800px;visibility:hidden}
+.card{background:linear-gradient(180deg,#191B24,#121319);border:1.5px solid var(--line);border-radius:30px;
+  box-shadow:0 30px 80px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.05)}
+.ctitle{font:800 38px/1 'Inter Display','Inter';letter-spacing:-.5px;display:flex;align-items:center;gap:14px}
+.tag{display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 18px;border-radius:23px;
+  font:700 22px/1 'Inter';white-space:nowrap}
+.tag.acc{background:rgba(255,138,76,.14);color:var(--acc);border:1.5px solid rgba(255,138,76,.45)}
+.tag.green{background:rgba(52,211,153,.12);color:var(--green);border:1.5px solid rgba(52,211,153,.4)}
+.tag.gray{background:rgba(255,255,255,.06);color:var(--muted);border:1.5px solid rgba(255,255,255,.12);height:38px;font-size:19px}
+.tag.big{height:62px;padding:0 26px;font-size:28px;border-radius:31px}
+.ini{width:58px;height:58px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  font:800 22px/1 'Inter';color:#fff;flex:none}
+.rn{font:700 30px/1.15 'Inter'}
+.rc{font:500 23px/1.3 'Inter';color:var(--muted)}
+.caret{display:inline-block;width:3px;height:1.05em;background:var(--acc);vertical-align:-0.15em;margin-left:3px}
+
+/* S1 terminal */
+.term{position:absolute;top:24px;left:0;right:0;height:760px;overflow:hidden;background:#101116}
+.tbar{height:62px;display:flex;align-items:center;gap:12px;padding:0 24px;border-bottom:1.5px solid var(--line);background:#16171D}
+.tbar i{width:16px;height:16px;border-radius:50%;display:block}
+.tbar span{flex:1;text-align:center;margin-right:84px;font:600 22px/1 'Inter';color:var(--muted)}
+.tbody{padding:34px 36px;font:31px/1.6 'DejaVu Sans Mono',monospace;color:#E7E7EA}
+.welcome{border:2px solid #D97757;border-radius:16px;padding:20px 24px;margin-bottom:30px}
+.cc{color:#D97757}.dim{color:#7C8092}.ok{color:var(--green)}
+.prompt{margin-bottom:30px;min-height:150px}
+.tl{margin-top:6px;white-space:pre}
+
+/* S2 lead list */
+.prof{display:flex;align-items:center;gap:24px}
+.avatar{width:100px;height:100px;border-radius:30px;background:linear-gradient(135deg,#FF8A4C,#FF5E7E);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px rgba(255,110,90,.4);flex:none}
+.pname{font:800 44px/1.05 'Inter Display','Inter';letter-spacing:-.6px}
+.status{margin-top:10px;display:flex;align-items:center;gap:10px;font:600 24px/1 'Inter';color:var(--green)}
+.status i{width:13px;height:13px;border-radius:50%;background:var(--green);display:block;box-shadow:0 0 0 0 rgba(52,211,153,.5)}
+.slot{position:relative;height:78px;margin:26px 0 22px}
+.search{position:absolute;inset:0;border-radius:20px;background:rgba(255,255,255,.05);border:1.5px solid var(--line);
+  display:flex;align-items:center;gap:16px;padding:0 24px;font:600 27px/1 'Inter'}
+.crit{position:absolute;inset:0;display:flex;gap:12px;align-items:center}
+.crit .tag{height:62px;font-size:23px;padding:0 18px;background:rgba(255,255,255,.04);color:#C9CBD6;border:1.5px solid var(--line)}
+.crit .tag b{color:var(--green);font-weight:900}
+.list{display:flex;flex-direction:column;gap:12px;position:relative}
+.row{height:84px;border-radius:20px;background:rgba(255,255,255,.035);border:1.5px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;gap:20px;padding:0 20px}
+.row .rt{flex:1;display:flex;align-items:baseline;gap:14px}
+.rs{min-width:120px;display:flex;justify-content:flex-end}
+.found{height:40px;padding:0 16px;border-radius:20px;background:rgba(255,255,255,.07);color:var(--muted);font:700 20px/40px 'Inter'}
+.yes,.no{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:900 26px/1 'Inter'}
+.yes{background:rgba(52,211,153,.16);color:var(--green)}
+.no{background:rgba(248,113,113,.16);color:var(--red)}
+.score{height:48px;min-width:96px;padding:0 14px;border-radius:24px;font:800 26px/48px 'Inter';text-align:center;
+  background:linear-gradient(135deg,#FF8A4C,#FFB547);color:#17110C}
+.scan{position:absolute;left:30px;right:30px;height:90px;border-radius:20px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,138,76,0),rgba(255,138,76,.16),rgba(255,138,76,0));border-top:2px solid rgba(255,138,76,.0)}
+
+/* S4 kanban */
+.kan{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px;height:640px}
+.col{border-radius:22px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.06);padding:16px 14px;
+  display:flex;flex-direction:column;gap:12px}
+.col.hi{border-color:rgba(255,138,76,.5);background:rgba(255,138,76,.06)}
+.ch{font:800 23px/1 'Inter';color:#C9CBD6;display:flex;justify-content:space-between;align-items:center;padding:6px 4px 8px}
+.ch em{font-style:normal;color:var(--acc);font-size:22px}
+.kc{border-radius:16px;background:#1E2029;border:1.5px solid rgba(255,255,255,.08);padding:14px 14px;
+  font:700 21px/1.2 'Inter';box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.kc .ks{margin-top:10px;display:inline-block;height:32px;padding:0 12px;border-radius:16px;font:800 19px/32px 'Inter';
+  background:linear-gradient(135deg,#FF8A4C,#FFB547);color:#17110C}
+.sk{height:84px;border-radius:16px;background:rgba(255,255,255,.04)}
+.ph{height:84px;border-radius:16px;border:2px dashed rgba(255,255,255,.1)}
+
+/* S5 messages */
+.mh{display:flex;align-items:center;gap:18px}
+.mh .grow{flex:1}
+.bub{max-width:760px;border-radius:28px;padding:22px 28px;font:600 29px/1.38 'Inter'}
+.bub.out{margin-left:auto;background:linear-gradient(135deg,#FF8A4C,#FF7A59);color:#1A120C;border-bottom-right-radius:8px}
+.bub.in{background:#252833;color:#F2F2F5;border-bottom-left-radius:8px}
+.subj{margin-top:24px;font:700 29px/1.3 'Inter'}
+.mbody{margin-top:12px;font:500 26px/1.45 'Inter';color:#B9BCC8}
+.sent{position:absolute;right:32px;bottom:26px;font:800 24px/1 'Inter';color:var(--green)}
+
+/* S6 calendar */
+.cal{display:grid;grid-template-columns:110px repeat(5,1fr);grid-auto-rows:118px;gap:10px;margin-top:28px}
+.cal .dh{height:46px;align-self:end;text-align:center;font:800 24px/46px 'Inter';color:#C9CBD6}
+.cal .hd{height:46px}
+.cal .tm{font:700 23px/118px 'DejaVu Sans Mono',monospace;color:var(--muted)}
+.cell{border-radius:16px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.06);
+  padding:12px;font:700 19px/1.2 'Inter';color:#C9CBD6;position:relative;overflow:hidden}
+.cell.busy{background:rgba(255,255,255,.07);color:#7C8092}
+.cell.tg{border-color:rgba(255,138,76,.0)}
+.cell .fill{position:absolute;inset:0;background:linear-gradient(135deg,#FF8A4C,#FFB547);color:#17110C;
+  padding:12px;font:800 20px/1.2 'Inter'}
+.toast{position:absolute;left:50%;bottom:34px;width:640px;margin-left:-320px;height:108px;border-radius:26px;
+  background:#1D2A25;border:1.5px solid rgba(52,211,153,.45);display:flex;align-items:center;gap:20px;padding:0 26px;
+  box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.toast .ci{width:58px;height:58px;border-radius:50%;background:var(--green);color:#0B2219;font:900 32px/58px 'Inter';text-align:center}
+.toast .t1{font:800 30px/1.1 'Inter'} .toast .t2{font:600 23px/1.3 'Inter';color:#9FD9C2}
+
+/* S7 chat */
+.chat{display:flex;flex-direction:column;gap:22px;margin-top:36px}
+.chat .bub{font-size:32px}
+.typing{display:flex;gap:10px;align-items:center;height:76px;width:130px;justify-content:center}
+.typing i{width:14px;height:14px;border-radius:50%;background:#1A120C;display:block}
+/* S7b timeline */
+.tline{margin-top:34px;display:flex;flex-direction:column;gap:18px}
+.ti{display:flex;align-items:center;gap:22px;height:118px;border-radius:22px;background:rgba(255,255,255,.035);
+  border:1.5px solid rgba(255,255,255,.06);padding:0 26px}
+.ti .tt{font:800 29px/1.2 'Inter'}
+.ti .grow{flex:1}
+.ti .dot{width:20px;height:20px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 7px rgba(255,138,76,.18);flex:none}
+.badges{display:flex;gap:16px;justify-content:center;margin-top:34px}
+
+/* S8 flow */
+.node{position:absolute;height:86px;border-radius:22px;background:#1A1C25;border:1.5px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;font:800 27px/1 'Inter';white-space:nowrap;
+  box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.node.root{background:linear-gradient(135deg,#2A2D3A,#1C1E27)}
+.node.fin{height:100px;font-size:34px;background:linear-gradient(135deg,#1F8A64,#34D399);color:#06150F;border:none;
+  box-shadow:0 0 50px rgba(52,211,153,.45)}
+.node.hot{border-color:var(--acc);box-shadow:0 0 34px rgba(255,138,76,.55);color:#fff;background:#2A1E18}
+
+/* S9 report */
+.notif{position:absolute;left:30px;right:30px;height:116px;border-radius:28px;background:rgba(38,40,50,.92);
+  border:1.5px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:20px;padding:0 24px;
+  box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.appi{width:68px;height:68px;border-radius:18px;background:linear-gradient(135deg,#FF8A4C,#FF5E7E);
+  display:flex;align-items:center;justify-content:center;flex:none}
+.nt{font:800 25px/1.2 'Inter'} .nb{font:600 25px/1.3 'Inter';color:#C9CBD6}
+.nk{margin-left:auto;align-self:flex-start;margin-top:24px}
+.rep{position:absolute;left:0;right:0;top:300px;height:490px;padding:30px 34px}
+.metric{margin-top:26px;border-radius:20px;padding:18px 22px;background:rgba(255,255,255,.035);border:1.5px solid rgba(255,255,255,.06)}
+.metric.hot{border-color:rgba(255,138,76,.6);background:rgba(255,138,76,.07)}
+.mrow{display:flex;justify-content:space-between;align-items:baseline}
+.ml{font:700 27px/1 'Inter';color:#D5D7E0}
+.mv{font:900 44px/1 'Inter Display','Inter';letter-spacing:-1px}
+.bar{margin-top:14px;height:10px;border-radius:5px;background:rgba(255,255,255,.07);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,#FF8A4C,#FFB547)}
+
+/* S10 24/7 */
+.big24{position:absolute;left:380px;top:6px;font:900 190px/0.95 'Inter Display','Inter';letter-spacing:-6px}
+.big7{position:absolute;left:386px;top:186px;font:900 120px/1 'Inter Display','Inter';letter-spacing:-4px;color:var(--acc)}
+.sub{position:absolute;left:0;right:0;top:350px;text-align:center;font:700 36px/1.2 'Inter';color:#E6E7EC}
+.log{position:absolute;left:0;right:0;top:430px;height:360px;padding:22px 28px;display:flex;flex-direction:column;gap:14px}
+.lr{height:96px;border-radius:20px;background:rgba(255,255,255,.035);border:1.5px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;gap:22px;padding:0 24px;font:700 27px/1.2 'Inter'}
+.lr .tm{font:700 27px/1 'DejaVu Sans Mono',monospace;color:var(--acc2);width:100px}
+.lr .grow{flex:1}
+.lr .ck{color:var(--green);font:900 30px/1 'Inter'}
+.moon{position:absolute;left:30px;top:10px}
+
+/* S11 CTA */
+.dmhead{height:110px;display:flex;align-items:center;gap:20px;padding:0 30px;border-bottom:1.5px solid var(--line)}
+.dmav{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#FF8A4C,#FF5E7E);
+  font:900 26px/70px 'Inter';text-align:center;color:#fff;flex:none}
+.dmarea{position:absolute;left:0;right:0;top:112px;bottom:118px;padding:30px;display:flex;flex-direction:column;gap:18px;justify-content:flex-end}
+.dminput{position:absolute;left:24px;right:24px;bottom:22px;height:80px;border-radius:40px;background:rgba(255,255,255,.06);
+  border:1.5px solid rgba(255,255,255,.12);display:flex;align-items:center;padding:0 12px 0 30px;font:700 30px/1 'Inter'}
+.dminput .grow{flex:1}
+.send{width:62px;height:62px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center}
+.kw{font:900 56px/1 'Inter Display','Inter';letter-spacing:1px;padding:24px 40px}
+.seen{align-self:flex-end;font:600 20px/1 'Inter';color:var(--muted);margin-top:-8px}
+
+/* captions */
+#capwrap{position:absolute;left:30px;right:30px;top:960px;height:0;display:flex;align-items:center;justify-content:center}
+#cap{text-align:center;font:900 70px/1.06 'Inter Display','Inter';letter-spacing:-1.2px;color:#fff;
+  -webkit-text-stroke:13px #000;paint-order:stroke fill;text-shadow:0 8px 22px rgba(0,0,0,.5);white-space:pre-line}
+#cap b{color:var(--acc2);font-weight:900}
+</style>
+</head>
+<body>
+<div id="top">
+  <div id="glow1"></div><div id="glow2"></div><div id="dots"></div>
+
+  <!-- header -->
+  <div class="headline" id="hA">Prospection en <span>pilote automatique</span></div>
+  <div id="tracker"></div>
+  <div class="headline" id="hB">Envoie <span>« CLAUDE »</span> en DM</div>
+
+  <!-- S1 · Claude Code terminal -->
+  <div class="scene" id="s1">
+    <div class="card term">
+      <div class="tbar"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i><span>claude — ~/prospection</span></div>
+      <div class="tbody">
+        <div class="welcome">
+          <div><span class="cc">✻</span> Welcome to <b>Claude Code</b>!</div>
+          <div class="dim">/help for help</div>
+          <div class="dim">cwd: ~/prospection</div>
+        </div>
+        <div class="prompt"><span class="cc">&gt;</span> <span id="s1type"></span><span class="caret" id="s1caret"></span></div>
+        <div class="tl" id="s1l1"><span class="cc" id="s1spin">●</span> Je crée ton employé IA…</div>
+        <div class="tl dim" id="s1l2">  └ Recherche → Qualif → CRM → DM → RDV</div>
+        <div class="tl" id="s1l3"><span class="ok">✓</span> Employé IA prêt.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2 · AI employee finds, qualifies, scores -->
+  <div class="scene" id="s2">
+    <div class="card" style="position:absolute;top:20px;left:0;right:0;height:770px;padding:32px 34px">
+      <div class="prof">
+        <div class="avatar" id="s2av"><svg viewBox="0 0 64 64" width="60" height="60"><rect x="31" y="6" width="2.5" height="10" rx="1.2" fill="#fff"/><circle cx="32.2" cy="6" r="4" fill="#fff"/><rect x="11" y="16" width="42" height="34" rx="11" fill="#fff"/><circle cx="25" cy="33" r="4.6" fill="#FF6E62"/><circle cx="39" cy="33" r="4.6" fill="#FF6E62"/><rect x="5" y="27" width="5" height="12" rx="2.5" fill="#fff"/><rect x="54" y="27" width="5" height="12" rx="2.5" fill="#fff"/></svg></div>
+        <div>
+          <div class="pname">Employé IA</div>
+          <div class="status"><i id="s2dot"></i><span id="s2status">En ligne · cherche des prospects</span></div>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="search" id="s2search">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8D91A5" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.6-4.6"/></svg>
+          <span id="s2q"></span><span class="caret" id="s2caret"></span>
+        </div>
+        <div class="crit" id="s2crit">
+          <div class="tag" id="c0"><b>✓</b> Pub active</div>
+          <div class="tag" id="c1"><b>✓</b> Avis 4★+</div>
+          <div class="tag" id="c2"><b>✓</b> Sans suivi</div>
+          <div class="tag" id="c3"><b>✓</b> Ville ciblée</div>
+        </div>
+      </div>
+      <div class="list" id="s2list">
+        <div class="row" id="r0"><div class="ini" style="background:#3B6FF0">CD</div><div class="rt"><div class="rn">Clinique dentaire</div><div class="rc">Casablanca</div></div><div class="rs" id="rs0"></div></div>
+        <div class="row" id="r1"><div class="ini" style="background:#C04BD8">CE</div><div class="rt"><div class="rn">Centre esthétique</div><div class="rc">Rabat</div></div><div class="rs" id="rs1"></div></div>
+        <div class="row" id="r2"><div class="ini" style="background:#16A37C">AI</div><div class="rt"><div class="rn">Agence immobilière</div><div class="rc">Tanger</div></div><div class="rs" id="rs2"></div></div>
+        <div class="row" id="r3"><div class="ini" style="background:#D9822B">SB</div><div class="rt"><div class="rn">Salon de beauté</div><div class="rc">Marrakech</div></div><div class="rs" id="rs3"></div></div>
+        <div class="row" id="r4"><div class="ini" style="background:#4B5BD8">CK</div><div class="rt"><div class="rn">Cabinet de kiné</div><div class="rc">Agadir</div></div><div class="rs" id="rs4"></div></div>
+        <div class="scan" id="s2scan" style="left:0;right:0"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4 · CRM -->
+  <div class="scene" id="s4">
+    <div class="card" style="position:absolute;top:20px;left:0;right:0;height:770px;padding:32px 30px">
+      <div class="ctitle">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF8A4C" stroke-width="2.2"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/><path d="M4 11.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+        CRM <span class="muted">· Pipeline</span>
+      </div>
+      <div class="kan">
+        <div class="col"><div class="ch">Nouveaux</div><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
+        <div class="col hi"><div class="ch">Qualifiés <em id="kq">0</em></div>
+          <div class="kc" id="k0">Clinique dentaire<br><span class="ks">94</span></div>
+          <div class="kc" id="k1">Centre esthétique<br><span class="ks">88</span></div>
+          <div class="kc" id="k2">Agence immobilière<br><span class="ks">81</span></div>
+          <div class="kc" id="k3">Cabinet de kiné<br><span class="ks">76</span></div>
+        </div>
+        <div class="col"><div class="ch">Contactés</div><div class="ph"></div></div>
+        <div class="col"><div class="ch">RDV</div><div class="ph"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5 · personalised DM + email -->
+  <div class="scene" id="s5">
+    <div class="card" id="s5dm" style="position:absolute;top:20px;left:0;right:0;height:360px;padding:28px 32px">
+      <div class="mh">
+        <div class="ini" style="background:#3B6FF0">CD</div>
+        <div class="grow"><div class="rn">Clinique dentaire</div><div class="rc">Message direct · Casablanca</div></div>
+        <div class="tag acc" id="s5t1">✦ Personnalisé</div>
+      </div>
+      <div style="margin-top:30px"><div class="bub out" id="s5b"><span id="s5bt"></span></div></div>
+    </div>
+    <div class="card" id="s5mail" style="position:absolute;top:404px;left:0;right:0;height:386px;padding:28px 32px">
+      <div class="mh">
+        <div class="ini" style="background:#2A2D3A"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6 8.5-6"/></svg></div>
+        <div class="grow"><div class="rn">Email</div><div class="rc">À : Centre esthétique · Rabat</div></div>
+        <div class="tag acc" id="s5t2">✦ Personnalisé</div>
+      </div>
+      <div class="subj">Objet : Une idée pour votre agenda</div>
+      <div class="mbody">Bonjour, j'ai vu que vos clientes vous écrivent surtout le soir. Je vous montre comment ne plus en perdre une seule…</div>
+      <div class="sent" id="s5sent">Envoyé ✓</div>
+    </div>
+  </div>
+
+  <!-- S6 · appointment booked -->
+  <div class="scene" id="s6">
+    <div class="card" style="position:absolute;top:20px;left:0;right:0;height:770px;padding:32px 32px">
+      <div class="ctitle">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF8A4C" stroke-width="2.2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        Agenda <span class="muted">· Cette semaine</span>
+      </div>
+      <div class="cal" id="cal"></div>
+      <div class="toast" id="s6toast"><div class="ci">✓</div><div><div class="t1">Rendez-vous confirmé</div><div class="t2">Clinique dentaire · Jeudi 15:00</div></div></div>
+    </div>
+  </div>
+
+  <!-- S7 · reply handled -->
+  <div class="scene" id="s7">
+    <div class="card" style="position:absolute;top:20px;left:0;right:0;height:770px;padding:28px 32px">
+      <div class="mh">
+        <div class="ini" style="background:#3B6FF0">CD</div>
+        <div class="grow"><div class="rn">Clinique dentaire</div><div class="rc">Message direct · Casablanca</div></div>
+        
+      </div>
+      <div class="chat">
+        <div class="bub out" style="opacity:.45">Salam ! J'ai vu vos pubs implants à Casablanca…</div>
+        <div class="bub in" id="s7in" style="max-width:560px">Intéressant. C'est combien ?</div>
+        <div class="bub out typing" id="s7typ"><i></i><i></i><i></i></div>
+        <div class="bub out" id="s7out">On en parle 10 min ? Jeudi 15h ou vendredi 11h ?</div>
+      </div>
+      <div style="position:absolute;left:0;right:0;bottom:44px;display:flex;justify-content:center"><div class="tag green big" id="s7tag">⚡ Suivi automatique</div></div>
+    </div>
+  </div>
+
+  <!-- S7b · follow-ups -->
+  <div class="scene" id="s7b">
+    <div class="card" style="position:absolute;top:20px;left:0;right:0;height:770px;padding:32px 32px">
+      <div class="ctitle">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF8A4C" stroke-width="2.2" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg>
+        Relances <span class="muted">· sans y penser</span>
+      </div>
+      <div class="tline">
+        <div class="ti" id="ti0"><div class="dot"></div><div class="grow"><div class="tt">J+1 · WhatsApp</div><div class="rc">« Vous avez pu voir mon message ? »</div></div><div class="yes" id="tk0">✓</div></div>
+        <div class="ti" id="ti1"><div class="dot"></div><div class="grow"><div class="tt">J+3 · Email</div><div class="rc">« Je vous envoie un exemple concret. »</div></div><div class="yes" id="tk1">✓</div></div>
+        <div class="ti" id="ti2"><div class="dot"></div><div class="grow"><div class="tt">J+7 · Dernier rappel</div><div class="rc">« Je garde le créneau de jeudi ? »</div></div><div class="yes" id="tk2">✓</div></div>
+      </div>
+      <div class="badges"><div class="tag acc big" id="bg0">✦ Personnalisé</div><div class="tag green big" id="bg1">⚡ 100% automatique</div></div>
+    </div>
+  </div>
+
+  <!-- S8 · adapts to each situation -->
+  <div class="scene" id="s8">
+    <svg id="s8svg" width="960" height="800" style="position:absolute;inset:0" fill="none" stroke-width="4" stroke-linecap="round">
+      <path id="p0" d="M480 116 C480 180,160 170,160 236"/>
+      <path id="p1" d="M480 116 L480 236"/>
+      <path id="p2" d="M480 116 C480 180,800 170,800 236"/>
+      <path id="p3" d="M160 322 L160 400"/>
+      <path id="p4" d="M480 322 L480 400"/>
+      <path id="p5" d="M800 322 L800 400"/>
+      <path id="p6" d="M160 486 C160 570,480 560,480 640"/>
+      <path id="p7" d="M480 486 L480 640"/>
+      <path id="p8" d="M800 486 C800 570,480 560,480 640"/>
+    </svg>
+    <div class="node root" id="nr" style="left:270px;top:30px;width:420px">Nouveau prospect</div>
+    <div class="node" id="nb0" style="left:20px;top:236px;width:280px">Répond</div>
+    <div class="node" id="nb1" style="left:340px;top:236px;width:280px">Pas de réponse</div>
+    <div class="node" id="nb2" style="left:660px;top:236px;width:280px">Pas maintenant</div>
+    <div class="node" id="na0" style="left:20px;top:400px;width:280px">Propose un RDV</div>
+    <div class="node" id="na1" style="left:340px;top:400px;width:280px">Relance J+2</div>
+    <div class="node" id="na2" style="left:660px;top:400px;width:280px">Rappel J+30</div>
+    <div class="node fin" id="nf" style="left:250px;top:640px;width:460px">RDV pris ✓</div>
+  </div>
+
+  <!-- S9 · daily report -->
+  <div class="scene" id="s9">
+    <div class="notif" id="n1" style="top:4px">
+      <div class="appi"><svg viewBox="0 0 64 64" width="44" height="44"><rect x="11" y="16" width="42" height="34" rx="11" fill="#fff"/><circle cx="25" cy="33" r="4.6" fill="#FF6E62"/><circle cx="39" cy="33" r="4.6" fill="#FF6E62"/></svg></div>
+      <div><div class="nt">Employé IA <span class="muted">· DM · maintenant</span></div><div class="nb">Ton rapport du jour est prêt</div></div>
+    </div>
+    <div class="notif" id="n2" style="top:140px">
+      <div class="appi" style="background:linear-gradient(135deg,#5B8CFF,#7B5BFF)"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5l8.5 6 8.5-6"/></svg></div>
+      <div><div class="nt">Email <span class="muted">· 18:00</span></div><div class="nb">Rapport du jour · Employé IA</div></div>
+    </div>
+    <div class="card rep" id="rep">
+      <div class="ctitle" style="justify-content:space-between">Rapport du jour <span class="tag gray">Exemple</span></div>
+      <div class="metric" id="m0"><div class="mrow"><div class="ml">RDV pris</div><div class="mv" id="mv0">0</div></div><div class="bar"><i id="mb0"></i></div></div>
+      <div class="metric" id="m1"><div class="mrow"><div class="ml">Réponses</div><div class="mv" id="mv1">0</div></div><div class="bar"><i id="mb1"></i></div></div>
+      <div class="metric" id="m2"><div class="mrow"><div class="ml">Messages envoyés</div><div class="mv" id="mv2">0</div></div><div class="bar"><i id="mb2"></i></div></div>
+    </div>
+  </div>
+
+  <!-- S10 · 24/7 -->
+  <div class="scene" id="s10">
+    <svg class="moon" width="330" height="330" viewBox="0 0 330 330" id="clock">
+      <circle cx="165" cy="165" r="140" stroke="rgba(255,255,255,.1)" stroke-width="16" fill="none"/>
+      <circle id="clkarc" cx="165" cy="165" r="140" stroke="url(#gr)" stroke-width="16" fill="none" stroke-linecap="round"
+              transform="rotate(-90 165 165)" stroke-dasharray="879.6" stroke-dashoffset="879.6"/>
+      <defs><linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A4C"/><stop offset="1" stop-color="#FFB547"/></linearGradient></defs>
+      <g id="hand"><line x1="165" y1="165" x2="165" y2="62" stroke="#fff" stroke-width="10" stroke-linecap="round"/></g>
+      <g id="hand2"><line x1="165" y1="165" x2="165" y2="100" stroke="#FF8A4C" stroke-width="10" stroke-linecap="round"/></g>
+      <circle cx="165" cy="165" r="13" fill="#fff"/>
+    </svg>
+    <div class="big24" id="b24">H24</div>
+    <div class="big7" id="b7">7j/7</div>
+    <div class="sub" id="sub1">Pendant que tu dors, il prospecte.</div>
+    <div class="sub" id="sub2">À brancher sur <span style="color:var(--acc)">ton business</span>.</div>
+    <div class="card log">
+      <div class="lr" id="l0"><div class="tm">03:12</div><div class="grow">DM envoyé · Agence immo</div><div class="ck">✓</div></div>
+      <div class="lr" id="l1"><div class="tm">05:47</div><div class="grow">Relance J+3 · Centre esthétique</div><div class="ck">✓</div></div>
+      <div class="lr" id="l2"><div class="tm">23:40</div><div class="grow">RDV confirmé · Cabinet de kiné</div><div class="ck">✓</div></div>
+    </div>
+  </div>
+
+  <!-- S11 · CTA -->
+  <div class="scene" id="s11">
+    <div class="card" style="position:absolute;top:20px;left:0;right:0;height:770px;overflow:hidden">
+      <div class="dmhead">
+        <div class="dmav">SL</div>
+        <div><div class="rn">lemrateh_</div><div class="rc">Saad · SOGIXEL</div></div>
+      </div>
+      <div class="dmarea">
+        <div class="bub out kw" id="kwb">CLAUDE</div>
+        <div class="seen" id="seen">Vu</div>
+        <div class="bub in" id="rpl" style="max-width:640px">Top ! Je t'envoie la méthode avec Claude Code 👇</div>
+      </div>
+      <div class="dminput">
+        <div class="grow"><span id="inph" style="color:#6E7285">Message…</span><span id="inty"></span><span class="caret" id="incaret"></span></div>
+        <div class="send" id="send"><svg width="30" height="30" viewBox="0 0 24 24" fill="#17110C"><path d="M3 20l18-8L3 4l2.5 8L3 20z"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="seam"></div>
+</div>
+<div id="shade"></div>
+<div id="capwrap"><div id="cap"></div></div>
+
+<script>
+/* ---------- timing helpers ---------- */
+const $ = id => document.getElementById(id);
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const E = {
+  out: x => 1 - Math.pow(1 - x, 3),
+  back: x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); },
+  io: x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
+};
+const P = (t, a, d = .35, ease = E.out) => ease(cl((t - a) / d));
+
+function pop(el, t, at, opt = {}) {           // fade + rise (or scale) in at time `at`
+  const { d = .32, dy = 26, s = 0, dx = 0, until = 1e9 } = opt;
+  if (typeof el === 'string') el = $(el);
+  const k = P(t, at, d);
+  const kb = s ? P(t, at, d + .1, E.back) : k;
+  let o = k;
+  if (t > until) o *= 1 - cl((t - until) / .2);
+  el.style.opacity = o;
+  el.style.transform = `translate(${(1 - k) * dx}px,${(1 - k) * dy}px) scale(${s ? (1 - s) + s * kb : 1})`;
+  el.style.visibility = o > .001 ? 'visible' : 'hidden';
+}
+function typed(el, text, t, a, b) {
+  const n = Math.round(text.length * cl((t - a) / (b - a)));
+  (typeof el === 'string' ? $(el) : el).textContent = text.slice(0, n);
+}
+const blink = t => (Math.floor(t * 2.6) % 2 === 0 ? 1 : 0);
+
+/* ---------- scene schedule ---------- */
+const SCENES = [
+  ['s1', 0, 3.9], ['s2', 3.9, 12.2], ['s4', 12.2, 13.5], ['s5', 13.5, 17.1], ['s6', 17.1, 20.2],
+  ['s7', 20.2, 23.1], ['s7b', 23.1, 27.4], ['s8', 27.4, 33.4], ['s9', 33.4, 42.3], ['s10', 42.3, 48.9], ['s11', 48.9, 999],
+];
+function drive(t) {
+  for (const [id, s, e] of SCENES) {
+    const el = $(id);
+    if (t < s || t > e + .28) { el.style.visibility = 'hidden'; el.style.opacity = 0; continue; }
+    const ki = s === 0 ? 1 : P(t, s, .38);
+    let o = ki, y = (1 - ki) * 46, sc = .965 + .035 * ki;
+    if (t > e) { const ko = cl((t - e) / .28); o *= 1 - ko; y -= E.out(ko) * 40; sc -= ko * .02; }
+    el.style.visibility = o > .001 ? 'visible' : 'hidden';
+    el.style.opacity = o;
+    el.style.transform = `translateY(${y}px) scale(${sc})`;
+  }
+}
+
+/* ---------- header: headline / step tracker ---------- */
+const STEPS = [['Trouver', 3.9], ['Qualifier', 8.6], ['CRM', 12.2], ['Contacter', 13.5], ['RDV', 17.1], ['Relancer', 20.2], ['Rapport', 33.4]];
+const ALL_DONE = 42.3;
+$('tracker').innerHTML = STEPS.map((s, i) => `<div class="pill" id="st${i}"><span class="ic"></span>${s[0]}</div>`).join('');
+let TR_FIT = null;
+function trackerFit() {
+  const tr = $('tracker');
+  STEPS.forEach((s, i) => { const el = $('st' + i); el.className = 'pill done'; el.querySelector('.ic').textContent = '✓'; });
+  const w = [...tr.children].reduce((a, c) => a + c.offsetWidth, 0) + 8 * (STEPS.length - 1) + 24;
+  return Math.min(1, 1030 / w);
+}
+function header(t) {
+  if (TR_FIT === null) TR_FIT = trackerFit();
+  const ha = $('hA'); ha.style.opacity = 1 - cl((t - 3.7) / .22); ha.style.visibility = t < 3.95 ? 'visible' : 'hidden';
+  pop('hB', t, 48.95, { s: .25, dy: 0 });
+  const tr = $('tracker');
+  const kin = P(t, 3.9, .4), kout = 1 - cl((t - 48.75) / .2);
+  tr.style.opacity = kin * kout; tr.style.transform = `translateY(${(1 - kin) * -20}px) scale(${TR_FIT})`;
+  STEPS.forEach((s, i) => {
+    const el = $('st' + i), next = i + 1 < STEPS.length ? STEPS[i + 1][1] : ALL_DONE;
+    const ic = el.querySelector('.ic');
+    let cls = 'pill', sc = 1;
+    if (t >= next) { cls += ' done'; ic.textContent = '✓'; }
+    else if (t >= s[1]) { cls += ' active'; ic.textContent = ''; sc = 1 + .1 * (1 - P(t, s[1], .3, E.back)) + .06; }
+    else ic.textContent = '';
+    if (t >= ALL_DONE) { const k = P(t, ALL_DONE + i * .06, .3, E.back); sc = 1 + .12 * Math.sin(Math.PI * cl((t - ALL_DONE - i * .06) / .3)); }
+    el.className = cls; el.style.transform = `scale(${sc})`;
+  });
+}
+
+/* ---------- S1 ---------- */
+const S1_PROMPT = 'Crée un employé IA qui trouve des prospects, les qualifie, les contacte et prend des RDV.';
+function s1(t) {
+  typed('s1type', S1_PROMPT, t, .3, 2.25);
+  $('s1caret').style.opacity = t < 2.3 ? 1 : blink(t);
+  pop('s1l1', t, 2.4, { d: .2, dy: 10 });
+  pop('s1l2', t, 2.8, { d: .2, dy: 10 });
+  pop('s1l3', t, 3.25, { d: .25, dy: 10 });
+  $('s1spin').textContent = t < 3.25 ? '✻✶✳✢'[Math.floor(t * 8) % 4] : '●';
+}
+
+/* ---------- S2 ---------- */
+const S2_Q = 'Cliniques, cabinets, agences · Maroc';
+const PASS = [1, 1, 1, 0, 1], SCORE = [94, 88, 81, 0, 76];
+function s2(t) {
+  $('s2status').textContent = t < 8.6 ? 'En ligne · cherche des prospects' : t < 11.3 ? 'Qualifie les prospects…' : 'Score les prospects…';
+  const pulse = (t * 1.4) % 1;
+  $('s2dot').style.boxShadow = `0 0 0 ${pulse * 12}px rgba(52,211,153,${.5 * (1 - pulse)})`;
+  pop('s2av', t, 4.0, { s: .3, dy: 0 });
+  // search bar → criteria
+  typed('s2q', S2_Q, t, 4.6, 5.7);
+  $('s2caret').style.opacity = t < 5.75 ? 1 : blink(t);
+  pop('s2search', t, 4.3, { until: 8.5 });
+  pop('s2crit', t, 8.62, { d: .3 });
+  for (let i = 0; i < 4; i++) {
+    pop('c' + i, t, 8.7 + i * .38, { s: .3, dy: 0 });
+    $('c' + i).querySelector('b').style.opacity = P(t, 9.0 + i * .38, .2);
+  }
+  // rows
+  for (let i = 0; i < 5; i++) {
+    const row = $('r' + i), rs = $('rs' + i);
+    pop(row, t, 6.0 + i * .42, { dx: -60, dy: 0, d: .35 });
+    const tq = 9.7 + i * .22, ts = 11.36 + i * .14;
+    if (t < tq) rs.innerHTML = '<div class="found">Trouvé</div>';
+    else if (!PASS[i]) rs.innerHTML = '<div class="no">✕</div>';
+    else if (t < ts) rs.innerHTML = '<div class="yes">✓</div>';
+    else rs.innerHTML = `<div class="score">${Math.round(SCORE[i] * P(t, ts, .6))}</div>`;
+    const badge = rs.firstChild;
+    const ta = t < tq ? 6.25 + i * .42 : t < ts || !PASS[i] ? tq : ts;
+    badge.style.transform = `scale(${.4 + .6 * P(t, ta, .3, E.back)})`;
+    if (!PASS[i]) {
+      const k = P(t, tq + .1, .4);
+      row.style.opacity = Math.min(+row.style.opacity, 1 - .6 * k);
+      row.querySelector('.rn').style.textDecoration = k > .5 ? 'line-through' : 'none';
+    }
+    row.style.borderColor = PASS[i] && t >= ts ? `rgba(255,138,76,${.45 * P(t, ts, .3)})` : 'rgba(255,255,255,.06)';
+  }
+  // scanning band
+  const sc = $('s2scan');
+  if (t > 6.0 && t < 8.55) { const k = ((t - 6.0) / .9) % 1; sc.style.opacity = 1; sc.style.top = (-10 + k * 420) + 'px'; }
+  else if (t > 9.55 && t < 10.75) { const k = (t - 9.55) / 1.2; sc.style.opacity = 1; sc.style.top = (-10 + k * 420) + 'px'; }
+  else sc.style.opacity = 0;
+  // fly out to CRM
+  if (t > 12.0) $('s2list').style.transform = `translateY(${-E.io(cl((t - 12.0) / .4)) * 30}px)`;
+  else $('s2list').style.transform = '';
+}
+
+/* ---------- S4 ---------- */
+function s4(t) {
+  let n = 0;
+  for (let i = 0; i < 4; i++) {
+    const at = 12.4 + i * .17;
+    pop('k' + i, t, at, { dy: -70, d: .3, s: .1 });
+    if (t >= at + .1) n++;
+  }
+  $('kq').textContent = n;
+}
+
+/* ---------- S5 ---------- */
+const S5_MSG = "Salam ! J'ai vu vos pubs implants à Casablanca. Vous répondez comment aux messages du soir ?";
+function s5(t) {
+  pop('s5b', t, 13.75, { s: .15, dy: 10 });
+  typed('s5bt', S5_MSG, t, 13.8, 15.1);
+  pop('s5t1', t, 14.75, { s: .4, dy: 0 });
+  pop('s5mail', t, 15.5, { dy: 60, d: .4 });
+  pop('s5t2', t, 16.0, { s: .4, dy: 0 });
+  pop('s5sent', t, 16.5, { s: .4, dy: 0 });
+}
+
+/* ---------- S6 ---------- */
+const DAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'], HOURS = ['10:00', '11:00', '15:00', '16:00'];
+const BUSY = { '0-0': 1, '1-2': 1, '2-1': 1, '4-3': 1, '3-0': 1, '1-3': 1 };
+$('cal').innerHTML = '<div class="hd"></div>' + DAYS.map(d => `<div class="dh">${d}</div>`).join('') +
+  HOURS.map((h, r) => `<div class="tm">${h}</div>` + DAYS.map((d, c) =>
+    `<div class="cell ${BUSY[c + '-' + r] ? 'busy' : ''}" id="cc${c}${r}">${BUSY[c + '-' + r] ? 'Occupé' : ''}${c === 3 && r === 2 ? '<div class="fill" id="tgfill">RDV<br>Clinique dentaire</div>' : ''}</div>`).join('')).join('');
+function s6(t) {
+  const cell = $('cc32'), f = $('tgfill');
+  const hl = t > 17.6 && t < 18.1 ? .5 + .5 * Math.sin((t - 17.6) * 25) : 0;
+  cell.style.borderColor = `rgba(255,138,76,${t > 17.6 ? Math.max(hl, t >= 18.1 ? 1 : 0) : 0})`;
+  const k = P(t, 18.1, .3, E.back);
+  f.style.opacity = P(t, 18.1, .15); f.style.transform = `scale(${.6 + .4 * k})`;
+  cell.style.boxShadow = t >= 18.1 ? `0 0 ${40 * P(t, 18.1, .4)}px rgba(255,138,76,.6)` : 'none';
+  pop('s6toast', t, 18.75, { dy: 60, d: .38 });
+}
+
+/* ---------- S7 ---------- */
+function s7(t) {
+  pop('s7in', t, 20.85, { s: .2, dy: 20, dx: -20 });
+  const typ = $('s7typ'), out = $('s7out');
+  typ.style.display = t < 22.05 ? 'flex' : 'none';
+  out.style.display = t < 22.05 ? 'none' : 'block';
+  pop(typ, t, 21.4, { d: .2, dy: 10 });
+  typ.querySelectorAll('i').forEach((d, i) => d.style.opacity = .35 + .65 * (Math.sin(t * 9 - i * 1.1) * .5 + .5));
+  pop(out, t, 22.05, { s: .15, dy: 16 });
+  pop('s7tag', t, 22.3, { s: .4, dy: 0 });
+}
+function s7b(t) {
+  for (let i = 0; i < 3; i++) {
+    pop('ti' + i, t, 23.25 + i * .45, { dx: 60, dy: 0 });
+    pop('tk' + i, t, 23.55 + i * .45, { s: .7, dy: 0 });
+  }
+  pop('bg0', t, 25.3, { s: .4, dy: 20 });
+  pop('bg1', t, 25.75, { s: .4, dy: 20 });
+}
+
+/* ---------- S8 ---------- */
+const PATHS = [...Array(9)].map((_, i) => $('p' + i));
+PATHS.forEach(p => { const L = p.getTotalLength(); p.dataset.L = L; p.style.strokeDasharray = L; });
+function s8(t) {
+  pop('nr', t, 27.55, { s: .2, dy: 0 });
+  const draw = (i, a, d = .45) => { const p = PATHS[i]; p.style.strokeDashoffset = p.dataset.L * (1 - P(t, a, d, E.io)); };
+  [0, 1, 2].forEach(i => draw(i, 27.85 + i * .12));
+  [0, 1, 2].forEach(i => pop('nb' + i, t, 28.2 + i * .12, { s: .2, dy: 0 }));
+  [3, 4, 5].forEach((p, i) => draw(p, 28.55 + i * .12, .3));
+  [0, 1, 2].forEach(i => pop('na' + i, t, 28.8 + i * .12, { s: .2, dy: 0 }));
+  [6, 7, 8].forEach((p, i) => draw(p, 31.3 + i * .08, .45));
+  pop('nf', t, 31.7, { s: .35, dy: 0 });
+  // walk the branches one by one: "selon la situation"
+  const hot = t >= 29.5 && t < 31.3 ? Math.floor((t - 29.5) / .6) : -1;
+  for (let i = 0; i < 3; i++) {
+    const h = hot === i;
+    $('nb' + i).classList.toggle('hot', h); $('na' + i).classList.toggle('hot', h);
+    [i, 3 + i].forEach(p => PATHS[p].setAttribute('stroke', h ? '#FF8A4C' : 'rgba(255,255,255,.28)'));
+    PATHS[6 + i].setAttribute('stroke', t >= 31.3 ? '#34D399' : 'rgba(255,255,255,.28)');
+  }
+}
+
+/* ---------- S9 ---------- */
+const MET = [[6, 37.4, 1.1, 6 / 10], [27, 40.0, .9, 27 / 40], [120, 41.1, .9, 1]];
+function s9(t) {
+  pop('n1', t, 33.55, { dy: -60, d: .4 });
+  pop('n2', t, 35.25, { dy: -60, d: .4 });
+  pop('rep', t, 36.3, { dy: 60, d: .45 });
+  MET.forEach(([v, a, d, w], i) => {
+    pop('m' + i, t, 36.6 + i * .2, { dy: 16 });
+    const k = P(t, a, d);
+    $('mv' + i).textContent = Math.round(v * k);
+    $('mb' + i).style.width = (w * k * 100) + '%';
+    $('m' + i).classList.toggle('hot', t >= a && t < a + d + .5);
+  });
+}
+
+/* ---------- S10 ---------- */
+function s10(t) {
+  const u = t - 42.3;
+  $('hand').setAttribute('transform', `rotate(${u * 300} 165 165)`);
+  $('hand2').setAttribute('transform', `rotate(${u * 25} 165 165)`);
+  $('clkarc').setAttribute('stroke-dashoffset', 879.6 * (1 - P(t, 42.5, 2.2, E.io)));
+  pop('b24', t, 42.75, { s: .35, dy: 0 });
+  pop('b7', t, 44.0, { s: .35, dy: 0 });
+  pop('sub1', t, 44.6, { dy: 16, until: 47.05 });
+  pop('sub2', t, 47.2, { dy: 16 });
+  [0, 1, 2].forEach(i => pop('l' + i, t, 43.4 + i * .65, { dx: 50, dy: 0 }));
+  const gc = t >= 46.0 ? 1 + .08 * Math.sin(Math.PI * cl((t - 46.0) / .35)) : 1;
+  $('b24').style.transform += ` scale(${gc})`; $('b7').style.transform += ` scale(${gc})`;
+}
+
+/* ---------- S11 ---------- */
+function s11(t) {
+  const typing = t >= 50.2 && t < 51.15;
+  $('inph').style.display = t < 50.2 || t >= 51.15 ? 'inline' : 'none';
+  typed('inty', t < 51.15 ? 'CLAUDE' : '', t, 50.2, 50.85);
+  $('incaret').style.opacity = typing ? 1 : 0;
+  const sp = t >= 50.9 && t < 51.3 ? 1 + .18 * Math.sin(Math.PI * (t - 50.9) / .4) : 1;
+  $('send').style.transform = `scale(${sp})`;
+  $('send').style.boxShadow = t >= 50.85 ? `0 0 ${30 * (1 - cl((t - 50.9) / .8))}px rgba(255,138,76,.9)` : 'none';
+  pop('kwb', t, 51.15, { s: .45, dy: 40 });
+  pop('seen', t, 51.9, { d: .2, dy: 0 });
+  pop('rpl', t, 52.3, { s: .2, dy: 20, dx: -20 });
+}
+
+/* ---------- captions (Darija, Latin script) ---------- */
+const CAPS = [
+  [0.00, 0.86, 'Khouane, daba'], [0.86, 1.78, 'm3a *Claude Code*'], [1.78, 2.58, 'la *prospection*'],
+  [2.58, 3.88, 'wlat *très facile*'], [3.88, 5.38, 'wlliti tqder tprogrammi'], [5.38, 6.70, '*AI employee*'],
+  [6.80, 7.66, 'ymchi y9elleb'], [7.66, 8.70, '3la les *prospects*'], [8.86, 9.84, 'b les termes'],
+  [9.84, 11.20, 'de *qualification*'], [11.36, 12.16, '*yscorihom*'], [12.16, 13.40, 'yintégrihom f *CRM*'],
+  [13.60, 14.60, 'daba ysifet lihom'], [14.60, 15.55, '*DM personnalisé*'], [15.55, 16.80, 'wla *email personnalisé*'],
+  [17.28, 17.98, 'w ychedd m3ahom'], [17.98, 18.70, '*rendez-vous*'], [18.74, 19.80, 'bach tkemmel le process'],
+  [20.40, 21.46, 'w zid kolla ma jaweb'], [21.46, 22.18, 'chi 7ed, ghadi ydih'], [22.18, 23.10, 'm3a le *suivi*'],
+  [23.10, 23.85, 'w les *relances*'], [24.25, 26.60, 'kolchi *personnalisé*'], [26.80, 28.70, 'kolchi mdbout'],
+  [28.70, 30.85, '3la 7sab la *situation*'], [31.39, 33.40, '7ta tkemmel le process'], [33.48, 34.26, 'w ywsslek'],
+  [34.26, 35.20, 'wla yjik *DM*'], [35.20, 36.28, 'wla ywsslek *email*'], [36.28, 37.30, 'b *l7assila*'],
+  [37.30, 39.15, 'dyal chno dar lyoum'], [40.00, 41.10, 'ch7al men wa7ed *jawbo*'], [41.10, 42.20, 'ch7al men wa7ed\n*siftou lih*'],
+  [42.76, 44.00, '*H24*'], [44.00, 45.10, '*7j/7*'], [45.10, 46.00, "donc c'est vraiment"], [46.00, 47.10, 'un *game changer*'],
+  [47.19, 48.35, "khassek t'intégrih\nf business dyalek"], [48.89, 50.08, 'ila bghiti nwrik kifach'], [50.08, 51.00, 'sifet liya f DM'],
+  [51.00, 51.95, '*« CLAUDE »*'], [51.99, 53.40, 'w ncharek m3ak kifach'],
+];
+const capHTML = s => s.replace(/\*(.+?)\*/g, '<b>$1</b>');
+let lastCap = -1;
+function captions(t) {
+  const i = CAPS.findIndex(c => t >= c[0] && t < c[1]);
+  const el = $('cap');
+  if (i !== lastCap) { el.innerHTML = i < 0 ? '' : capHTML(CAPS[i][2]); lastCap = i; }
+  if (i < 0) return;
+  const k = P(t, CAPS[i][0], .16, E.back);
+  el.style.transform = `scale(${.78 + .22 * k})`;
+  el.style.opacity = P(t, CAPS[i][0], .08);
+}
+
+/* ---------- frame entry point ---------- */
+window.render = t => {
+  drive(t); header(t);
+  s1(t); s2(t); s4(t); s5(t); s6(t); s7(t); s7b(t); s8(t); s9(t); s10(t); s11(t);
+  captions(t);
+};
+window.CAPS = CAPS;
+render(0);
+</script>
+</body>
+</html>
