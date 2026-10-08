@@ -227,7 +227,7 @@
       <svg class="disc" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="url(#lensG)" stroke="#01115f" stroke-width="3"/><path d="M22 36 Q34 18 56 16" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".85"/><circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="10" id="discRing"/></svg>
       <div class="nm"><div class="a" id="lensA">MASTER</div><div class="b" id="lensB">Luxe</div></div>
     </div>
-    <div class="pills"><div class="pill c" id="p174">1.74</div><div class="pill y" id="porg">organique</div><div class="pill g" id="pplas">= البلاستيك</div></div>
+    <div class="pills"><div class="pill c" id="p174">1.74</div><div class="pill y" id="porg">organique</div></div>
     <div class="cmp" id="cmp">
       <div class="prof" id="prof1"><svg viewBox="0 0 200 190"><path d="M30 10 Q92 95 30 180 H82 Q110 95 82 10 Z" fill="url(#lensG)" stroke="#01115f" stroke-width="4" stroke-linejoin="round"/></svg>
         <div class="lb nv">MASTER LUXE</div></div>
@@ -403,7 +403,7 @@ tl.fromTo("#lens", { autoAlpha: 0, rotationX: -70, y: 60, transformPerspective: 
 tl.fromTo(".disc", { rotation: -200, scale: 0.4 }, { rotation: 0, scale: 1, duration: 0.6, ease: "back.out(1.6)" }, E.lens_in + 0.05);
 tl.fromTo("#lensA", { autoAlpha: 0, clipPath: "inset(0 100% 0 0)" }, { autoAlpha: 1, clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "power2.inOut" }, E.lens_name - 0.06);
 tl.fromTo("#lensB", { autoAlpha: 1, clipPath: "inset(-30% 100% -30% -10%)" }, { clipPath: "inset(-30% -10% -30% -10%)", duration: 0.45, ease: "power2.inOut" }, E.lens_name + 0.3);
-[["#p174", E.lens_org - 0.5], ["#porg", E.lens_org], ["#pplas", E.lens_plastic]].forEach(([id, t]) =>
+[["#p174", E.lens_org - 0.5], ["#porg", E.lens_org]].forEach(([id, t]) =>
   tl.fromTo(id, { autoAlpha: 0, scale: 0.3, y: 20 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(2.6)" }, t - 0.04));
 tl.to("#cmp", { height: 250, opacity: 1, duration: 0.36, ease: out3 }, E.lens_thin - 0.3);
 tl.fromTo("#prof1", { scale: 0.4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.3, ease: "back.out(2.2)" }, E.lens_thin - 0.1);

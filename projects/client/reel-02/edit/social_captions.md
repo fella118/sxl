@@ -36,13 +36,13 @@ Facts only from what he says on camera. Hashtags at the end; swap freely.
 
 3. 1.50، 1.56، 1.60، 1.67 ولا 1.74؟ 🤯
    هادو هما les indices ديال الزاج، وكيتختارو على حساب la correction.
-   وعندنا Master Luxe: 1.74 organique (البلاستيك) وكيجي أرق من 1.74 normal ✨
+   وعندنا Master Luxe: 1.74 organique وكيجي أرق من 1.74 normal ✨
    سوفݣاردي الفيديو وبارطاجيه 🔖
    #GzenayaOptique #MasterLuxe #نظارات #verres #lunettes
 
 ## Part 3 — "عندي moins dix… الزاج ديما غليظ"
 
-1. عندك moins dix والزاج ديما كيجيك غليظ من الجناح؟ 😩
+1. عندك moins dix والزاج ديما كيجيك غليظ من الجناب؟ 😩
    الحل ماشي غير فالزاج، الحل فla monture 👓
    قرا الأرقام اللي على الجنب ديالها: le diamètre ماخاصوش يفوت 48، ومن الأحسن 46 ✅
    سوفݣاردي الفيديو 🔖

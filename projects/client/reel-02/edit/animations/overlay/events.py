@@ -148,7 +148,8 @@ if "A2" in BEATS:
             {"c": s(24.68, C26), "i": s(27.22, C26)},
             {"c": s(28.29, C26), "i": s(30.47, C26), "m": s(32.03, C26)},
         ],
-        "lens_in": lens_in, "lens_name": s(36.75, C26), "lens_org": s(39.48, C26), "lens_plastic": s(41.66, C26),
+        # "يعني كيفما كيقولو الناس البلاستيك" is cut from the reel (client, v4): no "plastique" pill
+        "lens_in": lens_in, "lens_name": s(36.75, C26), "lens_org": s(39.48, C26),
         "lens_thin": s(43.28, C26), "lens_normal": s(44.78, C26), "lens_out": beat_end("A2") - 0.05,
     })
 
@@ -158,7 +159,7 @@ if "Q3" in BEATS:
         phrase("q3a", C22, [[(1.30, "small", None), (1.74, "small", None)], [(2.18, "num", "yellow", "-10")]],
                end=s(3.21, C22)),
         phrase("q3b", C22, [[(3.21, "small", None), (3.87, "small", None), (4.25, "small", None)],
-                            [(4.65, "key", "yellow"), (4.93, "small", None, "من الجناح")]], end=s(5.78, C22)),
+                            [(4.65, "key", "yellow"), (4.93, "small", None, "من الجناب")]], end=s(5.78, C22)),
         phrase("q3c", C22, [[(5.78, "small", None), (6.08, "small", None), (6.36, "small", None)],
                             [(6.54, "key", "navy", "حل؟")]], end=beat_end("Q3") - 0.03),
     ]

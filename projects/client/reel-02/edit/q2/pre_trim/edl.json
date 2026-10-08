@@ -129,7 +129,13 @@
   {
    "source": "C2426",
    "start": 39.38,
-   "end": 40.04,
+   "end": 40.4,
+   "beat": "A2"
+  },
+  {
+   "source": "C2426",
+   "start": 40.74,
+   "end": 42.32,
    "beat": "A2"
   },
   {
@@ -145,5 +151,5 @@
    "beat": "CTA"
   }
  ],
- "total_duration_s": 36.06
+ "total_duration_s": 38.0
 }

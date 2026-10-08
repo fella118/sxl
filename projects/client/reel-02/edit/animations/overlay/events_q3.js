@@ -93,7 +93,7 @@ window.EV = {
       "color": "yellow"
      },
      {
-      "t": "من الجناح",
+      "t": "من الجناب",
       "at": 3.173,
       "role": "small",
       "color": null

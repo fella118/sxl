@@ -101,3 +101,28 @@ vad_probs.py) if needed.
   - Q3 v3: 34.94 s, -14.0 LUFS, -1.5 dBTP, head check clean.
 - **Sent:** q2/reel-02_q2_preview_v3_review.mp4,
   q3/reel-02_q3_preview_v3_review.mp4.
+
+## Session (cont.), client fixes, 2026-10-08 (Q2 v4, Q3 v4)
+
+The client refers to the last batch by send order: "Q1" = the Master Luxe
+reel (q2), "Q2" = the monture reel (q3).
+
+- **q2: "البلاستيك" out.**
+  - The cut drops "يعني كيفما كيقولو الناس البلاستيك" (C2426 40.04-42.75; the
+    joint at 40.04 sits on the energy dip after "organique"). The sentence now
+    reads "كيجي 1.74 organique، و كيجي رقيق على 1.74 normal": 1.94 s
+    (97 frames), 38.00 -> 36.06 s.
+  - The "= البلاستيك" pill is gone from the lens card, and "(البلاستيك)" from
+    post caption 3.
+  - The raw clips are off disk, so the cut was applied to the rendered assets
+    with trim_rendered.py. The same output frames come out of base.mp4,
+    mask.mkv, facepos.json and mix.wav (30 ms fades, length frame-exact), and
+    timeline.json/edl.json are rewritten.
+  - Originals are in q2/pre_trim/. To re-cut from sources instead, end the A2
+    passage at 40.04 and restart it at 42.78 in cut.py.
+- **q3: "من الجناح" -> "من الجناب"** in the question caption and in post
+  caption 1 of Part 3.
+- **QC:** q2 v4 36.06 s, -13.9 LUFS, -1.5 dBTP; q3 v4 34.94 s, -14.0 LUFS,
+  -1.5 dBTP; head checks clean.
+- **Sent:** q2/reel-02_q2_preview_v4_review.mp4,
+  q3/reel-02_q3_preview_v4_review.mp4.

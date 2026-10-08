@@ -1,5 +1,5 @@
 window.EV = {
- "duration": 38.0,
+ "duration": 36.06,
  "reel": "q2",
  "cutaways": [],
  "gray": [
@@ -36,12 +36,11 @@ window.EV = {
  "lens_in": 25.832,
  "lens_name": 26.712,
  "lens_org": 29.275,
- "lens_plastic": 31.117,
- "lens_thin": 32.278,
- "lens_normal": 33.78,
- "lens_out": 34.010000000000005,
- "save_in": 34.023,
- "save_fill": 34.464999999999996,
+ "lens_thin": 30.338,
+ "lens_normal": 31.84,
+ "lens_out": 32.07,
+ "save_in": 32.083,
+ "save_fill": 32.519999999999996,
  "phrases": [
   {
    "id": "q2a",
@@ -226,21 +225,21 @@ window.EV = {
   },
   {
    "id": "c1",
-   "start": 34.626,
-   "end": 35.44,
+   "start": 32.686,
+   "end": 33.5,
    "x": 520,
    "y": 170,
    "lines": [
     [
      {
       "t": "هاد",
-      "at": 34.626,
+      "at": 32.686,
       "role": "small",
       "color": null
      },
      {
       "t": "la vidéo",
-      "at": 34.766,
+      "at": 32.826,
       "role": "key",
       "color": "navy"
      }
@@ -251,39 +250,39 @@ window.EV = {
   },
   {
    "id": "c2",
-   "start": 35.49,
-   "end": 38.0,
+   "start": 33.55,
+   "end": 36.06,
    "x": 520,
    "y": 170,
    "lines": [
     [
      {
       "t": "غتحتاجو",
-      "at": 35.49,
+      "at": 33.55,
       "role": "small",
       "color": null
      },
      {
       "t": "نهار",
-      "at": 35.972,
+      "at": 34.032,
       "role": "small",
       "color": null
      },
      {
       "t": "اللي",
-      "at": 36.052,
+      "at": 34.112,
       "role": "small",
       "color": null
      },
      {
       "t": "غتبغي",
-      "at": 36.213,
+      "at": 34.273,
       "role": "small",
       "color": null
      },
      {
       "t": "دير",
-      "at": 36.535,
+      "at": 34.595,
       "role": "small",
       "color": null
      }
@@ -291,7 +290,7 @@ window.EV = {
     [
      {
       "t": "نضاضر",
-      "at": 36.736,
+      "at": 34.796,
       "role": "key",
       "color": "yellow"
      }
@@ -315,7 +314,7 @@ window.EV = {
   {
    "kind": "a",
    "start": 4.47,
-   "end": 34.01
+   "end": 32.07
   }
  ],
  "walls": [
