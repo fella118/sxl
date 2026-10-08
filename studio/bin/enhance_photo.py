@@ -105,7 +105,12 @@ def upscale4(rgb8: np.ndarray, tile: int = 192, pad: int = 12) -> np.ndarray:
 
 
 def hdr_look(img_bgr: np.ndarray, amount: float = 1.0) -> np.ndarray:
-    """Local tone mapping on L (Lab): base/detail split with an edge-aware filter."""
+    """Local tone mapping on L (Lab): base/detail split with an edge-aware filter.
+
+    Shadows and dark midtones open up (faces in shade, dark clothes), highlights
+    are held, local detail gets moderate clarity, and colours gain vibrance
+    except in the skin-hue band, so faces stay natural (no orange cast).
+    """
     import cv2
     if amount <= 0:
         return img_bgr
@@ -114,22 +119,18 @@ def hdr_look(img_bgr: np.ndarray, amount: float = 1.0) -> np.ndarray:
     short = min(L.shape)
     base = cv2.bilateralFilter(L, d=0, sigmaColor=0.12, sigmaSpace=short / 60)
     detail = L - base
-    # tone curve on the base: lift shadows, hold highlights
-    lift, hold = 0.22 * amount, 0.16 * amount
-    b = base + lift * (1 - base) ** 3 * base * 2.2 - hold * base ** 4
+    lift, hold = 0.26 * amount, 0.10 * amount
+    b = base + lift * base * (1 - base) ** 2 * 2.4 - hold * np.clip(base - 0.75, 0, 1) ** 2 * 4
     b = np.clip(b, 0, 1)
-    # local contrast: clarity on mid-scale detail, a touch of fine detail
     fine = L - cv2.GaussianBlur(L, (0, 0), 1.2)
-    Ln = b + detail * (1 + 0.6 * amount) + fine * 0.12 * amount     # mild on fine detail: skin stays natural
-    # global S-curve to keep punch
-    Ln = np.clip(Ln, 0, 1)
-    Ln = Ln + 0.08 * amount * np.sin((Ln - 0.5) * np.pi) * 0.5
-    lab[:, :, 0] = np.clip(Ln, 0, 1) * 255.0
+    Ln = np.clip(b + detail * (1 + 0.45 * amount) + fine * 0.08 * amount, 0, 1)
+    lab[:, :, 0] = Ln * 255.0
     out = cv2.cvtColor(lab.astype(np.uint8), cv2.COLOR_LAB2BGR)
-    # vibrance: boost low-saturation colours more than saturated ones (protects skin)
     hsv = cv2.cvtColor(out, cv2.COLOR_BGR2HSV).astype(np.float32)
-    s = hsv[:, :, 1] / 255.0
-    hsv[:, :, 1] = np.clip(s + 0.18 * amount * (1 - s) * s * 2.0, 0, 1) * 255.0
+    h, s = hsv[:, :, 0], hsv[:, :, 1] / 255.0
+    skin = np.clip(1 - np.abs(h - 13) / 12, 0, 1)            # OpenCV hue 0-180: skin/orange ~ 1-25
+    boost = 0.16 * amount * (1 - s) * s * 2.0 * (1 - 0.85 * skin)
+    hsv[:, :, 1] = np.clip(s + boost - 0.04 * amount * skin * s, 0, 1) * 255.0
     return cv2.cvtColor(hsv.astype(np.uint8), cv2.COLOR_HSV2BGR)
 
 

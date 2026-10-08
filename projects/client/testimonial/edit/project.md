@@ -136,3 +136,27 @@ capture_html.py > safe_zones.py check > build_audio.py > composite.py
 - **Note to client:** in the video he says "ça fait واحد العام" (1 year with
   SXL). "12 ANS DE CONFIANCE" reads as the agency's track record.
 - **Delivered:** deliver/testimonial_cover_v1.jpg (+ .png).
+
+## Session 2 (cont.), 2026-10-08: cover v2 (the host)
+
+- **Client:** the cover should show him (the host, black shirt), not the
+  founder, as a photo from the video, enhanced, with an HDR look, upscaled.
+- **Frame:** C2406 frame 0 (0.00 s), the big smile looking into the lens.
+  From 0.08 s he blinks.
+- **Source:** the original 4K file, not the 1080 render. The frame is cropped
+  to the 9:16 window 1814x3226 at (281,120), so the face is centred with the
+  eyes at 40% and the same face size as cover v1, then resized to 2160x3840.
+  That is true 4K detail, better than AI-upscaling the compressed video.
+  Real-ESRGAN x4 is in studio/bin/enhance_photo.py for low-res inputs, but
+  isn't needed here.
+- **Enhance:**
+  - Chroma denoise, a light unsharp mask on luma.
+  - The HDR look (enhance_photo.py hdr), retuned: shadows and dark midtones
+    open up, highlights are held, moderate clarity, vibrance outside the skin
+    hues. The first tuning darkened his face and pushed the skin orange.
+- **Cover:** animations/cover/cover_host.html. Same layout as v1, but the
+  founder's name line is dropped (it would label the host as Dnanou Atae) and
+  "12 ANS DE CONFIANCE" sits 50 px lower to clear the chin. Rendered at 2x by
+  render_cover.py.
+- **Delivered:** deliver/testimonial_cover_v2.jpg (2160x3840),
+  testimonial_cover_v2_1080.jpg (Instagram), .png master.
