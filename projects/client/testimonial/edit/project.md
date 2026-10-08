@@ -160,3 +160,26 @@ capture_html.py > safe_zones.py check > build_audio.py > composite.py
   render_cover.py.
 - **Delivered:** deliver/testimonial_cover_v2.jpg (2160x3840),
   testimonial_cover_v2_1080.jpg (Instagram), .png master.
+
+## Session 2 (cont.), 2026-10-08: cover v3 (teeth)
+
+- **Client:** "whiten and fix my teeth a bit".
+- **Retouch (animations/cover/retouch_teeth.py, Lab, mouth ROI only):**
+  - The mask starts from the clean enamel (L > 172, a* < 150). It grows up to
+    24 px into stained or shaded enamel that is yellow-orange rather than pink,
+    so the brown bands between the lower teeth join the mask while the gums and
+    lips stay out. The dark bite line and mouth corners stop the growth.
+  - Stains: their extra darkness is lifted 65% toward the tooth around them, and
+    the yellow is compressed with a soft knee. A faint warm shade stays between
+    the teeth so they don't merge into one white block.
+  - Whitening: a capped low-frequency lift toward L 234, and b* from +21 toward
+    +7. Small mid-dark gaps are softened.
+  - Strength 0.85: at cover size, 1.0 read as veneers.
+  - Pixels outside the mask are bit-exact (blended in BGR), and only the mouth
+    differs from v2.
+  - The tooth shape is untouched: straightening the lower teeth would look
+    fake.
+- **Cover:** cover_host.html now uses host4k_teeth.png (gitignored, regenerate
+  with `retouch_teeth.py host4k.png host4k_teeth.png`).
+- **Delivered:** deliver/testimonial_cover_v3.jpg (2160x3840),
+  testimonial_cover_v3_1080.jpg (Instagram), .png master.
