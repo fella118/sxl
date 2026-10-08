@@ -118,3 +118,21 @@ capture_html.py > safe_zones.py check > build_audio.py > composite.py
 - testimonial_reels_v2.jpg: cover at 12.8 s, the name card on the medium shot.
 
 **Open:** swap in the original SXL logo PNG if the client sends the file.
+
+## Session 2, 2026-10-08: cover
+
+- **Request:** a cover showing "avis clients" and, in bold, 12 years of trust
+  in French.
+- **Background:** the founder's listening close-up at 46.8 s of base.mp4. He
+  looks straight into the lens, mouth closed; eyes checked on 46.3-47.1.
+- **Layout (animations/cover/cover.html -> render_cover.py):**
+  - SXL logo at the top.
+  - "AVIS CLIENTS" pill (SXL blue) above his head.
+  - Over the navy shirt: "12 ANS" in yellow Anton 300 px and "DE CONFIANCE" in
+    white Anton 132 px.
+  - "Dnanou Atae · Fondateur, Gzenaya Optique".
+  - The pill, face and text all fit Instagram's 3:4 grid crop
+    (y 240-1680).
+- **Note to client:** in the video he says "ça fait واحد العام" (1 year with
+  SXL). "12 ANS DE CONFIANCE" reads as the agency's track record.
+- **Delivered:** deliver/testimonial_cover_v1.jpg (+ .png).
