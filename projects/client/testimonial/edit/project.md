@@ -183,3 +183,15 @@ capture_html.py > safe_zones.py check > build_audio.py > composite.py
   with `retouch_teeth.py host4k.png host4k_teeth.png`).
 - **Delivered:** deliver/testimonial_cover_v3.jpg (2160x3840),
   testimonial_cover_v3_1080.jpg (Instagram), .png master.
+
+## Session 2 (cont.), 2026-10-08: cover v4 (12 MOIS)
+
+- **Client:** "12 MOIS", not "12 ANS". This now matches the testimonial: he
+  says "ça fait واحد العام" (one year with SXL).
+- **cover_host.html:** "12 MOIS DE CONFIANCE".
+  - "12 MOIS" is wider than "12 ANS", so it is set at 270 px instead of 300
+    (832 px wide, 124 px margins).
+  - Same top, so it still clears the chin. The block ends at y 1603, inside
+    Instagram's 3:4 grid crop.
+- **Delivered:** deliver/testimonial_cover_v4.jpg (2160x3840),
+  testimonial_cover_v4_1080.jpg (Instagram), .png master.
