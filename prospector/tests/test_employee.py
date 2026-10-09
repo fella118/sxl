@@ -39,6 +39,7 @@ class FakeClaude:
     def __init__(self, *responses):
         self.responses, self.calls = list(responses), []
         self.beta = NS(messages=NS(create=self._create))
+        self.messages = NS(create=self._create)
 
     def _create(self, **kw):
         self.calls.append(kw)
@@ -148,6 +149,13 @@ class BrainTest(unittest.TestCase):
     def test_refusal_escalates(self):
         d = brain.Brain(client=FakeClaude(reply("refusal"))).answer("c", None)
         self.assertEqual((d["send"], d["escalate"]), (False, "refusal"))
+
+    def test_haiku_is_called_without_the_fallback_parameter(self):
+        claude = FakeClaude(reply("end_turn", text('{"dm": "Bonjour", "email_body": "Bonjour"}')))
+        b = brain.Brain(client=claude, polish_model="claude-haiku-5-5")
+        self.assertEqual(b.polish("facts", "dm", "body"), ("Bonjour", "Bonjour"))
+        self.assertEqual(claude.calls[0]["model"], "claude-haiku-5-5")
+        self.assertNotIn("fallbacks", claude.calls[0])
 
     def test_polish_keeps_drafts_on_bad_output(self):
         b = brain.Brain(client=FakeClaude(reply("end_turn", text("not json"))))

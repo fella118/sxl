@@ -28,7 +28,7 @@ match = ["dent", "implant", "orthodon", "sourire", "smile", "stomato"]
 types = ["dentist", "dental_clinic"]
 
 [daily]
-candidates = 60                # how many top prospects get a fresh check each day
+candidates = 30                # top prospects re-checked each day (30 keeps Google Places in its free quota)
 dm_quota = 20                  # Instagram DMs Saad sends by hand
 email_quota = 20               # generic business addresses only (contact@, info@, rdv@ ...)
 call_quota = 10
@@ -47,7 +47,11 @@ warm = 40
 # The AI employee (python -m sogixel serve). Secrets come from the environment, see DEPLOY.md.
 [employee]
 timezone = "Africa/Casablanca"
-model = "claude-opus-5-5"
+# One model per job. Replies to prospects are the high-stakes part; the morning rewrite is a short,
+# fact-limited edit. Approximate API prices per million tokens (input/output): Opus 5.5 $4/$20,
+# Sonnet 5.5 $2/$10, Haiku 5.5 $0.10/$0.50.
+setter_model = "claude-sonnet-5-5"   # replies to prospects (switch to claude-opus-5-5 for top quality)
+polish_model = "claude-haiku-5-5"    # morning rewrite
 setter_effort = "medium"        # replies to prospects
 polish_effort = "low"           # morning rewrite of the drafts
 reply_delay_s = 20              # answer in seconds, not in milliseconds

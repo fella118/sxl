@@ -75,8 +75,8 @@ def _live(cfg, line):
 
     def claude():
         import anthropic
-        m = anthropic.Anthropic().models.retrieve(e["model"])
-        return m.id
+        client = anthropic.Anthropic()
+        return ", ".join(client.models.retrieve(e[k]).id for k in ("setter_model", "polish_model"))
     probe("Claude API", claude)
     probe("Google Places", lambda: next(places.search("clinique dentaire Casablanca", max_pages=1))["name"])
     if adlib.token():

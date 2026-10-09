@@ -82,6 +82,6 @@ runs the live check. Operations: [RUNBOOK.md](RUNBOOK.md).
 ## Costs (orders of magnitude)
 
 - Server: a few euros a month (or a free-tier VM).
-- Claude (Opus 5.5): a handled reply is a few thousand tokens, roughly ten cents; the morning polish runs at low
-  effort. The daily cap bounds the worst case.
+- Claude: replies on Sonnet 5.5 and the morning rewrite on Haiku 5.5, roughly $0.15–0.20 a day at 20 DMs a day
+  (estimate). Models are set per job in `config.toml`; the daily cap bounds the worst case.
 - Google Places: within the free monthly quota if `daily.candidates` stays around 30.

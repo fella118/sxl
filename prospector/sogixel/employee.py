@@ -142,7 +142,8 @@ class Employee:
     def brain(self):
         if self._brain is None:
             from .brain import Brain
-            self._brain = Brain(model=self.e["model"], setter_effort=self.e["setter_effort"],
+            self._brain = Brain(setter_model=self.e["setter_model"], polish_model=self.e["polish_model"],
+                                setter_effort=self.e["setter_effort"],
                                 polish_effort=self.e["polish_effort"], proof=self.e.get("proof", []))
         return self._brain
 

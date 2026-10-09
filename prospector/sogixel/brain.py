@@ -10,6 +10,11 @@ import anthropic
 MODEL = "claude-opus-5-5"
 FALLBACK_BETA = "server-side-fallback-2026-07-01"   # re-runs a declined request on Anthropic's recommended model
 
+
+def _has_fallback(model):
+    """Haiku has no server-side fallback: the parameter must not be sent."""
+    return "haiku" not in model
+
 SETTER_SYSTEM = """You are the AI assistant of Saad, founder of SOGIXEL, a Moroccan growth agency. You reply to clinic \
 owners (aesthetic medicine, hair transplant, implant and aesthetic dentistry) who answered Saad's first message. \
 Your one goal: if they are interested, book a 15-minute call with Saad. If they are not, leave a good impression.
@@ -83,15 +88,18 @@ def _escalated(why):
 
 
 class Brain:
-    def __init__(self, client=None, model=MODEL, setter_effort="medium", polish_effort="low", proof=()):
+    def __init__(self, client=None, setter_model=MODEL, polish_model=MODEL, setter_effort="medium",
+                 polish_effort="low", proof=()):
         self.client = client or anthropic.Anthropic()
-        self.model, self.setter_effort, self.polish_effort = model, setter_effort, polish_effort
+        self.setter_model, self.polish_model = setter_model, polish_model
+        self.setter_effort, self.polish_effort = setter_effort, polish_effort
         self.system = SETTER_SYSTEM + "\n\nPROOF:\n" + ("\n".join(f"- {p}" for p in proof) or "- (none)")
 
-    def _create(self, **kw):
-        return self.client.beta.messages.create(
-            model=self.model, max_tokens=16000, betas=[FALLBACK_BETA], fallbacks="default",
-            cache_control={"type": "ephemeral"}, **kw)
+    def _create(self, model, **kw):
+        if _has_fallback(model):
+            return self.client.beta.messages.create(model=model, max_tokens=16000, betas=[FALLBACK_BETA],
+                                                    fallbacks="default", cache_control={"type": "ephemeral"}, **kw)
+        return self.client.messages.create(model=model, max_tokens=16000, cache_control={"type": "ephemeral"}, **kw)
 
     def answer(self, context, tools, max_steps=8):
         """Run the setter on one inbound message. `tools.run(name, input)` executes a tool call.
@@ -99,7 +107,7 @@ class Brain:
         messages = [{"role": "user", "content": context}]
         for _ in range(max_steps):
             try:
-                r = self._create(system=self.system, tools=SETTER_TOOLS, messages=messages,
+                r = self._create(self.setter_model, system=self.system, tools=SETTER_TOOLS, messages=messages,
                                  output_config={"effort": self.setter_effort, "format": DECISION_FORMAT})
             except anthropic.APIStatusError as e:           # 4xx/5xx after the SDK's own retries
                 return _escalated(f"Claude API {e.status_code}")
@@ -134,7 +142,7 @@ class Brain:
         """Rewrite one queue row's messages from its facts. Returns the drafts unchanged if anything goes wrong."""
         prompt = f"FACTS:\n{facts}\n\nDRAFT DM:\n{dm}\n\nDRAFT EMAIL BODY:\n{email_body}"
         try:
-            r = self._create(system=POLISH_SYSTEM, messages=[{"role": "user", "content": prompt}],
+            r = self._create(self.polish_model, system=POLISH_SYSTEM, messages=[{"role": "user", "content": prompt}],
                              output_config={"effort": self.polish_effort, "format": POLISH_FORMAT})
         except (anthropic.APIStatusError, anthropic.APIConnectionError):
             return dm, email_body
