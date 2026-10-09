@@ -61,7 +61,9 @@ python -m unittest discover -s tests -t .    # offline tests
 `python -m sogixel serve` runs everything above on a schedule and adds the setter: when a prospect replies on
 Instagram, WhatsApp or email, GoHighLevel calls the webhook and Claude answers within seconds, proposes slots from
 the GHL calendar, books the call, or hands over to Saad on WhatsApp. "Stop" is handled instantly without the model.
-Saad works from the cockpit page on his phone. Setup: [DEPLOY.md](DEPLOY.md).
+Saad works from the cockpit page on his phone. It starts in shadow mode (replies come to Saad as drafts), steps back
+when Saad writes in a conversation, and is capped per conversation and per day. Setup: [DEPLOY.md](DEPLOY.md),
+operations: [RUNBOOK.md](RUNBOOK.md).
 
 ## Rules built in
 

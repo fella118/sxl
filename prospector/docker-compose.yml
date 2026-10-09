@@ -1,12 +1,16 @@
-# The SOGIXEL AI employee + HTTPS. Put the secrets in .env (see .env.example), then: docker compose up -d
+# The SOGIXEL AI employee + HTTPS. Secrets in .env (see .env.example). Deploy: scripts/deploy.sh
 services:
   employee:
-    build: .
+    image: ${EMPLOYEE_IMAGE:-ghcr.io/fella118/sogixel-employee:latest}   # built by GitHub Actions
+    build: .                                                              # or build on the server
     env_file: .env
     volumes:
-      - ./data:/app/data      # master list + employee state
+      - ./data:/app/data      # master list, runtime database, backups (chown 1000 on the host)
       - ./out:/app/out        # daily queues and reports
     restart: unless-stopped
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "5"}
   caddy:
     image: caddy:2.8.4
     command: caddy reverse-proxy --from ${DOMAIN} --to employee:8080

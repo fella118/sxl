@@ -5,6 +5,8 @@
   python -m sogixel sync out/*/queue.csv   # pull the statuses Saad set in the queue sheets back into the master
   python -m sogixel stats    # what's in the master list
   python -m sogixel serve    # the AI employee: 24/7 setter + scheduled jobs + cockpit (see DEPLOY.md)
+  python -m sogixel check [--live]   # configuration check before deploying
+  python -m sogixel unpause <contact_id>   # let the bot answer a conversation it handed over
 """
 import argparse
 import datetime as dt
@@ -175,8 +177,9 @@ def cmd_stats(cfg, args):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="sogixel")
-    ap.add_argument("command", choices=["pull", "daily", "sync", "stats", "serve"])
-    ap.add_argument("files", nargs="*", help="queue CSVs for `sync`")
+    ap.add_argument("command", choices=["pull", "daily", "sync", "stats", "serve", "check", "unpause"])
+    ap.add_argument("--live", action="store_true", help="`check`: call each service once")
+    ap.add_argument("files", nargs="*", help="queue CSVs for `sync`, contact IDs for `unpause`")
     ap.add_argument("--config", default=os.path.join(ROOT, "config.toml"))
     ap.add_argument("--master", default=os.path.join(ROOT, "data", "prospects.csv"))
     ap.add_argument("--out", default=os.path.join(ROOT, "out"))
@@ -185,6 +188,16 @@ def main(argv=None):
     ap.add_argument("--date")
     args = ap.parse_args(argv)
     cfg = load_cfg(args.config)
+    if args.command == "unpause":               # hand a conversation back to the bot
+        from .ops import Ops
+        db = Ops(os.path.join(os.path.dirname(args.master), "employee.db"))
+        for cid in args.files:
+            db.unpause(cid)
+            print(f"{cid}: the bot answers again")
+        return
+    if args.command == "check":
+        from . import doctor
+        sys.exit(doctor.run(cfg, os.path.dirname(args.master), live=args.live))
     if args.command == "serve":
         from . import employee
         return employee.serve(cfg, args.master, args.out)

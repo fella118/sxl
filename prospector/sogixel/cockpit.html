@@ -38,8 +38,7 @@ button,.btn{flex:1;min-width:120px;border:1px solid var(--line);background:var(-
 <main id="main"></main>
 <div id="toast"></div>
 <script>
-const KEY = new URLSearchParams(location.search).get("key") || "";
-const H = {"Content-Type": "application/json", "X-Employee-Key": KEY};
+const H = {"Content-Type": "application/json"};   // auth: HttpOnly cookie set on the first visit
 const esc = s => String(s || "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 const toast = t => { const el = document.getElementById("toast"); el.textContent = t; el.style.opacity = 1; setTimeout(() => el.style.opacity = 0, 1600); };
 const CLOSED = ["sent", "replied", "call_booked", "client", "not_interested", "do_not_contact"];
@@ -47,7 +46,7 @@ const LABEL = {sent: "Envoyé ✓", replied: "A répondu", call_booked: "Appel r
   not_interested: "Pas intéressé", do_not_contact: "Ne pas contacter"};
 
 async function post(path, body) {
-  const r = await fetch(path, {method: "POST", headers: H, body: JSON.stringify(body)});
+  const r = await fetch(path, {method: "POST", headers: H, body: JSON.stringify(body), credentials: "same-origin"});
   return r.json();
 }
 async function mark(id, status, label) { const r = await post("/api/status", {place_id: id, status}); toast(r.ok ? label : "Erreur"); load(); }
@@ -86,12 +85,13 @@ function card(q) {
 }
 
 async function load() {
-  const r = await fetch("/api/today", {headers: H});
-  if (!r.ok) { document.getElementById("sub").textContent = "Accès refusé : lien sans clé ?"; return; }
+  const r = await fetch("/api/today", {credentials: "same-origin"});
+  if (!r.ok) { document.getElementById("sub").textContent = "Accès refusé : ouvre le lien reçu sur WhatsApp."; return; }
   const d = await r.json();
   const by = c => d.queue.filter(q => q.channel === c);
   const left = d.queue.filter(q => !CLOSED.includes(q.status)).length;
-  document.getElementById("sub").textContent = `${d.date} · ${left} à traiter sur ${d.queue.length}`;
+  document.getElementById("sub").textContent = `${d.date} · ${left} à traiter sur ${d.queue.length}` +
+    (d.mode === "live" ? "" : " · 🧪 mode test : le bot t'envoie ses réponses en brouillon");
   const sect = (title, items) => `<h2>${title} (${items.length})</h2>` + (items.map(card).join("") || `<div class="empty">Rien pour aujourd'hui.</div>`);
   const fu = d.dm_followups.map(r => `<div class="card"><div class="name">${esc(r.ig_handle || r.place_id)}</div>
       <div class="meta">DM envoyé le ${esc((r.sent_at || "").slice(0, 10))}, pas de réponse.</div>

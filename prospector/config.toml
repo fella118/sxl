@@ -58,6 +58,12 @@ report_at = "18:00"
 pull_day = 1                    # monthly refresh of the clinic list
 followup_days = [3, 7]          # email relances after the approved first email
 owner_channel = "whatsapp"      # how Saad gets notified
+backup_at = "02:30"
+backup_keep_days = 14
+# Safety rails
+max_replies_per_contact_day = 6 # then the bot hands the conversation to Saad
+max_ai_replies_day = 150        # cost guard for the whole day
+autoreply_window_s = 15         # a "reply" faster than this after ours is a clinic's auto-responder
 # The only proof the setter may quote, word for word.
 proof = ["Plus d'un million de dirhams de pipeline générés pour nos clients.",
          "Camelia Bio Cosmetics : pour 1 DH investi en publicité, 4 DH récupérés."]

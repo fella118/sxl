@@ -1,21 +1,22 @@
 """The SOGIXEL AI employee: one always-on service.
 
-- Setter (24/7): GHL calls /webhooks/ghl when a prospect replies; Claude answers in seconds, books the call with
-  Saad, or hands over. It only answers conversations SOGIXEL started, and never sends a first message.
+- Setter (24/7): GHL calls /webhooks/ghl when a prospect replies; the event is stored, then Claude answers within
+  seconds, books the call with Saad, or hands over. It only answers conversations SOGIXEL started.
 - Hunter (07:30): prospector `daily`, then Claude polishes each message. `pull` on the 1st of the month.
 - Follow-ups (hourly): email relances at J+3 / J+7 for approved emails without a reply; DM relances go to the cockpit.
-- Reporter (18:00): the day's numbers to Saad on WhatsApp.
+- Reporter (18:00): the day's numbers to Saad. Backup (02:30): master list + runtime database, 14 days kept.
 - Cockpit (/cockpit): Saad's phone page to send today's DMs by hand and approve emails.
 
-Env: ANTHROPIC_API_KEY, GHL_TOKEN, GHL_LOCATION_ID, GHL_CALENDAR_ID, GHL_OWNER_CONTACT_ID, EMPLOYEE_KEY,
-     PUBLIC_URL, GOOGLE_PLACES_API_KEY, META_ADLIB_TOKEN.
+SETTER_MODE=shadow (default) sends every reply to Saad as a draft instead of to the prospect; `live` sends it.
+Env: see .env.example.
 """
 import datetime as dt
+import glob
 import hmac
 import json
 import os
-import queue
 import re
+import shutil
 import threading
 import time
 import traceback
@@ -25,6 +26,7 @@ from zoneinfo import ZoneInfo
 
 from . import outreach, store
 from .ghl import GHL, GHLError
+from .ops import Ops
 from .scoring import norm
 
 DAYS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
@@ -34,10 +36,15 @@ FOLLOWUP = ["Je me permets de revenir vers vous au sujet de mon message. Est-ce 
             "sujet en ce moment ?",
             "Dernier message de ma part : si un jour vous voulez voir comment on répond aux demandes de vos patients en "
             "quelques secondes, même le soir, je reste disponible."]
+STOP_REPLY = "C'est noté, nous ne vous écrirons plus. Bonne journée."
+PAUSE_TAG = "bot-pause"           # Saad adds this tag in GHL to take a conversation over
+MAX_BODY = 64 * 1024
 
 
-def log(*a):
-    print(dt.datetime.now().strftime("%H:%M:%S"), *a, flush=True)
+def log(event, **fields):
+    """One JSON line per event: easy to grep, easy to ship to any log tool."""
+    print(json.dumps({"ts": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "event": event, **fields},
+                     ensure_ascii=False, default=str), flush=True)
 
 
 def is_stop(text):
@@ -54,8 +61,24 @@ def channel_of(msg_type):
     return next((v for k, v in CHANNELS.items() if k in t), "instagram")
 
 
+def _when(msg):
+    try:
+        t = dt.datetime.fromisoformat(msg["date"].replace("Z", "+00:00"))
+    except (KeyError, ValueError, AttributeError):
+        return None
+    return t if t.tzinfo else t.replace(tzinfo=dt.timezone.utc)
+
+
+def cockpit_key():
+    return os.environ.get("COCKPIT_KEY") or os.environ.get("EMPLOYEE_KEY", "")
+
+
+def webhook_key():
+    return os.environ.get("WEBHOOK_KEY") or os.environ.get("EMPLOYEE_KEY", "")
+
+
 class SetterTools:
-    """What Claude may do during one conversation. Side effects are recorded for the caller."""
+    """What Claude may do during one conversation. In shadow mode nothing is booked."""
 
     def __init__(self, emp, contact_id, name):
         self.emp, self.contact_id, self.name = emp, contact_id, name
@@ -82,7 +105,8 @@ class SetterTools:
     def book_call(self, start_time):
         if start_time not in self.offered:
             raise ValueError("start_time must be one of the slots returned by get_free_slots")
-        self.emp.ghl.book(self.emp.calendar_id, self.contact_id, start_time, f"Appel SOGIXEL — {self.name}")
+        if self.emp.live:
+            self.emp.ghl.book(self.emp.calendar_id, self.contact_id, start_time, f"Appel SOGIXEL — {self.name}")
         self.booked = start_time
         return {"booked": True, "label": self.offered[start_time]}
 
@@ -98,23 +122,21 @@ class SetterTools:
 
 
 class Employee:
-    def __init__(self, cfg, master_path, out_dir, ghl=None, brain=None, now=None):
+    def __init__(self, cfg, master_path, out_dir, ghl=None, brain=None, now=None, mode=None):
         self.cfg, self.e = cfg, cfg["employee"]
         self.tz = ZoneInfo(self.e["timezone"])
         self.master_path, self.out_dir = master_path, out_dir
+        self.data_dir = os.path.dirname(master_path) or "."
         self.ghl = ghl or GHL()
         self._brain = brain
         self.now = now or (lambda: dt.datetime.now(self.tz))
+        self.mode = mode or os.environ.get("SETTER_MODE", "shadow")
+        self.live = self.mode == "live"
         self.calendar_id = os.environ.get("GHL_CALENDAR_ID", "")
         self.owner_id = os.environ.get("GHL_OWNER_CONTACT_ID", "")
-        self.lock = threading.RLock()
-        self.state_path = os.path.join(os.path.dirname(master_path) or ".", "employee_state.json")
-        try:
-            with open(self.state_path, encoding="utf-8") as f:
-                self.state = json.load(f)
-        except (OSError, json.JSONDecodeError):
-            self.state = {}
-        self.state.setdefault("jobs", {}); self.state.setdefault("handled", {}); self.state.setdefault("day", {})
+        self.lock = threading.RLock()            # guards the CSV master list
+        self.ops = Ops(os.path.join(self.data_dir, "employee.db"))
+        self.wake = threading.Event()
 
     @property
     def brain(self):
@@ -124,26 +146,26 @@ class Employee:
                                 polish_effort=self.e["polish_effort"], proof=self.e.get("proof", []))
         return self._brain
 
-    def _save_state(self):
-        with self.lock:
-            tmp = self.state_path + ".tmp"
-            with open(tmp, "w", encoding="utf-8") as f:
-                json.dump(self.state, f, ensure_ascii=False, indent=1)
-            os.replace(tmp, self.state_path)
-
-    def _count(self, key):
-        today = self.now().date().isoformat()
-        if self.state["day"].get("date") != today:
-            self.state["day"] = {"date": today}
-        self.state["day"][key] = self.state["day"].get(key, 0) + 1
+    def today(self):
+        return self.now().date().isoformat()
 
     def notify(self, text):
-        log("notify:", text)
+        log("notify", text=text)
         if self.owner_id:
             try:
                 self.ghl.send(self.owner_id, self.e["owner_channel"], text)
             except GHLError as ex:
-                log("notify failed:", ex)
+                log("notify_failed", error=str(ex))
+
+    def notify_once(self, key, text):
+        """At most one such notification per day."""
+        if not self.ops.count(self.today(), "notified:" + key):
+            self.ops.bump(self.today(), "notified:" + key)
+            self.notify(text)
+
+    def send_to_prospect(self, contact_id, channel, text):
+        resp = self.ghl.send(contact_id, channel, text, subject="Re: votre message") or {}
+        self.ops.record_sent(contact_id, resp.get("messageId") or resp.get("emailMessageId") or "", text)
 
     # --- master list ----------------------------------------------------------------------------------------
     def _update_master(self, match, **fields):
@@ -167,21 +189,19 @@ class Employee:
 
     def close(self, contact_id, status, note=""):
         """Move this contact's prospect forward (never backward, except `do_not_contact` which always wins)."""
-        def match(r):
-            return r.get("ghl_contact_id") == contact_id
         with self.lock:
             rows = store.load(self.master_path)
-            row = next((r for r in rows.values() if match(r)), None)
+            row = next((r for r in rows.values() if r.get("ghl_contact_id") == contact_id), None)
             if row and (status == "do_not_contact" or store.PROGRESS.index(status) > store.PROGRESS.index(row["status"])):
                 row["status"] = status
                 if note:
-                    row["notes"] = f"{self.now().date()}: {note}"[:200]
+                    row["notes"] = f"{self.today()}: {note}"[:200]
                 store.save(self.master_path, sorted(rows.values(), key=lambda r: -int(r.get("score") or 0)))
         if status == "do_not_contact":
             try:
                 self.ghl.add_tags(contact_id, ["stop"])
             except GHLError as ex:
-                log("tag failed:", ex)
+                log("tag_failed", error=str(ex))
 
     # --- setter ---------------------------------------------------------------------------------------------
     def handle_inbound(self, contact_id):
@@ -190,41 +210,87 @@ class Employee:
         if not inbound:
             return "no_inbound"
         last = inbound[-1]
-        if history[-1]["direction"] != "inbound" or self.state["handled"].get(contact_id) == last["id"]:
+        if history[-1]["direction"] != "inbound" or self.ops.handled(contact_id) == last["id"]:
             return "already_answered"
         contact = self.ghl.contact(contact_id)
+        tags = contact.get("tags") or []
         ours = any(m["direction"] == "outbound" and norm(m["body"]).startswith(norm(self.e["first_touch"])) for m in history)
-        if not ours and self.e["prospect_tag"] not in (contact.get("tags") or []):
+        if not ours and self.e["prospect_tag"] not in tags:
             return "not_a_prospect"            # a client, a friend, a supplier: never answered by the bot
         name = contact.get("companyName") or contact.get("name") or "Prospect"
-        channel = channel_of(last["type"])
+        if PAUSE_TAG in tags or self.ops.paused(contact_id):
+            return "paused"
+        if self._human_took_over(contact_id, history):
+            self.ops.pause(contact_id, "Saad a répondu lui-même")
+            return "human_takeover"
+
+        channel, day = channel_of(last["type"]), self.today()
         row = self._row_for(contact_id, contact)
-        self.state["handled"][contact_id] = last["id"]
-        self._count("replies")
+        self.ops.set_handled(contact_id, last["id"])
+        self.ops.bump(day, "replies")
 
         if is_stop(last["body"]):              # opt-out never waits for a model
             self.close(contact_id, "do_not_contact", note="stop")
-            self.ghl.send(contact_id, channel, "C'est noté, nous ne vous écrirons plus. Bonne journée.")
-            self._save_state()
+            if self.live:
+                self.send_to_prospect(contact_id, channel, STOP_REPLY)
+            else:
+                self.notify(f"🧪 {name} a demandé stop : retiré de la liste (aucun message envoyé en mode test).")
             return "stopped"
 
+        if self.ops.count(day, f"ai:{contact_id}") >= self.e["max_replies_per_contact_day"]:
+            self.ops.pause(contact_id, "plafond d'échanges atteint")
+            self.notify(f"{name} : beaucoup d'échanges aujourd'hui, je te laisse la main.")
+            return "capped"
+        if self.ops.count(day, "ai") >= self.e["max_ai_replies_day"]:
+            self.notify_once("daily_cap", "⚠️ Plafond quotidien de réponses IA atteint : les suivantes attendent toi.")
+            return "daily_cap"
+        if self._looks_automatic(contact_id, history):
+            return "auto_reply_suspected"      # a clinic's own auto-responder: never start a bot-to-bot loop
+
+        self.ops.bump(day, "ai")
+        self.ops.bump(day, f"ai:{contact_id}")
         tools = SetterTools(self, contact_id, name)
         d = self.brain.answer(self._context(name, channel, row, history), tools)
         if d.get("escalate"):
             self.notify(f"{name} a écrit : « {last['body'][:200]} » — à toi de répondre ({d['escalate']}).")
         elif d["send"] and d["reply"]:
-            time.sleep(self.e["reply_delay_s"])
-            self.ghl.send(contact_id, channel, d["reply"], subject="Re: votre message")
-        if tools.booked:
+            if self.live:
+                time.sleep(self.e["reply_delay_s"])
+                self.send_to_prospect(contact_id, channel, d["reply"])
+            else:
+                # a draft Saad pastes unchanged still counts as the bot's message (no false "takeover")
+                self.ops.record_sent(contact_id, "", d["reply"])
+                booked = f"\n(réservation simulée : {tools.offered[tools.booked]})" if tools.booked else ""
+                self.notify(f"🧪 Brouillon pour {name} ({d['intent']}) :\n« {d['reply']} »{booked}")
+        if tools.booked and self.live:
             self.close(contact_id, "call_booked")
-            self._count("booked")
+            self.ops.bump(day, "booked")
             self.notify(f"📅 Appel réservé : {name}, {tools.offered[tools.booked]}.")
         elif not tools.stopped:
             self.close(contact_id, "replied")
-            if d.get("intent") == "interested":
+            if d.get("intent") == "interested" and self.live:
                 self.notify(f"🔥 {name} est intéressé : « {last['body'][:160]} »")
-        self._save_state()
         return d.get("intent", "handover")
+
+    def _human_took_over(self, contact_id, history):
+        """An outbound message after the prospect's first reply that the bot didn't send = Saad is on it."""
+        first_in = next(i for i, m in enumerate(history) if m["direction"] == "inbound")
+        ids, bodies = self.ops.ours(contact_id)
+        return any(m["direction"] == "outbound" and m["id"] not in ids and m["body"].strip() not in bodies
+                   for m in history[first_in:])
+
+    def _looks_automatic(self, contact_id, history):
+        """The prospect 'answered' our last reply within seconds, or sent the very same text twice."""
+        ids, bodies = self.ops.ours(contact_id)
+        mine = [m for m in history if m["direction"] == "outbound" and (m["id"] in ids or m["body"].strip() in bodies)]
+        theirs = [m for m in history if m["direction"] == "inbound"]
+        if len(theirs) >= 2 and theirs[-1]["body"].strip() and theirs[-1]["body"].strip() == theirs[-2]["body"].strip():
+            return True
+        if mine:
+            a, b = _when(mine[-1]), _when(theirs[-1])
+            if a and b and dt.timedelta(0) <= b - a < dt.timedelta(seconds=self.e["autoreply_window_s"]):
+                return True
+        return False
 
     def _context(self, name, channel, row, history):
         now = self.now()
@@ -243,26 +309,27 @@ class Employee:
     # --- scheduled jobs -------------------------------------------------------------------------------------
     def due_jobs(self, now=None):
         now = now or self.now()
-        hm, jobs, done = now.strftime("%H:%M"), [], self.state["jobs"]
-        if hm >= self.e["daily_at"] and done.get("daily") != now.date().isoformat():
-            jobs.append(("daily", now.date().isoformat()))
-        if hm >= self.e["report_at"] and done.get("report") != now.date().isoformat():
-            jobs.append(("report", now.date().isoformat()))
-        if now.day == self.e["pull_day"] and hm >= "03:00" and done.get("pull") != now.strftime("%Y-%m"):
+        hm, day, jobs = now.strftime("%H:%M"), now.date().isoformat(), []
+        for name, at in (("backup", self.e["backup_at"]), ("daily", self.e["daily_at"]), ("report", self.e["report_at"])):
+            if hm >= at and self.ops.job_key(name) != day:
+                jobs.append((name, day))
+        if now.day == self.e["pull_day"] and hm >= "03:00" and self.ops.job_key("pull") != now.strftime("%Y-%m"):
             jobs.append(("pull", now.strftime("%Y-%m")))
-        if done.get("followups") != now.strftime("%Y-%m-%dT%H"):
+        if self.ops.job_key("followups") != now.strftime("%Y-%m-%dT%H"):
             jobs.append(("followups", now.strftime("%Y-%m-%dT%H")))
         return jobs
 
     def run_job(self, name, key):
+        log("job_start", job=name)
         try:
             getattr(self, "job_" + name)()
-        except (Exception, SystemExit):            # `daily` exits when the master list is still empty
-            log(f"job {name} failed:\n{traceback.format_exc()}")
+            self.ops.record_job(name, key, True)
+            log("job_done", job=name)
+        except (Exception, SystemExit) as ex:      # `daily` exits when the master list is still empty
+            self.ops.record_job(name, key, False, f"{type(ex).__name__}: {ex}")
+            log("job_failed", job=name, error=traceback.format_exc())
             if name != "followups":
-                self.notify(f"⚠️ La tâche « {name} » a échoué, voir les logs.")
-        self.state["jobs"][name] = key
-        self._save_state()
+                self.notify(f"⚠️ La tâche « {name} » a échoué : {type(ex).__name__}. Voir les logs.")
 
     def _cli(self, *argv):
         from . import __main__ as cli
@@ -272,7 +339,10 @@ class Employee:
         self._cli("pull")
 
     def job_daily(self):
-        day = self.now().date().isoformat()
+        day = self.today()
+        if not store.load(self.master_path):          # fresh install: nothing to work on yet
+            self.notify_once("no_master", "La liste de cliniques est vide : lance le premier pull (voir DEPLOY.md).")
+            return
         with self.lock:
             self._cli("daily", "--date", day)
             path = os.path.join(self.out_dir, day, "queue.csv")
@@ -282,20 +352,22 @@ class Employee:
             store.save(path, rows, store.QUEUE_COLS)
         n = {c: sum(r["channel"] == c for r in rows) for c in ("dm", "email", "call")}
         self.notify(f"☀️ Liste du jour prête : {n['dm']} DM, {n['email']} emails, {n['call']} appels. "
-                    f"{os.environ.get('PUBLIC_URL', '')}/cockpit?key={os.environ.get('EMPLOYEE_KEY', '')}")
+                    f"{os.environ.get('PUBLIC_URL', '')}/cockpit?key={cockpit_key()}")
 
     def job_report(self):
         rows = store.load(self.master_path).values()
-        today = self.now().date().isoformat()
-        sent = sum(1 for r in rows if r.get("sent_at", "").startswith(today))
-        d = self.state["day"] if self.state["day"].get("date") == today else {}
+        day = self.today()
+        sent = sum(1 for r in rows if (r.get("sent_at") or "").startswith(day))
         total = {s: sum(1 for r in rows if r["status"] == s) for s in ("sent", "replied", "call_booked", "client")}
-        self.notify(f"📊 Bilan du {today} : {sent} contactés aujourd'hui, {d.get('replies', 0)} réponses traitées, "
-                    f"{d.get('booked', 0)} appels réservés. Pipeline : {total['sent']} en attente, {total['replied']} en "
-                    f"discussion, {total['call_booked']} appels, {total['client']} clients.")
+        mode = "" if self.live else " (mode test : réponses envoyées à toi seulement)"
+        self.notify(f"📊 Bilan du {day}{mode} : {sent} contactés, {self.ops.count(day, 'replies')} réponses reçues, "
+                    f"{self.ops.count(day, 'booked')} appels réservés. Pipeline : {total['sent']} en attente, "
+                    f"{total['replied']} en discussion, {total['call_booked']} appels, {total['client']} clients.")
 
     def job_followups(self):
-        """Email relances only; DM relances are listed in the cockpit for Saad."""
+        """Email relances only (live mode); DM relances are listed in the cockpit for Saad."""
+        if not self.live:
+            return
         today = self.now().date()
         for r in list(store.load(self.master_path).values()):
             k = int(r.get("followups") or 0)
@@ -309,9 +381,23 @@ class Employee:
             self.ghl.send(r["ghl_contact_id"], "email", text, subject="Re: mon message")
             self._update_master(lambda x: x["place_id"] == r["place_id"], followups=str(k + 1))
 
-    # --- cockpit actions ------------------------------------------------------------------------------------
+    def job_backup(self):
+        dest = os.path.join(self.data_dir, "backups", self.today())
+        os.makedirs(dest, exist_ok=True)
+        with self.lock:
+            if os.path.exists(self.master_path):
+                shutil.copy2(self.master_path, dest)
+        self.ops.backup(os.path.join(dest, "employee.db"))
+        for old in sorted(glob.glob(os.path.join(self.data_dir, "backups", "*")))[:-self.e["backup_keep_days"]]:
+            shutil.rmtree(old, ignore_errors=True)
+
+    # --- status, cockpit ------------------------------------------------------------------------------------
+    def health(self):
+        return {"ok": True, "mode": self.mode, "pending": self.ops.pending(), "jobs": self.ops.jobs(),
+                "today": {k: self.ops.count(self.today(), k) for k in ("replies", "ai", "booked")}}
+
     def today_queue(self):
-        day = self.now().date().isoformat()
+        day = self.today()
         rows = sorted(store.load(os.path.join(self.out_dir, day, "queue.csv")).values(), key=lambda r: int(r["rank"]))
         master = store.load(self.master_path)
         for r in rows:
@@ -319,7 +405,7 @@ class Employee:
         due = [r for r in master.values() if r["status"] == "sent" and r.get("sent_channel") == "dm"
                and r.get("sent_at") and (self.now().date() - dt.date.fromisoformat(r["sent_at"][:10])).days >= 3
                and not r.get("followups")]
-        return {"date": day, "queue": rows, "dm_followups": due}
+        return {"date": day, "mode": self.mode, "queue": rows, "dm_followups": due}
 
     MARKS = {"sent", "replied", "call_booked", "client", "not_interested", "do_not_contact", "dm_followed_up"}
 
@@ -347,29 +433,49 @@ class Employee:
 
 
 # --- HTTP -----------------------------------------------------------------------------------------------------
-def make_handler(emp, inbox):
-    key = os.environ.get("EMPLOYEE_KEY", "")
+def make_handler(emp):
     cockpit = os.path.join(os.path.dirname(__file__), "cockpit.html")
 
+    def same(given, expected):
+        return bool(expected) and bool(given) and hmac.compare_digest(given, expected)
+
     class Handler(BaseHTTPRequestHandler):
+        server_version = "sogixel"
+
         def log_message(self, *a):
             pass
 
-        def _authed(self):
-            q = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
-            given = self.headers.get("X-Employee-Key") or (q.get("key") or [""])[0]
-            return bool(key) and hmac.compare_digest(given, key)
+        def _query(self):
+            return urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)
 
-        def _send(self, code, body, ctype="application/json"):
+        def _cookie(self):
+            for part in (self.headers.get("Cookie") or "").split(";"):
+                k, _, v = part.strip().partition("=")
+                if k == "sx":
+                    return v
+            return ""
+
+        def _cockpit_ok(self):
+            k = cockpit_key()
+            return any(same(g, k) for g in (self._cookie(), self.headers.get("X-Employee-Key", ""),
+                                            (self._query().get("key") or [""])[0]))
+
+        def _send(self, code, body, ctype="application/json", headers=()):
             data = body if isinstance(body, bytes) else json.dumps(body, ensure_ascii=False).encode()
             self.send_response(code)
             self.send_header("Content-Type", ctype)
             self.send_header("Content-Length", str(len(data)))
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("X-Content-Type-Options", "nosniff")
+            for k, v in headers:
+                self.send_header(k, v)
             self.end_headers()
             self.wfile.write(data)
 
         def _body(self):
             n = int(self.headers.get("Content-Length") or 0)
+            if n > MAX_BODY:
+                return None
             try:
                 return json.loads(self.rfile.read(n) or b"{}")
             except json.JSONDecodeError:
@@ -378,27 +484,39 @@ def make_handler(emp, inbox):
         def do_GET(self):
             path = urllib.parse.urlsplit(self.path).path
             if path == "/health":
-                return self._send(200, {"ok": True})
-            if not self._authed():
+                return self._send(200, {"ok": True, "mode": emp.mode, "pending": emp.ops.pending()})
+            if not self._cockpit_ok():
                 return self._send(403, {"error": "forbidden"})
             if path == "/cockpit":
+                if self._query().get("key"):      # first visit from the WhatsApp link: keep the key in a cookie only
+                    cookie = f"sx={cockpit_key()}; Path=/; Max-Age=2592000; HttpOnly; Secure; SameSite=Strict"
+                    return self._send(302, b"", "text/plain", [("Set-Cookie", cookie), ("Location", "/cockpit")])
                 with open(cockpit, "rb") as f:
                     return self._send(200, f.read(), "text/html; charset=utf-8")
             if path == "/api/today":
                 return self._send(200, emp.today_queue())
+            if path == "/status":
+                return self._send(200, emp.health())
             return self._send(404, {"error": "not found"})
 
         def do_POST(self):
             path = urllib.parse.urlsplit(self.path).path
-            if not self._authed():
-                return self._send(403, {"error": "forbidden"})
             body = self._body()
+            if body is None:
+                return self._send(413, {"error": "too large"})
             if path == "/webhooks/ghl":
+                given = self.headers.get("X-Webhook-Key") or (self._query().get("key") or [""])[0]
+                if not same(given, webhook_key()):
+                    return self._send(403, {"error": "forbidden"})
+                # only the ID is taken from the payload: everything else is re-read from GHL
                 cid = body.get("contact_id") or body.get("contactId") or (body.get("contact") or {}).get("id")
-                if not cid:
+                if not cid or not isinstance(cid, str) or len(cid) > 64:
                     return self._send(400, {"error": "contact_id missing"})
-                inbox.put(cid)
+                emp.ops.enqueue(cid)
+                emp.wake.set()
                 return self._send(200, {"queued": True})
+            if not self._cockpit_ok():
+                return self._send(403, {"error": "forbidden"})
             if path == "/api/status":
                 return self._send(200, {"ok": emp.mark(body.get("place_id", ""), body.get("status", ""))})
             if path == "/api/approve_email":
@@ -411,29 +529,46 @@ def make_handler(emp, inbox):
     return Handler
 
 
-def _setter_loop(emp, inbox):
-    while True:
-        cid = inbox.get()
+def process_inbox(emp):
+    """Handle every stored event once. Failures are retried up to 3 times, then Saad is told."""
+    while (ev := emp.ops.claim()):
         try:
-            log(f"inbound {cid}: {emp.handle_inbound(cid)}")
-        except Exception:
-            log(f"inbound {cid} failed:\n{traceback.format_exc()}")
-            emp.notify(f"⚠️ Je n'ai pas pu répondre à un prospect (contact {cid}). Regarde la conversation dans GHL.")
+            result = emp.handle_inbound(ev["contact_id"])
+            emp.ops.finish(ev["id"], result)
+            log("inbound", contact=ev["contact_id"], result=result)
+        except Exception as ex:
+            status = emp.ops.finish(ev["id"], f"{type(ex).__name__}: {ex}", ok=False)
+            log("inbound_failed", contact=ev["contact_id"], retry=status == "pending", error=traceback.format_exc())
+            if status == "error":
+                emp.notify(f"⚠️ Je n'ai pas pu répondre à un prospect (contact {ev['contact_id']}). "
+                           "Regarde la conversation dans GHL.")
+            else:
+                time.sleep(5)
 
 
-def _scheduler_loop(emp, stop):
-    while not stop.wait(30):
+def _setter_loop(emp):
+    while True:
+        process_inbox(emp)
+        emp.wake.wait(10)
+        emp.wake.clear()
+
+
+def _scheduler_loop(emp):
+    while True:
         for name, k in emp.due_jobs():
-            log("job", name)
             emp.run_job(name, k)
+        time.sleep(30)
 
 
 def serve(cfg, master_path, out_dir, port=None):
-    if not os.environ.get("EMPLOYEE_KEY"):
-        raise SystemExit("EMPLOYEE_KEY is not set: it protects the webhook and the cockpit.")
-    emp, inbox, stop = Employee(cfg, master_path, out_dir), queue.Queue(), threading.Event()
-    threading.Thread(target=_setter_loop, args=(emp, inbox), daemon=True).start()
-    threading.Thread(target=_scheduler_loop, args=(emp, stop), daemon=True).start()
+    missing = [k for k in ("ANTHROPIC_API_KEY", "GHL_TOKEN", "GHL_LOCATION_ID", "GHL_CALENDAR_ID") if not os.environ.get(k)]
+    if not cockpit_key() or not webhook_key():
+        missing.append("COCKPIT_KEY/WEBHOOK_KEY (or EMPLOYEE_KEY)")
+    if missing:
+        raise SystemExit("Missing configuration: " + ", ".join(missing) + ". Run `python -m sogixel check`.")
+    emp = Employee(cfg, master_path, out_dir)
+    threading.Thread(target=_setter_loop, args=(emp,), daemon=True, name="setter").start()
+    threading.Thread(target=_scheduler_loop, args=(emp,), daemon=True, name="scheduler").start()
     port = int(port or os.environ.get("PORT", 8080))
-    log(f"SOGIXEL employee on :{port}")
-    ThreadingHTTPServer(("0.0.0.0", port), make_handler(emp, inbox)).serve_forever()
+    log("start", port=port, mode=emp.mode, pending=emp.ops.pending())
+    ThreadingHTTPServer(("0.0.0.0", port), make_handler(emp)).serve_forever()
