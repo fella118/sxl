@@ -2,10 +2,10 @@
 import csv
 import os
 
-MASTER_COLS = ["place_id", "vertical", "city", "score", "tier", "angle", "flags", "ig_handle", "email_generic",
-               "status", "first_seen", "last_checked", "last_queued", "notes", "maps_link"]
+MASTER_COLS = ["place_id", "vertical", "city", "score", "tier", "angle", "flags", "ads_evidence", "ig_handle",
+               "email_generic", "status", "first_seen", "last_checked", "last_queued", "notes", "maps_link"]
 QUEUE_COLS = ["date", "rank", "channel", "tier", "score", "vertical", "city", "name", "instagram_url", "email",
-              "phone", "maps_url", "website", "ad_library_url", "reasons", "facts", "dm", "email_subject",
+              "phone", "maps_url", "website", "ads_evidence", "ad_library_url", "google_ads_url", "reasons", "facts", "dm", "email_subject",
               "email_body", "call_opener", "place_id", "status"]
 # Saad edits `status` in the sheet. Rows in CLOSED are never contacted again.
 OPEN = {"new", "queued"}

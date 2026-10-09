@@ -40,8 +40,9 @@ def review_pain(reviews):
     return strong, weak
 
 
-def score(place, site, cfg, city=""):
-    """Return {score, tier, angle, reasons, flags}. `site` is the audit result."""
+def score(place, site, cfg, city="", ads=None):
+    """Return {score, tier, angle, reasons, flags}. `site` is the audit result, `ads` the ad-library evidence."""
+    ads = ads or {}
     pts, reasons, flags = 10, ["Vertical high-ticket"], []
     n, rating = place.get("reviews_count", 0), place.get("rating") or 0
 
@@ -69,8 +70,16 @@ def score(place, site, cfg, city=""):
     if not place.get("website"):
         pts += 6; flags.append("no_site"); reasons.append("Pas de site : tout passe par Maps / Instagram")
     elif site.get("audited"):
-        if not site.get("meta_pixel") and not site.get("gtm"):
-            pts += 18; flags.append("no_tracking"); reasons.append("Site sans pixel Meta ni Tag Manager")
+        has_meta = site.get("meta_pixel") or site.get("meta_pixel_gtm")
+        has_gads = site.get("google_ads") or site.get("google_ads_gtm")
+        if has_meta or has_gads:
+            # A pixel or ad tag means they have paid for ads at some point: budget is proven.
+            pts += 12; flags.append("ads_tags")
+            reasons.append("A déjà investi en pub (" + " + ".join(
+                x for x, on in (("pixel Meta", has_meta), ("tag Google Ads", has_gads)) if on) + ")")
+        else:
+            pts += 12 if site.get("gtm") or site.get("ga4") else 18
+            flags.append("no_tracking"); reasons.append("Aucun pixel Meta ni tag Google Ads sur le site")
         if not site.get("booking_tool"):
             pts += 10; flags.append("no_booking"); reasons.append("Pas de prise de RDV en ligne")
         if not site.get("whatsapp"):
@@ -78,10 +87,19 @@ def score(place, site, cfg, city=""):
         if site.get("agency_crm"):
             pts -= 20; flags.append("has_agency"); reasons.append("CRM d'agence déjà installé (−)")
 
+    # Ads that reached Europe (Meta Ad Library): MRE / medical-tourism budget, and whether they stopped.
+    if ads.get("meta_eu_ads"):
+        pts += 10; flags.append("meta_eu")
+        if ads.get("meta_eu_active"):
+            reasons.append("Pubs Meta actives en ce moment vers l'Europe")
+        else:
+            pts += 10; flags.append("ads_stopped")
+            reasons.append(f"Pubs Meta vers l'Europe arrêtées le {ads['meta_eu_last']}")
+
     pts = max(0, min(100, pts))
     s = cfg["scoring"]
     tier = "Hot" if pts >= s["hot"] else "Warm" if pts >= s["warm"] else "Cold"
-    angle = next((a for a in ("pain_review", "no_tracking", "no_booking", "no_whatsapp", "new_opening", "no_site")
-                  if a in flags), "generic")
+    angle = next((a for a in ("pain_review", "ads_stopped", "meta_eu", "no_tracking", "no_booking", "no_whatsapp",
+                              "new_opening", "no_site") if a in flags), "generic")
     return {"score": pts, "tier": tier, "angle": angle, "reasons": reasons, "flags": flags,
-            "pain_quotes": strong}
+            "pain_quotes": strong, "ads": ads}

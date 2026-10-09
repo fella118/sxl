@@ -34,6 +34,12 @@ email_quota = 20               # generic business addresses only (contact@, info
 call_quota = 10
 recheck_days = 30              # re-audit a prospect's site after this many days
 
+# Meta Ad Library API: commercial ads are only returned when they reached the EU (kept 1 year).
+# Token: META_ADLIB_TOKEN (needs identity confirmed at facebook.com/ID + a Meta developer app).
+[meta]
+api_version = "v21.0"
+countries = ["FR", "BE", "NL", "ES", "IT", "DE"]   # where the MRE and medical tourists are
+
 [scoring]
 hot = 60
 warm = 40

@@ -3,8 +3,6 @@
 These are the fallback drafts; the daily Claude run rewrites each one from the `facts`
 column only, so nothing in a message can be invented.
 """
-import urllib.parse
-
 V_SHORT = {"aesthetic": "esthétiques", "hair": "de greffe capillaire", "dental": "dentaires"}
 HELLO = "Bonjour, je suis Saad, fondateur de SOGIXEL. "
 
@@ -13,9 +11,17 @@ DM = {
                    "réponse part souvent chez le concurrent. On installe un assistant qui répond en quelques "
                    "secondes, même à 21h, et qui fixe le rendez-vous. Je vous montre en 10 minutes comment ça "
                    "marcherait chez vous ?",
-    "no_tracking": "J'ai regardé le site de {name} : il n'y a ni pixel Meta ni Tag Manager. Si vous faites de la "
-                   "publicité sur Instagram ou Facebook, impossible de savoir combien vous coûte un patient, ni "
-                   "quelle pub ramène des rendez-vous. Je peux vous montrer ce qu'on mesure pour nos clients, en "
+    "ads_stopped": "J'ai vu dans la bibliothèque publicitaire de Meta que {name} a diffusé des publicités vers "
+                   "l'Europe jusqu'au {last}, puis plus rien. Souvent, on coupe parce qu'on ne voit pas combien de "
+                   "patients la pub ramène vraiment. On installe le suivi qui le montre, et un assistant qui répond "
+                   "aux demandes en quelques secondes. Je vous montre en 10 minutes ?",
+    "meta_eu": "J'ai vu les publicités Meta de {name} qui tournent en ce moment vers l'Europe. Les patients de la "
+               "diaspora écrivent souvent le soir et contactent plusieurs cliniques à la fois : celle qui répond la "
+               "première prend souvent le rendez-vous. On installe un assistant qui répond en quelques secondes, en "
+               "français ou en anglais. Je vous montre comment ?",
+    "no_tracking": "J'ai regardé le site de {name} : il n'y a ni pixel Meta ni tag Google Ads. Si vous faites de la "
+                   "publicité sur Instagram, Facebook ou Google, impossible de savoir combien vous coûte un patient, "
+                   "ni quelle pub ramène des rendez-vous. Je peux vous montrer ce qu'on mesure pour nos clients, en "
                    "10 minutes ?",
     "no_booking": "Sur le site de {name}, je n'ai trouvé ni prise de rendez-vous en ligne{wa}. Le soir et le "
                   "week-end, c'est souvent là que vos futurs patients se décident, et personne ne leur répond. "
@@ -36,6 +42,8 @@ DM = {
 }
 SUBJECT = {
     "pain_review": "Les messages sans réponse de {name}",
+    "ads_stopped": "Les pubs de {name} vers l'Europe",
+    "meta_eu": "Les patients d'Europe de {name}",
     "no_tracking": "{name} : combien vous coûte un patient ?",
     "no_booking": "Les demandes du soir chez {name}",
     "no_whatsapp": "Les demandes du soir chez {name}",
@@ -45,7 +53,9 @@ SUBJECT = {
 }
 CALL = {
     "pain_review": "plusieurs avis Google parlent de messages restés sans réponse",
-    "no_tracking": "votre site n'a pas de pixel Meta, donc vos pubs ne sont pas mesurées",
+    "ads_stopped": "vos publicités Meta vers l'Europe se sont arrêtées et je voulais comprendre pourquoi",
+    "meta_eu": "j'ai vu vos publicités vers l'Europe et les patients de la diaspora écrivent souvent le soir",
+    "no_tracking": "votre site n'a aucun tag publicitaire, donc impossible de mesurer ce que rapporte la pub",
     "no_booking": "vos patients ne peuvent pas prendre rendez-vous en ligne le soir",
     "no_whatsapp": "il n'y a pas de bouton WhatsApp sur votre site",
     "new_opening": "votre clinique est récente sur Google Maps",
@@ -61,8 +71,8 @@ def facts(place, site, scored):
     f += scored["reasons"]
     f += [f"Avis cité : « {q} »" for q in scored.get("pain_quotes", [])[:2]]
     if site.get("audited"):
-        tools = ", ".join(k for k in ("meta_pixel", "gtm", "ga4", "google_ads", "booking_tool", "whatsapp",
-                                      "chat_widget") if site.get(k))
+        tools = ", ".join(k for k in ("meta_pixel", "meta_pixel_gtm", "gtm", "ga4", "google_ads", "google_ads_gtm",
+                                      "booking_tool", "whatsapp", "chat_widget") if site.get(k))
         f.append(f"Outils sur le site : {tools or 'aucun détecté'}")
     return " | ".join(f)
 
@@ -72,7 +82,8 @@ def render(place, site, scored, vertical):
     pain_phrase = ("un patient explique ne pas avoir eu de réponse à son message ou son appel" if n == 1 else
                    "plusieurs patients expliquent ne pas avoir eu de réponse à leurs messages ou appels")
     ctx = {"name": place["name"], "v": V_SHORT.get(vertical, ""), "pain_phrase": pain_phrase,
-           "wa": " ni bouton WhatsApp" if "no_whatsapp" in scored["flags"] else ""}
+           "wa": " ni bouton WhatsApp" if "no_whatsapp" in scored["flags"] else "",
+           "last": fr_date(scored.get("ads", {}).get("meta_eu_last", ""))}
     angle = scored["angle"] if scored["angle"] in DM else "generic"
     dm = HELLO + DM[angle].format(**ctx)
     return {
@@ -83,7 +94,14 @@ def render(place, site, scored, vertical):
     }
 
 
-def ad_library_url(name):
-    q = urllib.parse.quote(name)
-    return ("https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=MA"
-            f"&q={q}&search_type=keyword_unordered")
+MONTHS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre",
+          "novembre", "décembre"]
+
+
+def fr_date(iso):
+    """'2026-05-02' -> '2 mai 2026'."""
+    try:
+        y, m, d = (int(x) for x in iso[:10].split("-"))
+        return f"{d} {MONTHS[m - 1]} {y}"
+    except ValueError:
+        return iso

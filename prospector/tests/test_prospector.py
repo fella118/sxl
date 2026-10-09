@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from unittest import mock
 
-from sogixel import __main__ as cli, audit, outreach, places, scoring, store
+from sogixel import __main__ as cli, adlib, audit, outreach, places, scoring, store
 
 CFG = cli.load_cfg(os.path.join(os.path.dirname(__file__), "..", "config.toml"))
 
@@ -113,6 +113,48 @@ class DailyPipelineTest(unittest.TestCase):
             rows = store.load(master)
             self.assertEqual((rows["a"]["status"], rows["c"]["status"]), ("queued", "do_not_contact"))
             self.assertTrue(os.path.exists(os.path.join(tmp, "2026-10-09", "report.md")))
+
+
+class AdsTest(unittest.TestCase):
+    def test_gtm_container_reveals_hidden_tags(self):
+        js = 'var data={"resource":{"tags":[{"function":"__awct","vtp_conversionId":"123456789"},' \
+             '{"function":"__html","vtp_html":"<script>!function(f){f.fbq=1}(window);fbq(\'init\',\'1\')</script>"}]}}'
+        self.assertEqual(audit.analyze_gtm(js), {"meta_pixel": True, "google_ads": True, "tiktok_pixel": False})
+        self.assertEqual(audit.analyze_gtm("var data={}"), {"meta_pixel": False, "google_ads": False, "tiktok_pixel": False})
+
+    def test_summarize_keeps_only_the_clinics_own_page(self):
+        ads = [{"page_name": "Clinique Dentaire Al Amal", "ad_delivery_start_time": "2025-11-02",
+                "ad_delivery_stop_time": "2026-04-30"},
+               {"page_name": "Al Amal Dental Clinic", "ad_delivery_start_time": "2026-01-10",
+                "ad_delivery_stop_time": "2026-05-02"},
+               {"page_name": "Some Turkish Hair Clinic", "ad_delivery_start_time": "2026-06-01"}]
+        e = adlib.summarize(ads, "Clinique Dentaire Al Amal", today="2026-10-09")
+        self.assertEqual((e["meta_eu_ads"], e["meta_eu_active"], e["meta_eu_first"], e["meta_eu_last"]),
+                         (2, False, "2025-11-02", "2026-05-02"))
+        self.assertTrue(adlib.summarize(ads[2:], "Turkish Hair Clinic", today="2026-10-09")["meta_eu_active"])
+        self.assertEqual(adlib.summarize(ads, "Centre Esthétique Rabat Agdal"), {})
+
+    def test_stopped_ads_become_the_angle(self):
+        site = {"audited": True, "meta_pixel": True, "gtm": True, "booking_tool": True, "whatsapp": True}
+        ads = {"meta_eu_ads": 4, "meta_eu_active": False, "meta_eu_first": "2025-11-02", "meta_eu_last": "2026-05-02"}
+        s = scoring.score(place(), site, CFG, "Casablanca", ads)
+        self.assertEqual(s["angle"], "ads_stopped")
+        self.assertIn("ads_tags", s["flags"])
+        m = outreach.render(place(), site, s, "dental")
+        self.assertIn("jusqu'au 2 mai 2026", m["dm"])
+        self.assertIn("4 pubs Meta vers l'Europe", adlib.describe(site, ads))
+
+    def test_pixel_via_gtm_is_not_no_tracking(self):
+        site = {"audited": True, "gtm": True, "meta_pixel_gtm": True, "booking_tool": True, "whatsapp": True}
+        s = scoring.score(place(), site, CFG, "Rabat")
+        self.assertNotIn("no_tracking", s["flags"])
+        self.assertEqual(adlib.describe(site, {}), "Pixel Meta (via Tag Manager)")
+
+    def test_links(self):
+        self.assertEqual(adlib.google_transparency_url("https://www.clinique-exemple.ma/fr/"),
+                         "https://adstransparency.google.com/?region=MA&domain=clinique-exemple.ma")
+        self.assertEqual(adlib.google_transparency_url(""), "")
+        self.assertIn("active_status=all", adlib.meta_library_url("Clinique Exemple"))
 
 
 class SyncTest(unittest.TestCase):

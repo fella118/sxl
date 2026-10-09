@@ -12,7 +12,7 @@ import sys
 import tomllib
 from concurrent.futures import ThreadPoolExecutor
 
-from . import audit, outreach, places, scoring, store
+from . import adlib, audit, outreach, places, scoring, store
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -53,7 +53,7 @@ def cmd_pull(cfg, args):
         master[p["place_id"]] = {
             "place_id": p["place_id"], "vertical": p["vertical"], "city": p["city"], "score": s["score"],
             "tier": s["tier"], "angle": s["angle"], "flags": " ".join(s["flags"]),
-            "ig_handle": site.get("ig_handle", ""), "email_generic": site.get("email_generic", ""),
+            "ads_evidence": adlib.describe(site, {}), "ig_handle": site.get("ig_handle", ""), "email_generic": site.get("email_generic", ""),
             "status": "new", "first_seen": today, "last_checked": today, "last_queued": "", "notes": "",
             "maps_link": places.maps_link(p["place_id"]),
         }
@@ -82,12 +82,19 @@ def cmd_daily(cfg, args):
     pool = [r for r, p in zip(pool, fresh) if p]
     fresh = [p for p in fresh if p]
     sites = _audit_all(fresh)
+    if not adlib.token():
+        print("META_ADLIB_TOKEN not set: skipping the Meta ad-history check (links still added)")
     quotas = {"dm": d["dm_quota"], "email": d["email_quota"], "call": d["call_quota"]}
     queue = []
     for row, p, site in zip(pool, fresh, sites):
         p["city"] = row["city"]
-        s = scoring.score(p, site, cfg, row["city"])
-        row.update(score=s["score"], tier=s["tier"], angle=s["angle"], flags=" ".join(s["flags"]),
+        try:
+            ads = adlib.meta_evidence(p["name"], site.get("ig_handle") or row["ig_handle"], cfg)
+        except adlib.AdLibError as e:
+            ads, row["notes"] = {}, f"{day}: ad library failed ({str(e)[:60]})"
+        s = scoring.score(p, site, cfg, row["city"], ads)
+        evidence = adlib.describe(site, ads)
+        row.update(score=s["score"], tier=s["tier"], angle=s["angle"], flags=" ".join(s["flags"]), ads_evidence=evidence,
                    ig_handle=site.get("ig_handle") or row["ig_handle"],
                    email_generic=site.get("email_generic") or row["email_generic"], last_checked=day)
         if s["tier"] not in ("Hot", "Warm"):
@@ -104,7 +111,8 @@ def cmd_daily(cfg, args):
             "city": row["city"], "name": p["name"],
             "instagram_url": f"https://www.instagram.com/{row['ig_handle']}/" if row["ig_handle"] else "",
             "email": row["email_generic"], "phone": p["phone"], "maps_url": p["maps_url"], "website": p["website"],
-            "ad_library_url": outreach.ad_library_url(p["name"]), "reasons": " · ".join(s["reasons"]),
+            "ads_evidence": evidence, "ad_library_url": adlib.meta_library_url(p["name"]),
+            "google_ads_url": adlib.google_transparency_url(p["website"]), "reasons": " · ".join(s["reasons"]),
             "facts": outreach.facts(p, site, s), **msg, "place_id": p["place_id"], "status": "à envoyer",
         })
         row.update(status="queued", last_queued=day)

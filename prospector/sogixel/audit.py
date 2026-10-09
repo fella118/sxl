@@ -74,6 +74,32 @@ def analyze(html, final_url=""):
     return found
 
 
+# Inside a Tag Manager container: pixels and ad tags that never appear in the page HTML.
+GTM_PATTERNS = {
+    "meta_pixel": r"fbevents\.js|connect\.facebook\.net|fbq\(",
+    "google_ads": r"AW-\d{6,}|__awct|vtp_conversionId|googleadservices",
+    "tiktok_pixel": r"analytics\.tiktok\.com",
+}
+_GTM_ID = re.compile(r"\bGTM-[A-Z0-9]{4,9}\b")
+
+
+def analyze_gtm(js):
+    return {k: bool(re.search(p, js)) for k, p in GTM_PATTERNS.items()}
+
+
+def scan_gtm(html):
+    """Fetch the site's public GTM container(s) and report the ad tags configured inside."""
+    found = {}
+    for gid in list(dict.fromkeys(_GTM_ID.findall(html)))[:2]:
+        try:
+            _, js, _ = fetch(f"https://www.googletagmanager.com/gtm.js?id={gid}", max_bytes=3_000_000)
+        except (urllib.error.URLError, TimeoutError, ConnectionError, ValueError):
+            continue
+        for k, v in analyze_gtm(js).items():
+            found[k] = found.get(k) or v
+    return {f"{k}_gtm": v for k, v in found.items()}
+
+
 def audit(url):
     if not url:
         return {"audited": False, "audit_note": "no_website"}
@@ -86,5 +112,7 @@ def audit(url):
     except (urllib.error.URLError, TimeoutError, ConnectionError, ValueError) as e:
         return {"audited": False, "audit_note": f"unreachable: {type(e).__name__}"}
     out = analyze(html, final)
+    if out["gtm"]:
+        out.update(scan_gtm(html))
     out.update({"audited": True, "audit_note": "", "load_s": secs})
     return out

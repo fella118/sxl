@@ -10,7 +10,8 @@ You run SOGIXEL's morning prospecting for Saad. Work in `prospector/`. You prepa
    `data/prospects.csv`, and export the queue sheets of the last 7 days as CSV to `out/<date>/queue.csv`.
    If the master is missing, stop and email Saad that the first `pull` hasn't been done.
 2. **Sync what Saad did.** `python -m sogixel sync out/*/queue.csv`
-3. **Build today.** `python -m sogixel daily`
+3. **Build today.** `python -m sogixel daily`. If it says the Meta token is missing or expired, mention it in the
+   report (tokens last 60 days).
 4. **Polish the messages.** For each row of `out/<today>/queue.csv`, rewrite `dm` and `email_body` so they read
    like Saad wrote them for this clinic:
    - French, "vous", calm and direct, under 450 characters for the DM.
