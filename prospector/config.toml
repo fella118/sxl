@@ -43,3 +43,21 @@ countries = ["FR", "BE", "NL", "ES", "IT", "DE"]   # where the MRE and medical t
 [scoring]
 hot = 60
 warm = 40
+
+# The AI employee (python -m sogixel serve). Secrets come from the environment, see DEPLOY.md.
+[employee]
+timezone = "Africa/Casablanca"
+model = "claude-opus-5-5"
+setter_effort = "medium"        # replies to prospects
+polish_effort = "low"           # morning rewrite of the drafts
+reply_delay_s = 20              # answer in seconds, not in milliseconds
+prospect_tag = "prospect-sogixel"
+first_touch = "Bonjour, je suis Saad, fondateur de SOGIXEL"   # the bot only answers conversations that start like this
+daily_at = "07:30"
+report_at = "18:00"
+pull_day = 1                    # monthly refresh of the clinic list
+followup_days = [3, 7]          # email relances after the approved first email
+owner_channel = "whatsapp"      # how Saad gets notified
+# The only proof the setter may quote, word for word.
+proof = ["Plus d'un million de dirhams de pipeline générés pour nos clients.",
+         "Camelia Bio Cosmetics : pour 1 DH investi en publicité, 4 DH récupérés."]

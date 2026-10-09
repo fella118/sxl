@@ -1,4 +1,7 @@
-# Daily run (Claude Code Routine, weekdays ~07:40 Africa/Casablanca)
+# Daily run without a server (Claude Code Routine)
+
+The AI employee (`python -m sogixel serve`, DEPLOY.md) does all of this by itself. Use this Routine only if the
+service isn't deployed yet: it prepares the morning list, but nobody answers replies at night.
 
 Prompt for the scheduled session. Create the Routine only after the first `pull` has been reviewed.
 

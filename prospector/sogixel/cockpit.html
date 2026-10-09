@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOGIXEL Cockpit</title>
+<style>
+:root{--bg:#f6f6f4;--card:#fff;--text:#16171c;--muted:#6b6e7a;--line:#e4e4e0;--acc:#e8703f;--ok:#14935f;--warn:#b43c3c}
+@media (prefers-color-scheme:dark){:root{--bg:#0e0f13;--card:#181a21;--text:#f2f2f4;--muted:#9195a3;--line:#2a2d36;--acc:#ff8a4c;--ok:#34d399;--warn:#f87171}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:0;background:var(--bg);padding:14px 16px 10px;border-bottom:1px solid var(--line);z-index:2}
+h1{font-size:19px;margin:0}
+.sub{color:var(--muted);font-size:13px;margin-top:2px}
+main{padding:12px 16px 40px;max-width:640px;margin:0 auto}
+h2{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:22px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.card.done{opacity:.45}
+.top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.name{font-weight:700;font-size:16px}
+.tier{font-size:12px;font-weight:700;color:var(--acc);white-space:nowrap}
+.meta{color:var(--muted);font-size:13px;margin:4px 0 8px}
+.msg{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:14px;white-space:pre-wrap;margin:8px 0}
+.links{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;margin-bottom:8px}
+.links a{color:var(--acc);text-decoration:none}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+button,.btn{flex:1;min-width:120px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:10px;
+  padding:11px 10px;font:600 14px/1 inherit;cursor:pointer;text-align:center;text-decoration:none}
+.primary{background:var(--acc);border-color:var(--acc);color:#fff}
+.ok{color:var(--ok)}.warn{color:var(--warn)}
+.empty{color:var(--muted);font-size:14px}
+#toast{position:fixed;left:16px;right:16px;bottom:16px;background:var(--text);color:var(--bg);border-radius:10px;padding:12px;
+  text-align:center;font-weight:600;opacity:0;transition:opacity .2s;pointer-events:none}
+</style>
+</head>
+<body>
+<header><h1>Cockpit SOGIXEL</h1><div class="sub" id="sub">Chargement…</div></header>
+<main id="main"></main>
+<div id="toast"></div>
+<script>
+const KEY = new URLSearchParams(location.search).get("key") || "";
+const H = {"Content-Type": "application/json", "X-Employee-Key": KEY};
+const esc = s => String(s || "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const toast = t => { const el = document.getElementById("toast"); el.textContent = t; el.style.opacity = 1; setTimeout(() => el.style.opacity = 0, 1600); };
+const CLOSED = ["sent", "replied", "call_booked", "client", "not_interested", "do_not_contact"];
+const LABEL = {sent: "Envoyé ✓", replied: "A répondu", call_booked: "Appel réservé 📅", client: "Client 🎉",
+  not_interested: "Pas intéressé", do_not_contact: "Ne pas contacter"};
+
+async function post(path, body) {
+  const r = await fetch(path, {method: "POST", headers: H, body: JSON.stringify(body)});
+  return r.json();
+}
+async function mark(id, status, label) { const r = await post("/api/status", {place_id: id, status}); toast(r.ok ? label : "Erreur"); load(); }
+async function email(id) { const r = await post("/api/approve_email", {place_id: id}); toast(r.ok ? "Email envoyé" : (r.error || "Erreur")); load(); }
+async function copy(text) { await navigator.clipboard.writeText(text); toast("Message copié"); }
+
+function card(q) {
+  const done = CLOSED.includes(q.status);
+  const links = [q.instagram_url && `<a href="${esc(q.instagram_url)}" target="_blank">Instagram</a>`,
+    q.website && `<a href="${esc(q.website)}" target="_blank">Site</a>`, q.maps_url && `<a href="${esc(q.maps_url)}" target="_blank">Maps</a>`,
+    `<a href="${esc(q.ad_library_url)}" target="_blank">Pubs Meta</a>`, q.google_ads_url && `<a href="${esc(q.google_ads_url)}" target="_blank">Pubs Google</a>`]
+    .filter(Boolean).join("");
+  const id = esc(q.place_id);
+  let msg = "", actions = "";
+  if (q.channel === "dm") {
+    msg = q.dm;
+    actions = `<a class="btn" href="${esc(q.instagram_url)}" target="_blank">Ouvrir le profil</a>
+      <button data-copy="${esc(q.dm)}" onclick="copy(this.dataset.copy)">Copier le DM</button>
+      <button class="primary" onclick="mark('${id}','sent','Marqué envoyé')">Envoyé ✓</button>`;
+  } else if (q.channel === "email") {
+    msg = `${q.email_subject}\n\n${q.email_body}`;
+    actions = `<button class="primary" onclick="email('${id}')">Envoyer à ${esc(q.email)}</button>`;
+  } else {
+    msg = q.call_opener;
+    actions = `<a class="btn" href="tel:${esc(q.phone)}">Appeler ${esc(q.phone)}</a>
+      <button class="primary" onclick="mark('${id}','sent','Marqué appelé')">Appelé ✓</button>`;
+  }
+  return `<div class="card ${done ? "done" : ""}">
+    <div class="top"><div class="name">${esc(q.name)}</div><div class="tier">${esc(q.tier)} ${esc(q.score)}</div></div>
+    <div class="meta">${esc(q.city)} · ${esc(q.reasons)}${q.ads_evidence ? "<br>Pub : " + esc(q.ads_evidence) : ""}</div>
+    <div class="links">${links}</div>
+    <div class="msg">${esc(msg)}</div>
+    ${done ? `<div class="ok">${esc(LABEL[q.status] || q.status)}</div>` : `<div class="row">${actions}
+      <button class="warn" onclick="mark('${id}','do_not_contact','Retiré')">Ne pas contacter</button></div>`}
+  </div>`;
+}
+
+async function load() {
+  const r = await fetch("/api/today", {headers: H});
+  if (!r.ok) { document.getElementById("sub").textContent = "Accès refusé : lien sans clé ?"; return; }
+  const d = await r.json();
+  const by = c => d.queue.filter(q => q.channel === c);
+  const left = d.queue.filter(q => !CLOSED.includes(q.status)).length;
+  document.getElementById("sub").textContent = `${d.date} · ${left} à traiter sur ${d.queue.length}`;
+  const sect = (title, items) => `<h2>${title} (${items.length})</h2>` + (items.map(card).join("") || `<div class="empty">Rien pour aujourd'hui.</div>`);
+  const fu = d.dm_followups.map(r => `<div class="card"><div class="name">${esc(r.ig_handle || r.place_id)}</div>
+      <div class="meta">DM envoyé le ${esc((r.sent_at || "").slice(0, 10))}, pas de réponse.</div>
+      <div class="row"><a class="btn" href="https://www.instagram.com/${esc(r.ig_handle)}/" target="_blank">Ouvrir</a>
+      <button class="primary" onclick="mark('${esc(r.place_id)}','dm_followed_up','Relance notée')">Relancé ✓</button></div></div>`).join("");
+  document.getElementById("main").innerHTML = sect("DM Instagram", by("dm")) + sect("Emails à approuver", by("email"))
+    + sect("Appels", by("call")) + `<h2>Relances DM (J+3) (${d.dm_followups.length})</h2>` + (fu || `<div class="empty">Aucune relance due.</div>`);
+}
+load();
+</script>
+</body>
+</html>

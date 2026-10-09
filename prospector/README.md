@@ -3,7 +3,9 @@
 Finds high-ticket clinics in Morocco (aesthetic medicine, hair transplant, implant/aesthetic dentistry), checks what
 they're missing, scores them, and builds each morning's outreach list with ready-to-send first messages.
 
-**The AI prepares; a human sends.** Nothing in this repo sends a DM, an email or a WhatsApp to a prospect.
+**The AI prepares; a human sends the first message.** The AI employee (`python -m sogixel serve`, see
+[DEPLOY.md](DEPLOY.md)) then answers replies 24/7, books calls and sends email follow-ups. It never starts a
+conversation and never answers anyone we didn't prospect.
 
 ## Daily flow
 
@@ -53,6 +55,13 @@ python -m unittest discover -s tests -t .    # offline tests
 ```
 
 `data/` and `out/` are git-ignored: prospect data lives in Drive, not in the repo.
+
+## The AI employee (24/7)
+
+`python -m sogixel serve` runs everything above on a schedule and adds the setter: when a prospect replies on
+Instagram, WhatsApp or email, GoHighLevel calls the webhook and Claude answers within seconds, proposes slots from
+the GHL calendar, books the call, or hands over to Saad on WhatsApp. "Stop" is handled instantly without the model.
+Saad works from the cockpit page on his phone. Setup: [DEPLOY.md](DEPLOY.md).
 
 ## Rules built in
 
