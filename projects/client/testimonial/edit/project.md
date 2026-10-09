@@ -164,7 +164,7 @@ capture_html.py > safe_zones.py check > build_audio.py > composite.py
 ## Session 2 (cont.), 2026-10-08: cover v3 (teeth)
 
 - **Client:** "whiten and fix my teeth a bit".
-- **Retouch (animations/cover/retouch_teeth.py, Lab, mouth ROI only):**
+- **Retouch (retouch_teeth.py, now studio/bin/retouch_teeth.py; Lab, mouth ROI only):**
   - The mask starts from the clean enamel (L > 172, a* < 150). It grows up to
     24 px into stained or shaded enamel that is yellow-orange rather than pink,
     so the brown bands between the lower teeth join the mask while the gums and
@@ -180,7 +180,7 @@ capture_html.py > safe_zones.py check > build_audio.py > composite.py
   - The tooth shape is untouched: straightening the lower teeth would look
     fake.
 - **Cover:** cover_host.html now uses host4k_teeth.png (gitignored, regenerate
-  with `retouch_teeth.py host4k.png host4k_teeth.png`).
+  with `studio/bin/retouch_teeth.py host4k.png host4k_teeth.png --roi 880,1855,1290,2010`).
 - **Delivered:** deliver/testimonial_cover_v3.jpg (2160x3840),
   testimonial_cover_v3_1080.jpg (Instagram), .png master.
 

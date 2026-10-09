@@ -4,6 +4,7 @@ Two stages, because torch and OpenCV live in different venvs:
 
     studio/.venv-darija/bin/python studio/bin/enhance_photo.py upscale in.png x4.png
     studio/.venv/bin/python        studio/bin/enhance_photo.py hdr x4.png out.png [--width 2160] [--hdr 1.0]
+                                   [--lift 1.0] [--clarity 1.0]
 
 upscale: Real-ESRGAN x4plus (studio/.models/RealESRGAN_x4plus.pth; RRDBNet is
          defined below, so no extra packages), tiled on CPU (torch + Pillow).
@@ -104,12 +105,14 @@ def upscale4(rgb8: np.ndarray, tile: int = 192, pad: int = 12) -> np.ndarray:
     return (out * 255.0 + 0.5).astype(np.uint8)
 
 
-def hdr_look(img_bgr: np.ndarray, amount: float = 1.0) -> np.ndarray:
+def hdr_look(img_bgr: np.ndarray, amount: float = 1.0, lift_scale: float = 1.0, clarity: float = 1.0) -> np.ndarray:
     """Local tone mapping on L (Lab): base/detail split with an edge-aware filter.
 
     Shadows and dark midtones open up (faces in shade, dark clothes), highlights
     are held, local detail gets moderate clarity, and colours gain vibrance
     except in the skin-hue band, so faces stay natural (no orange cast).
+    lift_scale scales the shadow lift (keep it low on bright, high-key shots, where
+    lifting only flattens the face); clarity scales the local-contrast boost.
     """
     import cv2
     if amount <= 0:
@@ -119,11 +122,11 @@ def hdr_look(img_bgr: np.ndarray, amount: float = 1.0) -> np.ndarray:
     short = min(L.shape)
     base = cv2.bilateralFilter(L, d=0, sigmaColor=0.12, sigmaSpace=short / 60)
     detail = L - base
-    lift, hold = 0.26 * amount, 0.10 * amount
+    lift, hold = 0.26 * amount * lift_scale, 0.10 * amount
     b = base + lift * base * (1 - base) ** 2 * 2.4 - hold * np.clip(base - 0.75, 0, 1) ** 2 * 4
     b = np.clip(b, 0, 1)
     fine = L - cv2.GaussianBlur(L, (0, 0), 1.2)
-    Ln = np.clip(b + detail * (1 + 0.45 * amount) + fine * 0.08 * amount, 0, 1)
+    Ln = np.clip(b + detail * (1 + 0.45 * amount * clarity) + fine * 0.08 * amount, 0, 1)
     lab[:, :, 0] = Ln * 255.0
     out = cv2.cvtColor(lab.astype(np.uint8), cv2.COLOR_LAB2BGR)
     hsv = cv2.cvtColor(out, cv2.COLOR_BGR2HSV).astype(np.float32)
@@ -141,6 +144,8 @@ def main() -> None:
     ap.add_argument("output", type=Path)
     ap.add_argument("--width", type=int, default=2160, help="hdr: final width (aspect kept)")
     ap.add_argument("--hdr", type=float, default=1.0)
+    ap.add_argument("--lift", type=float, default=1.0, help="hdr: shadow-lift scale (0.2-0.4 for bright, high-key shots)")
+    ap.add_argument("--clarity", type=float, default=1.0, help="hdr: local-contrast scale")
     args = ap.parse_args()
     if args.stage == "upscale":
         from PIL import Image
@@ -157,9 +162,9 @@ def main() -> None:
     tw = args.width
     th = round(img.shape[0] * tw / img.shape[1])
     img = cv2.resize(img, (tw, th), interpolation=cv2.INTER_AREA if tw < img.shape[1] else cv2.INTER_LANCZOS4)
-    img = hdr_look(img, args.hdr)
+    img = hdr_look(img, args.hdr, args.lift, args.clarity)
     cv2.imwrite(str(args.output), img)
-    print(f"wrote {args.output} ({tw}x{th}, hdr {args.hdr})")
+    print(f"wrote {args.output} ({tw}x{th}, hdr {args.hdr}, lift {args.lift}, clarity {args.clarity})")
 
 
 if __name__ == "__main__":

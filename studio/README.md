@@ -20,6 +20,9 @@ $PY studio/bin/export.py projects/acme/launch/edit/final.mp4 reels youtube
 | `bin/analyze.py` | Metadata, scene cuts, labelled contact sheets, loudness, silences |
 | `bin/transcribe.py` | Word-level transcripts (faster-whisper locally, or ElevenLabs Scribe) |
 | `bin/export.py` | Platform masters: reframe, captions, -14 LUFS, H.264, poster frame |
+| `bin/enhance_photo.py` | Cover photos: Real-ESRGAN x4 upscale (Darija venv), HDR look (`--lift`, `--clarity`) |
+| `bin/retouch_teeth.py` | Natural teeth retouch: whiten, clean stains, fill dark gaps (`--roi`, `--gaps`, `--row`) |
+| `bin/render_cover.py` | HTML cover page to PNG/JPG, at 2x (2160x3840) + a 1080 copy |
 
 Cutting, grading, overlays and subtitles come from video-use's helpers
 (`render.py`, `grade.py`, `timeline_view.py`, `pack_transcripts.py`).
