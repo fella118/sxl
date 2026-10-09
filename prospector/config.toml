@@ -1,0 +1,39 @@
+# SOGIXEL prospector — who we look for and how much we do each day.
+
+[market]
+cities = ["Casablanca", "Rabat", "Marrakech", "Tanger", "Agadir", "Fès"]
+tier1_cities = ["Casablanca", "Rabat", "Marrakech", "Tanger"]
+language = "fr"
+region = "MA"
+pages_per_query = 3            # Places returns max 20 results per page, 60 per query
+
+# One niche, three verticals: same owner, same funnel (lead -> consultation -> high-ticket treatment).
+[[verticals]]
+key = "aesthetic"
+label = "médecine esthétique"
+queries = ["clinique esthétique", "médecine esthétique", "centre laser esthétique"]
+match = ["esthet", "aesthetic", "laser", "botox", "injection", "dermato", "beaute medicale", "skin"]
+
+[[verticals]]
+key = "hair"
+label = "greffe de cheveux"
+queries = ["greffe de cheveux", "greffe capillaire"]
+match = ["greffe", "capillaire", "hair", "fue", "dhi", "implant capillaire"]
+
+[[verticals]]
+key = "dental"
+label = "implants et dentisterie esthétique"
+queries = ["implant dentaire", "centre dentaire", "dentiste esthétique", "orthodontiste"]
+match = ["dent", "implant", "orthodon", "sourire", "smile", "stomato"]
+types = ["dentist", "dental_clinic"]
+
+[daily]
+candidates = 60                # how many top prospects get a fresh check each day
+dm_quota = 20                  # Instagram DMs Saad sends by hand
+email_quota = 20               # generic business addresses only (contact@, info@, rdv@ ...)
+call_quota = 10
+recheck_days = 30              # re-audit a prospect's site after this many days
+
+[scoring]
+hot = 60
+warm = 40
