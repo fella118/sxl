@@ -155,7 +155,7 @@ export default function App() {
     <div className="mx-auto min-h-dvh max-w-2xl pb-16">
       <header className="sticky top-0 z-10 border-b border-slate-200 bg-white">
         <div className="flex items-center justify-between gap-3 px-4 py-2">
-          <h1 className="text-base font-semibold">Saisie client</h1>
+          <h1 className="text-base font-semibold">C scan</h1>
           <button
             onClick={nextClient}
             className="min-h-11 rounded-lg bg-slate-900 px-4 text-sm font-medium text-white active:bg-slate-700"

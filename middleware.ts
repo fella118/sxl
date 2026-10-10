@@ -21,7 +21,7 @@ export function middleware(req: NextRequest) {
 
   return new NextResponse("Authentification requise.", {
     status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="Espace interne", charset="UTF-8"' },
+    headers: { "WWW-Authenticate": 'Basic realm="C scan", charset="UTF-8"' },
   });
 }
 
