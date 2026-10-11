@@ -1,18 +1,19 @@
 "use client";
 
 import type { Worker } from "tesseract.js";
+import type { TabId, FieldKey } from "./fields";
+import { REGIONS } from "./regions";
 
 const MAX_SIDE = 2400;
 const MRZ_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<";
 const VIN_CHARS = "ABCDEFGHJKLMNPRSTUVWXYZ0123456789";
 
-type Langs = "fra+ara" | "fra";
+type Langs = "ara" | "fra";
 const workers: Partial<Record<Langs, Promise<Worker>>> = {};
 let onProgress: ((p: number) => void) | null = null;
 let queue: Promise<unknown> = Promise.resolve();
 
-// "fra+ara" reads the cards; a Latin-only "fra" worker handles the MRZ and VIN passes,
-// because mixing in the Arabic model garbles long alphanumeric strings.
+// Separate workers keep Latin and Arabic reading order independent.
 function getWorker(langs: Langs) {
   if (!workers[langs]) {
     const p = import("tesseract.js").then(({ createWorker }) =>
@@ -35,7 +36,10 @@ async function preprocess(file: File): Promise<HTMLCanvasElement> {
     const img = new Image();
     img.src = url;
     await img.decode();
-    const scale = Math.min(1, MAX_SIDE / Math.max(img.naturalWidth, img.naturalHeight));
+    const scale = Math.min(
+      1,
+      MAX_SIDE / Math.max(img.naturalWidth, img.naturalHeight),
+    );
     const w = Math.round(img.naturalWidth * scale);
     const h = Math.round(img.naturalHeight * scale);
     const canvas = document.createElement("canvas");
@@ -55,10 +59,24 @@ async function preprocess(file: File): Promise<HTMLCanvasElement> {
     }
     // Stretch between 2nd and 98th percentile, then boost contrast around the middle.
     const total = w * h;
-    let lo = 0, hi = 255, acc = 0;
-    for (let v = 0; v < 256; v++) { acc += hist[v]; if (acc >= total * 0.02) { lo = v; break; } }
+    let lo = 0,
+      hi = 255,
+      acc = 0;
+    for (let v = 0; v < 256; v++) {
+      acc += hist[v];
+      if (acc >= total * 0.02) {
+        lo = v;
+        break;
+      }
+    }
     acc = 0;
-    for (let v = 255; v >= 0; v--) { acc += hist[v]; if (acc >= total * 0.02) { hi = v; break; } }
+    for (let v = 255; v >= 0; v--) {
+      acc += hist[v];
+      if (acc >= total * 0.02) {
+        hi = v;
+        break;
+      }
+    }
     const range = Math.max(1, hi - lo);
     const CONTRAST = 1.4;
     for (let i = 0, j = 0; i < px.length; i += 4, j++) {
@@ -75,32 +93,97 @@ async function preprocess(file: File): Promise<HTMLCanvasElement> {
 
 export interface OcrOutput {
   text: string;
-  /** Second pass restricted to the MRZ or VIN character set. */
   extra?: string;
+  regions: Partial<Record<FieldKey, { text: string; confidence: number }>>;
 }
-
-/** OCR one photo. Jobs are serialized so only one runs at a time. */
-export function runOcr(file: File, pass: "mrz" | "vin" | null, progress: (p: number) => void): Promise<OcrOutput> {
+function crop(
+  source: HTMLCanvasElement,
+  box: [number, number, number, number],
+) {
+  const [x, y, w, h] = box;
+  const canvas = document.createElement("canvas");
+  const scale = Math.min(3, Math.max(1, 120 / (source.height * h)));
+  canvas.width = Math.round(source.width * w * scale) + 32;
+  canvas.height = Math.round(source.height * h * scale) + 32;
+  const ctx = canvas.getContext("2d")!;
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(
+    source,
+    source.width * x,
+    source.height * y,
+    source.width * w,
+    source.height * h,
+    16,
+    16,
+    canvas.width - 32,
+    canvas.height - 32,
+  );
+  return canvas;
+}
+/** One aligned card. Jobs are serialized; no photo is sent to an OCR service. */
+export function runOcr(
+  file: File,
+  tab: TabId,
+  progress: (p: number) => void,
+): Promise<OcrOutput> {
   const job = queue.then(async () => {
-    onProgress = progress;
+    let step = 0;
+    const total = 1 + REGIONS[tab].length + (tab === "cinVerso" ? 1 : 0);
+    const read = async (
+      canvas: HTMLCanvasElement,
+      lang: Langs,
+      psm: "6" | "7" | "11",
+      whitelist = "",
+    ) => {
+      onProgress = (p) => progress(Math.min(0.99, (step + p) / total));
+      const worker = await getWorker(lang);
+      await worker.setParameters({
+        tessedit_pageseg_mode: psm as never,
+        tessedit_char_whitelist: whitelist,
+        preserve_interword_spaces: "1",
+      });
+      const { data } = await worker.recognize(canvas);
+      step++;
+      progress(step / total);
+      return data;
+    };
     try {
       const canvas = await preprocess(file);
-      const main = await getWorker("fra+ara");
-      await main.setParameters({ tessedit_pageseg_mode: "3" as never });
-      const { data } = await main.recognize(canvas);
-      const out: OcrOutput = { text: data.text };
-      if (pass) {
-        const latin = await getWorker("fra");
-        await latin.setParameters({
-          tessedit_pageseg_mode: "6" as never,
-          tessedit_char_whitelist: pass === "mrz" ? MRZ_CHARS : VIN_CHARS,
-        });
-        // The MRZ sits at the bottom of the card: only read the lower part.
-        const top = pass === "mrz" ? Math.round(canvas.height * 0.5) : 0;
-        const res = await latin.recognize(canvas, {
-          rectangle: { left: 0, top, width: canvas.width, height: canvas.height - top },
-        });
-        out.extra = res.data.text;
+      // Isolate the Latin columns: bilingual reading order must not drive field assignment.
+      const mainCanvas =
+        tab === "cgVerso"
+          ? crop(canvas, [0, 0, 0.57, 1])
+          : tab === "cgRecto"
+            ? crop(canvas, [0, 0, 0.73, 1])
+            : canvas;
+      const data = await read(
+        mainCanvas,
+        "fra",
+        tab.startsWith("cg") ? "6" : "11",
+      );
+      const out: OcrOutput = { text: data.text, regions: {} };
+      if (tab === "cinVerso")
+        out.extra = (
+          await read(
+            crop(canvas, [0.015, 0.64, 0.98, 0.33]),
+            "fra",
+            "6",
+            MRZ_CHARS,
+          )
+        ).text;
+      for (const region of REGIONS[tab]) {
+        const result = await read(
+          crop(canvas, region.box),
+          region.lang,
+          "7",
+          region.kind === "vin" ? VIN_CHARS : "",
+        );
+        out.regions[region.key] = {
+          text: result.text.trim(),
+          confidence: result.confidence,
+        };
+        if (region.kind === "vin") out.extra = result.text;
       }
       return out;
     } finally {

@@ -1,9 +1,18 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ALL_FIELDS, TABS, validate, type FieldDef, type FieldKey, type TabId } from "@/lib/fields";
-import { runOcr } from "@/lib/ocr";
 import {
+  ALL_FIELDS,
+  TABS,
+  validate,
+  type FieldDef,
+  type FieldKey,
+  type TabId,
+} from "@/lib/fields";
+import { runOcr } from "@/lib/ocr";
+import Capture from "./Capture";
+import {
+  cleanName,
   parseCgRecto,
   parseCgVerso,
   parseCinRecto,
@@ -16,10 +25,17 @@ type Photo = { url: string; id: number };
 type Ocr = { status: "idle" | "running" | "done" | "error"; progress: number };
 
 const TAB_IDS = TABS.map((t) => t.id);
-const MRZ_KEYS: FieldKey[] = ["nom", "prenom", "dateNaissance", "dateExpiration"];
+const MRZ_KEYS: FieldKey[] = [
+  "nom",
+  "prenom",
+  "dateNaissance",
+  "dateExpiration",
+];
 
-const perTab = <T,>(v: T) => Object.fromEntries(TAB_IDS.map((id) => [id, v])) as Record<TabId, T>;
-const perField = <T,>(v: T) => Object.fromEntries(ALL_FIELDS.map((f) => [f.key, v])) as Record<FieldKey, T>;
+const perTab = <T,>(v: T) =>
+  Object.fromEntries(TAB_IDS.map((id) => [id, v])) as Record<TabId, T>;
+const perField = <T,>(v: T) =>
+  Object.fromEntries(ALL_FIELDS.map((f) => [f.key, v])) as Record<FieldKey, T>;
 
 const PARSERS: Record<TabId, (text: string, extra?: string) => Extracted> = {
   cinRecto: parseCinRecto,
@@ -48,30 +64,49 @@ async function copyText(text: string) {
 
 export default function App() {
   const [active, setActive] = useState<TabId>("cinRecto");
-  const [photos, setPhotos] = useState<Record<TabId, Photo | null>>(perTab(null));
-  const [ocr, setOcr] = useState<Record<TabId, Ocr>>(perTab({ status: "idle", progress: 0 }));
+  const [photos, setPhotos] = useState<Record<TabId, Photo | null>>(
+    perTab(null),
+  );
+  const [ocr, setOcr] = useState<Record<TabId, Ocr>>(
+    perTab({ status: "idle", progress: 0 }),
+  );
   const [values, setValues] = useState<Record<FieldKey, string>>(perField(""));
-  const [copied, setCopied] = useState<Record<FieldKey, boolean>>(perField(false));
+  const [copied, setCopied] = useState<Record<FieldKey, boolean>>(
+    perField(false),
+  );
   const [mrz, setMrz] = useState<Extracted | null>(null);
   const mrzRef = useRef<Extracted | null>(null);
   // Latest photo id per tab: OCR results for a replaced photo are dropped.
   const photoIds = useRef<Record<TabId, number>>(perTab(0));
   const counter = useRef(0);
+  const edited = useRef<Record<FieldKey, boolean>>(perField(false));
+  const [review, setReview] = useState<Record<FieldKey, boolean>>(
+    perField(false),
+  );
 
   const setMrzBoth = (m: Extracted | null) => {
     mrzRef.current = m;
     setMrz(m);
   };
 
-  // Fill only fields that are still empty, so nothing typed by staff is overwritten.
-  const fillEmpty = (data: Extracted) =>
+  // Refresh machine suggestions, never values edited by staff.
+  const fillEmpty = (data: Extracted) => {
+    setCopied((c) => ({
+      ...c,
+      ...Object.fromEntries(
+        Object.keys(data)
+          .filter((k) => !edited.current[k as FieldKey])
+          .map((k) => [k, false]),
+      ),
+    }));
     setValues((v) => {
       const next = { ...v };
       for (const [k, val] of Object.entries(data) as [FieldKey, string][]) {
-        if (val && !next[k].trim()) next[k] = val;
+        if (val && !edited.current[k]) next[k] = val;
       }
       return next;
     });
+  };
 
   const handleFile = async (tab: TabId, file: File) => {
     const id = ++counter.current;
@@ -82,19 +117,61 @@ export default function App() {
       if (p[tab]) URL.revokeObjectURL(p[tab]!.url);
       return { ...p, [tab]: { url: URL.createObjectURL(file), id } };
     });
-    setValues((v) => ({ ...v, ...Object.fromEntries(tabFields.map((f) => [f.key, ""])) }));
-    setCopied((c) => ({ ...c, ...Object.fromEntries(tabFields.map((f) => [f.key, false])) }));
+    // Retakes refresh OCR suggestions but preserve staff edits.
+    setValues((v) => ({
+      ...v,
+      ...Object.fromEntries(
+        tabFields.filter((f) => !edited.current[f.key]).map((f) => [f.key, ""]),
+      ),
+    }));
+    setCopied((c) => ({
+      ...c,
+      ...Object.fromEntries(tabFields.map((f) => [f.key, false])),
+    }));
     if (tab === "cinVerso") setMrzBoth(null);
     setOcr((o) => ({ ...o, [tab]: { status: "running", progress: 0 } }));
 
     try {
-      const pass = tab === "cinVerso" ? "mrz" : tab === "cgVerso" ? "vin" : null;
-      const res = await runOcr(file, pass, (p) => {
-        if (photoIds.current[tab] === id) setOcr((o) => ({ ...o, [tab]: { status: "running", progress: p } }));
+      const res = await runOcr(file, tab, (p) => {
+        if (photoIds.current[tab] === id)
+          setOcr((o) => ({ ...o, [tab]: { status: "running", progress: p } }));
       });
       if (photoIds.current[tab] !== id) return;
 
       const data = PARSERS[tab](res.text, res.extra);
+      if (tab === "cgVerso") {
+        for (const key of [
+          "marque",
+          "type",
+          "genre",
+          "carburant",
+          "puissanceFiscale",
+        ] as const) {
+          const region = res.regions[key];
+          const value = region?.text.replace(/\s+/g, " ").trim() ?? "";
+          const check = TABS.find((t) => t.id === tab)!.fields.find(
+            (f) => f.key === key,
+          )?.check;
+          data[key] =
+            region &&
+            region.confidence >= 60 &&
+            value &&
+            !validate(check, value)
+              ? value
+              : "";
+        }
+      }
+      for (const key of ["nom", "prenom", "nomAr", "prenomAr"] as const) {
+        const region = res.regions[key];
+        if (region && region.confidence >= 45) {
+          const name = cleanName(region.text, key.endsWith("Ar"));
+          if (name) data[key] = name;
+        }
+      }
+      setReview((r) => ({
+        ...r,
+        ...Object.fromEntries(tabFields.map((f) => [f.key, true])),
+      }));
       if (tab === "cinVerso") {
         const m = { ...parseMrz(res.text), ...parseMrz(res.extra ?? "") };
         const found = Object.keys(m).length > 0 ? m : null;
@@ -102,19 +179,21 @@ export default function App() {
         if (found) fillEmpty(found);
       }
       if (tab === "cinRecto" && mrzRef.current) {
-        // MRZ dates passed their check digit, so they beat the printed text. Names have no
-        // check digit: they stay as a suggestion shown under the field.
-        for (const k of ["dateNaissance", "dateExpiration"] as const)
+        // Prefer the structured MRZ, while fillEmpty preserves all manual corrections.
+        for (const k of MRZ_KEYS)
           if (mrzRef.current[k]) data[k] = mrzRef.current[k];
       }
       fillEmpty(data);
       setOcr((o) => ({ ...o, [tab]: { status: "done", progress: 1 } }));
     } catch {
-      if (photoIds.current[tab] === id) setOcr((o) => ({ ...o, [tab]: { status: "error", progress: 0 } }));
+      if (photoIds.current[tab] === id)
+        setOcr((o) => ({ ...o, [tab]: { status: "error", progress: 0 } }));
     }
   };
 
   const changeValue = (f: FieldDef, raw: string) => {
+    edited.current[f.key] = true;
+    setReview((r) => ({ ...r, [f.key]: false }));
     const val = f.upper ? raw.toUpperCase().replace(/\s/g, "") : raw;
     setValues((v) => ({ ...v, [f.key]: val }));
     setCopied((c) => ({ ...c, [f.key]: false }));
@@ -122,12 +201,18 @@ export default function App() {
 
   const copyField = async (key: FieldKey) => {
     const text = values[key].trim();
-    if (text && (await copyText(text))) setCopied((c) => ({ ...c, [key]: true }));
+    if (text && (await copyText(text)))
+      setCopied((c) => ({ ...c, [key]: true }));
   };
 
   const nextClient = () => {
-    const hasData = TAB_IDS.some((t) => photos[t]) || ALL_FIELDS.some((f) => values[f.key]);
-    if (hasData && !window.confirm("Effacer toutes les photos et tous les champs ?")) return;
+    const hasData =
+      TAB_IDS.some((t) => photos[t]) || ALL_FIELDS.some((f) => values[f.key]);
+    if (
+      hasData &&
+      !window.confirm("Effacer toutes les photos et tous les champs ?")
+    )
+      return;
     for (const t of TAB_IDS) {
       photoIds.current[t] = ++counter.current;
       if (photos[t]) URL.revokeObjectURL(photos[t]!.url);
@@ -135,6 +220,8 @@ export default function App() {
     setPhotos(perTab(null));
     setOcr(perTab({ status: "idle", progress: 0 }));
     setValues(perField(""));
+    edited.current = perField(false);
+    setReview(perField(false));
     setCopied(perField(false));
     setMrzBoth(null);
     setActive("cinRecto");
@@ -144,7 +231,9 @@ export default function App() {
   const dot = (tab: TabId) => {
     if (!photos[tab]) return "bg-slate-300";
     const fields = TABS.find((t) => t.id === tab)!.fields;
-    return fields.every((f) => copied[f.key]) ? "bg-green-500" : "bg-orange-400";
+    return fields.every((f) => copied[f.key])
+      ? "bg-green-500"
+      : "bg-orange-400";
   };
 
   const tab = TABS.find((t) => t.id === active)!;
@@ -169,10 +258,15 @@ export default function App() {
               key={t.id}
               onClick={() => setActive(t.id)}
               className={`flex min-h-14 flex-col items-center justify-center gap-1 px-1 text-xs leading-tight ${
-                t.id === active ? "border-b-2 border-slate-900 font-semibold" : "border-b-2 border-transparent text-slate-500"
+                t.id === active
+                  ? "border-b-2 border-slate-900 font-semibold"
+                  : "border-b-2 border-transparent text-slate-500"
               }`}
             >
-              <span className={`h-2.5 w-2.5 rounded-full ${dot(t.id)}`} aria-hidden />
+              <span
+                className={`h-2.5 w-2.5 rounded-full ${dot(t.id)}`}
+                aria-hidden
+              />
               <span className="text-center">{t.label}</span>
             </button>
           ))}
@@ -180,7 +274,8 @@ export default function App() {
       </header>
 
       <main className="space-y-4 px-4 pt-4">
-        <PhotoInput
+        <Capture
+          key={active}
           hasPhoto={!!photo}
           onFile={(file) => handleFile(active, file)}
         />
@@ -194,17 +289,30 @@ export default function App() {
         )}
         {state.status === "error" && (
           <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-800">
-            Échec de l&apos;analyse. Saisissez les champs à la main ou reprenez la photo.
+            Échec de l&apos;analyse. Saisissez les champs à la main ou reprenez
+            la photo.
           </p>
         )}
         {active === "cinVerso" && state.status === "done" && (
           <p className="rounded-lg bg-slate-100 px-3 py-2 text-sm text-slate-700">
             {mrz
-              ? "Zone MRZ lue : Nom, Prénom et dates vérifiés dans l'onglet CIN recto."
+              ? "Zone MRZ lue : suggestions reportées dans CIN recto. Vérifiez les noms sur la carte."
               : "Aucune zone MRZ lisible sur cette photo."}
           </p>
         )}
 
+        {state.status === "done" && (
+          <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900">
+            Vérifiez les suggestions sur la photo. Les champs illisibles restent
+            à compléter.{" "}
+            {active === "cinRecto" &&
+              "Scannez aussi le verso pour lire les noms dans la zone MRZ."}
+          </p>
+        )}
+        <p className="text-xs text-slate-500">
+          Analyse sur cet appareil. Les photos ne sont pas envoyées à un service
+          OCR.
+        </p>
         <div className="space-y-4">
           {tab.fields.map((f) => (
             <FieldRow
@@ -212,7 +320,12 @@ export default function App() {
               field={f}
               value={values[f.key]}
               copied={copied[f.key]}
-              mrzValue={active === "cinRecto" && MRZ_KEYS.includes(f.key) ? mrz?.[f.key] : undefined}
+              needsReview={review[f.key]}
+              mrzValue={
+                active === "cinRecto" && MRZ_KEYS.includes(f.key)
+                  ? mrz?.[f.key]
+                  : undefined
+              }
               onChange={(v) => changeValue(f, v)}
               onCopy={() => copyField(f.key)}
             />
@@ -223,44 +336,23 @@ export default function App() {
   );
 }
 
-function PhotoInput({ hasPhoto, onFile }: { hasPhoto: boolean; onFile: (f: File) => void }) {
-  const camera = useRef<HTMLInputElement>(null);
-  const upload = useRef<HTMLInputElement>(null);
-  const pick = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const f = e.target.files?.[0];
-    e.target.value = "";
-    if (f) onFile(f);
-  };
-  return (
-    <div className="grid grid-cols-2 gap-2">
-      <button
-        onClick={() => camera.current?.click()}
-        className="min-h-12 rounded-lg bg-blue-600 px-3 text-sm font-medium text-white active:bg-blue-700"
-      >
-        {hasPhoto ? "Reprendre la photo" : "Prendre une photo"}
-      </button>
-      <button
-        onClick={() => upload.current?.click()}
-        className="min-h-12 rounded-lg border border-slate-300 bg-white px-3 text-sm font-medium active:bg-slate-100"
-      >
-        {hasPhoto ? "Importer une autre" : "Importer une photo"}
-      </button>
-      <input ref={camera} type="file" accept="image/*" capture="environment" className="hidden" onChange={pick} />
-      <input ref={upload} type="file" accept="image/*" className="hidden" onChange={pick} />
-    </div>
-  );
-}
-
 function PhotoViewer({ url }: { url: string }) {
   const [zoom, setZoom] = useState(1);
   return (
     <div>
       <div className="max-h-[70vh] overflow-auto rounded-lg border border-slate-200 bg-slate-900">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={url} alt="Photo du document" style={{ width: `${zoom * 100}%` }} className="block max-w-none" />
+        <img
+          src={url}
+          alt="Photo du document"
+          style={{ width: `${zoom * 100}%` }}
+          className="block max-w-none"
+        />
       </div>
       <div className="mt-2 flex items-center justify-end gap-2">
-        <span className="mr-auto text-xs text-slate-500">Zoom {Math.round(zoom * 100)} %</span>
+        <span className="mr-auto text-xs text-slate-500">
+          Zoom {Math.round(zoom * 100)} %
+        </span>
         {[
           { label: "−", onClick: () => setZoom((z) => Math.max(1, z - 0.5)) },
           { label: "100 %", onClick: () => setZoom(1) },
@@ -284,6 +376,7 @@ function FieldRow({
   value,
   copied,
   mrzValue,
+  needsReview,
   onChange,
   onCopy,
 }: {
@@ -291,15 +384,20 @@ function FieldRow({
   value: string;
   copied: boolean;
   mrzValue?: string;
+  needsReview: boolean;
   onChange: (v: string) => void;
   onCopy: () => void;
 }) {
   const error = validate(field.check, value);
   const id = `f-${field.key}`;
-  const mrzMatches = mrzValue && mrzValue.trim().toUpperCase() === value.trim().toUpperCase();
+  const mrzMatches =
+    mrzValue && mrzValue.trim().toUpperCase() === value.trim().toUpperCase();
   return (
     <div>
-      <label htmlFor={id} className="mb-1 block text-sm font-medium text-slate-700">
+      <label
+        htmlFor={id}
+        className="mb-1 block text-sm font-medium text-slate-700"
+      >
         {field.label}
       </label>
       <div className="flex gap-2">
@@ -313,7 +411,11 @@ function FieldRow({
           autoCorrect="off"
           spellCheck={false}
           className={`min-h-12 w-full min-w-0 rounded-lg border bg-white px-3 text-base outline-none focus:ring-2 ${
-            error ? "border-red-500 focus:ring-red-200" : "border-slate-300 focus:ring-blue-200"
+            error
+              ? "border-red-500 focus:ring-red-200"
+              : needsReview
+                ? "border-amber-400 focus:ring-amber-200"
+                : "border-slate-300 focus:ring-blue-200"
           }`}
         />
         <button
@@ -321,14 +423,20 @@ function FieldRow({
           disabled={!value.trim()}
           aria-label={`Copier ${field.label}`}
           className={`min-h-12 min-w-24 shrink-0 rounded-lg px-3 text-sm font-semibold disabled:opacity-40 ${
-            copied ? "bg-green-600 text-white" : "bg-slate-900 text-white active:bg-slate-700"
+            copied
+              ? "bg-green-600 text-white"
+              : "bg-slate-900 text-white active:bg-slate-700"
           }`}
         >
           {copied ? "✓ Copié" : "Copier"}
         </button>
       </div>
       {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-      {mrzValue && mrzMatches && <p className="mt-1 text-sm text-green-700">✓ Confirmé par la MRZ</p>}
+      {mrzValue && mrzMatches && (
+        <p className="mt-1 text-sm text-green-700">
+          Correspond à la lecture MRZ — à vérifier
+        </p>
+      )}
       {mrzValue && !mrzMatches && (
         <div className="mt-1 flex items-center gap-2 text-sm text-amber-800">
           <span>

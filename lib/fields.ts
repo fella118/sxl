@@ -56,6 +56,11 @@ export const TABS: { id: TabId; label: string; fields: FieldDef[] }[] = [
     label: "Carte grise recto",
     fields: [
       { key: "immatriculation", label: "N° immatriculation" },
+      {
+        key: "dateMiseEnCirculation",
+        label: "Date de 1ère mise en circulation",
+        check: "date",
+      },
       { key: "proprietaire", label: "Propriétaire" },
       { key: "adresseProprietaire", label: "Adresse du propriétaire" },
     ],
@@ -70,7 +75,6 @@ export const TABS: { id: TabId; label: string; fields: FieldDef[] }[] = [
       { key: "genre", label: "Genre" },
       { key: "carburant", label: "Carburant" },
       { key: "puissanceFiscale", label: "Puissance fiscale", check: "number" },
-      { key: "dateMiseEnCirculation", label: "Date de 1ère mise en circulation", check: "date" },
     ],
   },
 ];
@@ -78,18 +82,34 @@ export const TABS: { id: TabId; label: string; fields: FieldDef[] }[] = [
 export const ALL_FIELDS: FieldDef[] = TABS.flatMap((t) => t.fields);
 
 /** Returns an error message, or null when the value is empty or valid. */
-export function validate(check: Check | undefined, value: string): string | null {
+export function validate(
+  check: Check | undefined,
+  value: string,
+): string | null {
   const v = value.trim();
   if (!check || !v) return null;
   switch (check) {
     case "cin":
-      return /^[A-Z]{1,2}\d+$/.test(v) ? null : "1 ou 2 lettres puis des chiffres (ex. AB123456)";
+      return /^[A-Z]{1,2}\d+$/.test(v)
+        ? null
+        : "1 ou 2 lettres puis des chiffres (ex. AB123456)";
     case "vin":
-      if (v.length !== 17) return `17 caractères attendus (${v.length} actuellement)`;
-      return /^[A-HJ-NPR-Z0-9]{17}$/.test(v) ? null : "Lettres I, O, Q interdites ; lettres et chiffres uniquement";
+      if (v.length !== 17)
+        return `17 caractères attendus (${v.length} actuellement)`;
+      return /^[A-HJ-NPR-Z0-9]{17}$/.test(v)
+        ? null
+        : "Lettres I, O, Q interdites ; lettres et chiffres uniquement";
     case "date": {
       const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(v);
-      if (!m || +m[1] < 1 || +m[1] > 31 || +m[2] < 1 || +m[2] > 12) return "Format JJ/MM/AAAA";
+      if (!m || +m[1] < 1 || +m[1] > 31 || +m[2] < 1 || +m[2] > 12)
+        return "Format JJ/MM/AAAA";
+      const date = new Date(Date.UTC(+m[3], +m[2] - 1, +m[1]));
+      if (
+        date.getUTCFullYear() !== +m[3] ||
+        date.getUTCMonth() !== +m[2] - 1 ||
+        date.getUTCDate() !== +m[1]
+      )
+        return "Date inexistante";
       return null;
     }
     case "number":
