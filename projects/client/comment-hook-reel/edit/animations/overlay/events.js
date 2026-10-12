@@ -12,7 +12,7 @@ window.EV = {
    "end": 0.722
   },
   {
-   "text": "progressives",
+   "text": "progressifs",
    "start": 0.802,
    "end": 1.464
   },

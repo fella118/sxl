@@ -55,6 +55,9 @@ def phrase(pid: str, lines: list, end: float, y: int = 1250, clip: str = "C2416"
 
 hook_words = [{"text": x["word"], "start": x["start"], "end": x["end"]} for x in WORDS if x["beat"] == "HOOK"]
 hook_words[-1]["text"] += "؟"
+for w in hook_words:                                   # the comment is written French: "les verres progressifs"
+    if w["text"] == "progressives":
+        w["text"] = "progressifs"
 
 PHRASES = [
     phrase("bien", [[(6.27, "script", "yellow", "bien sûr")],

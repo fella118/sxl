@@ -123,3 +123,26 @@ Housekeeping (2026-10-06): raw footage C2412/C2416 and render intermediates dele
 to make room for the next project; re-download from the client's Drive folder
 (15Miyjbpfqjpj6dJebXphJCZULPVMBQxm; C2416 = file 1s92l2st4wWKs5yjvyQ5z28Nc9Yma81nq)
 and rerun track_subject.py + render_base.py + capture + composite to revise.
+
+## Fix — 2026-10-12 (client: "les progressifs", not "les progressives")
+
+- The comment card said "واش les progressives كايدوخو؟", typed from the transcript
+  of his take. In written French it's "les (verres) progressifs". "Progressives"
+  is only right for "lentilles progressives" (contact lenses).
+- The raw footage and render intermediates were deleted after delivery, so the
+  fix is a patch on the delivered master, with no re-render:
+  - The front overlay layer (opaque white card) was captured for 0-2.6 s twice,
+    once with the old events.js and once with the corrected one.
+  - Each frame gets the premultiplied difference (new − old), so only the
+    changed letters move.
+  - Inside the opaque card, around the changed letters, the frame takes the new
+    render plus the video's blurred colour offset, so compression ringing from
+    the old letters leaves no ghost.
+  - The picture is re-encoded at CRF 14. The audio is copied untouched from the
+    v3 masters.
+- events.js now has "progressifs", and events.py maps the transcript word so a
+  future rebuild keeps the fix.
+- **Delivered (deliver/):**
+  - comment-hook-reel_reels_v4.mp4 and _nomusic.mp4 (masters)
+  - comment-hook-reel_reels_v4_upload.mp4 and _nomusic_upload.mp4 (2-pass 5.1 Mbps)
+  - comment-hook-reel_cover_v4.jpg (2.12 s)

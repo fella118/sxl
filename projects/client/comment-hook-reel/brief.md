@@ -13,7 +13,7 @@ Sony 4K vertical (2160x4096), 50 fps, 10-bit 4:2:2. Clean voice, single locked-o
 - Send a brief before starting.
 
 ## Content
-Comment: "واش les progressives كايدوخو؟" (do progressive lenses make you dizzy?)
+Comment: "واش les progressifs كايدوخو؟" (spoken "les progressives"; written correctly on the card) (do progressive lenses make you dizzy?)
 Answer: yes, especially the first time. Get progressives while the addition
 is still +1/+2 instead of separate distance/near glasses; at +3 adapting is
 harder. Other factors: centrage, hauteur, how the optician took the
