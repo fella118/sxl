@@ -59,3 +59,29 @@ capture_html.py -> safe_zones.py check -> build_audio.py -> composite.py
 - **QC v2:** 31.36 s, -14.0 LUFS, -1.4 dBTP; the head check flags only the
   three intended white flashes; the freezes are the held test chart.
 - **Sent:** vision-test_preview_v2_review.mp4.
+
+## Session 2026-10-14 (v3): E's as on the optician's screen
+
+- **Client:** a photo of the shop's TV chart (line "2/10": five tumbling E of one
+  size in a row). The test should use those exact E measurements, so it looks
+  real.
+- **Measured on the photo:** each E is 23x23 px (5x5 grid, stroke = 1/5 of the
+  height), with centres 95.6 px apart, i.e. 4.16 E-heights. The gap between
+  E's is about 3.2 E widths.
+- **Chart (index.tmpl.html):** the decreasing column (310/190/125/78 + 30 px
+  BONUS) is replaced by one line of five E at 50 px, 158 px apart (pitch 208 px
+  = 4.16 x 50). The line spans x 99-980, so there is room on both sides; at
+  56 px it would touch the screen edges. Both eyes use the same line; the
+  directions are unchanged. The row numbers and the BONUS tag are gone.
+- **Scale note:** with the TV's spacing, five E's in a portrait frame top out
+  around 50-56 px. At the 3 m he asks for, that is a sharp-vision line, about
+  10/10 or better on a phone.
+- **Pinned answers:** right eye ➡️ ⬇️ ⬅️ ⬆️ ⬅️, left eye ⬆️ ⬅️ ➡️ ⬇️ ⬆️.
+  Captions are updated (no BONUS). The CTA example "ليمن 5/5 · ليسر 4/5" is
+  unchanged.
+- **Render:** only the test section's front frames were re-captured (18.7-27.5
+  s), then the full composite.
+- **QC:** 31.36 s; -14.0 LUFS, -1.4 dBTP. The E's are still crisp after the
+  review encode.
+- **Sent:** vision-test_preview_v3_review.mp4 (18 MB).
+- **Housekeeping:** preview_v1 files deleted.
