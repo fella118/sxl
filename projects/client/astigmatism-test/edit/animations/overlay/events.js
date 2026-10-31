@@ -157,17 +157,15 @@ window.EV = {
  "test_out": 27.06,
  "right_set": [
   "right",
-  "down",
   "left",
   "up",
-  "left"
+  "down"
  ],
  "left_set": [
-  "up",
-  "left",
   "right",
-  "down",
-  "up"
+  "left",
+  "up",
+  "down"
  ],
  "cta_in": 27.31,
  "cta_type": 28.248,

@@ -85,3 +85,19 @@ capture_html.py -> safe_zones.py check -> build_audio.py -> composite.py
   review encode.
 - **Sent:** vision-test_preview_v3_review.mp4 (18 MB).
 - **Housekeeping:** preview_v1 files deleted.
+
+## Session 2026-10-31 (v4): back to the v2 chart, four E
+
+- **Client:** back to the v2 video (IMG_6063 = v2) and fix the four-E chart. The
+  directions should be right, left, up, down, and the last E should match a
+  reference chart line ("20/70": E 73-74 px, 5x5 grid).
+- **Chart:** the v2 template is restored, then changed.
+  - Four E at 310 / 190 / 125 / 74 px, numbered 1-4, 56 px row gap.
+  - The tiny BONUS E is gone, so the chart now matches his "ربعة ديال les E".
+  - Both eyes use right, left, up, down, as asked.
+- **CTA example:** "ليمن 4/4 · ليسر 3/4". Captions and pinned answers are
+  updated (➡️ ⬅️ ⬆️ ⬇️ for each eye).
+- **Render:** front frames re-captured from 18.7 s to the end (test + CTA), then
+  the full composite.
+- **QC:** 31.36 s; -14.0 LUFS, -1.4 dBTP.
+- **Sent:** vision-test_preview_v4_review.mp4.
